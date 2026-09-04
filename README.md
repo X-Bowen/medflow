@@ -15,7 +15,7 @@ anyone can reproduce every number below **with no API key and no GPU**.
 ## TL;DR — reproduce the headline result in about 30 seconds
 
 ```bash
-git clone <this-repo> && cd medflow
+git clone https://github.com/X-Bowen/medflow.git && cd medflow
 python3 run_baseline.py --n 50 --workflow cot --mode offline
 ```
 
