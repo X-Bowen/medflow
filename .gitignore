@@ -4,3 +4,4 @@ __pycache__/
 venv/
 .env
 runs/*_mock_*.json
+data/train_data.csv

@@ -1,0 +1,1180 @@
+[
+  {
+    "id": "row79",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nMAP = (1/3) \u00d7 SBP + (2/3) \u00d7 DBP  \n\nINPUTS:  \n- Systolic Blood Pressure (SBP): mm Hg  \n- Diastolic Blood Pressure (DBP): mm Hg  \n\nCONVENTIONS:  \n- SBP and DBP must be measured in mm Hg; convert if necessary (e.g., kPa to mm Hg by multiplying by 7.5).  \n- Use the most recent, accurate readings; if only one value is available, MAP cannot be calculated.  \n- Round final MAP to one decimal place.  \n- The formula assumes a typical cardiac cycle with equal systolic and diastolic durations; it is not adjusted for arrhythmias or abnormal pulse patterns.  \n- If SBP < DBP, the input is invalid\u2014check measurement accuracy.  \n- No default values are applied; missing or unreported SBP or DBP results in an error.",
+        "calculator": "Mean Arterial Pressure (MAP)"
+      },
+      {
+        "name": "extract",
+        "text": "BP: 125/75 mmHg"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nSBP = 125  # mm Hg\nDBP = 75   # mm Hg\n\n# Formula for Mean Arterial Pressure (MAP)\n# MAP = (1/3) \u00d7 SBP + (2/3) \u00d7 DBP\nMAP = (1/3) * SBP + (2/3) * DBP\n\n# Round to one decimal place\nanswer = round(MAP, 1)\n```",
+        "code": "# Given values from the patient note\nSBP = 125  # mm Hg\nDBP = 75   # mm Hg\n\n# Formula for Mean Arterial Pressure (MAP)\n# MAP = (1/3) \u00d7 SBP + (2/3) \u00d7 DBP\nMAP = (1/3) * SBP + (2/3) * DBP\n\n# Round to one decimal place\nanswer = round(MAP, 1)",
+        "exec_value": "91.7",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 91.7"
+  },
+  {
+    "id": "row86",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nBMI = weight / (height \u00d7 height)  \nwhere weight is in kilograms (kg) and height is in meters (m).\n\nINPUTS:  \n- weight: patient\u2019s weight in kilograms (kg)  \n- height: patient\u2019s height in centimeters (cm)  \n\nCONVENTIONS:  \n- Height must be converted from cm to m by dividing by 100.  \n- Weight must be in kg; if reported in pounds, convert using 1 lb = 0.45359237 kg.  \n- Final BMI is rounded to 3 decimal places.  \n- If height is not reported, use a default of 170 cm (1.70 m) only if clinically justified and documented.  \n- If weight is missing, the calculation cannot proceed.  \n- BMI is calculated using the metric formula only; no imperial or alternative formulas.  \n- Ensure height and weight are measured at the same time and under standard conditions (e.g., light clothing, no shoes).",
+        "calculator": "Body Mass Index (BMI)"
+      },
+      {
+        "name": "extract",
+        "text": "weight: 77 kg  \nheight: 183 cm"
+      },
+      {
+        "name": "program",
+        "text": "```python\nweight_kg = 77\nheight_cm = 183\n\nheight_m = height_cm / 100\nbmi = weight_kg / (height_m * height_m)\nanswer = round(bmi, 3)\n```",
+        "code": "weight_kg = 77\nheight_cm = 183\n\nheight_m = height_cm / 100\nbmi = weight_kg / (height_m * height_m)\nanswer = round(bmi, 3)",
+        "exec_value": "22.993",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 22.993"
+  },
+  {
+    "id": "row109",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nCorrected Calcium (mg/dL) = (0.8 \u00d7 (4.0 g/dL \u2212 Patient's Albumin g/dL)) + Serum Calcium (mg/dL)\n\nINPUTS:  \n- Patient's Albumin (g/dL)  \n- Serum Calcium (mg/dL)\n\nCONVENTIONS:  \n- Albumin and calcium must be in g/dL and mg/dL, respectively.  \n- Use 4.0 g/dL as the standard normal albumin value.  \n- If albumin is above 4.0 g/dL, the correction subtracts from serum calcium (i.e., results in lower corrected calcium).  \n- If albumin is below 4.0 g/dL, the correction adds to serum calcium (i.e., results in higher corrected calcium).  \n- Report corrected calcium to two decimal places.  \n- No rounding of intermediate values; apply full precision before final rounding.  \n- Do not use patient-specific normal values; always assume 4.0 g/dL as reference.",
+        "calculator": "Calcium Correction for Hypoalbuminemia"
+      },
+      {
+        "name": "extract",
+        "text": "calcium: 7.7 mg/dL  \nalbumin: 3.2 g/dL  \nnormal albumin: 4 g/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nserum_calcium = 7.7  # mg/dL\npatient_albumin = 3.2  # g/dL\nnormal_albumin = 4.0  # g/dL\n\n# Corrected Calcium formula\ncorrected_calcium = (0.8 * (normal_albumin - patient_albumin)) + serum_calcium\n\n# Round to two decimal places\nanswer = round(corrected_calcium, 2)\n```",
+        "code": "# Given values from the patient note\nserum_calcium = 7.7  # mg/dL\npatient_albumin = 3.2  # g/dL\nnormal_albumin = 4.0  # g/dL\n\n# Corrected Calcium formula\ncorrected_calcium = (0.8 * (normal_albumin - patient_albumin)) + serum_calcium\n\n# Round to two decimal places\nanswer = round(corrected_calcium, 2)",
+        "exec_value": "8.34",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 8.34"
+  },
+  {
+    "id": "row152",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nGFR = 175 \u00d7 creatinine\u207b\u00b9\u00b7\u00b9\u2075\u2074 \u00d7 age\u207b\u2070\u00b7\u00b2\u2070\u00b3 \u00d7 race_coefficient \u00d7 gender_coefficient  \n\n**INPUTS:**  \n- creatinine: serum creatinine concentration in mg/dL  \n- age: patient\u2019s age in years  \n- race: Black (1.212) or not Black (1.0)  \n- gender: female (0.742) or male (1.0)  \n\n**CONVENTIONS:**  \n- Creatinine must be in mg/dL; convert if necessary (e.g., \u03bcmol/L \u00f7 88.4 = mg/dL).  \n- Age must be in years; use actual age, not rounded.  \n- Race coefficient: 1.212 if Black, 1.0 otherwise. If race is not reported, use 1.0.  \n- Gender coefficient: 0.742 if female, 1.0 if male. If gender is not reported, use 1.0.  \n- All exponents are applied to the raw input values (e.g., creatinine\u207b\u00b9\u00b7\u00b9\u2075\u2074).  \n- Output is in mL/min/1.73m\u00b2, reported as a decimal with no rounding unless specified.  \n- The equation is not valid for patients with acute kidney injury or those not in stable renal function.",
+        "calculator": "MDRD GFR Equation"
+      },
+      {
+        "name": "extract",
+        "text": "age: 62 years  \nsex: female  \nrace: NOT REPORTED  \nserum creatinine: 4.1 mg/dL  \nalbumin: NOT REPORTED  \nblood urea nitrogen: 24.8 mg/dL  \nhemoglobin: 8.6 g/dL  \nbody surface area: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\nimport math\n\n# Patient values at admission\nage = 62\nsex = \"female\"\nrace = \"not reported\"  # Use 1.0 if not reported\nserum_creatinine = 4.1  # mg/dL\n\n# MDRD GFR Equation coefficients\ncreatinine_exponent = -1.154\nage_exponent = -0.203\nrace_coefficient = 1.212 if race == \"Black\" else 1.0\ngender_coefficient = 0.742 if sex == \"female\" else 1.0\n\n# Calculate GFR\nGFR = 175 * (serum_creatinine ** creatinine_exponent) * (age ** age_exponent) * race_coefficient * gender_coefficient\n\nanswer = GFR\n```",
+        "code": "import math\n\n# Patient values at admission\nage = 62\nsex = \"female\"\nrace = \"not reported\"  # Use 1.0 if not reported\nserum_creatinine = 4.1  # mg/dL\n\n# MDRD GFR Equation coefficients\ncreatinine_exponent = -1.154\nage_exponent = -0.203\nrace_coefficient = 1.212 if race == \"Black\" else 1.0\ngender_coefficient = 0.742 if sex == \"female\" else 1.0\n\n# Calculate GFR\nGFR = 175 * (serum_creatinine ** creatinine_exponent) * (age ** age_exponent) * race_coefficient * gender_coefficient\n\nanswer = GFR",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_openbook_fallback",
+        "text": "**FORMULA OR RULE:**  \nGFR = 175 \u00d7 creatinine\u207b\u00b9\u00b7\u00b9\u2075\u2074 \u00d7 age\u207b\u2070\u00b7\u00b2\u2070\u00b3 \u00d7 race_coefficient \u00d7 gender_coefficient  \n\n**INPUTS FROM PATIENT NOTE (at admission, prior to treatment):**  \n- Serum creatinine: 4.1 mg/dL (given directly in mg/dL)  \n- Age: 62 years  \n- Race: Not specified as Black; therefore, race_coefficient = 1.0  \n- Gender: Female \u2192 gender_coefficient = 0.742  \n\n**UNIT CONVERSIONS:**  \n- Creatinine is already in mg/dL \u2192 no conversion needed  \n- Age is in years \u2192 no conversion needed  \n\n**COMPUTATION STEP-BY-STEP:**  \n\n1. Compute creatinine\u207b\u00b9\u00b7\u00b9\u2075\u2074:  \n   4.1^(-1.154) = 1 / (4.1^1.154)  \n   4.1^1.154 \u2248 5.347  \n   So, 4.1^(-1.154) \u2248 1 / 5.347 \u2248 0.1870  \n\n2. Compute age\u207b\u2070\u00b7\u00b2\u2070\u00b3:  \n   62^(-0.203) = 1 / (62^0.203)  \n   62^0.203 \u2248 2.345  \n   So, 62^(-0.203) \u2248 1 / 2.345 \u2248 0.4264  \n\n3. Apply coefficients:  \n   race_coefficient = 1.0  \n   gender_coefficient = 0.742  \n\n4. Now compute GFR:  \n   GFR = 175 \u00d7 0.1870 \u00d7 0.4264 \u00d7 1.0 \u00d7 0.742  \n\n   First: 175 \u00d7 0.1870 = 32.725  \n   Then: 32.725 \u00d7 0.4264 \u2248 14.000  \n   Then: 14.000 \u00d7 0.742 \u2248 10.388  \n\n   So, GFR \u2248 10.388 mL/min/1.73 m\u00b2  \n\n**Final Answer (no rounding, as per instructions):**  \nANSWER: 10.388"
+      }
+    ],
+    "answer_text": "**FORMULA OR RULE:**  \nGFR = 175 \u00d7 creatinine\u207b\u00b9\u00b7\u00b9\u2075\u2074 \u00d7 age\u207b\u2070\u00b7\u00b2\u2070\u00b3 \u00d7 race_coefficient \u00d7 gender_coefficient  \n\n**INPUTS FROM PATIENT NOTE (at admission, prior to treatment):**  \n- Serum creatinine: 4.1 mg/dL (given directly in mg/dL)  \n- Age: 62 years  \n- Race: Not specified as Black; therefore, race_coefficient = 1.0  \n- Gender: Female \u2192 gender_coefficient = 0.742  \n\n**UNIT CONVERSIONS:**  \n- Creatinine is already in mg/dL \u2192 no conversion needed  \n- Age is in years \u2192 no conversion needed  \n\n**COMPUTATION STEP-BY-STEP:**  \n\n1. Compute creatinine\u207b\u00b9\u00b7\u00b9\u2075\u2074:  \n   4.1^(-1.154) = 1 / (4.1^1.154)  \n   4.1^1.154 \u2248 5.347  \n   So, 4.1^(-1.154) \u2248 1 / 5.347 \u2248 0.1870  \n\n2. Compute age\u207b\u2070\u00b7\u00b2\u2070\u00b3:  \n   62^(-0.203) = 1 / (62^0.203)  \n   62^0.203 \u2248 2.345  \n   So, 62^(-0.203) \u2248 1 / 2.345 \u2248 0.4264  \n\n3. Apply coefficients:  \n   race_coefficient = 1.0  \n   gender_coefficient = 0.742  \n\n4. Now compute GFR:  \n   GFR = 175 \u00d7 0.1870 \u00d7 0.4264 \u00d7 1.0 \u00d7 0.742  \n\n   First: 175 \u00d7 0.1870 = 32.725  \n   Then: 32.725 \u00d7 0.4264 \u2248 14.000  \n   Then: 14.000 \u00d7 0.742 \u2248 10.388  \n\n   So, GFR \u2248 10.388 mL/min/1.73 m\u00b2  \n\n**Final Answer (no rounding, as per instructions):**  \nANSWER: 10.388"
+  },
+  {
+    "id": "row156",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nGFR = 175 \u00d7 creatinine\u207b\u00b9\u00b7\u00b9\u2075\u2074 \u00d7 age\u207b\u2070\u00b7\u00b2\u2070\u00b3 \u00d7 race_coefficient \u00d7 gender_coefficient  \n\n**INPUTS:**  \n- creatinine: serum creatinine concentration in mg/dL  \n- age: patient\u2019s age in years  \n- race: Black (1.212) or not Black (1.0)  \n- gender: female (0.742) or male (1.0)  \n\n**CONVENTIONS:**  \n- Creatinine must be in mg/dL; convert if necessary (e.g., \u03bcmol/L \u00f7 88.4 = mg/dL).  \n- Age must be in years; use actual age, not rounded.  \n- Race coefficient: 1.212 if Black, 1.0 otherwise. If race is not reported, use 1.0.  \n- Gender coefficient: 0.742 if female, 1.0 if male. If gender is not reported, use 1.0.  \n- All exponents are applied to the raw input values (e.g., creatinine\u207b\u00b9\u00b7\u00b9\u2075\u2074).  \n- Output is in mL/min/1.73m\u00b2, reported as a decimal with no rounding unless specified.  \n- The equation is not valid for patients with acute kidney injury or those not in stable renal function.",
+        "calculator": "MDRD GFR Equation"
+      },
+      {
+        "name": "extract",
+        "text": "age: 48 years  \nsex: female  \nrace: NOT REPORTED  \nserum creatinine: 2.4 mg/dL  \nalbumin: NOT REPORTED  \nblood urea nitrogen (BUN): NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nage = 48\nsex = \"female\"\nrace = \"not reported\"  # Since race is not reported, use 1.0 for race_coefficient\ncreatinine = 2.4  # in mg/dL\n\n# MDRD GFR Equation coefficients\nrace_coefficient = 1.0 if race == \"not reported\" else 1.212\ngender_coefficient = 0.742 if sex == \"female\" else 1.0\n\n# Apply the MDRD formula\nGFR = 175 * (creatinine ** -1.154) * (age ** -0.203) * race_coefficient * gender_coefficient\n\n# Assign result to answer\nanswer = GFR\n```",
+        "code": "# Given values from the patient note\nage = 48\nsex = \"female\"\nrace = \"not reported\"  # Since race is not reported, use 1.0 for race_coefficient\ncreatinine = 2.4  # in mg/dL\n\n# MDRD GFR Equation coefficients\nrace_coefficient = 1.0 if race == \"not reported\" else 1.212\ngender_coefficient = 0.742 if sex == \"female\" else 1.0\n\n# Apply the MDRD formula\nGFR = 175 * (creatinine ** -1.154) * (age ** -0.203) * race_coefficient * gender_coefficient\n\n# Assign result to answer\nanswer = GFR",
+        "exec_value": "21.546970141609307",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 21.546970141609307"
+  },
+  {
+    "id": "row200",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nQTc = QT / \u221a(RR)  \nwhere RR = 60 / heart rate (in beats per minute)  \nQT and QTc are in milliseconds (msec)\n\n**INPUTS:**  \n- QT interval: in milliseconds (msec)  \n- Heart rate: in beats per minute (bpm)\n\n**CONVENTIONS:**  \n- RR interval is calculated as 60 / heart rate (in seconds)  \n- Heart rate must be \u2265 30 bpm; values < 30 bpm are not valid for this formula  \n- QT interval must be measured from the start of the Q wave to the end of the T wave  \n- Use the average of at least 3 consecutive beats if heart rate is irregular  \n- Round QTc to one decimal place (e.g., 439.4 msec)  \n- If heart rate is not available, use 60 bpm as default (not recommended; clinical context required)  \n- Do not use if QT interval is < 150 msec or > 600 msec (potential measurement error)",
+        "calculator": "QTc Bazett Calculator"
+      },
+      {
+        "name": "extract",
+        "text": "heart rate: 50 bpm  \nQT interval: 316 msec"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nheart_rate_bpm = 50\nqt_msec = 316\n\n# Calculate RR interval in seconds\nrr_seconds = 60 / heart_rate_bpm\n\n# Apply Bazett's formula: QTc = QT / sqrt(RR)\nqt_corrected = qt_msec / (rr_seconds ** 0.5)\n\n# Round to one decimal place\nanswer = round(qt_corrected, 1)\n```",
+        "code": "# Given values from the patient note\nheart_rate_bpm = 50\nqt_msec = 316\n\n# Calculate RR interval in seconds\nrr_seconds = 60 / heart_rate_bpm\n\n# Apply Bazett's formula: QTc = QT / sqrt(RR)\nqt_corrected = qt_msec / (rr_seconds ** 0.5)\n\n# Round to one decimal place\nanswer = round(qt_corrected, 1)",
+        "exec_value": "288.5",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 288.5"
+  },
+  {
+    "id": "row208",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nBilirubin (mg/dL): <2 \u2192 1, 2\u20133 \u2192 2, >3 \u2192 3  \nAlbumin (g/dL): >3.5 \u2192 1, 2.8\u20133.5 \u2192 2, <2.8 \u2192 3  \nINR: <1.7 \u2192 1, 1.7\u20132.3 \u2192 2, >2.3 \u2192 3  \nAscites: Absent \u2192 1, Slight \u2192 2, Moderate \u2192 3  \nEncephalopathy: No \u2192 1, Grade 1\u20132 \u2192 2, Grade 3\u20134 \u2192 3  \nTotal score = sum of all five criteria points  \n\n**INPUTS:**  \n- Bilirubin (total, mg/dL)  \n- Albumin (g/dL)  \n- INR (international normalized ratio)  \n- Ascites severity (Absent, Slight, Moderate)  \n- Encephalopathy grade (No, Grade 1\u20132, Grade 3\u20134)  \n\n**CONVENTIONS:**  \n- Use mg/dL for bilirubin and g/dL for albumin; no unit conversion applied.  \n- INR thresholds: <1.7 \u2192 1, 1.7\u20132.3 \u2192 2, >2.3 \u2192 3 (inclusive of 1.7 and 2.3).  \n- Bilirubin: >3 mg/dL \u2192 3; \u22653 mg/dL is not sufficient\u2014must be strictly greater.  \n- Albumin: <2.8 g/dL \u2192 3; \u22652.8 and \u22643.5 \u2192 2; >3.5 \u2192 1.  \n- Ascites: \"Slight\" and \"Moderate\" are distinct; \"Absent\" is not \"no ascites\" if not explicitly stated.  \n- Encephalopathy: Grade 1\u20132 includes both grades; Grade 3\u20134 includes both.  \n- All values must be reported; if missing, default to worst-case (highest score) unless otherwise specified.",
+        "calculator": "Child-Pugh Score for Cirrhosis Mortality"
+      },
+      {
+        "name": "extract",
+        "text": "bilirubin: 2.97 mg/dl  \nalbumin: 3.0 g/dl  \nINR: 2.2  \nascites: moderate  \nencephalopathy: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Patient values from the note (prior to treatment)\nbilirubin = 2.97  # mg/dL\nalbumin = 3.0     # g/dL\nINR = 2.2\nascites = \"moderate\"\nencephalopathy = None  # Not reported\n\n# Child-Pugh scoring\n# Bilirubin (mg/dL): <2 \u2192 1, 2\u20133 \u2192 2, >3 \u2192 3\nif bilirubin < 2:\n    bilirubin_score = 1\nelif bilirubin >= 2 and bilirubin <= 3:\n    bilirubin_score = 2\nelse:  # bilirubin > 3\n    bilirubin_score = 3\n\n# Albumin (g/dL): >3.5 \u2192 1, 2.8\u20133.5 \u2192 2, <2.8 \u2192 3\nif albumin > 3.5:\n    albumin_score = 1\nelif albumin >= 2.8 and albumin <= 3.5:\n    albumin_score = 2\nelse:  # albumin < 2.8\n    albumin_score = 3\n\n# INR: <1.7 \u2192 1, 1.7\u20132.3 \u2192 2, >2.3 \u2192 3\nif INR < 1.7:\n    INR_score = 1\nelif INR >= 1.7 and INR <= 2.3:\n    INR_score = 2\nelse:  # INR > 2.3\n    INR_score = 3\n\n# Ascites: Absent \u2192 1, Slight \u2192 2, Moderate \u2192 3\nif ascites == \"absent\":\n    ascites_score = 1\nelif ascites == \"slight\":\n    ascites_score = 2\nelif ascites == \"moderate\":\n    ascites_score = 3\nelse:\n    ascites_score = 3  # default to worst case if not specified\n\n# Encephalopathy: No \u2192 1, Grade 1\u20132 \u2192 2, Grade 3\u20134 \u2192 3\n# Since not reported, default to worst case (highest score)\nencephalopathy_score = 3  # worst-case assumption\n\n# Total score\ntotal_score = bilirubin_score + albumin_score + INR_score + ascites_score + encephalopathy_score\n\nanswer = total_score\n```",
+        "code": "# Patient values from the note (prior to treatment)\nbilirubin = 2.97  # mg/dL\nalbumin = 3.0     # g/dL\nINR = 2.2\nascites = \"moderate\"\nencephalopathy = None  # Not reported\n\n# Child-Pugh scoring\n# Bilirubin (mg/dL): <2 \u2192 1, 2\u20133 \u2192 2, >3 \u2192 3\nif bilirubin < 2:\n    bilirubin_score = 1\nelif bilirubin >= 2 and bilirubin <= 3:\n    bilirubin_score = 2\nelse:  # bilirubin > 3\n    bilirubin_score = 3\n\n# Albumin (g/dL): >3.5 \u2192 1, 2.8\u20133.5 \u2192 2, <2.8 \u2192 3\nif albumin > 3.5:\n    albumin_score = 1\nelif albumin >= 2.8 and albumin <= 3.5:\n    albumin_score = 2\nelse:  # albumin < 2.8\n    albumin_score = 3\n\n# INR: <1.7 \u2192 1, 1.7\u20132.3 \u2192 2, >2.3 \u2192 3\nif INR < 1.7:\n    INR_score = 1\nelif INR >= 1.7 and INR <= 2.3:\n    INR_score = 2\nelse:  # INR > 2.3\n    INR_score = 3\n\n# Ascites: Absent \u2192 1, Slight \u2192 2, Moderate \u2192 3\nif ascites == \"absent\":\n    ascites_score = 1\nelif ascites == \"slight\":\n    ascites_score = 2\nelif ascites == \"moderate\":\n    ascites_score = 3\nelse:\n    ascites_score = 3  # default to worst case if not specified\n\n# Encephalopathy: No \u2192 1, Grade 1\u20132 \u2192 2, Grade 3\u20134 \u2192 3\n# Since not reported, default to worst case (highest score)\nencephalopathy_score = 3  # worst-case assumption\n\n# Total score\ntotal_score = bilirubin_score + albumin_score + INR_score + ascites_score + encephalopathy_score\n\nanswer = total_score",
+        "exec_value": "12",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 12"
+  },
+  {
+    "id": "row233",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \n1. Active cancer (treatment or palliation within 6 months): +1  \n2. Bedridden >3 days or major surgery within 12 weeks: +1  \n3. Calf swelling >3 cm (10 cm below tibial tuberosity): +1  \n4. Collateral (nonvaricose) superficial veins: +1  \n5. Entire leg swollen: +1  \n6. Localized tenderness along deep venous system: +1  \n7. Pitting edema, confined to symptomatic leg: +1  \n8. Paralysis, paresis, or recent plaster immobilization: +1  \n9. Previously documented DVT: +1  \n10. Alternative diagnosis to DVT as likely or more likely: \u20132  \n\n**INPUTS:**  \n- Presence/absence of each clinical criterion (Yes/No)  \n- All inputs are binary (Yes/No) with no units  \n\n**CONVENTIONS:**  \n- If a criterion is missing from the note, assume \"No\" (absent).  \n- For criterion 2, \"bedridden >3 days\" OR \"major surgery within 12 weeks\" must be true for +1 point; both must be absent for 0 points.  \n- All scores are summed as integers.  \n- Final score is returned as a decimal (e.g., 3 \u2192 3.0).  \n- No rounding applied; decimal output reflects exact sum.",
+        "calculator": "Wells' Criteria for DVT"
+      },
+      {
+        "name": "extract",
+        "text": "Age > 60 years: NOT REPORTED  \nActive cancer: NOT REPORTED  \nParalysis, paresis, or recent plaster immobilization of the lower extremity: NOT REPORTED  \nRecently bedridden for > 3 days or major surgery within the past 12 weeks: NOT REPORTED  \nLocalized tenderness along the deep venous system: NOT REPORTED  \nEntire leg swollen: 4.5 cm (difference in circumference at 10 cm below tibial tuberosity)  \nCalf swelling > 3 cm compared to the other leg: 4.5 cm  \nPitting edema extending above the knee: NOT REPORTED  \nCollateral superficial venous system: NOT REPORTED  \nPreviously documented DVT: NOT REPORTED  \nAlternative diagnosis as likely or more likely than DVT: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Wells' criteria for Deep Vein Thrombosis scoring\n\n# Criterion 1: Active cancer (treatment or palliation within 6 months)\ncancer = False\n\n# Criterion 2: Bedridden >3 days or major surgery within 12 weeks\nbedridden_or_surgery = False\n\n# Criterion 3: Calf swelling >3 cm (10 cm below tibial tuberosity)\n# Measured difference: 4.5 cm (left vs right)\ncalf_swelling = True  # 4.5 cm > 3 cm\n\n# Criterion 4: Collateral (nonvaricose) superficial veins\ncollateral_veins = False\n\n# Criterion 5: Entire leg swollen\nentire_leg_swollen = True  # Swelling from groin to dorsal foot\n\n# Criterion 6: Localized tenderness along deep venous system\nlocalized_tenderness = False  # No focal cord-like tenderness\n\n# Criterion 7: Pitting edema, confined to symptomatic leg\npitting_edema = False\n\n# Criterion 8: Paralysis, paresis, or recent plaster immobilization\nplaster_immobilization = False\n\n# Criterion 9: Previously documented DVT\nprevious_dvt = False\n\n# Criterion 10: Alternative diagnosis as likely or more likely than DVT\n# The note says: \"the combination of widespread erythema, elevated inflammatory markers, and a clear history of blunt trauma suggests an infectious or inflammatory process... an occlusive event... remains under consideration\"\n# This implies that an alternative diagnosis (e.g., cellulitis, post-contusional hematoma) is considered plausible, but not definitively more likely.\n# However, the note does not state that an alternative diagnosis is \"as likely or more likely\" \u2014 it's still under consideration.\n# Therefore, we assume \"No\" for this criterion.\nalternative_diagnosis = False\n\n# Calculate total score\nscore = 0\nif cancer: score += 1\nif bedridden_or_surgery: score += 1\nif calf_swelling: score += 1\nif collateral_veins: score += 1\nif entire_leg_swollen: score += 1\nif localized_tenderness: score += 1\nif pitting_edema: score += 1\nif plaster_immobilization: score += 1\nif previous_dvt: score += 1\nif alternative_diagnosis: score -= 2\n\n# Final answer as float\nanswer = float(score)\n```",
+        "code": "# Wells' criteria for Deep Vein Thrombosis scoring\n\n# Criterion 1: Active cancer (treatment or palliation within 6 months)\ncancer = False\n\n# Criterion 2: Bedridden >3 days or major surgery within 12 weeks\nbedridden_or_surgery = False\n\n# Criterion 3: Calf swelling >3 cm (10 cm below tibial tuberosity)\n# Measured difference: 4.5 cm (left vs right)\ncalf_swelling = True  # 4.5 cm > 3 cm\n\n# Criterion 4: Collateral (nonvaricose) superficial veins\ncollateral_veins = False\n\n# Criterion 5: Entire leg swollen\nentire_leg_swollen = True  # Swelling from groin to dorsal foot\n\n# Criterion 6: Localized tenderness along deep venous system\nlocalized_tenderness = False  # No focal cord-like tenderness\n\n# Criterion 7: Pitting edema, confined to symptomatic leg\npitting_edema = False\n\n# Criterion 8: Paralysis, paresis, or recent plaster immobilization\nplaster_immobilization = False\n\n# Criterion 9: Previously documented DVT\nprevious_dvt = False\n\n# Criterion 10: Alternative diagnosis as likely or more likely than DVT\n# The note says: \"the combination of widespread erythema, elevated inflammatory markers, and a clear history of blunt trauma suggests an infectious or inflammatory process... an occlusive event... remains under consideration\"\n# This implies that an alternative diagnosis (e.g., cellulitis, post-contusional hematoma) is considered plausible, but not definitively more likely.\n# However, the note does not state that an alternative diagnosis is \"as likely or more likely\" \u2014 it's still under consideration.\n# Therefore, we assume \"No\" for this criterion.\nalternative_diagnosis = False\n\n# Calculate total score\nscore = 0\nif cancer: score += 1\nif bedridden_or_surgery: score += 1\nif calf_swelling: score += 1\nif collateral_veins: score += 1\nif entire_leg_swollen: score += 1\nif localized_tenderness: score += 1\nif pitting_edema: score += 1\nif plaster_immobilization: score += 1\nif previous_dvt: score += 1\nif alternative_diagnosis: score -= 2\n\n# Final answer as float\nanswer = float(score)",
+        "exec_value": "2.0",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 2.0"
+  },
+  {
+    "id": "row261",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nHistory: Slightly suspicious = 0, Moderately suspicious = +1, Highly suspicious = +2  \nEKG: Normal = 0, Non-specific repolarization disturbance = +1, Significant ST deviation = +2  \nAge: <45 years = 0, 45\u201364 years = +1, \u226565 years = +2  \nRisk factors: 0 = 0, 1\u20132 = +1, \u22653 or history of atherosclerotic disease = +2  \nInitial troponin: \u2264normal limit = 0, 1\u20133\u00d7 normal = +1, >3\u00d7 normal = +2  \nTotal HEART Score = sum of all component scores  \n\n**INPUTS:**  \n- History of chest pain (categorical: Slightly, Moderately, Highly suspicious)  \n- EKG result (categorical: Normal, Non-specific repolarization disturbance, Significant ST deviation)  \n- Age (years)  \n- Number of risk factors (HTN, hypercholesterolemia, DM, obesity [BMI >30], smoking [current or within 3 months], family history of CVD <65, prior atherosclerotic disease [MI, PCI/CABG, CVA/TIA, PAD])  \n- Initial troponin level (relative to normal limit: \u2264, 1\u20133\u00d7, >3\u00d7)  \n\n**CONVENTIONS:**  \n- Age \u226565 years = +2 points; 45\u201364 = +1; <45 = 0  \n- Risk factors: count only those present; \u22653 or history of atherosclerotic disease = +2; 1\u20132 = +1  \n- Troponin: use clinical lab\u2019s normal limit; >3\u00d7 = +2, 1\u20133\u00d7 = +1, \u2264normal = 0  \n- If risk factor is not documented, assume absent  \n- No rounding; score is integer sum of all components",
+        "calculator": "HEART Score for Major Cardiac Events"
+      },
+      {
+        "name": "extract",
+        "text": "History: 2 points  \nElectrocardiogram: 0 points  \nAge: 33 years  \nRisk factors: 3 points  \nTroponin: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nhistory_points = 2  # Highly suspicious\nekg_points = 0      # Normal\nage_years = 33      # Age < 45 \u2192 0 points\nrisk_factors_count = 3  # Hyperlipidemia, T2DM (implied from family history and personal history), hypertension (implied from family and personal), and family history of CVD <65 \u2192 at least 3 risk factors\ntroponin_points = 0  # NOT REPORTED \u2192 assume \u2264 normal limit \u2192 0 points\n\n# Calculate HEART Score\n# Age: 33 \u2192 <45 \u2192 0 points\nage_points = 0\n\n# Risk factors: \u22653 \u2192 +2 points\nrisk_factors_points = 2\n\n# Total HEART Score\ntotal_heart_score = history_points + ekg_points + age_points + risk_factors_points + troponin_points\n\n# Assign final result\nanswer = total_heart_score\n```",
+        "code": "# Extracted values from the patient note\nhistory_points = 2  # Highly suspicious\nekg_points = 0      # Normal\nage_years = 33      # Age < 45 \u2192 0 points\nrisk_factors_count = 3  # Hyperlipidemia, T2DM (implied from family history and personal history), hypertension (implied from family and personal), and family history of CVD <65 \u2192 at least 3 risk factors\ntroponin_points = 0  # NOT REPORTED \u2192 assume \u2264 normal limit \u2192 0 points\n\n# Calculate HEART Score\n# Age: 33 \u2192 <45 \u2192 0 points\nage_points = 0\n\n# Risk factors: \u22653 \u2192 +2 points\nrisk_factors_points = 2\n\n# Total HEART Score\ntotal_heart_score = history_points + ekg_points + age_points + risk_factors_points + troponin_points\n\n# Assign final result\nanswer = total_heart_score",
+        "exec_value": "4",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 4"
+  },
+  {
+    "id": "row314",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nAge: 3\u201314 years = +1 point, 15\u201344 years = 0 points, \u226545 years = \u20131 point  \nExudate or swelling on tonsils: Yes = +1 point, No = 0 points  \nTender/swollen anterior cervical lymph nodes: Yes = +1 point, No = 0 points  \nTemperature >38\u00b0C (100.4\u00b0F): Yes = +1 point, No = 0 points  \nCough: Absent = +1 point, Present = 0 points  \nTotal score = sum of all points  \n\n**INPUTS:**  \n- Age (years)  \n- Presence of exudate or swelling on tonsils (Yes/No)  \n- Presence of tender/swollen anterior cervical lymph nodes (Yes/No)  \n- Temperature (\u00b0C or \u00b0F)  \n- Presence of cough (Yes/No)  \n\n**CONVENTIONS:**  \n- Temperature in \u00b0F must be converted to \u00b0C using: \u00b0C = 5/9 \u00d7 (\u00b0F \u2013 32)  \n- Temperature threshold: >38\u00b0C (100.4\u00b0F) = +1 point; \u226438\u00b0C = 0 points  \n- Age categories: 3\u201314 years = +1, 15\u201344 years = 0, \u226545 years = \u20131  \n- Cough: absent = +1 point, present = 0 points  \n- If a value is not reported, assume \"No\" for physical exam findings and \"Present\" for cough  \n- Score can be negative (minimum \u20131)  \n- Final score is an integer (no rounding; sum is already integer)",
+        "calculator": "Centor Score (Modified/McIsaac) for Strep Pharyngitis"
+      },
+      {
+        "name": "extract",
+        "text": "Fever: 38.2 \u00b0C  \nSore throat: present  \nTonsillar exudate: NOT REPORTED  \nTender anterior cervical lymphadenopathy: NOT REPORTED  \nHistory of recent exposure to streptococcal pharyngitis: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nage = 64  # years\ntemperature_c = 38.2  # \u00b0C\ncough_present = False  # cough is absent (sore throat is present, but cough is not mentioned, so assume absent per convention)\n\n# Centor Score calculation\n# Age: \u226545 years \u2192 \u20131 point\nage_point = -1\n\n# Exudate or swelling on tonsils: NOT REPORTED \u2192 assume \"No\"\nexudate_point = 0\n\n# Tender/swollen anterior cervical lymph nodes: NOT REPORTED \u2192 assume \"No\"\nlymph_node_point = 0\n\n# Temperature >38\u00b0C: 38.2\u00b0C > 38\u00b0C \u2192 +1 point\ntemperature_point = 1\n\n# Cough: absent \u2192 +1 point\ncough_point = 1\n\n# Total score\nanswer = age_point + exudate_point + lymph_node_point + temperature_point + cough_point\n```",
+        "code": "# Extracted values from the patient note\nage = 64  # years\ntemperature_c = 38.2  # \u00b0C\ncough_present = False  # cough is absent (sore throat is present, but cough is not mentioned, so assume absent per convention)\n\n# Centor Score calculation\n# Age: \u226545 years \u2192 \u20131 point\nage_point = -1\n\n# Exudate or swelling on tonsils: NOT REPORTED \u2192 assume \"No\"\nexudate_point = 0\n\n# Tender/swollen anterior cervical lymph nodes: NOT REPORTED \u2192 assume \"No\"\nlymph_node_point = 0\n\n# Temperature >38\u00b0C: 38.2\u00b0C > 38\u00b0C \u2192 +1 point\ntemperature_point = 1\n\n# Cough: absent \u2192 +1 point\ncough_point = 1\n\n# Total score\nanswer = age_point + exudate_point + lymph_node_point + temperature_point + cough_point",
+        "exec_value": "1",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 1"
+  },
+  {
+    "id": "row325",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \n- If weight < 10 kg: maintenance fluid = 4 \u00d7 weight (mL/hr)  \n- If 10 kg \u2264 weight \u2264 20 kg: maintenance fluid = 40 + 2 \u00d7 (weight \u2212 10) (mL/hr)  \n- If weight > 20 kg: maintenance fluid = 60 + 1 \u00d7 (weight \u2212 20) (mL/hr)  \n\n**INPUTS:**  \n- Patient weight (kg)  \n\n**CONVENTIONS:**  \n- Use weight in kilograms (kg); convert from pounds or grams if necessary.  \n- Apply the formula based on weight range\u2014use only one formula per patient.  \n- Thresholds are inclusive: 10 kg and 20 kg belong to the middle and upper ranges, respectively.  \n- Results are rounded to one decimal place (e.g., 105.0, not 105).  \n- No additional adjustments for age, sex, or clinical condition\u2014this is for baseline maintenance only.  \n- If weight is not reported, default to 0 kg (but this should be avoided in clinical use).",
+        "calculator": "Maintenance Fluids Calculations"
+      },
+      {
+        "name": "extract",
+        "text": "weight: 45 kg  \nage: 28 years  \nheight: 158 cm  \nno comorbidities affecting fluid needs: NOT REPORTED (but no cardiopulmonary involvement, normal labs)  \nno renal impairment: NOT REPORTED  \nno other specific conditions affecting fluid requirements: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nweight_kg = 45\n\n# Apply the maintenance fluid formula based on weight\nif weight_kg < 10:\n    maintenance_fluid_mL_hr = 4 * weight_kg\nelif 10 <= weight_kg <= 20:\n    maintenance_fluid_mL_hr = 40 + 2 * (weight_kg - 10)\nelse:  # weight_kg > 20\n    maintenance_fluid_mL_hr = 60 + 1 * (weight_kg - 20)\n\n# Round to one decimal place\nanswer = round(maintenance_fluid_mL_hr, 1)\n```",
+        "code": "# Given values from the patient note\nweight_kg = 45\n\n# Apply the maintenance fluid formula based on weight\nif weight_kg < 10:\n    maintenance_fluid_mL_hr = 4 * weight_kg\nelif 10 <= weight_kg <= 20:\n    maintenance_fluid_mL_hr = 40 + 2 * (weight_kg - 10)\nelse:  # weight_kg > 20\n    maintenance_fluid_mL_hr = 60 + 1 * (weight_kg - 20)\n\n# Round to one decimal place\nanswer = round(maintenance_fluid_mL_hr, 1)",
+        "exec_value": "85",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 85"
+  },
+  {
+    "id": "row331",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \n- If weight < 10 kg: maintenance fluid = 4 \u00d7 weight (mL/hr)  \n- If 10 kg \u2264 weight \u2264 20 kg: maintenance fluid = 40 + 2 \u00d7 (weight \u2212 10) (mL/hr)  \n- If weight > 20 kg: maintenance fluid = 60 + 1 \u00d7 (weight \u2212 20) (mL/hr)  \n\n**INPUTS:**  \n- Patient weight (kg)  \n\n**CONVENTIONS:**  \n- Use weight in kilograms (kg); convert from pounds or grams if necessary.  \n- Apply the formula based on weight range\u2014use only one formula per patient.  \n- Thresholds are inclusive: 10 kg and 20 kg belong to the middle and upper ranges, respectively.  \n- Results are rounded to one decimal place (e.g., 105.0, not 105).  \n- No additional adjustments for age, sex, or clinical condition\u2014this is for baseline maintenance only.  \n- If weight is not reported, default to 0 kg (but this should be avoided in clinical use).",
+        "calculator": "Maintenance Fluids Calculations"
+      },
+      {
+        "name": "extract",
+        "text": "weight: 46 kg  \nage: 22 years  \nstatus: hospitalized, acute illness with severe electrolyte disturbances (hypokalemia, hyponatremia, metabolic alkalosis, rhabdomyolysis)  \nno evidence of heart failure, liver disease, or significant fluid overload  \nno specific fluid restriction mentioned  \nno renal replacement therapy required  \nno fever or other signs of increased insensible losses  \nno ongoing gastrointestinal losses at time of calculation (vomiting and diarrhea had been present but not specified as ongoing at time of fluid calculation)  \nno other comorbidities affecting fluid needs (e.g., sepsis, burns, trauma)  \nno known contraindications to standard maintenance fluid calculation  \nno prior fluid overload or edema  \nno known renal failure requiring fluid restriction (mild renal insufficiency, but not severe)"
+      },
+      {
+        "name": "program",
+        "text": "```python\nweight_kg = 46\n\nif weight_kg < 10:\n    maintenance_fluid = 4 * weight_kg\nelif 10 <= weight_kg <= 20:\n    maintenance_fluid = 40 + 2 * (weight_kg - 10)\nelse:  # weight_kg > 20\n    maintenance_fluid = 60 + 1 * (weight_kg - 20)\n\nanswer = round(maintenance_fluid, 1)\n```",
+        "code": "weight_kg = 46\n\nif weight_kg < 10:\n    maintenance_fluid = 4 * weight_kg\nelif 10 <= weight_kg <= 20:\n    maintenance_fluid = 40 + 2 * (weight_kg - 10)\nelse:  # weight_kg > 20\n    maintenance_fluid = 60 + 1 * (weight_kg - 20)\n\nanswer = round(maintenance_fluid, 1)",
+        "exec_value": "86",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 86"
+  },
+  {
+    "id": "row352",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nMELD(i) = 0.957 \u00d7 ln(Cr) + 0.378 \u00d7 ln(bilirubin) + 1.120 \u00d7 ln(INR) + 0.643  \nIf round(MELD(i), 1) \u00d7 10 > 11:  \n\u2003MELD = MELD(i) + 1.32 \u00d7 (137 \u2212 Na) \u2212 [0.033 \u00d7 MELD(i) \u00d7 (137 \u2212 Na)]  \nMELD Na score = min(MELD, 40)  \n\n**INPUTS:**  \n- Cr: creatinine (mg/dL)  \n- bilirubin: bilirubin (mg/dL)  \n- INR: international normalized ratio  \n- Na: sodium (mEq/L)  \n\n**CONVENTIONS:**  \n- If Cr < 1.0 mg/dL, use 1.0 mg/dL.  \n- If Cr \u2265 4.0 mg/dL, use 4.0 mg/dL.  \n- If Cr is not reported, assume 1.0 mg/dL.  \n- If patient had \u22652 dialysis sessions in past 7 days or CVVH in past 24 hours, set Cr = 4.0 mg/dL.  \n- If Na < 125 mEq/L, set Na = 125 mEq/L.  \n- If Na > 137 mEq/L, set Na = 137 mEq/L.  \n- Compute MELD(i) using natural log (ln).  \n- Round MELD(i) to nearest tenth, then multiply by 10 to get MELD(i) \u00d7 10.  \n- Apply correction formula only if MELD(i) \u00d7 10 > 11.  \n- Final MELD Na score is capped at 40.  \n- Output is decimal (not rounded to integer).",
+        "calculator": "MELD Na (UNOS/OPTN)"
+      },
+      {
+        "name": "extract",
+        "text": "creatinine: 1.2 mg/dL  \nbilirubin: 1.5 mg/dL  \nINR: 2.2  \nsodium: 143 mEq/L"
+      },
+      {
+        "name": "program",
+        "text": "```python\nimport math\n\n# Extracted values from the patient note\ncreatinine = 1.2  # mg/dL\nbilirubin = 1.5   # mg/dL\nINR = 2.2\nsodium = 143      # mEq/L\n\n# Apply conventions\nif creatinine < 1.0:\n    creatinine = 1.0\nelif creatinine >= 4.0:\n    creatinine = 4.0\n\nif sodium < 125:\n    sodium = 125\nelif sodium > 137:\n    sodium = 137\n\n# Compute MELD(i)\nMELD_i = 0.957 * math.log(creatinine) + 0.378 * math.log(bilirubin) + 1.120 * math.log(INR) + 0.643\n\n# Round MELD(i) to nearest tenth, then multiply by 10\nMELD_i_times_10 = round(MELD_i, 1) * 10\n\n# Apply correction formula only if MELD(i) \u00d7 10 > 11\nif MELD_i_times_10 > 11:\n    MELD = MELD_i + 1.32 * (137 - sodium) - (0.033 * MELD_i * (137 - sodium))\nelse:\n    MELD = MELD_i\n\n# Cap at 40\nanswer = min(MELD, 40)\n```",
+        "code": "import math\n\n# Extracted values from the patient note\ncreatinine = 1.2  # mg/dL\nbilirubin = 1.5   # mg/dL\nINR = 2.2\nsodium = 143      # mEq/L\n\n# Apply conventions\nif creatinine < 1.0:\n    creatinine = 1.0\nelif creatinine >= 4.0:\n    creatinine = 4.0\n\nif sodium < 125:\n    sodium = 125\nelif sodium > 137:\n    sodium = 137\n\n# Compute MELD(i)\nMELD_i = 0.957 * math.log(creatinine) + 0.378 * math.log(bilirubin) + 1.120 * math.log(INR) + 0.643\n\n# Round MELD(i) to nearest tenth, then multiply by 10\nMELD_i_times_10 = round(MELD_i, 1) * 10\n\n# Apply correction formula only if MELD(i) \u00d7 10 > 11\nif MELD_i_times_10 > 11:\n    MELD = MELD_i + 1.32 * (137 - sodium) - (0.033 * MELD_i * (137 - sodium))\nelse:\n    MELD = MELD_i\n\n# Cap at 40\nanswer = min(MELD, 40)",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_openbook_fallback",
+        "text": "Step 1: Identify the formula and conventions.\n\nThe MELD Na (UNOS/OPTN) score is calculated using the following formula:\n\nMELD(i) = 0.957 \u00d7 ln(Cr) + 0.378 \u00d7 ln(bilirubin) + 1.120 \u00d7 ln(INR) + 0.643\n\nIf round(MELD(i), 1) \u00d7 10 > 11, then:\nMELD = MELD(i) + 1.32 \u00d7 (137 \u2212 Na) \u2212 [0.033 \u00d7 MELD(i) \u00d7 (137 \u2212 Na)]\n\nFinal MELD Na score = min(MELD, 40)\n\nConventions:\n- Cr: if <1.0, use 1.0; if \u22654.0, use 4.0\n- bilirubin: no floor/ceiling mentioned, so use reported value\n- INR: no floor/ceiling\n- Na: if <125, use 125; if >137, use 137\n\nStep 2: Extract values from the patient note (at first admission, prior to treatment):\n\n- Creatinine (Cr): 1.2 mg/dL \u2192 within normal range (1.0 to 4.0), so use 1.2\n- Bilirubin: 1.5 mg/dL \u2192 use as is\n- INR: 2.2 \u2192 use as is\n- Sodium (Na): 143 mEq/L \u2192 since >137, set to 137 mEq/L\n\nStep 3: Compute MELD(i)\n\nFirst, compute natural logs:\n\n- ln(Cr) = ln(1.2) \u2248 0.18232\n- ln(bilirubin) = ln(1.5) \u2248 0.40547\n- ln(INR) = ln(2.2) \u2248 0.78846\n\nNow compute:\n\nMELD(i) = 0.957 \u00d7 0.18232 + 0.378 \u00d7 0.40547 + 1.120 \u00d7 0.78846 + 0.643\n\nBreak it down:\n\n- 0.957 \u00d7 0.18232 \u2248 0.17446\n- 0.378 \u00d7 0.40547 \u2248 0.15326\n- 1.120 \u00d7 0.78846 \u2248 0.88208\n- + 0.643\n\nSum:  \n0.17446 + 0.15326 = 0.32772  \n0.32772 + 0.88208 = 1.2098  \n1.2098 + 0.643 = 1.8528\n\nSo, MELD(i) \u2248 1.8528\n\nStep 4: Round MELD(i) to nearest tenth \u2192 1.9  \nThen multiply by 10 \u2192 1.9 \u00d7 10 = 19\n\nSince 19 > 11, apply the correction formula.\n\nStep 5: Apply correction formula\n\nMELD = MELD(i) + 1.32 \u00d7 (137 \u2212 Na) \u2212 [0.033 \u00d7 MELD(i) \u00d7 (137 \u2212 Na)]\n\nBut Na was set to 137, so (137 \u2212 Na) = 0\n\nTherefore:\n\nMELD = 1.8528 + 1.32 \u00d7 0 \u2212 [0.033 \u00d7 1.8528 \u00d7 0]  \nMELD = 1.8528 + 0 \u2212 0 = 1.8528\n\nStep 6: Cap at 40 \u2192 min(1.8528, 40) = 1.8528\n\nFinal MELD Na score = 1.8528\n\nANSWER: 1.8528"
+      }
+    ],
+    "answer_text": "Step 1: Identify the formula and conventions.\n\nThe MELD Na (UNOS/OPTN) score is calculated using the following formula:\n\nMELD(i) = 0.957 \u00d7 ln(Cr) + 0.378 \u00d7 ln(bilirubin) + 1.120 \u00d7 ln(INR) + 0.643\n\nIf round(MELD(i), 1) \u00d7 10 > 11, then:\nMELD = MELD(i) + 1.32 \u00d7 (137 \u2212 Na) \u2212 [0.033 \u00d7 MELD(i) \u00d7 (137 \u2212 Na)]\n\nFinal MELD Na score = min(MELD, 40)\n\nConventions:\n- Cr: if <1.0, use 1.0; if \u22654.0, use 4.0\n- bilirubin: no floor/ceiling mentioned, so use reported value\n- INR: no floor/ceiling\n- Na: if <125, use 125; if >137, use 137\n\nStep 2: Extract values from the patient note (at first admission, prior to treatment):\n\n- Creatinine (Cr): 1.2 mg/dL \u2192 within normal range (1.0 to 4.0), so use 1.2\n- Bilirubin: 1.5 mg/dL \u2192 use as is\n- INR: 2.2 \u2192 use as is\n- Sodium (Na): 143 mEq/L \u2192 since >137, set to 137 mEq/L\n\nStep 3: Compute MELD(i)\n\nFirst, compute natural logs:\n\n- ln(Cr) = ln(1.2) \u2248 0.18232\n- ln(bilirubin) = ln(1.5) \u2248 0.40547\n- ln(INR) = ln(2.2) \u2248 0.78846\n\nNow compute:\n\nMELD(i) = 0.957 \u00d7 0.18232 + 0.378 \u00d7 0.40547 + 1.120 \u00d7 0.78846 + 0.643\n\nBreak it down:\n\n- 0.957 \u00d7 0.18232 \u2248 0.17446\n- 0.378 \u00d7 0.40547 \u2248 0.15326\n- 1.120 \u00d7 0.78846 \u2248 0.88208\n- + 0.643\n\nSum:  \n0.17446 + 0.15326 = 0.32772  \n0.32772 + 0.88208 = 1.2098  \n1.2098 + 0.643 = 1.8528\n\nSo, MELD(i) \u2248 1.8528\n\nStep 4: Round MELD(i) to nearest tenth \u2192 1.9  \nThen multiply by 10 \u2192 1.9 \u00d7 10 = 19\n\nSince 19 > 11, apply the correction formula.\n\nStep 5: Apply correction formula\n\nMELD = MELD(i) + 1.32 \u00d7 (137 \u2212 Na) \u2212 [0.033 \u00d7 MELD(i) \u00d7 (137 \u2212 Na)]\n\nBut Na was set to 137, so (137 \u2212 Na) = 0\n\nTherefore:\n\nMELD = 1.8528 + 1.32 \u00d7 0 \u2212 [0.033 \u00d7 1.8528 \u00d7 0]  \nMELD = 1.8528 + 0 \u2212 0 = 1.8528\n\nStep 6: Cap at 40 \u2192 min(1.8528, 40) = 1.8528\n\nFinal MELD Na score = 1.8528\n\nANSWER: 1.8528"
+  },
+  {
+    "id": "row372",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \n1. Hypertension (uncontrolled, >160 mmHg systolic): +1 point if yes  \n2. Renal disease (dialysis, transplant, Cr >2.26 mg/dL or >200 \u00b5mol/L): +1 point if yes  \n3. Liver disease (cirrhosis or bilirubin >2\u00d7 normal with AST/ALT/AP >3\u00d7 normal): +1 point if yes  \n4. Stroke history: +1 point if yes  \n5. Prior major bleeding or predisposition to bleeding: +1 point if yes  \n6. Labile INR (unstable/high INRs, time in therapeutic range <60%): +1 point if yes  \n7. Age >65: +1 point if yes  \n8. Medication usage predisposing to bleeding (aspirin, clopidogrel, NSAIDs): +1 point if yes  \n9. Alcohol use (\u22658 drinks/week): +1 point if yes  \nTotal score = sum of all applicable points  \n\n**INPUTS:**  \n- Hypertension status (yes/no)  \n- Renal disease status (yes/no)  \n- Liver disease status (yes/no)  \n- Stroke history (yes/no)  \n- Prior major bleeding or bleeding predisposition (yes/no)  \n- INR stability (labile or stable)  \n- Age (years)  \n- Medication use (aspirin, clopidogrel, NSAIDs; yes/no)  \n- Alcohol consumption (drinks per week)  \n\n**CONVENTIONS:**  \n- Use \"yes\" only if clearly documented; otherwise assume \"no\"  \n- Age >65: use strict threshold (\u226566 years)  \n- Alcohol: \u22658 drinks/week = yes; <8 = no  \n- INR labile: defined as time in therapeutic range <60%  \n- Renal: Cr >2.26 mg/dL or >200 \u00b5mol/L  \n- Liver: bilirubin >2\u00d7 normal AND AST/ALT/AP >3\u00d7 normal, OR cirrhosis  \n- No rounding; score is integer sum",
+        "calculator": "HAS-BLED Score for Major Bleeding Risk"
+      },
+      {
+        "name": "extract",
+        "text": "History of bleeding: yes  \nAge \u226565 years: no  \nUncontrolled hypertension: not reported  \nLabile INR: not reported  \nConcomitant use of drugs (e.g., aspirin, NSAIDs): not reported  \nDiabetes mellitus: not reported  \nLiver disease: not reported  \nKidney disease: not reported"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nhypertension = False  # Not reported, so assume no\nrenal_disease = False  # Creatinine 0.8 mg/dL < 2.26 mg/dL, so no\nliver_disease = False  # Bilirubin 0.7 mg/dL < 2\u00d7 normal (1.4 mg/dL), AST/ALT/AP within normal limits, no cirrhosis\nstroke_history = True  # Had a left middle cerebral artery ischemic stroke\nprior_bleeding = True  # Hospitalized for acute blood loss anemia due to bleeding duodenal ulcer\ninr_labile = False  # Time in therapeutic range is 92% (>60%), so not labile\nage_over_65 = False  # Age is 59 < 65\nmedication_bleeding_predisposition = False  # No aspirin, clopidogrel, or NSAIDs\nalcohol_use = True  # 12 drinks/week \u2265 8 drinks/week\n\n# Calculate HAS-BLED score\nanswer = 0\nif hypertension:\n    answer += 1\nif renal_disease:\n    answer += 1\nif liver_disease:\n    answer += 1\nif stroke_history:\n    answer += 1\nif prior_bleeding:\n    answer += 1\nif inr_labile:\n    answer += 1\nif age_over_65:\n    answer += 1\nif medication_bleeding_predisposition:\n    answer += 1\nif alcohol_use:\n    answer += 1\n```",
+        "code": "# Extracted values from the patient note\nhypertension = False  # Not reported, so assume no\nrenal_disease = False  # Creatinine 0.8 mg/dL < 2.26 mg/dL, so no\nliver_disease = False  # Bilirubin 0.7 mg/dL < 2\u00d7 normal (1.4 mg/dL), AST/ALT/AP within normal limits, no cirrhosis\nstroke_history = True  # Had a left middle cerebral artery ischemic stroke\nprior_bleeding = True  # Hospitalized for acute blood loss anemia due to bleeding duodenal ulcer\ninr_labile = False  # Time in therapeutic range is 92% (>60%), so not labile\nage_over_65 = False  # Age is 59 < 65\nmedication_bleeding_predisposition = False  # No aspirin, clopidogrel, or NSAIDs\nalcohol_use = True  # 12 drinks/week \u2265 8 drinks/week\n\n# Calculate HAS-BLED score\nanswer = 0\nif hypertension:\n    answer += 1\nif renal_disease:\n    answer += 1\nif liver_disease:\n    answer += 1\nif stroke_history:\n    answer += 1\nif prior_bleeding:\n    answer += 1\nif inr_labile:\n    answer += 1\nif age_over_65:\n    answer += 1\nif medication_bleeding_predisposition:\n    answer += 1\nif alcohol_use:\n    answer += 1",
+        "exec_value": "3",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 3"
+  },
+  {
+    "id": "row374",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \n1. Hypertension (uncontrolled, >160 mmHg systolic): +1 point if yes  \n2. Renal disease (dialysis, transplant, Cr >2.26 mg/dL or >200 \u00b5mol/L): +1 point if yes  \n3. Liver disease (cirrhosis or bilirubin >2\u00d7 normal with AST/ALT/AP >3\u00d7 normal): +1 point if yes  \n4. Stroke history: +1 point if yes  \n5. Prior major bleeding or predisposition to bleeding: +1 point if yes  \n6. Labile INR (unstable/high INRs, time in therapeutic range <60%): +1 point if yes  \n7. Age >65: +1 point if yes  \n8. Medication usage predisposing to bleeding (aspirin, clopidogrel, NSAIDs): +1 point if yes  \n9. Alcohol use (\u22658 drinks/week): +1 point if yes  \nTotal score = sum of all applicable points  \n\n**INPUTS:**  \n- Hypertension status (yes/no)  \n- Renal disease status (yes/no)  \n- Liver disease status (yes/no)  \n- Stroke history (yes/no)  \n- Prior major bleeding or bleeding predisposition (yes/no)  \n- INR stability (labile or stable)  \n- Age (years)  \n- Medication use (aspirin, clopidogrel, NSAIDs; yes/no)  \n- Alcohol consumption (drinks per week)  \n\n**CONVENTIONS:**  \n- Use \"yes\" only if clearly documented; otherwise assume \"no\"  \n- Age >65: use strict threshold (\u226566 years)  \n- Alcohol: \u22658 drinks/week = yes; <8 = no  \n- INR labile: defined as time in therapeutic range <60%  \n- Renal: Cr >2.26 mg/dL or >200 \u00b5mol/L  \n- Liver: bilirubin >2\u00d7 normal AND AST/ALT/AP >3\u00d7 normal, OR cirrhosis  \n- No rounding; score is integer sum",
+        "calculator": "HAS-BLED Score for Major Bleeding Risk"
+      },
+      {
+        "name": "extract",
+        "text": "age: 55 years  \nhypertension: NOT REPORTED  \ndiabetes: yes  \nliver disease: NOT REPORTED  \nkidney disease: NOT REPORTED  \nbleeding history: NOT REPORTED  \nINR instability: NOT REPORTED  \nage > 65: yes  \nanticoagulant/antiplatelet therapy: yes  \nalcohol abuse: yes"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nage = 55\nhypertension = False  # NOT REPORTED\nrenal_disease = False  # NOT REPORTED\nliver_disease = False  # NOT REPORTED\nstroke_history = False  # NO history of stroke\nprior_major_bleeding = False  # NOT REPORTED\ninr_labile = False  # NOT REPORTED (INR within normal limits, no mention of instability)\nage_over_65 = age >= 66  # 55 < 66, so False\nmedication_bleeding_predisposition = True  # Warfarin, insulin, metformin \u2014 but warfarin is anticoagulant, which counts as \"medication predisposing to bleeding\"\nalcohol_drinks_per_week = 2 * 7  # 2 drinks per day = 14 drinks per week\n\n# Apply the HAS-BLED criteria\nscore = 0\nif hypertension:\n    score += 1\nif renal_disease:\n    score += 1\nif liver_disease:\n    score += 1\nif stroke_history:\n    score += 1\nif prior_major_bleeding:\n    score += 1\nif inr_labile:\n    score += 1\nif age_over_65:\n    score += 1\nif medication_bleeding_predisposition:\n    score += 1\nif alcohol_drinks_per_week >= 8:\n    score += 1\n\nanswer = score\n```",
+        "code": "# Extracted values from the patient note\nage = 55\nhypertension = False  # NOT REPORTED\nrenal_disease = False  # NOT REPORTED\nliver_disease = False  # NOT REPORTED\nstroke_history = False  # NO history of stroke\nprior_major_bleeding = False  # NOT REPORTED\ninr_labile = False  # NOT REPORTED (INR within normal limits, no mention of instability)\nage_over_65 = age >= 66  # 55 < 66, so False\nmedication_bleeding_predisposition = True  # Warfarin, insulin, metformin \u2014 but warfarin is anticoagulant, which counts as \"medication predisposing to bleeding\"\nalcohol_drinks_per_week = 2 * 7  # 2 drinks per day = 14 drinks per week\n\n# Apply the HAS-BLED criteria\nscore = 0\nif hypertension:\n    score += 1\nif renal_disease:\n    score += 1\nif liver_disease:\n    score += 1\nif stroke_history:\n    score += 1\nif prior_major_bleeding:\n    score += 1\nif inr_labile:\n    score += 1\nif age_over_65:\n    score += 1\nif medication_bleeding_predisposition:\n    score += 1\nif alcohol_drinks_per_week >= 8:\n    score += 1\n\nanswer = score",
+        "exec_value": "2",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 2"
+  },
+  {
+    "id": "row389",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nCorrected Sodium (mEq/L) = Measured Sodium (mEq/L) + 0.024 \u00d7 (Serum Glucose [mg/dL] \u2212 100)\n\nINPUTS:  \n- Measured Sodium: mEq/L  \n- Serum Glucose: mg/dL  \n\nCONVENTIONS:  \n- Use serum glucose value as directly measured; do not convert to mmol/L.  \n- Apply the formula even if glucose is below 100 mg/dL (resulting in a negative correction).  \n- Round final corrected sodium to two decimal places.  \n- No default values; if either input is missing, calculation cannot be performed.  \n- The correction factor 0.024 is derived from Hiller, 1999 and applies only to hyperglycemia-induced pseudohyponatremia.  \n- Do not apply this correction if the patient has significant hyperlipidemia or hyperproteinemia, as these may confound sodium measurements.",
+        "calculator": "Sodium Correction for Hyperglycemia"
+      },
+      {
+        "name": "extract",
+        "text": "sodium: 129 mmol/L  \nglucose: 337 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nmeasured_sodium = 129  # mEq/L\nserum_glucose = 337    # mg/dL\n\n# Apply the corrected sodium formula from Hillier, 1999\ncorrected_sodium = measured_sodium + 0.024 * (serum_glucose - 100)\n\n# Round to two decimal places\nanswer = round(corrected_sodium, 2)\n```",
+        "code": "# Given values from the patient note\nmeasured_sodium = 129  # mEq/L\nserum_glucose = 337    # mg/dL\n\n# Apply the corrected sodium formula from Hillier, 1999\ncorrected_sodium = measured_sodium + 0.024 * (serum_glucose - 100)\n\n# Round to two decimal places\nanswer = round(corrected_sodium, 2)",
+        "exec_value": "134.69",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 134.69"
+  },
+  {
+    "id": "row403",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nBUN (mg/dL): <18.2 = 0, 18.2\u201322.3 = +2, 22.4\u201328 = +3, 28\u201370 = +4, >70 = +6  \nHemoglobin (g/dL) \u2013 Male: \u226513 = 0, \u226412\u201313 = +1, \u226410\u201312 = +3, <10 = +6  \nHemoglobin (g/dL) \u2013 Female: \u226512 = 0, \u226410\u201312 = +1, <10 = +6  \nSystolic BP (mm Hg): \u2265110 = 0, 100\u2013109 = +1, 90\u201399 = +2, <90 = +3  \nPulse \u2265100 bpm: No = 0, Yes = +1  \nMelena: No = 0, Yes = +1  \nRecent syncope: No = 0, Yes = +2  \nHepatic disease history: No = 0, Yes = +2  \nCardiac failure: No = 0, Yes = +2  \nTotal score = sum of all applicable points  \n\n**INPUTS:**  \n- BUN (mg/dL)  \n- Hemoglobin (g/dL)  \n- Patient gender (Male/Female)  \n- Systolic blood pressure (mm Hg)  \n- Heart rate (beats per minute)  \n- Melena (Yes/No)  \n- Recent syncope (Yes/No)  \n- Hepatic disease history (Yes/No)  \n- Cardiac failure (Yes/No)  \n\n**CONVENTIONS:**  \n- Use exact thresholds: 18.2, 22.3, 22.4, 28, 70, 10, 12, 13, 90, 100, 109, 110, 120  \n- Hemoglobin thresholds: for men, \u226412\u201313 includes 12; for women, \u226410\u201312 includes 10  \n- If syncope status missing, assume \"No\"  \n- If hepatic disease or cardiac failure status missing, assume \"No\"  \n- No rounding; use exact values for thresholds  \n- Score is integer; no decimals",
+        "calculator": "Glasgow-Blatchford Bleeding Score (GBS)"
+      },
+      {
+        "name": "extract",
+        "text": "Age: 84 years  \nSystolic blood pressure: 140 mmHg  \nPulse: 75 beats/min  \nHemoglobin: 10 g/dl  \nBUN: 36 mg/dl  \nCreatinine: 1.5 mg/dl  \nPresence of shock: NOT REPORTED  \nHistory of liver disease: NOT REPORTED  \nHistory of heart failure: NOT REPORTED  \nHistory of renal failure: NOT REPORTED  \nMelena: NOT REPORTED  \nSyncope: NOT REPORTED  \nAbdominal pain: NOT REPORTED  \nHematemesis: NOT REPORTED  \nHematuria: yes  \nHistory of peptic ulcer: yes  \nHistory of liver disease: NOT REPORTED  \nHistory of heart failure: NOT REPORTED  \nHistory of renal failure: NOT REPORTED  \nHistory of cancer: NOT REPORTED  \nHistory of anticoagulant use: NOT REPORTED  \nHistory of NSAID use: NOT REPORTED  \nHistory of aspirin use: NOT REPORTED  \nHistory of thrombocytopenia: NOT REPORTED  \nHistory of coagulopathy: NOT REPORTED  \nHistory of anemia: yes  \nHistory of chronic kidney disease: NOT REPORTED  \nHistory of cirrhosis: NOT REPORTED  \nHistory of hypertension: NOT REPORTED  \nHistory of diabetes: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of myocardial infarction: NOT REPORTED  \nHistory of peripheral vascular disease: NOT REPORTED  \nHistory of aortic aneurysm: yes  \nHistory of recent surgery: yes  \nHistory of recent trauma: NOT REPORTED  \nHistory of malignancy: NOT REPORTED  \nHistory of chronic obstructive pulmonary disease: NOT REPORTED  \nHistory of asthma: NOT REPORTED  \nHistory of pulmonary embolism: NOT REPORTED  \nHistory of deep vein thrombosis: NOT REPORTED  \nHistory of bleeding disorder: NOT REPORTED  \nHistory of thrombocytopenia: NOT REPORTED  \nHistory of coagulopathy: NOT REPORTED  \nHistory of anticoagulant use: NOT REPORTED  \nHistory of NSAID use: NOT REPORTED  \nHistory of aspirin use: NOT REPORTED  \nHistory of recent surgery: yes  \nHistory of recent trauma: NOT REPORTED  \nHistory of malignancy: NOT REPORTED  \nHistory of chronic kidney disease: NOT REPORTED  \nHistory of cirrhosis: NOT REPORTED  \nHistory of hypertension: NOT REPORTED  \nHistory of diabetes: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of myocardial infarction: NOT REPORTED  \nHistory of peripheral vascular disease: NOT REPORTED  \nHistory of aortic aneurysm: yes  \nHistory of peptic ulcer: yes  \nHistory of anemia: yes  \nHistory of chronic obstructive pulmonary disease: NOT REPORTED  \nHistory of asthma: NOT REPORTED  \nHistory of pulmonary embolism: NOT REPORTED  \nHistory of deep vein thrombosis: NOT REPORTED  \nHistory of bleeding disorder: NOT REPORTED  \nHistory of thrombocytopenia: NOT REPORTED  \nHistory of coagulopathy: NOT REPORTED  \nHistory of anticoagulant use: NOT REPORTED  \nHistory of NSAID use: NOT REPORTED  \nHistory of aspirin use: NOT REPORTED  \nHistory of recent surgery: yes  \nHistory of recent trauma: NOT REPORTED  \nHistory of malignancy: NOT REPORTED  \nHistory of chronic kidney disease: NOT REPORTED  \nHistory of cirrhosis: NOT REPORTED  \nHistory of hypertension: NOT REPORTED  \nHistory of diabetes: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of myocardial infarction: NOT REPORTED  \nHistory of peripheral vascular disease: NOT REPORTED  \nHistory of aortic aneurysm: yes  \nHistory of peptic ulcer: yes  \nHistory of anemia: yes  \nHistory of chronic obstructive pulmonary disease: NOT REPORTED  \nHistory of asthma: NOT REPORTED  \nHistory of pulmonary embolism: NOT REPORTED  \nHistory of deep vein thrombosis: NOT REPORTED  \nHistory of bleeding disorder: NOT REPORTED  \nHistory of thrombocytopenia: NOT REPORTED  \nHistory of coagulopathy: NOT REPORTED  \nHistory of anticoagulant use: NOT REPORTED  \nHistory of NSAID use: NOT REPORTED  \nHistory of aspirin use: NOT REPORTED  \nHistory of recent surgery: yes  \nHistory of recent trauma: NOT REPORTED  \nHistory of malignancy: NOT REPORTED  \nHistory of chronic kidney disease: NOT REPORTED  \nHistory of cirrhosis: NOT REPORTED  \nHistory of hypertension: NOT REPORTED  \nHistory of diabetes: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of myocardial infarction: NOT REPORTED  \nHistory of peripheral vascular disease: NOT REPORTED  \nHistory of aortic aneurysm: yes  \nHistory of peptic ulcer: yes  \nHistory of anemia: yes  \nHistory of chronic obstructive pulmonary disease: NOT REPORTED  \nHistory of asthma: NOT REPORTED  \nHistory of pulmonary embolism: NOT REPORTED  \nHistory of deep vein thrombosis: NOT REPORTED  \nHistory of bleeding disorder: NOT REPORTED  \nHistory of thrombocytopenia: NOT REPORTED  \nHistory of coagulopathy: NOT REPORTED  \nHistory of anticoagulant use: NOT REPORTED  \nHistory of NSAID use: NOT REPORTED  \nHistory of aspirin use: NOT REPORTED  \nHistory of recent surgery: yes  \nHistory of recent trauma: NOT REPORTED  \nHistory of malignancy: NOT REPORTED  \nHistory of chronic kidney disease: NOT REPORTED  \nHistory of cirrhosis: NOT REPORTED  \nHistory of hypertension: NOT REPORTED  \nHistory of diabetes: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of myocardial infarction: NOT REPORTED  \nHistory of peripheral vascular disease: NOT REPORTED  \nHistory of aortic aneurysm: yes  \nHistory of peptic ulcer: yes  \nHistory of anemia: yes  \nHistory of chronic obstructive pulmonary disease: NOT REPORTED  \nHistory of asthma: NOT REPORTED  \nHistory of pulmonary embolism: NOT REPORTED  \nHistory of deep vein thrombosis: NOT REPORTED  \nHistory of bleeding disorder: NOT REPORTED  \nHistory of thrombocytopenia: NOT REPORTED  \nHistory of coagulopathy: NOT REPORTED  \nHistory of anticoagulant use: NOT REPORTED  \nHistory of NSAID use: NOT REPORTED  \nHistory of aspirin use: NOT REPORTED  \nHistory of recent surgery: yes  \nHistory of recent trauma: NOT REPORTED  \nHistory of malignancy: NOT REPORTED  \nHistory of chronic kidney disease: NOT REPORTED  \nHistory of cirrhosis: NOT REPORTED  \nHistory of hypertension: NOT REPORTED  \nHistory of diabetes: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of myocardial infarction: NOT REPORTED  \nHistory of peripheral vascular disease: NOT REPORTED  \nHistory of aortic aneurysm: yes  \nHistory of peptic ulcer: yes  \nHistory of anemia: yes  \nHistory of chronic obstructive pulmonary disease: NOT REPORTED  \nHistory of asthma: NOT REPORTED  \nHistory of pulmonary embolism: NOT REPORTED  \n"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nBUN = 36  # mg/dL\nhemoglobin = 10  # g/dL\ngender = \"Male\"  # Male\nsystolic_bp = 140  # mmHg\nheart_rate = 75  # beats per minute\nmelena = \"No\"  # Not reported, so assume \"No\"\nrecent_syncope = \"No\"  # Not reported, so assume \"No\"\nhepatic_disease_history = \"No\"  # Not reported, so assume \"No\"\ncardiac_failure_history = \"No\"  # Not reported, so assume \"No\"\n\n# Calculate Glasgow-Blatchford Bleeding Score\nscore = 0\n\n# BUN (mg/dL)\nif BUN < 18.2:\n    score += 0\nelif 18.2 <= BUN <= 22.3:\n    score += 2\nelif 22.4 <= BUN <= 28:\n    score += 3\nelif 28 <= BUN <= 70:\n    score += 4\nelse:  # BUN > 70\n    score += 6\n\n# Hemoglobin (g/dL) - Male\nif hemoglobin >= 13:\n    score += 0\nelif 12 <= hemoglobin <= 13:\n    score += 1\nelif 10 <= hemoglobin <= 12:\n    score += 3\nelse:  # hemoglobin < 10\n    score += 6\n\n# Systolic BP (mm Hg)\nif systolic_bp >= 110:\n    score += 0\nelif 100 <= systolic_bp <= 109:\n    score += 1\nelif 90 <= systolic_bp <= 99:\n    score += 2\nelse:  # systolic_bp < 90\n    score += 3\n\n# Pulse \u2265 100 bpm\nif heart_rate >= 100:\n    score += 1\nelse:\n    score += 0\n\n# Melena\nif melena == \"Yes\":\n    score += 1\nelse:\n    score += 0\n\n# Recent syncope\nif recent_syncope == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\n# Hepatic disease history\nif hepatic_disease_history == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\n# Cardiac failure\nif cardiac_failure_history == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\nanswer = score\n```",
+        "code": "# Extracted values from the patient note\nBUN = 36  # mg/dL\nhemoglobin = 10  # g/dL\ngender = \"Male\"  # Male\nsystolic_bp = 140  # mmHg\nheart_rate = 75  # beats per minute\nmelena = \"No\"  # Not reported, so assume \"No\"\nrecent_syncope = \"No\"  # Not reported, so assume \"No\"\nhepatic_disease_history = \"No\"  # Not reported, so assume \"No\"\ncardiac_failure_history = \"No\"  # Not reported, so assume \"No\"\n\n# Calculate Glasgow-Blatchford Bleeding Score\nscore = 0\n\n# BUN (mg/dL)\nif BUN < 18.2:\n    score += 0\nelif 18.2 <= BUN <= 22.3:\n    score += 2\nelif 22.4 <= BUN <= 28:\n    score += 3\nelif 28 <= BUN <= 70:\n    score += 4\nelse:  # BUN > 70\n    score += 6\n\n# Hemoglobin (g/dL) - Male\nif hemoglobin >= 13:\n    score += 0\nelif 12 <= hemoglobin <= 13:\n    score += 1\nelif 10 <= hemoglobin <= 12:\n    score += 3\nelse:  # hemoglobin < 10\n    score += 6\n\n# Systolic BP (mm Hg)\nif systolic_bp >= 110:\n    score += 0\nelif 100 <= systolic_bp <= 109:\n    score += 1\nelif 90 <= systolic_bp <= 99:\n    score += 2\nelse:  # systolic_bp < 90\n    score += 3\n\n# Pulse \u2265 100 bpm\nif heart_rate >= 100:\n    score += 1\nelse:\n    score += 0\n\n# Melena\nif melena == \"Yes\":\n    score += 1\nelse:\n    score += 0\n\n# Recent syncope\nif recent_syncope == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\n# Hepatic disease history\nif hepatic_disease_history == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\n# Cardiac failure\nif cardiac_failure_history == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\nanswer = score",
+        "exec_value": "7",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 7"
+  },
+  {
+    "id": "row414",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nBUN (mg/dL): <18.2 = 0, 18.2\u201322.3 = +2, 22.4\u201328 = +3, 28\u201370 = +4, >70 = +6  \nHemoglobin (g/dL) \u2013 Male: \u226513 = 0, \u226412\u201313 = +1, \u226410\u201312 = +3, <10 = +6  \nHemoglobin (g/dL) \u2013 Female: \u226512 = 0, \u226410\u201312 = +1, <10 = +6  \nSystolic BP (mm Hg): \u2265110 = 0, 100\u2013109 = +1, 90\u201399 = +2, <90 = +3  \nPulse \u2265100 bpm: No = 0, Yes = +1  \nMelena: No = 0, Yes = +1  \nRecent syncope: No = 0, Yes = +2  \nHepatic disease history: No = 0, Yes = +2  \nCardiac failure: No = 0, Yes = +2  \nTotal score = sum of all applicable points  \n\n**INPUTS:**  \n- BUN (mg/dL)  \n- Hemoglobin (g/dL)  \n- Patient gender (Male/Female)  \n- Systolic blood pressure (mm Hg)  \n- Heart rate (beats per minute)  \n- Melena (Yes/No)  \n- Recent syncope (Yes/No)  \n- Hepatic disease history (Yes/No)  \n- Cardiac failure (Yes/No)  \n\n**CONVENTIONS:**  \n- Use exact thresholds: 18.2, 22.3, 22.4, 28, 70, 10, 12, 13, 90, 100, 109, 110, 120  \n- Hemoglobin thresholds: for men, \u226412\u201313 includes 12; for women, \u226410\u201312 includes 10  \n- If syncope status missing, assume \"No\"  \n- If hepatic disease or cardiac failure status missing, assume \"No\"  \n- No rounding; use exact values for thresholds  \n- Score is integer; no decimals",
+        "calculator": "Glasgow-Blatchford Bleeding Score (GBS)"
+      },
+      {
+        "name": "extract",
+        "text": "Hemoglobin: 14.3 g/dl  \nSystolic blood pressure: 144 mmHg  \nAlbumin: NOT REPORTED  \nBUN: 21 mg/dl  \nCreatinine: 1.01 mg/dl  \nMelena: NOT REPORTED  \nHematemesis: NOT REPORTED  \nSyncope: NOT REPORTED  \nShock: NOT REPORTED  \nComorbidity (liver disease): YES  \nComorbidity (renal disease): NOT REPORTED  \nComorbidity (heart failure): YES  \nComorbidity (cancer): NOT REPORTED  \nAge: 33 years"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nBUN = 21  # mg/dL\nhemoglobin = 14.3  # g/dL\npatient_gender = \"Female\"\nsystolic_bp = 144  # mmHg\nheart_rate = 107  # beats per minute\nmelena = \"No\"  # Not reported, so assume \"No\"\nrecent_syncope = \"No\"  # Not reported, so assume \"No\"\nhepatic_disease_history = \"Yes\"\ncardiac_failure = \"Yes\"\n\n# Glasgow-Blatchford Bleeding Score calculation\nscore = 0\n\n# BUN (mg/dL)\nif BUN < 18.2:\n    score += 0\nelif 18.2 <= BUN <= 22.3:\n    score += 2\nelif 22.4 <= BUN <= 28:\n    score += 3\nelif 28 <= BUN <= 70:\n    score += 4\nelse:  # BUN > 70\n    score += 6\n\n# Hemoglobin (g/dL) - Female\nif hemoglobin >= 12:\n    score += 0\nelif 10 <= hemoglobin <= 12:\n    score += 1\nelse:  # hemoglobin < 10\n    score += 6\n\n# Systolic BP (mmHg)\nif systolic_bp >= 110:\n    score += 0\nelif 100 <= systolic_bp <= 109:\n    score += 1\nelif 90 <= systolic_bp <= 99:\n    score += 2\nelse:  # systolic_bp < 90\n    score += 3\n\n# Pulse \u2265100 bpm\nif heart_rate >= 100:\n    score += 1\nelse:\n    score += 0\n\n# Melena\nif melena == \"Yes\":\n    score += 1\nelse:\n    score += 0\n\n# Recent syncope\nif recent_syncope == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\n# Hepatic disease history\nif hepatic_disease_history == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\n# Cardiac failure\nif cardiac_failure == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\nanswer = score\n```",
+        "code": "# Extracted values from the patient note\nBUN = 21  # mg/dL\nhemoglobin = 14.3  # g/dL\npatient_gender = \"Female\"\nsystolic_bp = 144  # mmHg\nheart_rate = 107  # beats per minute\nmelena = \"No\"  # Not reported, so assume \"No\"\nrecent_syncope = \"No\"  # Not reported, so assume \"No\"\nhepatic_disease_history = \"Yes\"\ncardiac_failure = \"Yes\"\n\n# Glasgow-Blatchford Bleeding Score calculation\nscore = 0\n\n# BUN (mg/dL)\nif BUN < 18.2:\n    score += 0\nelif 18.2 <= BUN <= 22.3:\n    score += 2\nelif 22.4 <= BUN <= 28:\n    score += 3\nelif 28 <= BUN <= 70:\n    score += 4\nelse:  # BUN > 70\n    score += 6\n\n# Hemoglobin (g/dL) - Female\nif hemoglobin >= 12:\n    score += 0\nelif 10 <= hemoglobin <= 12:\n    score += 1\nelse:  # hemoglobin < 10\n    score += 6\n\n# Systolic BP (mmHg)\nif systolic_bp >= 110:\n    score += 0\nelif 100 <= systolic_bp <= 109:\n    score += 1\nelif 90 <= systolic_bp <= 99:\n    score += 2\nelse:  # systolic_bp < 90\n    score += 3\n\n# Pulse \u2265100 bpm\nif heart_rate >= 100:\n    score += 1\nelse:\n    score += 0\n\n# Melena\nif melena == \"Yes\":\n    score += 1\nelse:\n    score += 0\n\n# Recent syncope\nif recent_syncope == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\n# Hepatic disease history\nif hepatic_disease_history == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\n# Cardiac failure\nif cardiac_failure == \"Yes\":\n    score += 2\nelse:\n    score += 0\n\nanswer = score",
+        "exec_value": "7",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 7"
+  },
+  {
+    "id": "row425",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \n2 \u00d7 Na + (BUN / 2.8) + (glucose / 18)  \n\n**INPUTS:**  \n- Na: sodium concentration in mmol/L  \n- BUN: blood urea nitrogen in mg/dL  \n- glucose: glucose concentration in mg/dL  \n\n**CONVENTIONS:**  \n- Sodium reported in mEq/L must be converted to mmol/L (1:1 ratio for Na\u207a, no conversion needed).  \n- BUN and glucose values must be in mg/dL; if in mmol/L, convert using standard factors (BUN: \u00d7 0.357, glucose: \u00d7 18).  \n- Results are reported as mmol/L or mOsm/kg (equivalent units).  \n- Round final result to one decimal place.  \n- If BUN or glucose is not reported, use 0.  \n- Do not use serum osmolality formula if ethanol or other osmotically active substances are suspected.",
+        "calculator": "Serum Osmolality"
+      },
+      {
+        "name": "extract",
+        "text": "glucose: 2.5 mmol/L  \nsodium: 144 mmol/L  \nurea: 21 mmol/L  \nalcohol: 0 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note (at first admission, prior to treatment)\nglucose_mmol_L = 2.5\nsodium_mmol_L = 144\nurea_mmol_L = 21  # Note: urea is given as BUN in mmol/L, but the formula requires BUN in mg/dL\n\n# Convert urea (in mmol/L) to BUN (in mg/dL)\n# Conversion factor: 1 mmol/L urea = 2.8 mg/dL BUN (since molecular weight of urea is 60, and BUN is N, so 28/60 = 0.467, but standard conversion is 1 mmol/L urea = 2.8 mg/dL BUN)\nBUN_mg_dL = urea_mmol_L * 2.8\n\n# Convert glucose from mmol/L to mg/dL\nglucose_mg_dL = glucose_mmol_L * 18\n\n# Apply the serum osmolality formula:\n# 2 \u00d7 Na + (BUN / 2.8) + (glucose / 18)\n# Note: The formula uses BUN in mg/dL and glucose in mg/dL\n# But we are using the same values we just computed\n\n# However, note: the formula is:\n# serum osmolality = 2 \u00d7 Na + (BUN / 2.8) + (glucose / 18)\n# But wait: in the formula, BUN is in mg/dL, and glucose is in mg/dL.\n# We already have:\n#   Na = 144 mmol/L\n#   BUN = 21 mmol/L urea = 21 * 2.8 = 58.8 mg/dL\n#   glucose = 2.5 mmol/L = 2.5 * 18 = 45 mg/dL\n\n# So plug in:\n# 2 \u00d7 144 + (58.8 / 2.8) + (45 / 18)\n\n# Compute step by step:\nterm1 = 2 * sodium_mmol_L\nterm2 = BUN_mg_dL / 2.8\nterm3 = glucose_mg_dL / 18\n\n# Total osmolality\nosmolality = term1 + term2 + term3\n\n# Round to one decimal place\nanswer = round(osmolality, 1)\n```",
+        "code": "# Given values from the patient note (at first admission, prior to treatment)\nglucose_mmol_L = 2.5\nsodium_mmol_L = 144\nurea_mmol_L = 21  # Note: urea is given as BUN in mmol/L, but the formula requires BUN in mg/dL\n\n# Convert urea (in mmol/L) to BUN (in mg/dL)\n# Conversion factor: 1 mmol/L urea = 2.8 mg/dL BUN (since molecular weight of urea is 60, and BUN is N, so 28/60 = 0.467, but standard conversion is 1 mmol/L urea = 2.8 mg/dL BUN)\nBUN_mg_dL = urea_mmol_L * 2.8\n\n# Convert glucose from mmol/L to mg/dL\nglucose_mg_dL = glucose_mmol_L * 18\n\n# Apply the serum osmolality formula:\n# 2 \u00d7 Na + (BUN / 2.8) + (glucose / 18)\n# Note: The formula uses BUN in mg/dL and glucose in mg/dL\n# But we are using the same values we just computed\n\n# However, note: the formula is:\n# serum osmolality = 2 \u00d7 Na + (BUN / 2.8) + (glucose / 18)\n# But wait: in the formula, BUN is in mg/dL, and glucose is in mg/dL.\n# We already have:\n#   Na = 144 mmol/L\n#   BUN = 21 mmol/L urea = 21 * 2.8 = 58.8 mg/dL\n#   glucose = 2.5 mmol/L = 2.5 * 18 = 45 mg/dL\n\n# So plug in:\n# 2 \u00d7 144 + (58.8 / 2.8) + (45 / 18)\n\n# Compute step by step:\nterm1 = 2 * sodium_mmol_L\nterm2 = BUN_mg_dL / 2.8\nterm3 = glucose_mg_dL / 18\n\n# Total osmolality\nosmolality = term1 + term2 + term3\n\n# Round to one decimal place\nanswer = round(osmolality, 1)",
+        "exec_value": "311.5",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 311.5"
+  },
+  {
+    "id": "row436",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \n2 \u00d7 Na + (BUN / 2.8) + (glucose / 18)  \n\n**INPUTS:**  \n- Na: sodium concentration in mmol/L  \n- BUN: blood urea nitrogen in mg/dL  \n- glucose: glucose concentration in mg/dL  \n\n**CONVENTIONS:**  \n- Sodium reported in mEq/L must be converted to mmol/L (1:1 ratio for Na\u207a, no conversion needed).  \n- BUN and glucose values must be in mg/dL; if in mmol/L, convert using standard factors (BUN: \u00d7 0.357, glucose: \u00d7 18).  \n- Results are reported as mmol/L or mOsm/kg (equivalent units).  \n- Round final result to one decimal place.  \n- If BUN or glucose is not reported, use 0.  \n- Do not use serum osmolality formula if ethanol or other osmotically active substances are suspected.",
+        "calculator": "Serum Osmolality"
+      },
+      {
+        "name": "extract",
+        "text": "sodium: 135 mmol/L  \nglucose: 41 mg/dL  \nurea nitrogen: 15.0 mg/dL  \nalcohol: 0 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient's admission (prior to treatment)\nsodium = 135  # mmol/L\nglucose = 41  # mg/dL\nbun = 15.0    # mg/dL\n\n# Apply the serum osmolality formula\n# Formula: 2 \u00d7 Na + (BUN / 2.8) + (glucose / 18)\nosmolality = 2 * sodium + (bun / 2.8) + (glucose / 18)\n\n# Round to one decimal place\nanswer = round(osmolality, 1)\n```",
+        "code": "# Given values from the patient's admission (prior to treatment)\nsodium = 135  # mmol/L\nglucose = 41  # mg/dL\nbun = 15.0    # mg/dL\n\n# Apply the serum osmolality formula\n# Formula: 2 \u00d7 Na + (BUN / 2.8) + (glucose / 18)\nosmolality = 2 * sodium + (bun / 2.8) + (glucose / 18)\n\n# Round to one decimal place\nanswer = round(osmolality, 1)",
+        "exec_value": "277.6",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 277.6"
+  },
+  {
+    "id": "row462",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nAge: <50 = 0, 50\u201359 = 1, 60\u201369 = 2, 70\u201379 = 3, \u226580 = 4  \nMyocardial infarction: No = 0, Yes = 1  \nCongestive heart failure: No = 0, Yes = 1  \nPeripheral vascular disease: No = 0, Yes = 1  \nCerebrovascular accident or TIA: No = 0, Yes = 1  \nDementia: No = 0, Yes = 1  \nChronic pulmonary disease (COPD): No = 0, Yes = 1  \nConnective tissue disease: No = 0, Yes = 1  \nPeptic ulcer disease: No = 0, Yes = 1  \nLiver disease: None = 0, Mild = 1, Moderate to severe = 3  \nDiabetes mellitus: None/diet-controlled = 0, Uncomplicated = 1, End-organ damage = 2  \nHemiplegia: No = 0, Yes = 2  \nModerate to severe CKD: No = 0, Yes = 2  \nSolid tumor: None = 0, Localized = 2, Metastatic = 6  \nLeukemia: No = 0, Yes = 2  \nLymphoma: No = 0, Yes = 2  \nAIDS: No = 0, Yes = 6  \nTotal CCI = sum of all points  \n\n**INPUTS:**  \n- Age (years)  \n- History of myocardial infarction (Yes/No)  \n- Congestive heart failure (Yes/No)  \n- Peripheral vascular disease (Yes/No)  \n- Cerebrovascular accident or TIA (Yes/No)  \n- Dementia (Yes/No)  \n- COPD (Yes/No)  \n- Connective tissue disease (Yes/No)  \n- Peptic ulcer disease (Yes/No)  \n- Liver disease severity (None, Mild, Moderate to severe)  \n- Diabetes mellitus status (None/diet-controlled, Uncomplicated, End-organ damage)  \n- Hemiplegia (Yes/No)  \n- Chronic kidney disease (Yes/No)  \n- Solid tumor status (None, Localized, Metastatic)  \n- Leukemia (Yes/No)  \n- Lymphoma (Yes/No)  \n- AIDS (Yes/No)  \n\n**CONVENTIONS:**  \n- Use the most severe category if multiple levels are reported (e.g., \"moderate to severe\" overrides \"mild\" for liver disease).  \n- Assume \"No\" for any condition not explicitly documented.  \n- Age is based on current age at time of assessment.  \n- CVA or TIA: one or both must be present for 1 point.  \n- No rounding; sum all integer points.",
+        "calculator": "Charlson Comorbidity Index (CCI)"
+      },
+      {
+        "name": "extract",
+        "text": "Age: 64 years  \nHistory of myocardial infarction: NOT REPORTED  \nHistory of heart failure: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of peripheral vascular disease: NOT REPORTED  \nHistory of diabetes mellitus: NOT REPORTED  \nHistory of chronic kidney disease: NOT REPORTED  \nHistory of liver disease: NOT REPORTED  \nHistory of cancer: ECD (Erdheim-Chester Disease)  \nHistory of rheumatologic disease: NOT REPORTED  \nHistory of HIV: NOT REPORTED  \nHistory of metastatic solid tumor: NOT REPORTED  \nHistory of moderate or severe chronic obstructive pulmonary disease: NOT REPORTED  \nHistory of any other condition: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nage = 64\nmyocardial_infarction = \"No\"\ncongestive_heart_failure = \"No\"\nperipheral_vascular_disease = \"No\"\ncerebrovascular_accident_or_tia = \"No\"\ndementia = \"No\"\nchronic_pulmonary_disease = \"No\"\nconnective_tissue_disease = \"No\"\npeptic_ulcer_disease = \"No\"\nliver_disease = \"None\"\ndiabetes_mellitus = \"None/diet-controlled\"\nhemiplegia = \"No\"\nchronic_kidney_disease = \"No\"\nsolid_tumor = \"Metastatic\"  # ECD is a systemic disease with bone, lymph node, and cardiovascular involvement, which is considered metastatic in the context of the CCI\nleukemia = \"No\"\nlymphoma = \"No\"\naids = \"No\"\n\n# Calculate CCI based on the reference card\nage_points = 2  # 60\u201369 years\nmi_points = 0 if myocardial_infarction == \"No\" else 1\nchf_points = 0 if congestive_heart_failure == \"No\" else 1\npvd_points = 0 if peripheral_vascular_disease == \"No\" else 1\ncva_tia_points = 0 if cerebrovascular_accident_or_tia == \"No\" else 1\ndementia_points = 0 if dementia == \"No\" else 1\ncopd_points = 0 if chronic_pulmonary_disease == \"No\" else 1\nctd_points = 0 if connective_tissue_disease == \"No\" else 1\npud_points = 0 if peptic_ulcer_disease == \"No\" else 1\nliver_points = 0 if liver_disease == \"None\" else (1 if liver_disease == \"Mild\" else 3)\ndiabetes_points = 0 if diabetes_mellitus == \"None/diet-controlled\" else (1 if diabetes_mellitus == \"Uncomplicated\" else 2)\nhemiplegia_points = 0 if hemiplegia == \"No\" else 2\nckd_points = 0 if chronic_kidney_disease == \"No\" else 2\nsolid_tumor_points = 0 if solid_tumor == \"None\" else (2 if solid_tumor == \"Localized\" else 6)\nleukemia_points = 0 if leukemia == \"No\" else 2\nlymphoma_points = 0 if lymphoma == \"No\" else 2\naids_points = 0 if aids == \"No\" else 6\n\n# Sum all points\nanswer = (age_points + mi_points + chf_points + pvd_points + cva_tia_points + dementia_points +\n          copd_points + ctd_points + pud_points + liver_points + diabetes_points + hemiplegia_points +\n          ckd_points + solid_tumor_points + leukemia_points + lymphoma_points + aids_points)\n```",
+        "code": "# Extracted values from the patient note\nage = 64\nmyocardial_infarction = \"No\"\ncongestive_heart_failure = \"No\"\nperipheral_vascular_disease = \"No\"\ncerebrovascular_accident_or_tia = \"No\"\ndementia = \"No\"\nchronic_pulmonary_disease = \"No\"\nconnective_tissue_disease = \"No\"\npeptic_ulcer_disease = \"No\"\nliver_disease = \"None\"\ndiabetes_mellitus = \"None/diet-controlled\"\nhemiplegia = \"No\"\nchronic_kidney_disease = \"No\"\nsolid_tumor = \"Metastatic\"  # ECD is a systemic disease with bone, lymph node, and cardiovascular involvement, which is considered metastatic in the context of the CCI\nleukemia = \"No\"\nlymphoma = \"No\"\naids = \"No\"\n\n# Calculate CCI based on the reference card\nage_points = 2  # 60\u201369 years\nmi_points = 0 if myocardial_infarction == \"No\" else 1\nchf_points = 0 if congestive_heart_failure == \"No\" else 1\npvd_points = 0 if peripheral_vascular_disease == \"No\" else 1\ncva_tia_points = 0 if cerebrovascular_accident_or_tia == \"No\" else 1\ndementia_points = 0 if dementia == \"No\" else 1\ncopd_points = 0 if chronic_pulmonary_disease == \"No\" else 1\nctd_points = 0 if connective_tissue_disease == \"No\" else 1\npud_points = 0 if peptic_ulcer_disease == \"No\" else 1\nliver_points = 0 if liver_disease == \"None\" else (1 if liver_disease == \"Mild\" else 3)\ndiabetes_points = 0 if diabetes_mellitus == \"None/diet-controlled\" else (1 if diabetes_mellitus == \"Uncomplicated\" else 2)\nhemiplegia_points = 0 if hemiplegia == \"No\" else 2\nckd_points = 0 if chronic_kidney_disease == \"No\" else 2\nsolid_tumor_points = 0 if solid_tumor == \"None\" else (2 if solid_tumor == \"Localized\" else 6)\nleukemia_points = 0 if leukemia == \"No\" else 2\nlymphoma_points = 0 if lymphoma == \"No\" else 2\naids_points = 0 if aids == \"No\" else 6\n\n# Sum all points\nanswer = (age_points + mi_points + chf_points + pvd_points + cva_tia_points + dementia_points +\n          copd_points + ctd_points + pud_points + liver_points + diabetes_points + hemiplegia_points +\n          ckd_points + solid_tumor_points + leukemia_points + lymphoma_points + aids_points)",
+        "exec_value": "8",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 8"
+  },
+  {
+    "id": "row477",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nAge: <50 = 0, 50\u201359 = 1, 60\u201369 = 2, 70\u201379 = 3, \u226580 = 4  \nMyocardial infarction: No = 0, Yes = 1  \nCongestive heart failure: No = 0, Yes = 1  \nPeripheral vascular disease: No = 0, Yes = 1  \nCerebrovascular accident or TIA: No = 0, Yes = 1  \nDementia: No = 0, Yes = 1  \nChronic pulmonary disease (COPD): No = 0, Yes = 1  \nConnective tissue disease: No = 0, Yes = 1  \nPeptic ulcer disease: No = 0, Yes = 1  \nLiver disease: None = 0, Mild = 1, Moderate to severe = 3  \nDiabetes mellitus: None/diet-controlled = 0, Uncomplicated = 1, End-organ damage = 2  \nHemiplegia: No = 0, Yes = 2  \nModerate to severe CKD: No = 0, Yes = 2  \nSolid tumor: None = 0, Localized = 2, Metastatic = 6  \nLeukemia: No = 0, Yes = 2  \nLymphoma: No = 0, Yes = 2  \nAIDS: No = 0, Yes = 6  \nTotal CCI = sum of all points  \n\n**INPUTS:**  \n- Age (years)  \n- History of myocardial infarction (Yes/No)  \n- Congestive heart failure (Yes/No)  \n- Peripheral vascular disease (Yes/No)  \n- Cerebrovascular accident or TIA (Yes/No)  \n- Dementia (Yes/No)  \n- COPD (Yes/No)  \n- Connective tissue disease (Yes/No)  \n- Peptic ulcer disease (Yes/No)  \n- Liver disease severity (None, Mild, Moderate to severe)  \n- Diabetes mellitus status (None/diet-controlled, Uncomplicated, End-organ damage)  \n- Hemiplegia (Yes/No)  \n- Chronic kidney disease (Yes/No)  \n- Solid tumor status (None, Localized, Metastatic)  \n- Leukemia (Yes/No)  \n- Lymphoma (Yes/No)  \n- AIDS (Yes/No)  \n\n**CONVENTIONS:**  \n- Use the most severe category if multiple levels are reported (e.g., \"moderate to severe\" overrides \"mild\" for liver disease).  \n- Assume \"No\" for any condition not explicitly documented.  \n- Age is based on current age at time of assessment.  \n- CVA or TIA: one or both must be present for 1 point.  \n- No rounding; sum all integer points.",
+        "calculator": "Charlson Comorbidity Index (CCI)"
+      },
+      {
+        "name": "extract",
+        "text": "age: 60 years  \nhypertension: present  \nchronic obstructive pulmonary disease: present  \nno other comorbidities reported"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nage = 60\nmyocardial_infarction = \"No\"\ncongestive_heart_failure = \"No\"\nperipheral_vascular_disease = \"No\"\ncerebrovascular_accident_or_tia = \"No\"\ndementia = \"No\"\nchronic_pulmonary_disease = \"Yes\"  # COPD\nconnective_tissue_disease = \"No\"\npeptic_ulcer_disease = \"No\"\nliver_disease = \"None\"\ndiabetes_mellitus = \"None/diet-controlled\"\nhemiplegia = \"No\"\nchronic_kidney_disease = \"No\"\nsolid_tumor = \"None\"\nleukemia = \"No\"\nlymphoma = \"No\"\naids = \"No\"\n\n# Calculate Charlson Comorbidity Index (CCI)\n# Age\nif age < 50:\n    age_score = 0\nelif 50 <= age <= 59:\n    age_score = 1\nelif 60 <= age <= 69:\n    age_score = 2\nelif 70 <= age <= 79:\n    age_score = 3\nelse:\n    age_score = 4\n\n# Myocardial infarction\nmi_score = 1 if myocardial_infarction == \"Yes\" else 0\n\n# Congestive heart failure\nchf_score = 1 if congestive_heart_failure == \"Yes\" else 0\n\n# Peripheral vascular disease\npvd_score = 1 if peripheral_vascular_disease == \"Yes\" else 0\n\n# Cerebrovascular accident or TIA\ncva_tia_score = 1 if cerebrovascular_accident_or_tia == \"Yes\" else 0\n\n# Dementia\ndementia_score = 1 if dementia == \"Yes\" else 0\n\n# Chronic pulmonary disease (COPD)\ncpd_score = 1 if chronic_pulmonary_disease == \"Yes\" else 0\n\n# Connective tissue disease\nctd_score = 1 if connective_tissue_disease == \"Yes\" else 0\n\n# Peptic ulcer disease\npud_score = 1 if peptic_ulcer_disease == \"Yes\" else 0\n\n# Liver disease\nif liver_disease == \"Moderate to severe\":\n    liver_score = 3\nelif liver_disease == \"Mild\":\n    liver_score = 1\nelse:\n    liver_score = 0\n\n# Diabetes mellitus\nif diabetes_mellitus == \"End-organ damage\":\n    diabetes_score = 2\nelif diabetes_mellitus == \"Uncomplicated\":\n    diabetes_score = 1\nelse:\n    diabetes_score = 0\n\n# Hemiplegia\nhemiplegia_score = 2 if hemiplegia == \"Yes\" else 0\n\n# Chronic kidney disease\nckd_score = 2 if chronic_kidney_disease == \"Yes\" else 0\n\n# Solid tumor\nif solid_tumor == \"Metastatic\":\n    solid_tumor_score = 6\nelif solid_tumor == \"Localized\":\n    solid_tumor_score = 2\nelse:\n    solid_tumor_score = 0\n\n# Leukemia\nleukemia_score = 2 if leukemia == \"Yes\" else 0\n\n# Lymphoma\nlymphoma_score = 2 if lymphoma == \"Yes\" else 0\n\n# AIDS\naids_score = 6 if aids == \"Yes\" else 0\n\n# Sum all scores\nanswer = (age_score + mi_score + chf_score + pvd_score + cva_tia_score + dementia_score +\n          cpd_score + ctd_score + pud_score + liver_score + diabetes_score + hemiplegia_score +\n          ckd_score + solid_tumor_score + leukemia_score + lymphoma_score + aids_score)\n```",
+        "code": "# Extracted values from the patient note\nage = 60\nmyocardial_infarction = \"No\"\ncongestive_heart_failure = \"No\"\nperipheral_vascular_disease = \"No\"\ncerebrovascular_accident_or_tia = \"No\"\ndementia = \"No\"\nchronic_pulmonary_disease = \"Yes\"  # COPD\nconnective_tissue_disease = \"No\"\npeptic_ulcer_disease = \"No\"\nliver_disease = \"None\"\ndiabetes_mellitus = \"None/diet-controlled\"\nhemiplegia = \"No\"\nchronic_kidney_disease = \"No\"\nsolid_tumor = \"None\"\nleukemia = \"No\"\nlymphoma = \"No\"\naids = \"No\"\n\n# Calculate Charlson Comorbidity Index (CCI)\n# Age\nif age < 50:\n    age_score = 0\nelif 50 <= age <= 59:\n    age_score = 1\nelif 60 <= age <= 69:\n    age_score = 2\nelif 70 <= age <= 79:\n    age_score = 3\nelse:\n    age_score = 4\n\n# Myocardial infarction\nmi_score = 1 if myocardial_infarction == \"Yes\" else 0\n\n# Congestive heart failure\nchf_score = 1 if congestive_heart_failure == \"Yes\" else 0\n\n# Peripheral vascular disease\npvd_score = 1 if peripheral_vascular_disease == \"Yes\" else 0\n\n# Cerebrovascular accident or TIA\ncva_tia_score = 1 if cerebrovascular_accident_or_tia == \"Yes\" else 0\n\n# Dementia\ndementia_score = 1 if dementia == \"Yes\" else 0\n\n# Chronic pulmonary disease (COPD)\ncpd_score = 1 if chronic_pulmonary_disease == \"Yes\" else 0\n\n# Connective tissue disease\nctd_score = 1 if connective_tissue_disease == \"Yes\" else 0\n\n# Peptic ulcer disease\npud_score = 1 if peptic_ulcer_disease == \"Yes\" else 0\n\n# Liver disease\nif liver_disease == \"Moderate to severe\":\n    liver_score = 3\nelif liver_disease == \"Mild\":\n    liver_score = 1\nelse:\n    liver_score = 0\n\n# Diabetes mellitus\nif diabetes_mellitus == \"End-organ damage\":\n    diabetes_score = 2\nelif diabetes_mellitus == \"Uncomplicated\":\n    diabetes_score = 1\nelse:\n    diabetes_score = 0\n\n# Hemiplegia\nhemiplegia_score = 2 if hemiplegia == \"Yes\" else 0\n\n# Chronic kidney disease\nckd_score = 2 if chronic_kidney_disease == \"Yes\" else 0\n\n# Solid tumor\nif solid_tumor == \"Metastatic\":\n    solid_tumor_score = 6\nelif solid_tumor == \"Localized\":\n    solid_tumor_score = 2\nelse:\n    solid_tumor_score = 0\n\n# Leukemia\nleukemia_score = 2 if leukemia == \"Yes\" else 0\n\n# Lymphoma\nlymphoma_score = 2 if lymphoma == \"Yes\" else 0\n\n# AIDS\naids_score = 6 if aids == \"Yes\" else 0\n\n# Sum all scores\nanswer = (age_score + mi_score + chf_score + pvd_score + cva_tia_score + dementia_score +\n          cpd_score + ctd_score + pud_score + liver_score + diabetes_score + hemiplegia_score +\n          ckd_score + solid_tumor_score + leukemia_score + lymphoma_score + aids_score)",
+        "exec_value": "3",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 3"
+  },
+  {
+    "id": "row483",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \n1. Fever in past 24 hours: No = 0 points, Yes = +1 point  \n2. Absence of cough or coryza: No = 0 points, Yes = +1 point  \n3. Symptom onset \u22643 days: No = 0 points, Yes = +1 point  \n4. Purulent tonsils: No = 0 points, Yes = +1 point  \n5. Severe tonsil inflammation: No = 0 points, Yes = +1 point  \nTotal FeverPAIN score = sum of points from all five criteria  \n\n**INPUTS:**  \n- Fever in past 24 hours: Yes/No (binary)  \n- Cough or coryza present: Yes/No (binary)  \n- Symptom onset duration: \u22643 days or >3 days (binary)  \n- Purulent tonsils: Yes/No (binary)  \n- Severe tonsil inflammation: Yes/No (binary)  \n\n**CONVENTIONS:**  \n- If a criterion is not reported, assume the absence of the feature (e.g., no purulent tonsils, no severe inflammation).  \n- \"Coryza\" includes nasal congestion, runny nose, or sneezing.  \n- \"Fever in past 24 hours\" refers to subjective or documented fever within the last 24 hours.  \n- Symptom onset \u22643 days means symptoms began \u22643 days ago.  \n- Score is an integer from 0 to 5.  \n- No rounding required; sum is the final score.",
+        "calculator": "FeverPAIN Score for Strep Pharyngitis"
+      },
+      {
+        "name": "extract",
+        "text": "Temperature: 101 \u00b0F  \nPain: NOT REPORTED  \nAbsence of cough: NOT REPORTED  \nExudate: present  \nNeck adenopathy: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nfever_in_past_24_hours = True  # Temperature is 101\u00b0F, which is fever\ncough_or_coryza_present = False  # Not reported, so assume absence (per convention)\nsymptom_onset_leq_3_days = True  # \"Acute\" tonsillitis implies onset \u22643 days\npurulent_tonsils = True  # Exudate is present\nsevere_tonsil_inflammation = True  # Red enlarged tonsils (implying severe inflammation)\n\n# Compute FeverPAIN score\nscore = 0\nif fever_in_past_24_hours:\n    score += 1\nif not cough_or_coryza_present:\n    score += 1\nif symptom_onset_leq_3_days:\n    score += 1\nif purulent_tonsils:\n    score += 1\nif severe_tonsil_inflammation:\n    score += 1\n\nanswer = score\n```",
+        "code": "# Extracted values from the patient note\nfever_in_past_24_hours = True  # Temperature is 101\u00b0F, which is fever\ncough_or_coryza_present = False  # Not reported, so assume absence (per convention)\nsymptom_onset_leq_3_days = True  # \"Acute\" tonsillitis implies onset \u22643 days\npurulent_tonsils = True  # Exudate is present\nsevere_tonsil_inflammation = True  # Red enlarged tonsils (implying severe inflammation)\n\n# Compute FeverPAIN score\nscore = 0\nif fever_in_past_24_hours:\n    score += 1\nif not cough_or_coryza_present:\n    score += 1\nif symptom_onset_leq_3_days:\n    score += 1\nif purulent_tonsils:\n    score += 1\nif severe_tonsil_inflammation:\n    score += 1\n\nanswer = score",
+        "exec_value": "5",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 5"
+  },
+  {
+    "id": "row504",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nFree Water Deficit (L) = TBW% \u00d7 Weight (kg) \u00d7 (Na\u207a / 140 \u2212 1)  \n\n**INPUTS:**  \n- TBW%: Total body water percentage (dimensionless, decimal)  \n- Weight: Patient weight in kilograms (kg)  \n- Na\u207a: Serum sodium concentration in mmol/L  \n\n**CONVENTIONS:**  \n- TBW% is determined by age and gender:  \n  - Child (\u226417 years): 0.6  \n  - Adult female (18\u201364 years): 0.5  \n  - Adult male (18\u201364 years): 0.6  \n  - Elderly female (\u226565 years): 0.45  \n  - Elderly male (\u226565 years): 0.5  \n- Convert weight from lbs to kg using 0.453592 kg/lb.  \n- Convert Na\u207a from mEq/L to mmol/L: use 1:1 conversion (since Na\u207a has valence 1).  \n- If Na\u207a is reported in mEq/L, treat as mmol/L without adjustment.  \n- Output is in liters (L), reported as a decimal.  \n- Negative values indicate free water excess; positive values indicate free water deficit.  \n- No rounding of intermediate values; final result rounded to 2 decimal places.",
+        "calculator": "Free Water Deficit"
+      },
+      {
+        "name": "extract",
+        "text": "serum sodium: 139 mmol/L  \ndesired serum sodium: 140 mmol/L  \nbody weight: 47 kg"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nserum_sodium = 139  # mmol/L\ndesired_sodium = 140  # mmol/L\nweight_kg = 47  # kg\n\n# TBW% for a child (\u226417 years): 0.6\nTBW_percent = 0.6\n\n# Calculate Free Water Deficit in liters\nfree_water_deficit_L = TBW_percent * weight_kg * (serum_sodium / desired_sodium - 1)\n\n# Convert to kg (since 1 L of water \u2248 1 kg)\nanswer = free_water_deficit_L\n```",
+        "code": "# Given values from the patient note\nserum_sodium = 139  # mmol/L\ndesired_sodium = 140  # mmol/L\nweight_kg = 47  # kg\n\n# TBW% for a child (\u226417 years): 0.6\nTBW_percent = 0.6\n\n# Calculate Free Water Deficit in liters\nfree_water_deficit_L = TBW_percent * weight_kg * (serum_sodium / desired_sodium - 1)\n\n# Convert to kg (since 1 L of water \u2248 1 kg)\nanswer = free_water_deficit_L",
+        "exec_value": "-0.2014285714285707",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: -0.2014285714285707"
+  },
+  {
+    "id": "row528",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nAnion Gap (mEq/L) = [Na\u207a] (mEq/L) \u2212 ([Cl\u207b] (mEq/L) + [HCO\u2083\u207b] (mEq/L))  \n\n**INPUTS:**  \n- Sodium (Na\u207a): mEq/L  \n- Chloride (Cl\u207b): mEq/L  \n- Bicarbonate (HCO\u2083\u207b): mEq/L  \n\n**CONVENTIONS:**  \n- mmol/L values for Na\u207a, Cl\u207b, and HCO\u2083\u207b are equivalent to mEq/L, as all are monovalent ions (valence = 1). No unit conversion is needed.  \n- Report results as a decimal number (e.g., 12.0, not 12).  \n- Use measured values directly; do not adjust for hypoalbuminemia unless specified.  \n- If any input is missing, the calculation cannot be performed.  \n- Do not round intermediate values; round final result to one decimal place.  \n- Anion gap is typically reported in mEq/L, and values are interpreted in context of clinical presentation.",
+        "calculator": "Anion Gap"
+      },
+      {
+        "name": "extract",
+        "text": "sodium: 136 mEq/L\nchloride: 113 mEq/L\nbicarbonate: 7.8 mEq/L"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient's admission lab results\nsodium = 136  # mEq/L\nchloride = 113  # mEq/L\nbicarbonate = 7.8  # mEq/L\n\n# Calculate anion gap using the formula\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Round to one decimal place\nanswer = round(anion_gap, 1)\n```",
+        "code": "# Given values from the patient's admission lab results\nsodium = 136  # mEq/L\nchloride = 113  # mEq/L\nbicarbonate = 7.8  # mEq/L\n\n# Calculate anion gap using the formula\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Round to one decimal place\nanswer = round(anion_gap, 1)",
+        "exec_value": "15.2",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 15.2"
+  },
+  {
+    "id": "row544",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nConfusion: No = 0 points, Yes = +1 point  \nBUN >19 mg/dL (>7 mmol/L urea): No = 0 points, Yes = +1 point  \nRespiratory Rate \u226530 breaths/min: No = 0 points, Yes = +1 point  \nSystolic BP <90 mmHg OR Diastolic BP \u226460 mmHg: No = 0 points, Yes = +1 point  \nAge \u226565 years: No = 0 points, Yes = +1 point  \nTotal score = sum of points from all criteria  \n\n**INPUTS:**  \n- Confusion (Yes/No)  \n- BUN concentration (mg/dL or mmol/L)  \n- Respiratory rate (breaths per minute)  \n- Systolic blood pressure (mmHg)  \n- Diastolic blood pressure (mmHg)  \n- Age (years)  \n\n**CONVENTIONS:**  \n- BUN in mmol/L must be converted to mg/dL using: mg/dL = mmol/L \u00d7 2.8  \n- Thresholds are strict: BUN >19 mg/dL (not \u2265), respiratory rate \u226530 (inclusive), BP <90 mmHg (not \u2264), BP \u226460 mmHg (inclusive)  \n- Age \u226565 years includes 65  \n- If BUN is reported in mmol/L, convert to mg/dL before comparison  \n- If any value is missing, assume \"No\" for binary criteria and \"0\" for continuous (e.g., age <65)  \n- Score is an integer; no rounding needed\u2014sum of whole points only",
+        "calculator": "CURB-65 Score for Pneumonia Severity"
+      },
+      {
+        "name": "extract",
+        "text": "Confusion: NOT REPORTED  \nUrea: 28 mg/dL  \nRespiratory rate: 40/min  \nBlood pressure: 78/45 mmHg  \nAge: 78 years"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note at first admission\nconfusion = None  # NOT REPORTED\nbun_mg_dl = 28  # mg/dL\nrespiratory_rate = 40  # breaths per minute\nsystolic_bp = 78  # mmHg\ndiastolic_bp = 45  # mmHg\nage = 78  # years\n\n# Apply CURB-65 scoring rules\npoints = 0\n\n# Confusion: NOT REPORTED \u2192 assume \"No\" (0 points)\nif confusion is not None:\n    points += 1 if confusion == \"Yes\" else 0\nelse:\n    points += 0  # missing \u2192 No\n\n# BUN >19 mg/dL?\nif bun_mg_dl > 19:\n    points += 1\n\n# Respiratory rate \u226530 breaths/min?\nif respiratory_rate >= 30:\n    points += 1\n\n# Systolic BP <90 mmHg OR Diastolic BP \u226460 mmHg?\nif systolic_bp < 90 or diastolic_bp <= 60:\n    points += 1\n\n# Age \u226565 years?\nif age >= 65:\n    points += 1\n\n# Final score\nanswer = points\n```",
+        "code": "# Extracted values from the patient note at first admission\nconfusion = None  # NOT REPORTED\nbun_mg_dl = 28  # mg/dL\nrespiratory_rate = 40  # breaths per minute\nsystolic_bp = 78  # mmHg\ndiastolic_bp = 45  # mmHg\nage = 78  # years\n\n# Apply CURB-65 scoring rules\npoints = 0\n\n# Confusion: NOT REPORTED \u2192 assume \"No\" (0 points)\nif confusion is not None:\n    points += 1 if confusion == \"Yes\" else 0\nelse:\n    points += 0  # missing \u2192 No\n\n# BUN >19 mg/dL?\nif bun_mg_dl > 19:\n    points += 1\n\n# Respiratory rate \u226530 breaths/min?\nif respiratory_rate >= 30:\n    points += 1\n\n# Systolic BP <90 mmHg OR Diastolic BP \u226460 mmHg?\nif systolic_bp < 90 or diastolic_bp <= 60:\n    points += 1\n\n# Age \u226565 years?\nif age >= 65:\n    points += 1\n\n# Final score\nanswer = points",
+        "exec_value": "4",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 4"
+  },
+  {
+    "id": "row585",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nLDL cholesterol = total cholesterol \u2212 HDL \u2212 (triglycerides \u00f7 5)  \n\nINPUTS:  \n- Total cholesterol (mg/dL)  \n- HDL cholesterol (mg/dL)  \n- Triglycerides (mg/dL)  \n\nCONVENTIONS:  \n- All inputs must be in mg/dL; convert if necessary.  \n- Triglycerides must be measured in a fasting state (\u226512 hours) for accurate calculation.  \n- If triglycerides are >400 mg/dL, the formula is unreliable; use direct LDL measurement or alternative method.  \n- Results are rounded to one decimal place.  \n- If any input is missing, the calculation cannot be performed.  \n- Do not use this formula if the patient is on lipid-lowering therapy unless specified by clinical context.",
+        "calculator": "LDL Calculated"
+      },
+      {
+        "name": "extract",
+        "text": "serum total cholesterol: 349.4 mg/dL\nhigh-density lipoprotein cholesterol: 111 mg/dL\ntriglyceride concentration: 120.1 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient's admission lab results\ntotal_cholesterol = 349.4  # mg/dL\nhdl_cholesterol = 111.0    # mg/dL\ntriglycerides = 120.1      # mg/dL\n\n# Apply the Friedewald formula to calculate LDL cholesterol\n# LDL = total cholesterol - HDL - (triglycerides / 5)\nldl_cholesterol = total_cholesterol - hdl_cholesterol - (triglycerides / 5)\n\n# Round to one decimal place\nanswer = round(ldl_cholesterol, 1)\n```",
+        "code": "# Given values from the patient's admission lab results\ntotal_cholesterol = 349.4  # mg/dL\nhdl_cholesterol = 111.0    # mg/dL\ntriglycerides = 120.1      # mg/dL\n\n# Apply the Friedewald formula to calculate LDL cholesterol\n# LDL = total cholesterol - HDL - (triglycerides / 5)\nldl_cholesterol = total_cholesterol - hdl_cholesterol - (triglycerides / 5)\n\n# Round to one decimal place\nanswer = round(ldl_cholesterol, 1)",
+        "exec_value": "214.4",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 214.4"
+  },
+  {
+    "id": "row589",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nLDL cholesterol = total cholesterol \u2212 HDL \u2212 (triglycerides \u00f7 5)  \n\nINPUTS:  \n- Total cholesterol (mg/dL)  \n- HDL cholesterol (mg/dL)  \n- Triglycerides (mg/dL)  \n\nCONVENTIONS:  \n- All inputs must be in mg/dL; convert if necessary.  \n- Triglycerides must be measured in a fasting state (\u226512 hours) for accurate calculation.  \n- If triglycerides are >400 mg/dL, the formula is unreliable; use direct LDL measurement or alternative method.  \n- Results are rounded to one decimal place.  \n- If any input is missing, the calculation cannot be performed.  \n- Do not use this formula if the patient is on lipid-lowering therapy unless specified by clinical context.",
+        "calculator": "LDL Calculated"
+      },
+      {
+        "name": "extract",
+        "text": "total cholesterol: 252 mg/dL  \ntriglycerides: 84 mg/dL  \nhigh-density lipoprotein: 66 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient's initial lab results (prior to treatment)\ntotal_cholesterol = 252  # mg/dL\ntriglycerides = 84  # mg/dL\nhdl_cholesterol = 66  # mg/dL\n\n# Apply the Friedewald formula to calculate LDL cholesterol\n# LDL = total cholesterol - HDL - (triglycerides / 5)\nldl_cholesterol = total_cholesterol - hdl_cholesterol - (triglycerides / 5)\n\n# Round to one decimal place\nanswer = round(ldl_cholesterol, 1)\n```",
+        "code": "# Given values from the patient's initial lab results (prior to treatment)\ntotal_cholesterol = 252  # mg/dL\ntriglycerides = 84  # mg/dL\nhdl_cholesterol = 66  # mg/dL\n\n# Apply the Friedewald formula to calculate LDL cholesterol\n# LDL = total cholesterol - HDL - (triglycerides / 5)\nldl_cholesterol = total_cholesterol - hdl_cholesterol - (triglycerides / 5)\n\n# Round to one decimal place\nanswer = round(ldl_cholesterol, 1)",
+        "exec_value": "169.2",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 169.2"
+  },
+  {
+    "id": "row599",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nLDL cholesterol = total cholesterol \u2212 HDL \u2212 (triglycerides \u00f7 5)  \n\nINPUTS:  \n- Total cholesterol (mg/dL)  \n- HDL cholesterol (mg/dL)  \n- Triglycerides (mg/dL)  \n\nCONVENTIONS:  \n- All inputs must be in mg/dL; convert if necessary.  \n- Triglycerides must be measured in a fasting state (\u226512 hours) for accurate calculation.  \n- If triglycerides are >400 mg/dL, the formula is unreliable; use direct LDL measurement or alternative method.  \n- Results are rounded to one decimal place.  \n- If any input is missing, the calculation cannot be performed.  \n- Do not use this formula if the patient is on lipid-lowering therapy unless specified by clinical context.",
+        "calculator": "LDL Calculated"
+      },
+      {
+        "name": "extract",
+        "text": "total cholesterol: 162 mg/dL  \ntriglyceride: 33 mg/dL  \nHDL-cholesterol: 64 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note (prior to treatment)\ntotal_cholesterol = 162  # mg/dL\ntriglycerides = 33  # mg/dL\nhdl_cholesterol = 64  # mg/dL\n\n# Apply the Friedewald formula\n# LDL cholesterol = total cholesterol \u2212 HDL \u2212 (triglycerides \u00f7 5)\nldl_chol = total_cholesterol - hdl_cholesterol - (triglycerides / 5)\n\n# Round to one decimal place\nanswer = round(ldl_chol, 1)\n```",
+        "code": "# Given values from the patient note (prior to treatment)\ntotal_cholesterol = 162  # mg/dL\ntriglycerides = 33  # mg/dL\nhdl_cholesterol = 64  # mg/dL\n\n# Apply the Friedewald formula\n# LDL cholesterol = total cholesterol \u2212 HDL \u2212 (triglycerides \u00f7 5)\nldl_chol = total_cholesterol - hdl_cholesterol - (triglycerides / 5)\n\n# Round to one decimal place\nanswer = round(ldl_chol, 1)",
+        "exec_value": "91.4",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 91.4"
+  },
+  {
+    "id": "row613",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nFor males:  \nrisk_score = 52.00961 \u00d7 ln(age) + 20.014077 \u00d7 ln(total_cholesterol) \u2013 0.905964 \u00d7 ln(hdl_cholesterol) + 1.305784 \u00d7 ln(sys_bp) + 0.241549 \u00d7 bp_medicine + 12.096316 \u00d7 smoker \u2013 4.605038 \u00d7 ln(age) \u00d7 ln(total_cholesterol) \u2013 2.84367 \u00d7 ln(age_smoke) \u00d7 smoker \u2013 2.93323 \u00d7 ln(age) \u00d7 ln(age) \u2013 172.300168  \n\nFor females:  \nrisk_score = 31.764001 \u00d7 ln(age) + 22.465206 \u00d7 ln(total_cholesterol) \u2013 1.187731 \u00d7 ln(hdl_cholesterol) + 2.552905 \u00d7 ln(sys_bp) + 0.420251 \u00d7 bp_medicine + 13.07543 \u00d7 smoker \u2013 5.060998 \u00d7 ln(age) \u00d7 ln(total_cholesterol) \u2013 2.996945 \u00d7 ln(age_smoke) \u00d7 smoker \u2013 146.5933061  \n\n10-year risk (%) = [1 \u2013 0.9402^exp(risk_score)] \u00d7 100 (male)  \n10-year risk (%) = [1 \u2013 0.98767^exp(risk_score)] \u00d7 100 (female)  \n\n**INPUTS:**  \n- gender (Male/Female)  \n- age (years)  \n- total_cholesterol (mg/dL)  \n- hdl_cholesterol (mg/dL)  \n- sys_bp (mm Hg)  \n- bp_medicine (1 = yes, 0 = no)  \n- smoker (1 = yes, 0 = no)  \n\n**CONVENTIONS:**  \n- Use natural logarithm (ln) for all continuous variables.  \n- For ln(age_smoke) \u00d7 smoker: cap age at 70 for males, 78 for females if >70 or >78.  \n- All inputs must be positive; log(0) or negative values are invalid.  \n- No unit conversion required\u2014inputs in specified units.  \n- Output is a decimal (risk percentage as decimal, e.g., 0.07879 for 7.879%).",
+        "calculator": "Framingham Risk Score for Hard Coronary Heart Disease"
+      },
+      {
+        "name": "extract",
+        "text": "age: 56 years  \nsex: female  \ntotal cholesterol: 148 mg/dL  \nHDL cholesterol: 38 mg/dL  \nsystolic blood pressure: 230 mmHg  \nsmoking status: NOT REPORTED  \ndiabetes status: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\nimport math\n\n# Patient values at first admission (prior to any treatment changes)\nage = 56\nsex = \"female\"\ntotal_cholesterol = 148\nhdl_cholesterol = 38\nsys_bp = 230\nbp_medicine = 1  # Patient is on antihypertensive medications\nsmoker = 0  # Patient denied smoking\n\n# Since smoking status is not reported and patient denied smoking, assume non-smoker\n# Diabetes status not reported, so assume no diabetes (not included in Framingham for CHD risk)\n\n# Use the female formula\nln_age = math.log(age)\nln_total_cholesterol = math.log(total_cholesterol)\nln_hdl_cholesterol = math.log(hdl_cholesterol)\nln_sys_bp = math.log(sys_bp)\n\n# For ln(age_smoke) \u00d7 smoker: since smoker = 0, this term is 0 regardless\n# So we can skip calculating ln(age_smoke)\n\n# Compute risk_score for females\nrisk_score = (31.764001 * ln_age +\n              22.465206 * ln_total_cholesterol -\n              1.187731 * ln_hdl_cholesterol +\n              2.552905 * ln_sys_bp +\n              0.420251 * bp_medicine +\n              13.07543 * smoker -\n              5.060998 * ln_age * ln_total_cholesterol -\n              2.996945 * 0 * smoker -  # This term is zero because smoker = 0\n              146.5933061)\n\n# Compute 10-year risk percentage\nexp_risk_score = math.exp(risk_score)\nten_year_risk = (1 - 0.98767 ** exp_risk_score) * 100\n\nanswer = ten_year_risk\n```",
+        "code": "import math\n\n# Patient values at first admission (prior to any treatment changes)\nage = 56\nsex = \"female\"\ntotal_cholesterol = 148\nhdl_cholesterol = 38\nsys_bp = 230\nbp_medicine = 1  # Patient is on antihypertensive medications\nsmoker = 0  # Patient denied smoking\n\n# Since smoking status is not reported and patient denied smoking, assume non-smoker\n# Diabetes status not reported, so assume no diabetes (not included in Framingham for CHD risk)\n\n# Use the female formula\nln_age = math.log(age)\nln_total_cholesterol = math.log(total_cholesterol)\nln_hdl_cholesterol = math.log(hdl_cholesterol)\nln_sys_bp = math.log(sys_bp)\n\n# For ln(age_smoke) \u00d7 smoker: since smoker = 0, this term is 0 regardless\n# So we can skip calculating ln(age_smoke)\n\n# Compute risk_score for females\nrisk_score = (31.764001 * ln_age +\n              22.465206 * ln_total_cholesterol -\n              1.187731 * ln_hdl_cholesterol +\n              2.552905 * ln_sys_bp +\n              0.420251 * bp_medicine +\n              13.07543 * smoker -\n              5.060998 * ln_age * ln_total_cholesterol -\n              2.996945 * 0 * smoker -  # This term is zero because smoker = 0\n              146.5933061)\n\n# Compute 10-year risk percentage\nexp_risk_score = math.exp(risk_score)\nten_year_risk = (1 - 0.98767 ** exp_risk_score) * 100\n\nanswer = ten_year_risk",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_openbook_fallback",
+        "text": "We are to calculate the 10-year risk of hard coronary heart disease (MI or death) using the **Framingham Risk Score** for **females**, based on the patient's status at **initial admission**, prior to any treatment changes.\n\n---\n\n### Step 1: Identify the formula (for females)\n\nThe formula for females is:\n\n```\nrisk_score = 31.764001 \u00d7 ln(age) + 22.465206 \u00d7 ln(total_cholesterol) \u2013 1.187731 \u00d7 ln(hdl_cholesterol) + 2.552905 \u00d7 ln(sys_bp) + 0.420251 \u00d7 bp_medicine + 13.07543 \u00d7 smoker \u2013 5.060998 \u00d7 ln(age) \u00d7 ln(total_cholesterol) \u2013 2.996945 \u00d7 ln(age_smoke) \u00d7 smoker \u2013 146.5933061\n```\n\nThen:\n\n```\n10-year risk (%) = [1 \u2013 0.98767^exp(risk_score)] \u00d7 100\n```\n\n---\n\n### Step 2: Extract values from the patient note (at initial admission, before treatment changes)\n\n- **Gender**: Female  \n- **Age**: 56 years  \n- **Total cholesterol**: 148 mg/dL  \n- **HDL cholesterol**: 38 mg/dL  \n- **Systolic blood pressure (sys_bp)**: 230 mmHg (measured at initial consultation)  \n- **BP medicine**: Yes (she was on multiple antihypertensives: valsartan, HCTZ, methyldopa, atenolol, spironolactone) \u2192 **1**  \n- **Smoker**: No (denied smoking) \u2192 **0**\n\nNote: The patient had **hypertensive retinopathy (grade 2)**, which is **target-organ damage**, but the Framingham Risk Score does **not** include target-organ damage as a direct input. It is already implicitly reflected in the high BP and other risk factors.\n\nAlso, **no need to cap age** for ln(age_smoke) \u00d7 smoker because smoker = 0 \u2192 the term vanishes.\n\n---\n\n### Step 3: Compute required logarithms (natural log, ln)\n\nWe compute each ln value:\n\n- ln(age) = ln(56) \u2248 4.02535  \n- ln(total_cholesterol) = ln(148) \u2248 5.00000  \n- ln(hdl_cholesterol) = ln(38) \u2248 3.63759  \n- ln(sys_bp) = ln(230) \u2248 5.43808  \n\nNow compute the products:\n\n---\n\n### Step 4: Compute each term in the risk_score\n\n1. 31.764001 \u00d7 ln(age) = 31.764001 \u00d7 4.02535 \u2248 **127.876**  \n2. 22.465206 \u00d7 ln(total_cholesterol) = 22.465206 \u00d7 5.00000 \u2248 **112.326**  \n3. \u20131.187731 \u00d7 ln(hdl_cholesterol) = \u20131.187731 \u00d7 3.63759 \u2248 **\u20134.317**  \n4. 2.552905 \u00d7 ln(sys_bp) = 2.552905 \u00d7 5.43808 \u2248 **13.882**  \n5. 0.420251 \u00d7 bp_medicine = 0.420251 \u00d7 1 = **0.420**  \n6. 13.07543 \u00d7 smoker = 13.07543 \u00d7 0 = **0**  \n7. \u20135.060998 \u00d7 ln(age) \u00d7 ln(total_cholesterol) = \u20135.060998 \u00d7 4.02535 \u00d7 5.00000 \u2248 \u20135.060998 \u00d7 20.12675 \u2248 **\u2013101.854**  \n8. \u20132.996945 \u00d7 ln(age_smoke) \u00d7 smoker = 0 (since smoker = 0)  \n9. \u2013146.5933061 (constant)\n\n---\n\n### Step 5: Sum all terms\n\nAdd them up:\n\n127.876  \n+ 112.326 = 240.202  \n\u2013 4.317 = 235.885  \n+ 13.882 = 249.767  \n+ 0.420 = 250.187  \n+ 0 = 250.187  \n\u2013 101.854 = 148.333  \n\u2013 146.5933061 = **1.7396939**\n\nSo:\n\n**risk_score \u2248 1.7397**\n\n---\n\n### Step 6: Compute 10-year risk\n\nUse:\n\n```\n10-year risk (%) = [1 \u2013 0.98767^exp(risk_score)] \u00d7 100\n```\n\nFirst, compute exp(risk_score) = e^1.7397 \u2248 5.694\n\nNow compute:\n\n0.98767^5.694 \u2248 ?\n\nWe compute:\n\nln(0.98767) \u2248 \u20130.012405  \nThen:  \n0.98767^5.694 = exp(5.694 \u00d7 \u20130.012405) \u2248 exp(\u20130.07067) \u2248 0.9317\n\nThen:\n\n1 \u2013 0.9317 = 0.0683\n\nMultiply by 100: **6.83%**\n\n---\n\n### Final Answer:\n\nANSWER: 6.83"
+      }
+    ],
+    "answer_text": "We are to calculate the 10-year risk of hard coronary heart disease (MI or death) using the **Framingham Risk Score** for **females**, based on the patient's status at **initial admission**, prior to any treatment changes.\n\n---\n\n### Step 1: Identify the formula (for females)\n\nThe formula for females is:\n\n```\nrisk_score = 31.764001 \u00d7 ln(age) + 22.465206 \u00d7 ln(total_cholesterol) \u2013 1.187731 \u00d7 ln(hdl_cholesterol) + 2.552905 \u00d7 ln(sys_bp) + 0.420251 \u00d7 bp_medicine + 13.07543 \u00d7 smoker \u2013 5.060998 \u00d7 ln(age) \u00d7 ln(total_cholesterol) \u2013 2.996945 \u00d7 ln(age_smoke) \u00d7 smoker \u2013 146.5933061\n```\n\nThen:\n\n```\n10-year risk (%) = [1 \u2013 0.98767^exp(risk_score)] \u00d7 100\n```\n\n---\n\n### Step 2: Extract values from the patient note (at initial admission, before treatment changes)\n\n- **Gender**: Female  \n- **Age**: 56 years  \n- **Total cholesterol**: 148 mg/dL  \n- **HDL cholesterol**: 38 mg/dL  \n- **Systolic blood pressure (sys_bp)**: 230 mmHg (measured at initial consultation)  \n- **BP medicine**: Yes (she was on multiple antihypertensives: valsartan, HCTZ, methyldopa, atenolol, spironolactone) \u2192 **1**  \n- **Smoker**: No (denied smoking) \u2192 **0**\n\nNote: The patient had **hypertensive retinopathy (grade 2)**, which is **target-organ damage**, but the Framingham Risk Score does **not** include target-organ damage as a direct input. It is already implicitly reflected in the high BP and other risk factors.\n\nAlso, **no need to cap age** for ln(age_smoke) \u00d7 smoker because smoker = 0 \u2192 the term vanishes.\n\n---\n\n### Step 3: Compute required logarithms (natural log, ln)\n\nWe compute each ln value:\n\n- ln(age) = ln(56) \u2248 4.02535  \n- ln(total_cholesterol) = ln(148) \u2248 5.00000  \n- ln(hdl_cholesterol) = ln(38) \u2248 3.63759  \n- ln(sys_bp) = ln(230) \u2248 5.43808  \n\nNow compute the products:\n\n---\n\n### Step 4: Compute each term in the risk_score\n\n1. 31.764001 \u00d7 ln(age) = 31.764001 \u00d7 4.02535 \u2248 **127.876**  \n2. 22.465206 \u00d7 ln(total_cholesterol) = 22.465206 \u00d7 5.00000 \u2248 **112.326**  \n3. \u20131.187731 \u00d7 ln(hdl_cholesterol) = \u20131.187731 \u00d7 3.63759 \u2248 **\u20134.317**  \n4. 2.552905 \u00d7 ln(sys_bp) = 2.552905 \u00d7 5.43808 \u2248 **13.882**  \n5. 0.420251 \u00d7 bp_medicine = 0.420251 \u00d7 1 = **0.420**  \n6. 13.07543 \u00d7 smoker = 13.07543 \u00d7 0 = **0**  \n7. \u20135.060998 \u00d7 ln(age) \u00d7 ln(total_cholesterol) = \u20135.060998 \u00d7 4.02535 \u00d7 5.00000 \u2248 \u20135.060998 \u00d7 20.12675 \u2248 **\u2013101.854**  \n8. \u20132.996945 \u00d7 ln(age_smoke) \u00d7 smoker = 0 (since smoker = 0)  \n9. \u2013146.5933061 (constant)\n\n---\n\n### Step 5: Sum all terms\n\nAdd them up:\n\n127.876  \n+ 112.326 = 240.202  \n\u2013 4.317 = 235.885  \n+ 13.882 = 249.767  \n+ 0.420 = 250.187  \n+ 0 = 250.187  \n\u2013 101.854 = 148.333  \n\u2013 146.5933061 = **1.7396939**\n\nSo:\n\n**risk_score \u2248 1.7397**\n\n---\n\n### Step 6: Compute 10-year risk\n\nUse:\n\n```\n10-year risk (%) = [1 \u2013 0.98767^exp(risk_score)] \u00d7 100\n```\n\nFirst, compute exp(risk_score) = e^1.7397 \u2248 5.694\n\nNow compute:\n\n0.98767^5.694 \u2248 ?\n\nWe compute:\n\nln(0.98767) \u2248 \u20130.012405  \nThen:  \n0.98767^5.694 = exp(5.694 \u00d7 \u20130.012405) \u2248 exp(\u20130.07067) \u2248 0.9317\n\nThen:\n\n1 \u2013 0.9317 = 0.0683\n\nMultiply by 100: **6.83%**\n\n---\n\n### Final Answer:\n\nANSWER: 6.83"
+  },
+  {
+    "id": "row627",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \n1. Age \u226550: Yes = +1 point, No = 0 points  \n2. Heart Rate (HR) \u2265100: Yes = +1 point, No = 0 points  \n3. O\u2082 saturation on room air <95%: Yes = +1 point, No = 0 points  \n4. Unilateral leg swelling: Yes = +1 point, No = 0 points  \n5. Hemoptysis: Yes = +1 point, No = 0 points  \n6. Recent surgery or trauma (within 4 weeks, requiring general anesthesia): Yes = +1 point, No = 0 points  \n7. Prior PE or DVT: Yes = +1 point, No = 0 points  \n8. Hormone use (oral contraceptives, HRT, or estrogenic therapy): Yes = +1 point, No = 0 points  \nTotal PERC score = sum of all points  \n\n**INPUTS:**  \n- Age (years)  \n- Heart rate (beats per minute)  \n- Room air oxygen saturation (%), measured via pulse oximetry  \n- Presence of unilateral leg swelling (Yes/No)  \n- Presence of hemoptysis (Yes/No)  \n- Recent surgery or trauma (within 4 weeks, requiring general anesthesia) (Yes/No)  \n- History of prior PE or DVT (Yes/No)  \n- Current hormone use (Yes/No)  \n\n**CONVENTIONS:**  \n- Age \u226550: use \u226550, not >50  \n- HR \u2265100: use \u2265100, not >100  \n- O\u2082 saturation <95%: use <95%, not \u226495%  \n- If a criterion is not documented, assume \"No\"  \n- Hormone use includes oral contraceptives, hormone replacement therapy, or estrogenic agents in any patient  \n- Score is an integer (0 to 8)  \n- No rounding; sum is exact count of criteria met",
+        "calculator": "PERC Rule for Pulmonary Embolism"
+      },
+      {
+        "name": "extract",
+        "text": "age: 52 years  \nheart rate: 97 beats per minute  \noxygen saturation: 99% on room air  \nhistory of surgery: NOT REPORTED  \nhistory of trauma: NOT REPORTED  \nhemoptysis: NOT REPORTED  \nprior venous thromboembolism: NOT REPORTED  \nunilateral leg swelling: NOT REPORTED  \ncalf pain: NOT REPORTED  \nactive cancer: NOT REPORTED  \nrecent immobilization: NOT REPORTED  \ntachypnea: NOT REPORTED  \nfever: NOT REPORTED  \ncough: NOT REPORTED  \ndyspnea: NOT REPORTED  \nchest pain: NOT REPORTED  \nhypoxia: NOT REPORTED  \nhypotension: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nage = 52\nheart_rate = 97\noxygen_saturation = 99\nunilateral_leg_swelling = False\nhemoptysis = False\nrecent_surgery_or_trauma = False\nprior_pe_or_dvt = False\nhormone_use = False\n\n# Apply PERC Rule criteria\nscore = 0\nif age >= 50:\n    score += 1\nif heart_rate >= 100:\n    score += 1\nif oxygen_saturation < 95:\n    score += 1\nif unilateral_leg_swelling:\n    score += 1\nif hemoptysis:\n    score += 1\nif recent_surgery_or_trauma:\n    score += 1\nif prior_pe_or_dvt:\n    score += 1\nif hormone_use:\n    score += 1\n\nanswer = score\n```",
+        "code": "# Extracted values from the patient note\nage = 52\nheart_rate = 97\noxygen_saturation = 99\nunilateral_leg_swelling = False\nhemoptysis = False\nrecent_surgery_or_trauma = False\nprior_pe_or_dvt = False\nhormone_use = False\n\n# Apply PERC Rule criteria\nscore = 0\nif age >= 50:\n    score += 1\nif heart_rate >= 100:\n    score += 1\nif oxygen_saturation < 95:\n    score += 1\nif unilateral_leg_swelling:\n    score += 1\nif hemoptysis:\n    score += 1\nif recent_surgery_or_trauma:\n    score += 1\nif prior_pe_or_dvt:\n    score += 1\nif hormone_use:\n    score += 1\n\nanswer = score",
+        "exec_value": "1",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 1"
+  },
+  {
+    "id": "row657",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \n1. Temperature >38\u00b0C or <36\u00b0C \u2192 +1 point  \n2. Heart rate >90 bpm \u2192 +1 point  \n3. Respiratory rate >20/min or PaCO\u2082 <32 mm Hg \u2192 +1 point  \n4. WBC >12,000/mm\u00b3, <4,000/mm\u00b3, or >10% bands \u2192 +1 point  \nTotal SIRS score = sum of points from all criteria  \n\n**INPUTS:**  \n- Temperature (\u00b0C)  \n- Heart rate (beats per minute)  \n- Respiratory rate (breaths per minute)  \n- PaCO\u2082 (mm Hg) \u2013 optional if respiratory rate is available  \n- White blood cell count (cells/mm\u00b3)  \n- Band count (%) \u2013 optional if WBC is available  \n\n**CONVENTIONS:**  \n- Temperature thresholds: >38\u00b0C or <36\u00b0C (inclusive of boundaries)  \n- Heart rate: >90 bpm (exclusive of 90)  \n- Respiratory rate: >20/min (exclusive of 20)  \n- PaCO\u2082: <32 mm Hg (exclusive of 32)  \n- WBC: >12,000/mm\u00b3 or <4,000/mm\u00b3 (exclusive of boundaries); >10% bands (exclusive of 10%)  \n- If PaCO\u2082 is not reported, assume \u226532 mm Hg  \n- If band count is not reported, assume \u226410%  \n- WBC in any unit must be converted to cells/mm\u00b3 (1 mm\u00b3 = 10\u2076 cells/L)  \n- Final score is integer (0 to 4)",
+        "calculator": "SIRS Criteria"
+      },
+      {
+        "name": "extract",
+        "text": "heart rate: 97 min\u207b\u00b9  \nrespiratory rate: 22 min\u207b\u00b9  \nbody temperature: 37.4 \u00b0C  \nwhite blood cell count: 9100 cells/mm\u00b3"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Patient values at admission (prior to any treatment)\ntemperature_c = 37.4  # \u00b0C\nheart_rate_bpm = 97  # beats per minute\nrespiratory_rate_bpm = 22  # breaths per minute\nwbc_count_cells_per_mm3 = 9100  # cells/mm\u00b3\n# PaCO\u2082 not reported \u2192 assume \u226532 mm Hg \u2192 no point\n# Band count not reported \u2192 assume \u226410% \u2192 no point\n\n# SIRS criteria evaluation\nsirs_score = 0\n\n# Criterion 1: Temperature >38\u00b0C or <36\u00b0C\nif temperature_c > 38.0 or temperature_c < 36.0:\n    sirs_score += 1\n\n# Criterion 2: Heart rate >90 bpm\nif heart_rate_bpm > 90:\n    sirs_score += 1\n\n# Criterion 3: Respiratory rate >20/min or PaCO\u2082 <32 mm Hg\nif respiratory_rate_bpm > 20:\n    sirs_score += 1\n# PaCO\u2082 not reported \u2192 assume \u226532 \u2192 no point\n\n# Criterion 4: WBC >12,000/mm\u00b3, <4,000/mm\u00b3, or >10% bands\nif wbc_count_cells_per_mm3 > 12000 or wbc_count_cells_per_mm3 < 4000:\n    sirs_score += 1\n# Band count not reported \u2192 assume \u226410% \u2192 no point\n\n# Final SIRS score\nanswer = sirs_score\n```",
+        "code": "# Patient values at admission (prior to any treatment)\ntemperature_c = 37.4  # \u00b0C\nheart_rate_bpm = 97  # beats per minute\nrespiratory_rate_bpm = 22  # breaths per minute\nwbc_count_cells_per_mm3 = 9100  # cells/mm\u00b3\n# PaCO\u2082 not reported \u2192 assume \u226532 mm Hg \u2192 no point\n# Band count not reported \u2192 assume \u226410% \u2192 no point\n\n# SIRS criteria evaluation\nsirs_score = 0\n\n# Criterion 1: Temperature >38\u00b0C or <36\u00b0C\nif temperature_c > 38.0 or temperature_c < 36.0:\n    sirs_score += 1\n\n# Criterion 2: Heart rate >90 bpm\nif heart_rate_bpm > 90:\n    sirs_score += 1\n\n# Criterion 3: Respiratory rate >20/min or PaCO\u2082 <32 mm Hg\nif respiratory_rate_bpm > 20:\n    sirs_score += 1\n# PaCO\u2082 not reported \u2192 assume \u226532 \u2192 no point\n\n# Criterion 4: WBC >12,000/mm\u00b3, <4,000/mm\u00b3, or >10% bands\nif wbc_count_cells_per_mm3 > 12000 or wbc_count_cells_per_mm3 < 4000:\n    sirs_score += 1\n# Band count not reported \u2192 assume \u226410% \u2192 no point\n\n# Final SIRS score\nanswer = sirs_score",
+        "exec_value": "2",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 2"
+  },
+  {
+    "id": "row681",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nQTc = QT + 154 \u00d7 (1 \u2212 RR)  \nwhere QT is in milliseconds (msec), and RR is the RR interval in seconds.\n\nINPUTS:  \n- QT interval: measured in milliseconds (msec)  \n- Heart rate: in beats per minute (bpm)\n\nCONVENTIONS:  \n- RR interval = 60 / heart rate (in seconds)  \n- Heart rate must be \u2265 40 bpm; if not, use 40 bpm to compute RR  \n- All calculations use raw values without rounding until final result  \n- Final QTc is reported as a decimal with up to 3 decimal places  \n- If QT interval is missing, the calculator cannot compute QTc  \n- If heart rate is missing, the calculator cannot compute QTc  \n- The formula assumes sinus rhythm; use with caution in arrhythmias  \n- The coefficient 154 is fixed and not adjusted for sex or age",
+        "calculator": "QTc Framingham Calculator"
+      },
+      {
+        "name": "extract",
+        "text": "heart rate: 110 bpm  \nQT interval: 490 msec"
+      },
+      {
+        "name": "program",
+        "text": "```python\nheart_rate = 110\nQT_interval = 490\n\nRR_interval = 60 / heart_rate\n\nQTc = QT_interval + 154 * (1 - RR_interval)\n\nanswer = QTc\n```",
+        "code": "heart_rate = 110\nQT_interval = 490\n\nRR_interval = 60 / heart_rate\n\nQTc = QT_interval + 154 * (1 - RR_interval)\n\nanswer = QTc",
+        "exec_value": "560.0",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 560.0"
+  },
+  {
+    "id": "row704",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nQTc = QT + 1.75 \u00d7 [(60 / RR) \u2212 60]  \nwhere QT is in milliseconds (msec), and RR is in seconds.\n\n**INPUTS:**  \n- QT interval: in milliseconds (msec)  \n- Heart rate: in beats per minute (bpm)  \n\n**CONVENTIONS:**  \n- RR interval (in seconds) is calculated as 60 / heart rate (bpm).  \n- Heart rate must be \u2265 30 bpm; values < 30 bpm are invalid.  \n- If heart rate is not available, RR interval must be provided directly.  \n- All calculations use full precision; final result is rounded to two decimal places.  \n- The formula assumes a linear correction for heart rate and is not valid for arrhythmias or irregular rhythms.  \n- Use only if QT interval is measured accurately (e.g., from a stable, regular R-R interval).",
+        "calculator": "QTc Hodges Calculator"
+      },
+      {
+        "name": "extract",
+        "text": "heart rate: 78 bpm  \nQT interval: 413 msec"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nheart_rate_bpm = 78\nqt_interval_msec = 413\n\n# Calculate RR interval in seconds\nrr_interval_seconds = 60 / heart_rate_bpm\n\n# Apply Hodges Formula: QTc = QT + 1.75 \u00d7 [(60 / RR) \u2212 60]\n# Note: (60 / RR) is the heart rate in bpm, so (60 / RR) - 60 = heart_rate_bpm - 60\n# But we use the formula directly as written\nqt_corrected = qt_interval_msec + 1.75 * (rr_interval_seconds - 60)\n\n# Round to two decimal places\nanswer = round(qt_corrected, 2)\n```",
+        "code": "# Given values from the patient note\nheart_rate_bpm = 78\nqt_interval_msec = 413\n\n# Calculate RR interval in seconds\nrr_interval_seconds = 60 / heart_rate_bpm\n\n# Apply Hodges Formula: QTc = QT + 1.75 \u00d7 [(60 / RR) \u2212 60]\n# Note: (60 / RR) is the heart rate in bpm, so (60 / RR) - 60 = heart_rate_bpm - 60\n# But we use the formula directly as written\nqt_corrected = qt_interval_msec + 1.75 * (rr_interval_seconds - 60)\n\n# Round to two decimal places\nanswer = round(qt_corrected, 2)",
+        "exec_value": "309.35",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 309.35"
+  },
+  {
+    "id": "row736",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nQTc = QT \u00d7 (120 + HR) / 180  \n\nINPUTS:  \n- QT interval: milliseconds (msec)  \n- Heart rate (HR): beats per minute (bpm)  \n\nCONVENTIONS:  \n- QT interval must be measured from the start of the Q wave to the end of the T wave in a lead with a clear T wave.  \n- Heart rate must be the average resting heart rate, derived from the same ECG used for QT measurement.  \n- If heart rate is not available, use 75 bpm as default.  \n- Results are rounded to 5 decimal places for precision; report as decimal (msec).  \n- The formula assumes sinus rhythm; use with caution in arrhythmias.  \n- Do not apply to patients with paced rhythms unless validated.  \n- No unit conversion needed\u2014inputs must be in msec and bpm.",
+        "calculator": "QTc Rautaharju Calculator"
+      },
+      {
+        "name": "extract",
+        "text": "heart rate: 92 bpm  \nQT interval: 390 msec"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nheart_rate = 92  # bpm\nqt_interval = 390  # msec\n\n# Apply the Rautaharju Formula for corrected QT interval\nqt_corrected = qt_interval * (120 + heart_rate) / 180\n\n# Assign the final result to the variable 'answer'\nanswer = qt_corrected\n```",
+        "code": "# Given values from the patient note\nheart_rate = 92  # bpm\nqt_interval = 390  # msec\n\n# Apply the Rautaharju Formula for corrected QT interval\nqt_corrected = qt_interval * (120 + heart_rate) / 180\n\n# Assign the final result to the variable 'answer'\nanswer = qt_corrected",
+        "exec_value": "459.3333333333333",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 459.3333333333333"
+  },
+  {
+    "id": "row747",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nBSA = \u221a( (weight \u00d7 height) / 3600 )  \nwhere weight is in kg and height is in cm.\n\nINPUTS:  \n- Weight: in kilograms (kg)  \n- Height: in centimeters (cm)\n\nCONVENTIONS:  \n- Weight must be entered in kilograms; convert from pounds (lb) using 1 kg = 2.20462 lb.  \n- Height must be entered in centimeters; convert from inches (in) using 1 in = 2.54 cm.  \n- All inputs must be positive numbers; zero or negative values are invalid.  \n- Intermediate multiplication (weight \u00d7 height) must be computed before division by 3600.  \n- The square root is applied to the result of the division.  \n- Final BSA is rounded to 5 decimal places (e.g., 1.69820 m\u00b2).  \n- No default values are used; missing or null inputs result in an error.  \n- The formula assumes the DuBois & DuBois 1916 equation, standard for clinical use.",
+        "calculator": "Body Surface Area Calculator"
+      },
+      {
+        "name": "extract",
+        "text": "height: 150 cm  \nweight: 32 kg"
+      },
+      {
+        "name": "program",
+        "text": "```python\nimport math\n\n# Given values from the patient note at first admission\nheight_cm = 150  # height in centimeters\nweight_kg = 32   # weight in kilograms\n\n# Calculate Body Surface Area using the DuBois & DuBois formula\nBSA = math.sqrt((weight_kg * height_cm) / 3600)\n\n# Round to 5 decimal places\nanswer = round(BSA, 5)\n```",
+        "code": "import math\n\n# Given values from the patient note at first admission\nheight_cm = 150  # height in centimeters\nweight_kg = 32   # weight in kilograms\n\n# Calculate Body Surface Area using the DuBois & DuBois formula\nBSA = math.sqrt((weight_kg * height_cm) / 3600)\n\n# Round to 5 decimal places\nanswer = round(BSA, 5)",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_openbook_fallback",
+        "text": "FORMULA OR RULE:  \nBSA = \u221a( (weight \u00d7 height) / 3600 )  \nwhere weight is in kg and height is in cm.\n\nINPUTS:  \n- Weight: 32 kg (from the note: \"weight 32 kg <5th percentile\")  \n- Height: 150 cm (from the note: \"height 150 cm (5\u201310 percentile)\")\n\nCONVENTIONS:  \n- Weight is already in kg.  \n- Height is already in cm.  \n- Both values are positive and valid.\n\nCOMPUTATION:  \nStep 1: Multiply weight and height  \n32 kg \u00d7 150 cm = 4800\n\nStep 2: Divide by 3600  \n4800 / 3600 = 1.333333...\n\nStep 3: Take the square root  \n\u221a1.333333... \u2248 1.1547005\n\nStep 4: Round to 5 decimal places  \n1.15470\n\nANSWER: 1.15470"
+      }
+    ],
+    "answer_text": "FORMULA OR RULE:  \nBSA = \u221a( (weight \u00d7 height) / 3600 )  \nwhere weight is in kg and height is in cm.\n\nINPUTS:  \n- Weight: 32 kg (from the note: \"weight 32 kg <5th percentile\")  \n- Height: 150 cm (from the note: \"height 150 cm (5\u201310 percentile)\")\n\nCONVENTIONS:  \n- Weight is already in kg.  \n- Height is already in cm.  \n- Both values are positive and valid.\n\nCOMPUTATION:  \nStep 1: Multiply weight and height  \n32 kg \u00d7 150 cm = 4800\n\nStep 2: Divide by 3600  \n4800 / 3600 = 1.333333...\n\nStep 3: Take the square root  \n\u221a1.333333... \u2248 1.1547005\n\nStep 4: Round to 5 decimal places  \n1.15470\n\nANSWER: 1.15470"
+  },
+  {
+    "id": "row778",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nABW = IBW + 0.4 \u00d7 (actual weight \u2212 IBW)  \nwhere:  \nIBW = 50 + 2.3 \u00d7 (height_in_inches \u2212 60) for males  \nIBW = 45.5 + 2.3 \u00d7 (height_in_inches \u2212 60) for females  \n\n**INPUTS:**  \n- Gender (male or female)  \n- Height in centimeters (cm)  \n- Actual weight in kilograms (kg)  \n\n**CONVENTIONS:**  \n- Convert height from cm to inches using 0.393701 in/cm.  \n- Round height in inches to 5 decimal places before computing IBW.  \n- Compute IBW using the gender-specific formula.  \n- Use actual weight as-is (in kg).  \n- Apply the ABW formula with the exact coefficient 0.4.  \n- Report ABW as a decimal value in kg, rounded to 5 decimal places.  \n- No adjustments for BMI, age, or other factors.  \n- If gender is not specified, default to male.",
+        "calculator": "Adjusted Body Weight"
+      },
+      {
+        "name": "extract",
+        "text": "height: 165 cm  \nweight: 63 kg  \nideal body weight: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nheight_cm = 165\nweight_kg = 63\ngender = \"female\"\n\n# Convert height from cm to inches (0.393701 in/cm)\nheight_inches = height_cm * 0.393701\n\n# Round height in inches to 5 decimal places\nheight_inches = round(height_inches, 5)\n\n# Compute Ideal Body Weight (IBW) for females\n# IBW = 45.5 + 2.3 \u00d7 (height_in_inches \u2212 60)\nibw = 45.5 + 2.3 * (height_inches - 60)\n\n# Compute Adjusted Body Weight (ABW)\n# ABW = IBW + 0.4 \u00d7 (actual weight \u2212 IBW)\nabw = ibw + 0.4 * (weight_kg - ibw)\n\n# Round ABW to 5 decimal places\nanswer = round(abw, 5)\n```",
+        "code": "# Given values from the patient note\nheight_cm = 165\nweight_kg = 63\ngender = \"female\"\n\n# Convert height from cm to inches (0.393701 in/cm)\nheight_inches = height_cm * 0.393701\n\n# Round height in inches to 5 decimal places\nheight_inches = round(height_inches, 5)\n\n# Compute Ideal Body Weight (IBW) for females\n# IBW = 45.5 + 2.3 \u00d7 (height_in_inches \u2212 60)\nibw = 45.5 + 2.3 * (height_inches - 60)\n\n# Compute Adjusted Body Weight (ABW)\n# ABW = IBW + 0.4 \u00d7 (actual weight \u2212 IBW)\nabw = ibw + 0.4 * (weight_kg - ibw)\n\n# Round ABW to 5 decimal places\nanswer = round(abw, 5)",
+        "exec_value": "59.34572",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 59.34572"
+  },
+  {
+    "id": "row799",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nDelta Gap = (Sodium \u2212 [Chloride + Bicarbonate]) \u2212 12.0  \n\n**INPUTS:**  \n- Sodium: mEq/L  \n- Chloride: mEq/L  \n- Bicarbonate: mEq/L  \n\n**CONVENTIONS:**  \n- All inputs must be in mEq/L. If values are reported in mmol/L, convert directly (1 mmol/L = 1 mEq/L for monovalent ions like Na\u207a, Cl\u207b, HCO\u2083\u207b).  \n- No unit conversion needed for monovalent ions; mmol/L values are numerically equivalent to mEq/L.  \n- Use measured values as reported; do not adjust for albumin or other corrections.  \n- The reference value 12.0 is exact; do not round it.  \n- Result is a decimal number (can be negative, zero, or positive).  \n- Round final result to one decimal place (e.g., 1.0, -3.0).",
+        "calculator": "Delta Gap"
+      },
+      {
+        "name": "extract",
+        "text": "anion gap: NOT REPORTED  \nalbumin: NOT REPORTED  \ndelta gap: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Patient's values at first admission (prior to any treatment)\nsodium = 141  # mEq/L (baseline)\nchloride = 104  # mEq/L (baseline)\nbicarbonate = 26  # mEq/L (baseline)\n\n# Calculate delta gap using the formula\ndelta_gap = (sodium - (chloride + bicarbonate)) - 12.0\n\n# Round to one decimal place\nanswer = round(delta_gap, 1)\n```",
+        "code": "# Patient's values at first admission (prior to any treatment)\nsodium = 141  # mEq/L (baseline)\nchloride = 104  # mEq/L (baseline)\nbicarbonate = 26  # mEq/L (baseline)\n\n# Calculate delta gap using the formula\ndelta_gap = (sodium - (chloride + bicarbonate)) - 12.0\n\n# Round to one decimal place\nanswer = round(delta_gap, 1)",
+        "exec_value": "-1.0",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: -1.0"
+  },
+  {
+    "id": "row809",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nDelta ratio = (Anion gap \u2212 12) / (24 \u2212 Bicarbonate)  \n\n**INPUTS:**  \n- Sodium (mEq/L)  \n- Chloride (mEq/L)  \n- Bicarbonate (mEq/L)  \n\n**CONVENTIONS:**  \n- All ion concentrations must be in mEq/L. If reported in mmol/L, convert using valence = 1 (no change in value).  \n- Anion gap = Sodium \u2212 (Chloride + Bicarbonate)  \n- Use 12 mEq/L as the reference anion gap (normal upper limit).  \n- Use 24 mEq/L as the reference bicarbonate (normal upper limit).  \n- If bicarbonate \u2265 24 mEq/L, denominator is 0 or negative; result is undefined (report as \"not applicable\" or \"invalid\").  \n- Delta ratio may be negative or zero.  \n- No rounding of intermediate values; final result to 2 decimal places.  \n- If any input is missing, return \"missing data\".",
+        "calculator": "Delta Ratio"
+      },
+      {
+        "name": "extract",
+        "text": "bicarbonate: 26 mmol/L  \nanion gap: NOT REPORTED  \nserum creatinine: 61 \u03bcmol/L  \nurine anion gap: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note (in mEq/L, equivalent to mmol/L for monovalent ions)\nsodium = 138  # mmol/L \u2192 mEq/L (valence = 1)\nchloride = 103  # mmol/L \u2192 mEq/L (valence = 1)\nbicarbonate = 26  # mmol/L \u2192 mEq/L (valence = 1)\n\n# Check if bicarbonate is >= 24 mEq/L \u2192 delta ratio is undefined\nif bicarbonate >= 24:\n    answer = \"not applicable\"\nelse:\n    # Calculate anion gap\n    anion_gap = sodium - (chloride + bicarbonate)\n    \n    # Calculate delta ratio\n    delta_ratio = (anion_gap - 12) / (24 - bicarbonate)\n    \n    # Round to 2 decimal places\n    answer = round(delta_ratio, 2)\n```",
+        "code": "# Extracted values from the patient note (in mEq/L, equivalent to mmol/L for monovalent ions)\nsodium = 138  # mmol/L \u2192 mEq/L (valence = 1)\nchloride = 103  # mmol/L \u2192 mEq/L (valence = 1)\nbicarbonate = 26  # mmol/L \u2192 mEq/L (valence = 1)\n\n# Check if bicarbonate is >= 24 mEq/L \u2192 delta ratio is undefined\nif bicarbonate >= 24:\n    answer = \"not applicable\"\nelse:\n    # Calculate anion gap\n    anion_gap = sodium - (chloride + bicarbonate)\n    \n    # Calculate delta ratio\n    delta_ratio = (anion_gap - 12) / (24 - bicarbonate)\n    \n    # Round to 2 decimal places\n    answer = round(delta_ratio, 2)",
+        "exec_value": "'not applicable'",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: not applicable"
+  },
+  {
+    "id": "row817",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nDelta ratio = (Anion gap \u2212 12) / (24 \u2212 Bicarbonate)  \n\n**INPUTS:**  \n- Sodium (mEq/L)  \n- Chloride (mEq/L)  \n- Bicarbonate (mEq/L)  \n\n**CONVENTIONS:**  \n- All ion concentrations must be in mEq/L. If reported in mmol/L, convert using valence = 1 (no change in value).  \n- Anion gap = Sodium \u2212 (Chloride + Bicarbonate)  \n- Use 12 mEq/L as the reference anion gap (normal upper limit).  \n- Use 24 mEq/L as the reference bicarbonate (normal upper limit).  \n- If bicarbonate \u2265 24 mEq/L, denominator is 0 or negative; result is undefined (report as \"not applicable\" or \"invalid\").  \n- Delta ratio may be negative or zero.  \n- No rounding of intermediate values; final result to 2 decimal places.  \n- If any input is missing, return \"missing data\".",
+        "calculator": "Delta Ratio"
+      },
+      {
+        "name": "extract",
+        "text": "sodium: 139 mmol/L  \npotassium: 3.2 mmol/L  \nchloride: 100 mmol/L  \nbicarbonate: 18 mmol/L  \nlactate: 9.6 mmol/L"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note (prior to any treatment)\nsodium = 139  # mmol/L (equivalent to mEq/L)\nchloride = 100  # mmol/L (equivalent to mEq/L)\nbicarbonate = 18  # mmol/L (equivalent to mEq/L)\n\n# Calculate anion gap\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Reference values\nnormal_anion_gap = 12  # mEq/L\nnormal_bicarbonate = 24  # mEq/L\n\n# Check if bicarbonate is less than 24 (required for valid delta ratio)\nif bicarbonate >= normal_bicarbonate:\n    answer = \"not applicable\"\nelse:\n    # Calculate delta ratio\n    delta_ratio = (anion_gap - normal_anion_gap) / (normal_bicarbonate - bicarbonate)\n    # Round to 2 decimal places\n    answer = round(delta_ratio, 2)\n```",
+        "code": "# Extracted values from the patient note (prior to any treatment)\nsodium = 139  # mmol/L (equivalent to mEq/L)\nchloride = 100  # mmol/L (equivalent to mEq/L)\nbicarbonate = 18  # mmol/L (equivalent to mEq/L)\n\n# Calculate anion gap\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Reference values\nnormal_anion_gap = 12  # mEq/L\nnormal_bicarbonate = 24  # mEq/L\n\n# Check if bicarbonate is less than 24 (required for valid delta ratio)\nif bicarbonate >= normal_bicarbonate:\n    answer = \"not applicable\"\nelse:\n    # Calculate delta ratio\n    delta_ratio = (anion_gap - normal_anion_gap) / (normal_bicarbonate - bicarbonate)\n    # Round to 2 decimal places\n    answer = round(delta_ratio, 2)",
+        "exec_value": "1.5",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 1.5"
+  },
+  {
+    "id": "row862",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nAlbumin corrected delta ratio = (albumin corrected anion gap \u2212 12) / (24 \u2212 bicarbonate)  \nwhere albumin corrected anion gap = anion gap + 2.5 \u00d7 (4 \u2212 albumin)\n\n**INPUTS:**  \n- Sodium (mEq/L)  \n- Chloride (mEq/L)  \n- Bicarbonate (mEq/L)  \n- Albumin (g/dL)\n\n**CONVENTIONS:**  \n- All ion concentrations (Na\u207a, Cl\u207b, HCO\u2083\u207b) are used directly in mEq/L; no conversion needed (1 mmol/L = 1 mEq/L for monovalent ions).  \n- Albumin must be in g/dL; convert from g/L by dividing by 10.  \n- If albumin is not reported, assume 4.0 g/dL.  \n- The denominator (24 \u2212 bicarbonate) must be positive; if \u2264 0, the ratio is undefined.  \n- Results are reported as a decimal, rounded to 4 decimal places if needed.  \n- Negative values in numerator or denominator are allowed; ratio may be negative or >1.  \n- The constant 12 in the delta gap formula is fixed; do not adjust.",
+        "calculator": "Albumin Corrected Delta Ratio"
+      },
+      {
+        "name": "extract",
+        "text": "albumin: 4 g/dL  \ncalcium: 12.4 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Patient values from the note (prior to treatment)\nsodium = 135  # mEq/L\nchloride = 113  # mEq/L\nbicarbonate = 20  # mEq/L\nalbumin = 4.0  # g/dL\n\n# Calculate anion gap\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Calculate albumin corrected anion gap\nalbumin_corrected_anion_gap = anion_gap + 2.5 * (4 - albumin)\n\n# Calculate albumin corrected delta ratio\nnumerator = albumin_corrected_anion_gap - 12\ndenominator = 24 - bicarbonate\n\n# Ensure denominator is positive\nif denominator <= 0:\n    answer = None  # Undefined\nelse:\n    answer = numerator / denominator\n    answer = round(answer, 4)\n```",
+        "code": "# Patient values from the note (prior to treatment)\nsodium = 135  # mEq/L\nchloride = 113  # mEq/L\nbicarbonate = 20  # mEq/L\nalbumin = 4.0  # g/dL\n\n# Calculate anion gap\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Calculate albumin corrected anion gap\nalbumin_corrected_anion_gap = anion_gap + 2.5 * (4 - albumin)\n\n# Calculate albumin corrected delta ratio\nnumerator = albumin_corrected_anion_gap - 12\ndenominator = 24 - bicarbonate\n\n# Ensure denominator is positive\nif denominator <= 0:\n    answer = None  # Undefined\nelse:\n    answer = numerator / denominator\n    answer = round(answer, 4)",
+        "exec_value": "-2.5",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: -2.5"
+  },
+  {
+    "id": "row911",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nBest Eye Response:  \n- Spontaneously = 4  \n- To verbal command = 3  \n- To pain = 2  \n- No eye opening = 1  \n\nBest Verbal Response:  \n- Oriented = 5  \n- Confused = 4  \n- Inappropriate words = 3  \n- Incomprehensible sounds = 2  \n- No verbal response = 1  \n\nBest Motor Response:  \n- Obeys commands = 6  \n- Localizes pain = 5  \n- Withdrawal from pain = 4  \n- Flexion to pain = 3  \n- Extension to pain = 2  \n- No motor response = 1  \n\nTotal GCS = Sum of best eye, verbal, and motor response scores  \n\n**INPUTS:**  \n- Best eye response: one of: spontaneously, to verbal command, to pain, no eye opening  \n- Best verbal response: one of: oriented, confused, inappropriate words, incomprehensible sounds, no verbal response  \n- Best motor response: one of: obeys commands, localizes pain, withdrawal from pain, flexion to pain, extension to pain, no motor response  \n\n**CONVENTIONS:**  \n- If a response is not mentioned or not testable, assume the highest possible score for that category.  \n- Use the single best response across all three categories.  \n- GCS is an integer; no rounding needed.  \n- Minimum score: 3 (no eye opening, no verbal response, no motor response).  \n- Maximum score: 15 (spontaneous eye opening, oriented, obeys commands).",
+        "calculator": "Glasgow Coma Score (GCS)"
+      },
+      {
+        "name": "extract",
+        "text": "Eye Opening: NOT REPORTED  \nVerbal Response: NOT REPORTED  \nMotor Response: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\n# Eye Opening: Not reported, so by convention assume the highest possible score (spontaneously = 4)\nbest_eye_response = 4\n\n# Verbal Response: Patient produces words that are not responsive to simple questions, blurts out intermittent phrases that fail to match context, and speaks in fragments with no clarity. This matches \"inappropriate words\" (3)\nbest_verbal_response = 3\n\n# Motor Response: Patient withdraws arm in a relatively brisk motion to mild painful stimuli, but does not localize pain, push away, or make purposeful movements. This matches \"withdrawal from pain\" (4)\nbest_motor_response = 4\n\n# Calculate Glasgow Coma Score\nanswer = best_eye_response + best_verbal_response + best_motor_response\n```",
+        "code": "# Extracted values from the patient note\n# Eye Opening: Not reported, so by convention assume the highest possible score (spontaneously = 4)\nbest_eye_response = 4\n\n# Verbal Response: Patient produces words that are not responsive to simple questions, blurts out intermittent phrases that fail to match context, and speaks in fragments with no clarity. This matches \"inappropriate words\" (3)\nbest_verbal_response = 3\n\n# Motor Response: Patient withdraws arm in a relatively brisk motion to mild painful stimuli, but does not localize pain, push away, or make purposeful movements. This matches \"withdrawal from pain\" (4)\nbest_motor_response = 4\n\n# Calculate Glasgow Coma Score\nanswer = best_eye_response + best_verbal_response + best_motor_response",
+        "exec_value": "11",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 11"
+  },
+  {
+    "id": "row962",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nAge: \u226440 = 0, 41\u201360 = +1, 61\u201374 = +2, \u226575 = +3  \nSurgery: None = 0, Minor = +1, Major >45 min = +2, Elective major lower extremity arthroplasty = +5  \nRecent event (\u22641 month): Major surgery = +1, CHF = +1, Sepsis = +1, Pneumonia = +1, Immobilizing plaster cast = +2, Hip/pelvis/leg fracture = +5, Stroke = +5, Multiple trauma = +5, Acute spinal cord injury causing paralysis = +5  \nVenous disease/clotting disorder: Varicose veins = +1, Current swollen legs = +1, Current central venous access = +2, History of DVT/PE = +3, Family history of thrombosis = +3, Positive Factor V Leiden = +3, Positive prothrombin 20210A = +3, Elevated homocysteine = +3, Positive lupus anticoagulant = +3, Elevated anticardiolipin antibody = +3, Heparin-induced thrombocytopenia = +3, Other thrombophilia = +3  \nMobility: Normal, out of bed = 0, On bed rest = +1, Confined to bed >72 hours = +2  \nOther history: IBD = +1, BMI >25 = +1, Acute MI = +1, COPD = +1, Present or previous malignancy = +2  \n\n**INPUTS:**  \n- Age (years)  \n- Surgery type (None, Minor, Major >45 min, Elective major lower extremity arthroplasty)  \n- Recent event (yes/no for each listed condition)  \n- Venous/clotting history (yes/no for each listed condition)  \n- Mobility status (Normal, on bed rest, confined to bed >72 hours)  \n- Other history (yes/no for each listed condition)  \n\n**CONVENTIONS:**  \n- Use the highest applicable age category.  \n- Assume \"no\" for any condition not reported.  \n- BMI >25 includes 25.0 and above.  \n- \"Recent\" = within 1 month.  \n- Surgery type is based on procedure, not duration.  \n- Sum all points; output is integer.",
+        "calculator": "Caprini Score for Venous Thromboembolism (2005)"
+      },
+      {
+        "name": "extract",
+        "text": "age: 72 years  \ngender: male  \nsurgery: planned knee replacement (elective major orthopedic surgery)  \nprior VTE: history of venous clot in leg (past)  \nrecent surgery: abdominal surgery within past 3 weeks  \nimmobility: prolonged bed rest (confined to bed for several weeks)  \nobesity: NOT REPORTED  \nhypercoagulable state: NOT REPORTED  \nage > 40: yes  \nhistory of cancer: NOT REPORTED  \nhormone therapy: NOT REPORTED  \nsmoking: past history, reduced in recent years  \nchronic lung disease: yes (on occasional inhaler)  \nacute illness: NOT REPORTED  \ninfection: NOT REPORTED  \npregnancy: NOT REPORTED  \noral contraceptives: NOT REPORTED  \nfamily history of VTE: NOT REPORTED  \ndistant family health disorders: NOT REPORTED  \nindwelling catheter: NOT REPORTED  \ncentral line: NOT REPORTED  \nprior VTE: yes (past)  \ncurrent DVT/PE: NOT REPORTED  \nhospitalization: yes (recent abdominal surgery, now recovering)  \nduration of hospitalization: NOT REPORTED  \ntype of surgery: elective major orthopedic surgery (knee replacement)  \ntype of anesthesia: NOT REPORTED  \npreoperative immobilization: yes (bed rest for several weeks)  \npostoperative immobilization: NOT REPORTED  \nhistory of thrombophilia: NOT REPORTED  \nplatelet dysfunction: NOT REPORTED  \nanticoagulant use: NOT REPORTED  \ncurrent medications: NOT REPORTED  \nlaboratory values: NOT REPORTED (no abnormal hematologic or metabolic profiles)  \nother: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nage = 72\nsurgery = \"Elective major lower extremity arthroplasty\"\nrecent_event = {\n    \"Major surgery\": True,\n    \"CHF\": False,\n    \"Sepsis\": False,\n    \"Pneumonia\": False,\n    \"Immobilizing plaster cast\": False,\n    \"Hip/pelvis/leg fracture\": False,\n    \"Stroke\": False,\n    \"Multiple trauma\": False,\n    \"Acute spinal cord injury causing paralysis\": False\n}\nvenous_clotting_history = {\n    \"Varicose veins\": False,\n    \"Current swollen legs\": False,\n    \"Current central venous access\": False,\n    \"History of DVT/PE\": True,\n    \"Family history of thrombosis\": False,\n    \"Positive Factor V Leiden\": False,\n    \"Positive prothrombin 20210A\": False,\n    \"Elevated homocysteine\": False,\n    \"Positive lupus anticoagulant\": False,\n    \"Elevated anticardiolipin antibody\": False,\n    \"Heparin-induced thrombocytopenia\": False,\n    \"Other thrombophilia\": False\n}\nmobility = \"Confined to bed >72 hours\"\nother_history = {\n    \"IBD\": False,\n    \"BMI >25\": False,\n    \"Acute MI\": False,\n    \"COPD\": True,\n    \"Present or previous malignancy\": False\n}\n\n# Calculate Caprini Score\nscore = 0\n\n# Age\nif age >= 75:\n    score += 3\nelif age >= 61:\n    score += 2\nelif age >= 41:\n    score += 1\n# Age \u226440: 0\n\n# Surgery\nif surgery == \"Elective major lower extremity arthroplasty\":\n    score += 5\n\n# Recent event (within 1 month)\nif recent_event[\"Major surgery\"]:\n    score += 1\n\n# Venous disease/clotting disorder\nif venous_clotting_history[\"History of DVT/PE\"]:\n    score += 3\n\n# Mobility\nif mobility == \"Confined to bed >72 hours\":\n    score += 2\n\n# Other history\nif other_history[\"COPD\"]:\n    score += 1\n\n# Final score\nanswer = score\n```",
+        "code": "# Extracted values from the patient note\nage = 72\nsurgery = \"Elective major lower extremity arthroplasty\"\nrecent_event = {\n    \"Major surgery\": True,\n    \"CHF\": False,\n    \"Sepsis\": False,\n    \"Pneumonia\": False,\n    \"Immobilizing plaster cast\": False,\n    \"Hip/pelvis/leg fracture\": False,\n    \"Stroke\": False,\n    \"Multiple trauma\": False,\n    \"Acute spinal cord injury causing paralysis\": False\n}\nvenous_clotting_history = {\n    \"Varicose veins\": False,\n    \"Current swollen legs\": False,\n    \"Current central venous access\": False,\n    \"History of DVT/PE\": True,\n    \"Family history of thrombosis\": False,\n    \"Positive Factor V Leiden\": False,\n    \"Positive prothrombin 20210A\": False,\n    \"Elevated homocysteine\": False,\n    \"Positive lupus anticoagulant\": False,\n    \"Elevated anticardiolipin antibody\": False,\n    \"Heparin-induced thrombocytopenia\": False,\n    \"Other thrombophilia\": False\n}\nmobility = \"Confined to bed >72 hours\"\nother_history = {\n    \"IBD\": False,\n    \"BMI >25\": False,\n    \"Acute MI\": False,\n    \"COPD\": True,\n    \"Present or previous malignancy\": False\n}\n\n# Calculate Caprini Score\nscore = 0\n\n# Age\nif age >= 75:\n    score += 3\nelif age >= 61:\n    score += 2\nelif age >= 41:\n    score += 1\n# Age \u226440: 0\n\n# Surgery\nif surgery == \"Elective major lower extremity arthroplasty\":\n    score += 5\n\n# Recent event (within 1 month)\nif recent_event[\"Major surgery\"]:\n    score += 1\n\n# Venous disease/clotting disorder\nif venous_clotting_history[\"History of DVT/PE\"]:\n    score += 3\n\n# Mobility\nif mobility == \"Confined to bed >72 hours\":\n    score += 2\n\n# Other history\nif other_history[\"COPD\"]:\n    score += 1\n\n# Final score\nanswer = score",
+        "exec_value": "14",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 14"
+  },
+  {
+    "id": "row974",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nAge: \u226440 = 0, 41\u201360 = +1, 61\u201374 = +2, \u226575 = +3  \nSurgery: None = 0, Minor = +1, Major >45 min = +2, Elective major lower extremity arthroplasty = +5  \nRecent event (\u22641 month): Major surgery = +1, CHF = +1, Sepsis = +1, Pneumonia = +1, Immobilizing plaster cast = +2, Hip/pelvis/leg fracture = +5, Stroke = +5, Multiple trauma = +5, Acute spinal cord injury causing paralysis = +5  \nVenous disease/clotting disorder: Varicose veins = +1, Current swollen legs = +1, Current central venous access = +2, History of DVT/PE = +3, Family history of thrombosis = +3, Positive Factor V Leiden = +3, Positive prothrombin 20210A = +3, Elevated homocysteine = +3, Positive lupus anticoagulant = +3, Elevated anticardiolipin antibody = +3, Heparin-induced thrombocytopenia = +3, Other thrombophilia = +3  \nMobility: Normal, out of bed = 0, On bed rest = +1, Confined to bed >72 hours = +2  \nOther history: IBD = +1, BMI >25 = +1, Acute MI = +1, COPD = +1, Present or previous malignancy = +2  \n\n**INPUTS:**  \n- Age (years)  \n- Surgery type (None, Minor, Major >45 min, Elective major lower extremity arthroplasty)  \n- Recent event (yes/no for each listed condition)  \n- Venous/clotting history (yes/no for each listed condition)  \n- Mobility status (Normal, on bed rest, confined to bed >72 hours)  \n- Other history (yes/no for each listed condition)  \n\n**CONVENTIONS:**  \n- Use the highest applicable age category.  \n- Assume \"no\" for any condition not reported.  \n- BMI >25 includes 25.0 and above.  \n- \"Recent\" = within 1 month.  \n- Surgery type is based on procedure, not duration.  \n- Sum all points; output is integer.",
+        "calculator": "Caprini Score for Venous Thromboembolism (2005)"
+      },
+      {
+        "name": "extract",
+        "text": "Age: 59 years  \nGender: Female  \nHistory of venous thromboembolism: NOT REPORTED  \nFamily history of VTE: NOT REPORTED  \nPrior surgery or trauma: NOT REPORTED  \nImmobilization: NOT REPORTED  \nObesity: NOT REPORTED  \nHormone therapy: NOT REPORTED  \nCancer: NOT REPORTED  \nAcute illness: NOT REPORTED  \nHypercoagulable state: NOT REPORTED  \nCentral venous catheter: NOT REPORTED  \nPrevious VTE risk factors: NOT REPORTED  \nHistory of heart failure: Yes  \nHistory of chronic lung disease: NOT REPORTED  \nLeg swelling: Yes  \nAnkle edema: Yes  \nShortness of breath: Yes  \nOrthopnea: Yes  \nElevated jugular venous pressure: NOT REPORTED  \nPulmonary edema: NOT REPORTED  \nRecent hospitalization: Yes  \nDuration of hospitalization: NOT REPORTED  \nType of surgery planned: Extensive abdominal procedure  \nType of anesthesia: NOT REPORTED  \nSmoking history: NOT REPORTED  \nPrevious DVT: NOT REPORTED  \nPrevious PE: NOT REPORTED  \nDeep vein thrombosis: NOT REPORTED  \nPregnancy or postpartum: NOT REPORTED  \nInflammatory bowel disease: NOT REPORTED  \nAntiphospholipid syndrome: NOT REPORTED  \nFactor V Leiden: NOT REPORTED  \nProthrombin gene mutation: NOT REPORTED  \nProtein C deficiency: NOT REPORTED  \nProtein S deficiency: NOT REPORTED  \nAntithrombin deficiency: NOT REPORTED  \nHyperhomocysteinemia: NOT REPORTED  \nRenal failure: NOT REPORTED  \nLiver disease: NOT REPORTED  \nHeparin-induced thrombocytopenia: NOT REPORTED  \nPrevious clotting disorder: NOT REPORTED  \nUse of oral contraceptives: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of MI: NOT REPORTED  \nHistory of peripheral arterial disease: NOT REPORTED  \nHistory of varicose veins: NOT REPORTED  \nHistory of leg ulcers: NOT REPORTED  \nHistory of leg pain: NOT REPORTED  \nHistory of leg swelling: Yes  \nHistory of leg heaviness: Yes  \nHistory of leg discoloration: NOT REPORTED  \nHistory of superficial vein patterns: NOT REPORTED  \nHistory of leg lumps: NOT REPORTED  \nHistory of leg injury: NOT REPORTED  \nHistory of fracture: NOT REPORTED  \nHistory of immobilization: NOT REPORTED  \nHistory of bed rest: NOT REPORTED  \nHistory of prolonged travel: NOT REPORTED  \nHistory of dehydration: NOT REPORTED  \nHistory of infection: NOT REPORTED  \nHistory of fever: NOT REPORTED  \nHistory of cough: NOT REPORTED  \nHistory of productive sputum: NOT REPORTED  \nHistory of dyspnea: Yes  \nHistory of orthopnea: Yes  \nHistory of paroxysmal nocturnal dyspnea: NOT REPORTED  \nHistory of pleuritic chest pain: NOT REPORTED  \nHistory of hemoptysis: NOT REPORTED  \nHistory of syncope: NOT REPORTED  \nHistory of palpitations: NOT REPORTED  \nHistory of chest pain: NOT REPORTED  \nHistory of fatigue: Yes  \nHistory of reduced exercise tolerance: Yes  \nHistory of weight gain: NOT REPORTED  \nHistory of fluid retention: Yes  \nHistory of pitting edema: Yes  \nHistory of elevated BNP: NOT REPORTED  \nHistory of echocardiogram abnormality: Yes  \nHistory of reduced ejection fraction: NOT REPORTED  \nHistory of pulmonary hypertension: NOT REPORTED  \nHistory of atrial fibrillation: NOT REPORTED  \nHistory of hypertension: NOT REPORTED  \nHistory of diabetes: NOT REPORTED  \nHistory of hyperlipidemia: NOT REPORTED  \nHistory of smoking: NOT REPORTED  \nHistory of alcohol use: NOT REPORTED  \nHistory of drug use: NOT REPORTED  \nHistory of transfusion: NOT REPORTED  \nHistory of bleeding: NOT REPORTED  \nHistory of anemia: NOT REPORTED  \nHistory of thrombocytopenia: NOT REPORTED  \nHistory of leukocytosis: NOT REPORTED  \nHistory of elevated D-dimer: NOT REPORTED  \nHistory of positive VTE test: NOT REPORTED  \nHistory of anticoagulant use: NOT REPORTED  \nHistory of antiplatelet use: NOT REPORTED  \nHistory of NSAID use: NOT REPORTED  \nHistory of steroid use: NOT REPORTED  \nHistory of chemotherapy: NOT REPORTED  \nHistory of radiation therapy: NOT REPORTED  \nHistory of immunosuppressants: NOT REPORTED  \nHistory of hormone replacement therapy: NOT REPORTED  \nHistory of estrogen use: NOT REPORTED  \nHistory of progestin use: NOT REPORTED  \nHistory of combined oral contraceptives: NOT REPORTED  \nHistory of intrauterine device: NOT REPORTED  \nHistory of pregnancy: NOT REPORTED  \nHistory of postpartum: NOT REPORTED  \nHistory of pelvic surgery: NOT REPORTED  \nHistory of gynecologic surgery: NOT REPORTED  \nHistory of abdominal surgery: NOT REPORTED  \nHistory of thoracic surgery: NOT REPORTED  \nHistory of vascular surgery: NOT REPORTED  \nHistory of orthopedic surgery: NOT REPORTED  \nHistory of neurosurgery: NOT REPORTED  \nHistory of cardiac surgery: NOT REPORTED  \nHistory of transplant: NOT REPORTED  \nHistory of dialysis: NOT REPORTED  \nHistory of mechanical ventilation: NOT REPORTED  \nHistory of ICU admission: Yes  \nDuration of ICU stay: NOT REPORTED  \nHistory of mechanical ventilation: NOT REPORTED  \nHistory of vasopressor use: NOT REPORTED  \nHistory of sepsis: NOT REPORTED  \nHistory of shock: NOT REPORTED  \nHistory of acute kidney injury: NOT REPORTED  \nHistory of liver failure: NOT REPORTED  \nHistory of respiratory failure: NOT REPORTED  \nHistory of cardiac arrest: NOT REPORTED  \nHistory of arrhythmia: NOT REPORTED  \nHistory of heart block: NOT REPORTED  \nHistory of pacemaker: NOT REPORTED  \nHistory of ICD: NOT REPORTED  \nHistory of coronary artery disease: NOT REPORTED  \nHistory of myocardial infarction: NOT REPORTED  \nHistory of angina: NOT REPORTED  \nHistory of unstable angina: NOT REPORTED  \nHistory of stable angina: NOT REPORTED  \nHistory of percutaneous coronary intervention: NOT REPORTED  \nHistory of coronary artery bypass grafting: NOT REPORTED  \nHistory of heart valve disease: NOT REPORTED  \nHistory of infective endocarditis: NOT REPORTED  \nHistory of cardiomyopathy: NOT REPORTED  \nHistory of dilated cardiomyopathy: NOT REPORTED  \nHistory of hypertrophic cardiomyopathy: NOT REPORTED  \nHistory of restrictive cardiomyopathy: NOT REPORTED  \nHistory of arrhythmogenic right ventricular cardiomyopathy: NOT REPORTED  \nHistory of pericarditis: NOT REPORTED  \nHistory of constrictive pericarditis: NOT REPORTED  \nHistory of myocarditis: NOT REPORTED  \nHistory of endomyocardial fibrosis: NOT REPORTED  \nHistory of cardiac tumor: NOT REPORTED  \nHistory of congenital heart disease: NOT REPORTED  \nHistory of atrial septal defect: NOT REPORTED  \nHistory of ventricular septal defect: NOT REPORTED  \nHistory of patent"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nage = 59\nsurgery_type = \"Major >45 min\"  # Planned extensive abdominal procedure (major surgery)\nrecent_event_chf = True  # History of heart failure (CHF) within the past month\nrecent_event_surgery = False  # No recent surgery (planned surgery not yet performed)\nrecent_event_sepsis = False\nrecent_event_pneumonia = False\nrecent_event_immobilizing_plaster_cast = False\nrecent_event_hip_pelvis_leg_fracture = False\nrecent_event_stroke = False\nrecent_event_multiple_trauma = False\nrecent_event_acute_spinal_cord_injury = False\n\nvenous_disease_clotting_history_varicose_veins = False\nvenous_disease_clotting_history_current_swollen_legs = True  # Persistent heaviness and swelling in lower legs\nvenous_disease_clotting_history_current_central_venous_access = False\nvenous_disease_clotting_history_history_of_dvt_pe = False\nvenous_disease_clotting_history_family_history_of_thrombosis = False\nvenous_disease_clotting_history_positive_factor_v_leiden = False\nvenous_disease_clotting_history_positive_prothrombin_20210a = False\nvenous_disease_clotting_history_elevated_homocysteine = False\nvenous_disease_clotting_history_positive_lupus_anticoagulant = False\nvenous_disease_clotting_history_elevated_anticardiolipin_antibody = False\nvenous_disease_clotting_history_heparin_induced_thrombocytopenia = False\nvenous_disease_clotting_history_other_thrombophilia = False\n\nmobility_status = \"Normal, out of bed\"  # Patient stands and walks without assistive devices\n\nother_history_ibd = False\nother_history_bmi_over_25 = False  # Not reported, assume no\nother_history_acute_mi = False\nother_history_copd = False\nother_history_malignancy = False  # No known cancer\n\n# Apply Caprini Score rules\nscore = 0\n\n# Age: 59 \u2192 41\u201360 = +1\nscore += 1\n\n# Surgery: Major >45 min = +2 (planned extensive abdominal procedure)\nscore += 2\n\n# Recent event: CHF = +1 (within past month)\nscore += 1\n\n# Venous disease/clotting disorder: Current swollen legs = +1\nscore += 1\n\n# Mobility: Normal, out of bed = 0 \u2192 no points\n# Other history: None apply \u2192 0\n\n# Final score\nanswer = score\n```",
+        "code": "# Extracted values from the patient note\nage = 59\nsurgery_type = \"Major >45 min\"  # Planned extensive abdominal procedure (major surgery)\nrecent_event_chf = True  # History of heart failure (CHF) within the past month\nrecent_event_surgery = False  # No recent surgery (planned surgery not yet performed)\nrecent_event_sepsis = False\nrecent_event_pneumonia = False\nrecent_event_immobilizing_plaster_cast = False\nrecent_event_hip_pelvis_leg_fracture = False\nrecent_event_stroke = False\nrecent_event_multiple_trauma = False\nrecent_event_acute_spinal_cord_injury = False\n\nvenous_disease_clotting_history_varicose_veins = False\nvenous_disease_clotting_history_current_swollen_legs = True  # Persistent heaviness and swelling in lower legs\nvenous_disease_clotting_history_current_central_venous_access = False\nvenous_disease_clotting_history_history_of_dvt_pe = False\nvenous_disease_clotting_history_family_history_of_thrombosis = False\nvenous_disease_clotting_history_positive_factor_v_leiden = False\nvenous_disease_clotting_history_positive_prothrombin_20210a = False\nvenous_disease_clotting_history_elevated_homocysteine = False\nvenous_disease_clotting_history_positive_lupus_anticoagulant = False\nvenous_disease_clotting_history_elevated_anticardiolipin_antibody = False\nvenous_disease_clotting_history_heparin_induced_thrombocytopenia = False\nvenous_disease_clotting_history_other_thrombophilia = False\n\nmobility_status = \"Normal, out of bed\"  # Patient stands and walks without assistive devices\n\nother_history_ibd = False\nother_history_bmi_over_25 = False  # Not reported, assume no\nother_history_acute_mi = False\nother_history_copd = False\nother_history_malignancy = False  # No known cancer\n\n# Apply Caprini Score rules\nscore = 0\n\n# Age: 59 \u2192 41\u201360 = +1\nscore += 1\n\n# Surgery: Major >45 min = +2 (planned extensive abdominal procedure)\nscore += 2\n\n# Recent event: CHF = +1 (within past month)\nscore += 1\n\n# Venous disease/clotting disorder: Current swollen legs = +1\nscore += 1\n\n# Mobility: Normal, out of bed = 0 \u2192 no points\n# Other history: None apply \u2192 0\n\n# Final score\nanswer = score",
+        "exec_value": "5",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 5"
+  },
+  {
+    "id": "row1017",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nConvert dose using:  \n*Output Dose (mg) = Input Dose (mg) \u00d7 (Equivalent Dose of Target Steroid / Equivalent Dose of Source Steroid)*\n\n**INPUTS:**  \n- Input Dose (mg): mass of the starting corticosteroid  \n- Source Steroid: name and route (e.g., Hydrocortisone PO)  \n- Target Steroid: name and route (e.g., Methylprednisolone IV)  \n\n**CONVENTIONS:**  \n- Use equivalent doses from the standard reference:  \n  Hydrocortisone (IV/PO) = 20 mg  \n  Prednisolone (PO) = 5 mg  \n  Methylprednisolone (IV/PO) = 4 mg  \n  Dexamethasone (IV/PO) = 0.75 mg  \n  Betamethasone (IV) = 0.75 mg  \n  Cortisone (PO) = 25 mg  \n  Triamcinolone (IV) = 4 mg  \n- Route must match exactly (e.g., IV vs PO).  \n- Conversion factors are derived from the ratio of equivalent doses.  \n- Final result rounded to nearest 0.1 mg.  \n- If route is not specified in input or target, default to PO.  \n- If steroid not in list, use nearest equivalent or consult specialist.  \n- Do not use patient-specific doses or values from examples.",
+        "calculator": "Steroid Conversion Calculator"
+      },
+      {
+        "name": "extract",
+        "text": "Hydrocortisone IV dose: 186.669 mg  \nPrednisone equivalent potency ratio: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nhydrocortisone_iv_dose = 186.669  # mg\n\n# Standard equivalent doses from reference card\nequivalent_hydrocortisone_iv = 20  # mg\nequivalent_prednisolone_po = 5    # mg\n\n# Apply the conversion formula\n# Output Dose (mg) = Input Dose (mg) \u00d7 (Equivalent Dose of Target Steroid / Equivalent Dose of Source Steroid)\nanswer = hydrocortisone_iv_dose * (equivalent_prednisolone_po / equivalent_hydrocortisone_iv)\n\n# Round to nearest 0.1 mg\nanswer = round(answer, 1)\n```",
+        "code": "# Given values from the patient note\nhydrocortisone_iv_dose = 186.669  # mg\n\n# Standard equivalent doses from reference card\nequivalent_hydrocortisone_iv = 20  # mg\nequivalent_prednisolone_po = 5    # mg\n\n# Apply the conversion formula\n# Output Dose (mg) = Input Dose (mg) \u00d7 (Equivalent Dose of Target Steroid / Equivalent Dose of Source Steroid)\nanswer = hydrocortisone_iv_dose * (equivalent_prednisolone_po / equivalent_hydrocortisone_iv)\n\n# Round to nearest 0.1 mg\nanswer = round(answer, 1)",
+        "exec_value": "46.7",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 46.7"
+  },
+  {
+    "id": "row1031",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \ntarget_weight = bmi \u00d7 height\u00b2  \nwhere bmi is in kg/m\u00b2 and height is in meters.\n\nINPUTS:  \n- target_bmi: target body mass index in kg/m\u00b2  \n- height: patient\u2019s height in inches or centimeters (see conventions)\n\nCONVENTIONS:  \n- Convert height to meters:  \n  - If height is in inches: multiply by 0.0254  \n  - If height is in centimeters: divide by 100  \n- Round final target weight to 2 decimal places  \n- Use the exact value of height in meters (do not round intermediate conversions)  \n- If height is not reported in inches or centimeters, use default of 170 cm (1.70 m)  \n- If target_bmi is not specified, use default of 21.0 kg/m\u00b2  \n- The formula assumes metric units for height and bmi; all inputs must be converted before calculation  \n- No negative or zero values allowed for height or bmi; if invalid, return error",
+        "calculator": "Target weight"
+      },
+      {
+        "name": "extract",
+        "text": "height: 172 cm\ntarget BMI: 24.7 kg/m^2"
+      },
+      {
+        "name": "program",
+        "text": "```python\nheight_cm = 172\ntarget_bmi = 24.7\n\n# Convert height to meters\nheight_m = height_cm / 100\n\n# Calculate target weight using the formula: target_weight = bmi \u00d7 height\u00b2\ntarget_weight = target_bmi * (height_m ** 2)\n\n# Round to 2 decimal places\nanswer = round(target_weight, 2)\n```",
+        "code": "height_cm = 172\ntarget_bmi = 24.7\n\n# Convert height to meters\nheight_m = height_cm / 100\n\n# Calculate target weight using the formula: target_weight = bmi \u00d7 height\u00b2\ntarget_weight = target_bmi * (height_m ** 2)\n\n# Round to 2 decimal places\nanswer = round(target_weight, 2)",
+        "exec_value": "73.07",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 73.07"
+  },
+  {
+    "id": "row1053",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nTotal MME/day = \u03a3 (Dose per administration \u00d7 Doses per day \u00d7 MME conversion factor)  \n\n**INPUTS:**  \n- Dose per administration (mg)  \n- Doses per day (count)  \n- Opioid name (from approved list)  \n\n**CONVENTIONS:**  \n- Use MME conversion factors from CDC 2022 guideline:  \n  Codeine: 0.15, Fentanyl buccal: 0.13, Hydrocodone: 1, Hydromorphone: 5, Methadone: 4.7, Morphine: 1, Oxycodone: 1.5, Oxymorphone: 3, Tapentadol: 0.4, Tramadol: 0.2, Buprenorphine: 10  \n- Multiply dose per administration (mg) by doses per day to get total daily dose (mg/day).  \n- Multiply total daily dose (mg/day) by opioid-specific MME conversion factor (mme/mg).  \n- Sum contributions from all opioids.  \n- Round final MME/day to nearest whole number.  \n- If opioid not listed, do not calculate; use only approved agents.  \n- Default to 0 doses/day if not specified.  \n- Do not include non-opioid analgesics (e.g., acetaminophen, NSAIDs).",
+        "calculator": "Morphine Milligram Equivalents (MME) Calculator"
+      },
+      {
+        "name": "extract",
+        "text": "Fentanyl buccal: 30 \u00b5g dose  \nFentanyl buccal: 2 doses per day  \nTapentadol: 20 mg dose  \nTapentadol: 3 doses per day  \nFentanyl buccal: 100 \u00b5g morphine equivalent per 1 \u00b5g fentanyl buccal  \nTapentadol: 1.5 morphine equivalent per 1 mg tapentadol"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nfentanyl_buccal_dose_ug = 30  # \u00b5g per administration\nfentanyl_buccal_doses_per_day = 2\ntapentadol_dose_mg = 20  # mg per administration\ntapentadol_doses_per_day = 3\n\n# MME conversion factors from CDC 2022 guideline\nfentanyl_buccal_mme_factor = 0.13  # mme per \u00b5g\ntapentadol_mme_factor = 0.4  # mme per mg\n\n# Convert fentanyl buccal dose to mg for consistency (though factor is per \u00b5g)\n# Since the factor is per \u00b5g, we can directly use \u00b5g in calculation\nfentanyl_buccal_total_daily_dose_ug = fentanyl_buccal_dose_ug * fentanyl_buccal_doses_per_day\nfentanyl_buccal_mme_contribution = fentanyl_buccal_total_daily_dose_ug * fentanyl_buccal_mme_factor\n\n# Tapentadol: total daily dose in mg\ntapentadol_total_daily_dose_mg = tapentadol_dose_mg * tapentadol_doses_per_day\ntapentadol_mme_contribution = tapentadol_total_daily_dose_mg * tapentadol_mme_factor\n\n# Total MME/day\ntotal_mme_per_day = fentanyl_buccal_mme_contribution + tapentadol_mme_contribution\n\n# Round to nearest whole number\nanswer = round(total_mme_per_day)\n```",
+        "code": "# Given values from the patient note\nfentanyl_buccal_dose_ug = 30  # \u00b5g per administration\nfentanyl_buccal_doses_per_day = 2\ntapentadol_dose_mg = 20  # mg per administration\ntapentadol_doses_per_day = 3\n\n# MME conversion factors from CDC 2022 guideline\nfentanyl_buccal_mme_factor = 0.13  # mme per \u00b5g\ntapentadol_mme_factor = 0.4  # mme per mg\n\n# Convert fentanyl buccal dose to mg for consistency (though factor is per \u00b5g)\n# Since the factor is per \u00b5g, we can directly use \u00b5g in calculation\nfentanyl_buccal_total_daily_dose_ug = fentanyl_buccal_dose_ug * fentanyl_buccal_doses_per_day\nfentanyl_buccal_mme_contribution = fentanyl_buccal_total_daily_dose_ug * fentanyl_buccal_mme_factor\n\n# Tapentadol: total daily dose in mg\ntapentadol_total_daily_dose_mg = tapentadol_dose_mg * tapentadol_doses_per_day\ntapentadol_mme_contribution = tapentadol_total_daily_dose_mg * tapentadol_mme_factor\n\n# Total MME/day\ntotal_mme_per_day = fentanyl_buccal_mme_contribution + tapentadol_mme_contribution\n\n# Round to nearest whole number\nanswer = round(total_mme_per_day)",
+        "exec_value": "32",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 32"
+  },
+  {
+    "id": "row1065",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "FORMULA OR RULE:  \nEstimated Date of Conception = Last Menstrual Period Date + 14 days  \n\nINPUTS:  \n- Last Menstrual Period Date: date (format: MM/DD/YYYY)  \n\nCONVENTIONS:  \n- Add exactly 14 days to the first day of the last menstrual period.  \n- If the last menstrual period date is not reported, use the earliest recorded date available.  \n- No rounding is applied; the result is the exact date after adding 14 days.  \n- The calculation assumes a typical 28-day menstrual cycle with ovulation occurring on day 14.  \n- If the patient has a known irregular cycle, this method should not be used without clinical judgment.",
+        "calculator": "Estimated Date of Conception"
+      },
+      {
+        "name": "extract",
+        "text": "last menstrual period: 08/21/2017 M/D/Y"
+      },
+      {
+        "name": "program",
+        "text": "```python\nfrom datetime import datetime, timedelta\n\nlast_menstrual_period = datetime(2017, 8, 21)\nestimated_date_of_conception = last_menstrual_period + timedelta(days=14)\nanswer = estimated_date_of_conception.strftime('%m/%d/%Y')\n```",
+        "code": "from datetime import datetime, timedelta\n\nlast_menstrual_period = datetime(2017, 8, 21)\nestimated_date_of_conception = last_menstrual_period + timedelta(days=14)\nanswer = estimated_date_of_conception.strftime('%m/%d/%Y')",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_openbook_fallback",
+        "text": "FORMULA OR RULE:  \nEstimated Date of Conception = Last Menstrual Period Date + 14 days  \n\nINPUTS:  \n- Last Menstrual Period Date: 08/21/2017 (format: MM/DD/YYYY)  \n\nCONVENTIONS:  \n- Add exactly 14 days to the first day of the last menstrual period.  \n- No rounding; exact date after adding 14 days.  \n\nCOMPUTATION:  \nStart date: 08/21/2017  \nAdd 14 days:  \n08/21/2017 + 14 days = 09/04/2017  \n\nANSWER: 09/04/2017"
+      }
+    ],
+    "answer_text": "FORMULA OR RULE:  \nEstimated Date of Conception = Last Menstrual Period Date + 14 days  \n\nINPUTS:  \n- Last Menstrual Period Date: 08/21/2017 (format: MM/DD/YYYY)  \n\nCONVENTIONS:  \n- Add exactly 14 days to the first day of the last menstrual period.  \n- No rounding; exact date after adding 14 days.  \n\nCOMPUTATION:  \nStart date: 08/21/2017  \nAdd 14 days:  \n08/21/2017 + 14 days = 09/04/2017  \n\nANSWER: 09/04/2017"
+  },
+  {
+    "id": "row1089",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nEstimated Gestational Age = (Today\u2019s Date \u2212 Last Menstrual Period Date)  \nExpressed as weeks and days (whole weeks, remainder in days).\n\n**INPUTS:**  \n- Today\u2019s Date: Date (format: MM/DD/YYYY)  \n- Last Menstrual Period Date: Date (format: MM/DD/YYYY)\n\n**CONVENTIONS:**  \n- Calculate the difference between the two dates in total days, then convert to weeks and days:  \n  - Weeks = floor(total days \u00f7 7)  \n  - Days = total days mod 7  \n- Use calendar-based date arithmetic (accounting for varying month lengths and leap years).  \n- If the last menstrual period date is after today\u2019s date, the result is invalid; return an error.  \n- No rounding of days; report exact remainder.  \n- Output format: \"X weeks and Y days\" (e.g., 16 weeks and 1 days).  \n- Do not use ultrasound or other data\u2014this calculator relies solely on LMP and current date.",
+        "calculator": "Estimated Gestational Age"
+      },
+      {
+        "name": "extract",
+        "text": "last menstrual period: 05/08/2024 date\ntoday's date: 09/10/2024 date"
+      },
+      {
+        "name": "program",
+        "text": "```python\nfrom datetime import date\n\n# Given dates from the patient note\nlast_menstrual_period = date(2024, 5, 8)\ntoday = date(2024, 9, 10)\n\n# Calculate the difference in days\ndelta = today - last_menstrual_period\ntotal_days = delta.days\n\n# Convert to weeks and days\nweeks = total_days // 7\ndays = total_days % 7\n\n# Assign the result as a tuple\nanswer = (weeks, days)\n```",
+        "code": "from datetime import date\n\n# Given dates from the patient note\nlast_menstrual_period = date(2024, 5, 8)\ntoday = date(2024, 9, 10)\n\n# Calculate the difference in days\ndelta = today - last_menstrual_period\ntotal_days = delta.days\n\n# Convert to weeks and days\nweeks = total_days // 7\ndays = total_days % 7\n\n# Assign the result as a tuple\nanswer = (weeks, days)",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_openbook_fallback",
+        "text": "**FORMULA OR RULE:**  \nEstimated Gestational Age = (Today\u2019s Date \u2212 Last Menstrual Period Date)  \nExpressed as weeks and days:  \n- Weeks = floor(total days \u00f7 7)  \n- Days = total days mod 7\n\n**INPUTS:**  \n- Today\u2019s Date: 09/10/2024  \n- Last Menstrual Period Date: 05/08/2024  \n\n**CONVERT UNITS AS NEEDED:**  \nBoth dates are in MM/DD/YYYY format. No unit conversion needed.\n\n**COMPUTE:**  \nCalculate the number of days between 05/08/2024 and 09/10/2024.\n\nStep 1: Count days from 05/08/2024 to 09/10/2024.\n\n- May 2024: 31 days \u2192 days remaining from May 8 to May 31: 31 \u2212 8 = 23 days  \n- June 2024: 30 days  \n- July 2024: 31 days  \n- August 2024: 31 days  \n- September 2024: 10 days (up to 09/10)\n\nTotal days = 23 (May) + 30 (June) + 31 (July) + 31 (August) + 10 (September) = 125 days\n\nNow convert 125 days to weeks and days:\n\n- Weeks = floor(125 \u00f7 7) = floor(17.857...) = 17 weeks  \n- Days = 125 mod 7 = 125 \u2212 (17 \u00d7 7) = 125 \u2212 119 = 6 days\n\nSo, gestational age is 17 weeks and 6 days.\n\nANSWER: (17 weeks, 6 days)"
+      }
+    ],
+    "answer_text": "**FORMULA OR RULE:**  \nEstimated Gestational Age = (Today\u2019s Date \u2212 Last Menstrual Period Date)  \nExpressed as weeks and days:  \n- Weeks = floor(total days \u00f7 7)  \n- Days = total days mod 7\n\n**INPUTS:**  \n- Today\u2019s Date: 09/10/2024  \n- Last Menstrual Period Date: 05/08/2024  \n\n**CONVERT UNITS AS NEEDED:**  \nBoth dates are in MM/DD/YYYY format. No unit conversion needed.\n\n**COMPUTE:**  \nCalculate the number of days between 05/08/2024 and 09/10/2024.\n\nStep 1: Count days from 05/08/2024 to 09/10/2024.\n\n- May 2024: 31 days \u2192 days remaining from May 8 to May 31: 31 \u2212 8 = 23 days  \n- June 2024: 30 days  \n- July 2024: 31 days  \n- August 2024: 31 days  \n- September 2024: 10 days (up to 09/10)\n\nTotal days = 23 (May) + 30 (June) + 31 (July) + 31 (August) + 10 (September) = 125 days\n\nNow convert 125 days to weeks and days:\n\n- Weeks = floor(125 \u00f7 7) = floor(17.857...) = 17 weeks  \n- Days = 125 mod 7 = 125 \u2212 (17 \u00d7 7) = 125 \u2212 119 = 6 days\n\nSo, gestational age is 17 weeks and 6 days.\n\nANSWER: (17 weeks, 6 days)"
+  },
+  {
+    "id": "row1095",
+    "trace": [
+      {
+        "name": "retrieve_card",
+        "hit": true,
+        "card": "**FORMULA OR RULE:**  \nEstimated Gestational Age = (Today\u2019s Date \u2212 Last Menstrual Period Date)  \nExpressed as weeks and days (whole weeks, remainder in days).\n\n**INPUTS:**  \n- Today\u2019s Date: Date (format: MM/DD/YYYY)  \n- Last Menstrual Period Date: Date (format: MM/DD/YYYY)\n\n**CONVENTIONS:**  \n- Calculate the difference between the two dates in total days, then convert to weeks and days:  \n  - Weeks = floor(total days \u00f7 7)  \n  - Days = total days mod 7  \n- Use calendar-based date arithmetic (accounting for varying month lengths and leap years).  \n- If the last menstrual period date is after today\u2019s date, the result is invalid; return an error.  \n- No rounding of days; report exact remainder.  \n- Output format: \"X weeks and Y days\" (e.g., 16 weeks and 1 days).  \n- Do not use ultrasound or other data\u2014this calculator relies solely on LMP and current date.",
+        "calculator": "Estimated Gestational Age"
+      },
+      {
+        "name": "extract",
+        "text": "last menstrual period: 07/18/2010 date  \ntoday's date: 02/09/2011 date"
+      },
+      {
+        "name": "program",
+        "text": "```python\nfrom datetime import date\n\n# Given dates from the patient note\nlast_menstrual_period = date(2010, 7, 18)\ntoday = date(2011, 2, 9)\n\n# Calculate the difference in days\ndelta = today - last_menstrual_period\ntotal_days = delta.days\n\n# Convert to weeks and days\nweeks = total_days // 7\ndays = total_days % 7\n\n# Assign the result as a tuple\nanswer = (weeks, days)\n```",
+        "code": "from datetime import date\n\n# Given dates from the patient note\nlast_menstrual_period = date(2010, 7, 18)\ntoday = date(2011, 2, 9)\n\n# Calculate the difference in days\ndelta = today - last_menstrual_period\ntotal_days = delta.days\n\n# Convert to weeks and days\nweeks = total_days // 7\ndays = total_days % 7\n\n# Assign the result as a tuple\nanswer = (weeks, days)",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_openbook_fallback",
+        "text": "**FORMULA OR RULE:**  \nEstimated Gestational Age = (Today\u2019s Date \u2212 Last Menstrual Period Date)  \nExpressed as weeks and days:  \n- Weeks = floor(total days \u00f7 7)  \n- Days = total days mod 7\n\n**INPUTS:**  \n- Today\u2019s Date: 02/09/2011 (MM/DD/YYYY)  \n- Last Menstrual Period Date: 07/18/2010 (MM/DD/YYYY)\n\n**CONVENTIONS:**  \n- Use calendar-based date arithmetic.  \n- No rounding; report exact remainder.  \n- Output format: (X weeks, Y days)\n\n---\n\n**Step 1: Convert dates to day-of-year and year for calculation**\n\nWe will compute the number of days between 07/18/2010 and 02/09/2011.\n\nFirst, determine the number of days from 07/18/2010 to 12/31/2010:\n- July 2010: 31 - 18 + 1 = 14 days (inclusive of 18th)\n- August: 31 days\n- September: 30 days\n- October: 31 days\n- November: 30 days\n- December: 31 days\n\nSum:  \n14 (Jul) + 31 (Aug) + 30 (Sep) + 31 (Oct) + 30 (Nov) + 31 (Dec) = 167 days\n\nNow, from 01/01/2011 to 02/09/2011:\n- January: 31 days\n- February: 9 days\n\nSum: 31 + 9 = 40 days\n\nTotal days between 07/18/2010 and 02/09/2011:  \n167 (end of 2010) + 40 (start of 2011) = 207 days\n\n**Step 2: Convert total days to weeks and days**\n\n- Weeks = floor(207 \u00f7 7) = floor(29.571...) = 29 weeks  \n- Days = 207 mod 7 = 207 - (29 \u00d7 7) = 207 - 203 = 4 days\n\n**Final Result:** 29 weeks and 4 days\n\nANSWER: (29 weeks, 4 days)"
+      }
+    ],
+    "answer_text": "**FORMULA OR RULE:**  \nEstimated Gestational Age = (Today\u2019s Date \u2212 Last Menstrual Period Date)  \nExpressed as weeks and days:  \n- Weeks = floor(total days \u00f7 7)  \n- Days = total days mod 7\n\n**INPUTS:**  \n- Today\u2019s Date: 02/09/2011 (MM/DD/YYYY)  \n- Last Menstrual Period Date: 07/18/2010 (MM/DD/YYYY)\n\n**CONVENTIONS:**  \n- Use calendar-based date arithmetic.  \n- No rounding; report exact remainder.  \n- Output format: (X weeks, Y days)\n\n---\n\n**Step 1: Convert dates to day-of-year and year for calculation**\n\nWe will compute the number of days between 07/18/2010 and 02/09/2011.\n\nFirst, determine the number of days from 07/18/2010 to 12/31/2010:\n- July 2010: 31 - 18 + 1 = 14 days (inclusive of 18th)\n- August: 31 days\n- September: 30 days\n- October: 31 days\n- November: 30 days\n- December: 31 days\n\nSum:  \n14 (Jul) + 31 (Aug) + 30 (Sep) + 31 (Oct) + 30 (Nov) + 31 (Dec) = 167 days\n\nNow, from 01/01/2011 to 02/09/2011:\n- January: 31 days\n- February: 9 days\n\nSum: 31 + 9 = 40 days\n\nTotal days between 07/18/2010 and 02/09/2011:  \n167 (end of 2010) + 40 (start of 2011) = 207 days\n\n**Step 2: Convert total days to weeks and days**\n\n- Weeks = floor(207 \u00f7 7) = floor(29.571...) = 29 weeks  \n- Days = 207 mod 7 = 207 - (29 \u00d7 7) = 207 - 203 = 4 days\n\n**Final Result:** 29 weeks and 4 days\n\nANSWER: (29 weeks, 4 days)"
+  }
+]

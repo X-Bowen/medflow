@@ -1,0 +1,497 @@
+{
+  "2": {
+    "calculator_id": "2",
+    "name": "Creatinine Clearance (Cockcroft-Gault Equation)",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nCrCl = [(140 − age) × adjusted weight × gender_coefficient] / (serum creatinine × 72)  \ngender_coefficient = 1.0 (male), 0.85 (female)\n\n**INPUTS:**  \n- age: years (integer)  \n- adjusted weight: kg (body weight adjusted for obesity)  \n- serum creatinine: mg/dL  \n- gender: male or female (required to select coefficient)\n\n**CONVENTIONS:**  \n- Adjusted weight = min(ideal body weight, actual weight)  \n- Ideal body weight (kg):  \n  - Male: 50 + 2.3 × (height in inches − 60)  \n  - Female: 45.5 + 2.3 × (height in inches − 60)  \n- Height must be converted from cm to inches: height (in) = height (cm) / 2.54  \n- Serum creatinine must be in mg/dL; if in μmol/L, convert using: mg/dL = μmol/L ÷ 88.4  \n- Results rounded to nearest 0.1 mL/min  \n- Age must be ≥18 years; use with caution in younger patients  \n- If weight is not available, use actual body weight  \n- If height is not available, use ideal body weight based on gender and average height (e.g., 170 cm for men, 160 cm for women)",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "3": {
+    "calculator_id": "3",
+    "name": "CKD-EPI Equations for Glomerular Filtration Rate",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nGFR = 142 × (Scr / A)^B × 0.9938^age × gender_coefficient  \nwhere:  \n- Scr = serum creatinine (mg/dL)  \n- age = patient age (years)  \n- gender_coefficient = 1.012 if female, 1.0 if male  \n- A and B depend on gender and Scr:  \n  - Female, Scr ≤ 0.7: A = 0.7, B = -0.241  \n  - Female, Scr > 0.7: A = 0.7, B = -1.2  \n  - Male, Scr ≤ 0.9: A = 0.9, B = -0.302  \n  - Male, Scr > 0.9: A = 0.9, B = -1.2  \n\n**INPUTS:**  \n- Serum creatinine (Scr): mg/dL  \n- Age: years  \n- Gender: female or male  \n\n**CONVENTIONS:**  \n- Use Scr in mg/dL; do not convert from µmol/L.  \n- Apply thresholds strictly: ≤ 0.7 mg/dL (female), ≤ 0.9 mg/dL (male).  \n- Exponentiation is right-associative: 0.9938^age means (0.9938)^age.  \n- Gender coefficient is 1.012 for females, 1.0 for males.  \n- No rounding of intermediate values; final result to 3 decimal places.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "4": {
+    "calculator_id": "4",
+    "name": "CHA2DS2-VASc Score for Atrial Fibrillation Stroke Risk",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nAge: <65 years = 0, 65–74 years = +1, ≥75 years = +2  \nSex: Female = +1, Male = 0  \nCongestive Heart Failure (CHF) history: Yes = +1, No = 0  \nHypertension history: Yes = +1, No = 0  \nStroke/TIA/thromboembolism history: Yes = +2, No = 0  \nVascular disease history (MI, PAD, aortic plaque): Yes = +1, No = 0  \nDiabetes history: Yes = +1, No = 0  \n\n**INPUTS:**  \n- Age (years)  \n- Sex (Male, Female)  \n- CHF history (Yes, No)  \n- Hypertension history (Yes, No)  \n- Stroke/TIA/thromboembolism history (Yes, No)  \n- Vascular disease history (Yes, No)  \n- Diabetes history (Yes, No)  \n\n**CONVENTIONS:**  \n- Age thresholds: <65 = 0, 65–74 = +1, ≥75 = +2 (inclusive of 75)  \n- If a history is not reported, assume \"No\"  \n- Stroke, TIA, and thromboembolism are assessed collectively: presence of any = +2 points  \n- Vascular disease includes prior myocardial infarction, peripheral artery disease, or aortic plaque  \n- All inputs are binary (Yes/No) or categorical (age group, sex)  \n- Final score is the sum of all applicable points; output is an integer ≥0",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "5": {
+    "calculator_id": "5",
+    "name": "Mean Arterial Pressure (MAP)",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nMAP = (1/3) × SBP + (2/3) × DBP  \n\nINPUTS:  \n- Systolic Blood Pressure (SBP): mm Hg  \n- Diastolic Blood Pressure (DBP): mm Hg  \n\nCONVENTIONS:  \n- SBP and DBP must be measured in mm Hg; convert if necessary (e.g., kPa to mm Hg by multiplying by 7.5).  \n- Use the most recent, accurate readings; if only one value is available, MAP cannot be calculated.  \n- Round final MAP to one decimal place.  \n- The formula assumes a typical cardiac cycle with equal systolic and diastolic durations; it is not adjusted for arrhythmias or abnormal pulse patterns.  \n- If SBP < DBP, the input is invalid—check measurement accuracy.  \n- No default values are applied; missing or unreported SBP or DBP results in an error.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "6": {
+    "calculator_id": "6",
+    "name": "Body Mass Index (BMI)",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nBMI = weight / (height × height)  \nwhere weight is in kilograms (kg) and height is in meters (m).\n\nINPUTS:  \n- weight: patient’s weight in kilograms (kg)  \n- height: patient’s height in centimeters (cm)  \n\nCONVENTIONS:  \n- Height must be converted from cm to m by dividing by 100.  \n- Weight must be in kg; if reported in pounds, convert using 1 lb = 0.45359237 kg.  \n- Final BMI is rounded to 3 decimal places.  \n- If height is not reported, use a default of 170 cm (1.70 m) only if clinically justified and documented.  \n- If weight is missing, the calculation cannot proceed.  \n- BMI is calculated using the metric formula only; no imperial or alternative formulas.  \n- Ensure height and weight are measured at the same time and under standard conditions (e.g., light clothing, no shoes).",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "7": {
+    "calculator_id": "7",
+    "name": "Calcium Correction for Hypoalbuminemia",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nCorrected Calcium (mg/dL) = (0.8 × (4.0 g/dL − Patient's Albumin g/dL)) + Serum Calcium (mg/dL)\n\nINPUTS:  \n- Patient's Albumin (g/dL)  \n- Serum Calcium (mg/dL)\n\nCONVENTIONS:  \n- Albumin and calcium must be in g/dL and mg/dL, respectively.  \n- Use 4.0 g/dL as the standard normal albumin value.  \n- If albumin is above 4.0 g/dL, the correction subtracts from serum calcium (i.e., results in lower corrected calcium).  \n- If albumin is below 4.0 g/dL, the correction adds to serum calcium (i.e., results in higher corrected calcium).  \n- Report corrected calcium to two decimal places.  \n- No rounding of intermediate values; apply full precision before final rounding.  \n- Do not use patient-specific normal values; always assume 4.0 g/dL as reference.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "8": {
+    "calculator_id": "8",
+    "name": "Wells' Criteria for Pulmonary Embolism",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \n1. Clinical signs and symptoms of DVT: No = 0 points, Yes = +3 points  \n2. PE is #1 diagnosis or equally likely: No = 0 points, Yes = +3 points  \n3. Heart rate > 100: No = 0 points, Yes = +1.5 points  \n4. Immobilization ≥3 days OR surgery in past 4 weeks: No = 0 points, Yes = +1.5 points  \n5. Previous objectively diagnosed PE or DVT: No = 0 points, Yes = +1.5 points  \n6. Hemoptysis: No = 0 points, Yes = +1 point  \n7. Malignancy with treatment in past 6 months or palliative: No = 0 points, Yes = +1 point  \n\n**INPUTS:**  \n- Presence/absence of clinical signs and symptoms of DVT (binary: Yes/No)  \n- Whether PE is the #1 diagnosis or equally likely (binary: Yes/No)  \n- Heart rate (beats per minute)  \n- Immobilization duration (days) or surgery in past 4 weeks (binary: Yes/No)  \n- History of objectively diagnosed PE or DVT (binary: Yes/No)  \n- Presence of hemoptysis (binary: Yes/No)  \n- History of malignancy with treatment in past 6 months or palliative care (binary: Yes/No)  \n\n**CONVENTIONS:**  \n- Heart rate > 100 bpm = Yes (+1.5 points); ≤100 bpm = No (0 points)  \n- Immobilization ≥3 days OR surgery in past 4 weeks = Yes (+1.5 points); otherwise No (0 points)  \n- \"Not reported\" or missing data defaults to \"No\" for all criteria  \n- Scores are summed as decimals (e.g., 1.5, 3.0)  \n- Final score is reported as a decimal; no rounding to integer required in calculation  \n- Output is an integer only when final interpretation is applied (e.g., ≥4 = high risk)",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "9": {
+    "calculator_id": "9",
+    "name": "MDRD GFR Equation",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nGFR = 175 × creatinine⁻¹·¹⁵⁴ × age⁻⁰·²⁰³ × race_coefficient × gender_coefficient  \n\n**INPUTS:**  \n- creatinine: serum creatinine concentration in mg/dL  \n- age: patient’s age in years  \n- race: Black (1.212) or not Black (1.0)  \n- gender: female (0.742) or male (1.0)  \n\n**CONVENTIONS:**  \n- Creatinine must be in mg/dL; convert if necessary (e.g., μmol/L ÷ 88.4 = mg/dL).  \n- Age must be in years; use actual age, not rounded.  \n- Race coefficient: 1.212 if Black, 1.0 otherwise. If race is not reported, use 1.0.  \n- Gender coefficient: 0.742 if female, 1.0 if male. If gender is not reported, use 1.0.  \n- All exponents are applied to the raw input values (e.g., creatinine⁻¹·¹⁵⁴).  \n- Output is in mL/min/1.73m², reported as a decimal with no rounding unless specified.  \n- The equation is not valid for patients with acute kidney injury or those not in stable renal function.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "10": {
+    "calculator_id": "10",
+    "name": "Ideal Body Weight",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nIBW = 50 + 2.3 × (height_in_inches − 60)  [for males]  \nIBW = 45.5 + 2.3 × (height_in_inches − 60)  [for females]  \n\nINPUTS:  \n- Gender: male or female (required)  \n- Height: in centimeters (cm)  \n\nCONVENTIONS:  \n- Convert height from cm to inches using 0.393701 in/cm.  \n- Use the male formula if gender is male; female formula if gender is female.  \n- Do not round intermediate values; round final IBW to 3 decimal places.  \n- If height is less than 60 inches, the result may be below the base weight (e.g., 50 kg for males), which is acceptable.  \n- No default gender; if not specified, the calculator must prompt for input.  \n- No input validation beyond required fields; assume valid numeric height and valid gender string.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "11": {
+    "calculator_id": "11",
+    "name": "QTc Bazett Calculator",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nQTc = QT / √(RR)  \nwhere RR = 60 / heart rate (in beats per minute)  \nQT and QTc are in milliseconds (msec)\n\n**INPUTS:**  \n- QT interval: in milliseconds (msec)  \n- Heart rate: in beats per minute (bpm)\n\n**CONVENTIONS:**  \n- RR interval is calculated as 60 / heart rate (in seconds)  \n- Heart rate must be ≥ 30 bpm; values < 30 bpm are not valid for this formula  \n- QT interval must be measured from the start of the Q wave to the end of the T wave  \n- Use the average of at least 3 consecutive beats if heart rate is irregular  \n- Round QTc to one decimal place (e.g., 439.4 msec)  \n- If heart rate is not available, use 60 bpm as default (not recommended; clinical context required)  \n- Do not use if QT interval is < 150 msec or > 600 msec (potential measurement error)",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "13": {
+    "calculator_id": "13",
+    "name": "Estimated Due Date",
+    "category": "date",
+    "output_type": "date",
+    "card": "**FORMULA OR RULE:**  \nEDD = LMP + 40 weeks − (|cycle length − 28| days) × sign(cycle length − 28)  \n*If cycle length < 28 days, subtract the difference; if > 28 days, add the difference.*\n\n**INPUTS:**  \n- Last menstrual period (LMP): date (format: MM/DD/YYYY)  \n- Cycle length: integer (number of days, e.g., 21, 28, 35)\n\n**CONVENTIONS:**  \n- Use Naegele’s Rule as base: add exactly 40 weeks (280 days) to LMP.  \n- Cycle length must be ≥ 21 days and ≤ 40 days; if outside this range, use 21 or 40 as default.  \n- If cycle length is exactly 28 days, no adjustment is made.  \n- Adjustments are applied as whole days only; do not round fractional days.  \n- If cycle length is less than 28 days, subtract the difference (e.g., 21-day cycle → subtract 7 days).  \n- If cycle length is greater than 28 days, add the difference (e.g., 35-day cycle → add 7 days).  \n- All dates are in Gregorian calendar; no leap year adjustments needed.  \n- Output date is the final estimated due date.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "15": {
+    "calculator_id": "15",
+    "name": "Child-Pugh Score for Cirrhosis Mortality",
+    "category": "severity",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nBilirubin (mg/dL): <2 → 1, 2–3 → 2, >3 → 3  \nAlbumin (g/dL): >3.5 → 1, 2.8–3.5 → 2, <2.8 → 3  \nINR: <1.7 → 1, 1.7–2.3 → 2, >2.3 → 3  \nAscites: Absent → 1, Slight → 2, Moderate → 3  \nEncephalopathy: No → 1, Grade 1–2 → 2, Grade 3–4 → 3  \nTotal score = sum of all five criteria points  \n\n**INPUTS:**  \n- Bilirubin (total, mg/dL)  \n- Albumin (g/dL)  \n- INR (international normalized ratio)  \n- Ascites severity (Absent, Slight, Moderate)  \n- Encephalopathy grade (No, Grade 1–2, Grade 3–4)  \n\n**CONVENTIONS:**  \n- Use mg/dL for bilirubin and g/dL for albumin; no unit conversion applied.  \n- INR thresholds: <1.7 → 1, 1.7–2.3 → 2, >2.3 → 3 (inclusive of 1.7 and 2.3).  \n- Bilirubin: >3 mg/dL → 3; ≥3 mg/dL is not sufficient—must be strictly greater.  \n- Albumin: <2.8 g/dL → 3; ≥2.8 and ≤3.5 → 2; >3.5 → 1.  \n- Ascites: \"Slight\" and \"Moderate\" are distinct; \"Absent\" is not \"no ascites\" if not explicitly stated.  \n- Encephalopathy: Grade 1–2 includes both grades; Grade 3–4 includes both.  \n- All values must be reported; if missing, default to worst-case (highest score) unless otherwise specified.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "16": {
+    "calculator_id": "16",
+    "name": "Wells' Criteria for DVT",
+    "category": "risk",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \n1. Active cancer (treatment or palliation within 6 months): +1  \n2. Bedridden >3 days or major surgery within 12 weeks: +1  \n3. Calf swelling >3 cm (10 cm below tibial tuberosity): +1  \n4. Collateral (nonvaricose) superficial veins: +1  \n5. Entire leg swollen: +1  \n6. Localized tenderness along deep venous system: +1  \n7. Pitting edema, confined to symptomatic leg: +1  \n8. Paralysis, paresis, or recent plaster immobilization: +1  \n9. Previously documented DVT: +1  \n10. Alternative diagnosis to DVT as likely or more likely: –2  \n\n**INPUTS:**  \n- Presence/absence of each clinical criterion (Yes/No)  \n- All inputs are binary (Yes/No) with no units  \n\n**CONVENTIONS:**  \n- If a criterion is missing from the note, assume \"No\" (absent).  \n- For criterion 2, \"bedridden >3 days\" OR \"major surgery within 12 weeks\" must be true for +1 point; both must be absent for 0 points.  \n- All scores are summed as integers.  \n- Final score is returned as a decimal (e.g., 3 → 3.0).  \n- No rounding applied; decimal output reflects exact sum.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "17": {
+    "calculator_id": "17",
+    "name": "Revised Cardiac Risk Index for Pre-Operative Risk",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \n1. Elevated-risk surgery (intraperitoneal, intrathoracic, or suprainguinal vascular): Yes = +1 point, No = 0 points  \n2. History of ischemic heart disease (MI, positive exercise test, current chest pain, nitrate use, or ECG with pathological Q waves): Yes = +1 point, No = 0 points  \n3. History of congestive heart failure (pulmonary edema, bilateral rales/S3 gallop, PND, or CXR with pulmonary vascular redistribution): Yes = +1 point, No = 0 points  \n4. History of cerebrovascular disease (TIA or stroke): Yes = +1 point, No = 0 points  \n5. Pre-operative insulin treatment: Yes = +1 point, No = 0 points  \n6. Pre-operative creatinine >2 mg/dL (176.8 μmol/L): Yes = +1 point, No = 0 points  \nTotal RCRI score = sum of all points  \n\n**INPUTS:**  \n- Surgery type (elevated-risk: yes/no)  \n- History of ischemic heart disease (yes/no)  \n- History of congestive heart failure (yes/no)  \n- History of cerebrovascular disease (yes/no)  \n- Pre-operative insulin use (yes/no)  \n- Pre-operative serum creatinine (mg/dL)  \n\n**CONVENTIONS:**  \n- Creatinine >2 mg/dL (≥176.8 μmol/L) = +1 point; ≤2 mg/dL = 0 points  \n- If a condition is not documented, assume \"no\"  \n- Use exact thresholds: >2 mg/dL (not ≥)  \n- All inputs are binary (yes/no); no partial or intermediate values  \n- Score is an integer (0 to 6)",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "18": {
+    "calculator_id": "18",
+    "name": "HEART Score for Major Cardiac Events",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nHistory: Slightly suspicious = 0, Moderately suspicious = +1, Highly suspicious = +2  \nEKG: Normal = 0, Non-specific repolarization disturbance = +1, Significant ST deviation = +2  \nAge: <45 years = 0, 45–64 years = +1, ≥65 years = +2  \nRisk factors: 0 = 0, 1–2 = +1, ≥3 or history of atherosclerotic disease = +2  \nInitial troponin: ≤normal limit = 0, 1–3× normal = +1, >3× normal = +2  \nTotal HEART Score = sum of all component scores  \n\n**INPUTS:**  \n- History of chest pain (categorical: Slightly, Moderately, Highly suspicious)  \n- EKG result (categorical: Normal, Non-specific repolarization disturbance, Significant ST deviation)  \n- Age (years)  \n- Number of risk factors (HTN, hypercholesterolemia, DM, obesity [BMI >30], smoking [current or within 3 months], family history of CVD <65, prior atherosclerotic disease [MI, PCI/CABG, CVA/TIA, PAD])  \n- Initial troponin level (relative to normal limit: ≤, 1–3×, >3×)  \n\n**CONVENTIONS:**  \n- Age ≥65 years = +2 points; 45–64 = +1; <45 = 0  \n- Risk factors: count only those present; ≥3 or history of atherosclerotic disease = +2; 1–2 = +1  \n- Troponin: use clinical lab’s normal limit; >3× = +2, 1–3× = +1, ≤normal = 0  \n- If risk factor is not documented, assume absent  \n- No rounding; score is integer sum of all components",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "19": {
+    "calculator_id": "19",
+    "name": "Fibrosis-4 (FIB-4) Index for Liver Fibrosis",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nFIB-4 = (Age × AST) / (Platelet count (×10⁹/L) × √ALT)  \n\n**INPUTS:**  \n- Age: years (integer or decimal)  \n- AST: U/L  \n- ALT: U/L  \n- Platelet count: ×10⁹/L (i.e., billions per liter)  \n\n**CONVENTIONS:**  \n- Platelet count must be in ×10⁹/L; convert from count/µL by dividing by 1000 (e.g., 250,000/µL = 250 ×10⁹/L).  \n- AST and ALT must be in U/L; no unit conversion applied.  \n- Age is in years; use actual age (e.g., 45.2 for 45 years and 2.5 months).  \n- √ALT is the square root of ALT (use raw value, not log-transformed).  \n- Results are reported as a decimal (no rounding unless specified by clinical context).  \n- If platelet count is not available, use a default of 150 ×10⁹/L (only if no other data).  \n- If AST or ALT is not reported, the FIB-4 cannot be calculated.  \n- FIB-4 < 1.45: low risk of significant fibrosis; ≥1.45: higher risk (interpretation not part of calculator).",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "20": {
+    "calculator_id": "20",
+    "name": "Centor Score (Modified/McIsaac) for Strep Pharyngitis",
+    "category": "severity",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nAge: 3–14 years = +1 point, 15–44 years = 0 points, ≥45 years = –1 point  \nExudate or swelling on tonsils: Yes = +1 point, No = 0 points  \nTender/swollen anterior cervical lymph nodes: Yes = +1 point, No = 0 points  \nTemperature >38°C (100.4°F): Yes = +1 point, No = 0 points  \nCough: Absent = +1 point, Present = 0 points  \nTotal score = sum of all points  \n\n**INPUTS:**  \n- Age (years)  \n- Presence of exudate or swelling on tonsils (Yes/No)  \n- Presence of tender/swollen anterior cervical lymph nodes (Yes/No)  \n- Temperature (°C or °F)  \n- Presence of cough (Yes/No)  \n\n**CONVENTIONS:**  \n- Temperature in °F must be converted to °C using: °C = 5/9 × (°F – 32)  \n- Temperature threshold: >38°C (100.4°F) = +1 point; ≤38°C = 0 points  \n- Age categories: 3–14 years = +1, 15–44 years = 0, ≥45 years = –1  \n- Cough: absent = +1 point, present = 0 points  \n- If a value is not reported, assume \"No\" for physical exam findings and \"Present\" for cough  \n- Score can be negative (minimum –1)  \n- Final score is an integer (no rounding; sum is already integer)",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "21": {
+    "calculator_id": "21",
+    "name": "Glasgow Coma Score (GCS)",
+    "category": "severity",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nBest Eye Response:  \n- Spontaneously = 4  \n- To verbal command = 3  \n- To pain = 2  \n- No eye opening = 1  \n\nBest Verbal Response:  \n- Oriented = 5  \n- Confused = 4  \n- Inappropriate words = 3  \n- Incomprehensible sounds = 2  \n- No verbal response = 1  \n\nBest Motor Response:  \n- Obeys commands = 6  \n- Localizes pain = 5  \n- Withdrawal from pain = 4  \n- Flexion to pain = 3  \n- Extension to pain = 2  \n- No motor response = 1  \n\nTotal GCS = Sum of best eye, verbal, and motor response scores  \n\n**INPUTS:**  \n- Best eye response: one of: spontaneously, to verbal command, to pain, no eye opening  \n- Best verbal response: one of: oriented, confused, inappropriate words, incomprehensible sounds, no verbal response  \n- Best motor response: one of: obeys commands, localizes pain, withdrawal from pain, flexion to pain, extension to pain, no motor response  \n\n**CONVENTIONS:**  \n- If a response is not mentioned or not testable, assume the highest possible score for that category.  \n- Use the single best response across all three categories.  \n- GCS is an integer; no rounding needed.  \n- Minimum score: 3 (no eye opening, no verbal response, no motor response).  \n- Maximum score: 15 (spontaneous eye opening, oriented, obeys commands).",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "22": {
+    "calculator_id": "22",
+    "name": "Maintenance Fluids Calculations",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \n- If weight < 10 kg: maintenance fluid = 4 × weight (mL/hr)  \n- If 10 kg ≤ weight ≤ 20 kg: maintenance fluid = 40 + 2 × (weight − 10) (mL/hr)  \n- If weight > 20 kg: maintenance fluid = 60 + 1 × (weight − 20) (mL/hr)  \n\n**INPUTS:**  \n- Patient weight (kg)  \n\n**CONVENTIONS:**  \n- Use weight in kilograms (kg); convert from pounds or grams if necessary.  \n- Apply the formula based on weight range—use only one formula per patient.  \n- Thresholds are inclusive: 10 kg and 20 kg belong to the middle and upper ranges, respectively.  \n- Results are rounded to one decimal place (e.g., 105.0, not 105).  \n- No additional adjustments for age, sex, or clinical condition—this is for baseline maintenance only.  \n- If weight is not reported, default to 0 kg (but this should be avoided in clinical use).",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "23": {
+    "calculator_id": "23",
+    "name": "MELD Na (UNOS/OPTN)",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nMELD(i) = 0.957 × ln(Cr) + 0.378 × ln(bilirubin) + 1.120 × ln(INR) + 0.643  \nIf round(MELD(i), 1) × 10 > 11:  \n MELD = MELD(i) + 1.32 × (137 − Na) − [0.033 × MELD(i) × (137 − Na)]  \nMELD Na score = min(MELD, 40)  \n\n**INPUTS:**  \n- Cr: creatinine (mg/dL)  \n- bilirubin: bilirubin (mg/dL)  \n- INR: international normalized ratio  \n- Na: sodium (mEq/L)  \n\n**CONVENTIONS:**  \n- If Cr < 1.0 mg/dL, use 1.0 mg/dL.  \n- If Cr ≥ 4.0 mg/dL, use 4.0 mg/dL.  \n- If Cr is not reported, assume 1.0 mg/dL.  \n- If patient had ≥2 dialysis sessions in past 7 days or CVVH in past 24 hours, set Cr = 4.0 mg/dL.  \n- If Na < 125 mEq/L, set Na = 125 mEq/L.  \n- If Na > 137 mEq/L, set Na = 137 mEq/L.  \n- Compute MELD(i) using natural log (ln).  \n- Round MELD(i) to nearest tenth, then multiply by 10 to get MELD(i) × 10.  \n- Apply correction formula only if MELD(i) × 10 > 11.  \n- Final MELD Na score is capped at 40.  \n- Output is decimal (not rounded to integer).",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "24": {
+    "calculator_id": "24",
+    "name": "Steroid Conversion Calculator",
+    "category": "dosage",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nConvert dose using:  \n*Output Dose (mg) = Input Dose (mg) × (Equivalent Dose of Target Steroid / Equivalent Dose of Source Steroid)*\n\n**INPUTS:**  \n- Input Dose (mg): mass of the starting corticosteroid  \n- Source Steroid: name and route (e.g., Hydrocortisone PO)  \n- Target Steroid: name and route (e.g., Methylprednisolone IV)  \n\n**CONVENTIONS:**  \n- Use equivalent doses from the standard reference:  \n  Hydrocortisone (IV/PO) = 20 mg  \n  Prednisolone (PO) = 5 mg  \n  Methylprednisolone (IV/PO) = 4 mg  \n  Dexamethasone (IV/PO) = 0.75 mg  \n  Betamethasone (IV) = 0.75 mg  \n  Cortisone (PO) = 25 mg  \n  Triamcinolone (IV) = 4 mg  \n- Route must match exactly (e.g., IV vs PO).  \n- Conversion factors are derived from the ratio of equivalent doses.  \n- Final result rounded to nearest 0.1 mg.  \n- If route is not specified in input or target, default to PO.  \n- If steroid not in list, use nearest equivalent or consult specialist.  \n- Do not use patient-specific doses or values from examples.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "25": {
+    "calculator_id": "25",
+    "name": "HAS-BLED Score for Major Bleeding Risk",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \n1. Hypertension (uncontrolled, >160 mmHg systolic): +1 point if yes  \n2. Renal disease (dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L): +1 point if yes  \n3. Liver disease (cirrhosis or bilirubin >2× normal with AST/ALT/AP >3× normal): +1 point if yes  \n4. Stroke history: +1 point if yes  \n5. Prior major bleeding or predisposition to bleeding: +1 point if yes  \n6. Labile INR (unstable/high INRs, time in therapeutic range <60%): +1 point if yes  \n7. Age >65: +1 point if yes  \n8. Medication usage predisposing to bleeding (aspirin, clopidogrel, NSAIDs): +1 point if yes  \n9. Alcohol use (≥8 drinks/week): +1 point if yes  \nTotal score = sum of all applicable points  \n\n**INPUTS:**  \n- Hypertension status (yes/no)  \n- Renal disease status (yes/no)  \n- Liver disease status (yes/no)  \n- Stroke history (yes/no)  \n- Prior major bleeding or bleeding predisposition (yes/no)  \n- INR stability (labile or stable)  \n- Age (years)  \n- Medication use (aspirin, clopidogrel, NSAIDs; yes/no)  \n- Alcohol consumption (drinks per week)  \n\n**CONVENTIONS:**  \n- Use \"yes\" only if clearly documented; otherwise assume \"no\"  \n- Age >65: use strict threshold (≥66 years)  \n- Alcohol: ≥8 drinks/week = yes; <8 = no  \n- INR labile: defined as time in therapeutic range <60%  \n- Renal: Cr >2.26 mg/dL or >200 µmol/L  \n- Liver: bilirubin >2× normal AND AST/ALT/AP >3× normal, OR cirrhosis  \n- No rounding; score is integer sum",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "26": {
+    "calculator_id": "26",
+    "name": "Sodium Correction for Hyperglycemia",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nCorrected Sodium (mEq/L) = Measured Sodium (mEq/L) + 0.024 × (Serum Glucose [mg/dL] − 100)\n\nINPUTS:  \n- Measured Sodium: mEq/L  \n- Serum Glucose: mg/dL  \n\nCONVENTIONS:  \n- Use serum glucose value as directly measured; do not convert to mmol/L.  \n- Apply the formula even if glucose is below 100 mg/dL (resulting in a negative correction).  \n- Round final corrected sodium to two decimal places.  \n- No default values; if either input is missing, calculation cannot be performed.  \n- The correction factor 0.024 is derived from Hiller, 1999 and applies only to hyperglycemia-induced pseudohyponatremia.  \n- Do not apply this correction if the patient has significant hyperlipidemia or hyperproteinemia, as these may confound sodium measurements.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "27": {
+    "calculator_id": "27",
+    "name": "Glasgow-Blatchford Bleeding Score (GBS)",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nBUN (mg/dL): <18.2 = 0, 18.2–22.3 = +2, 22.4–28 = +3, 28–70 = +4, >70 = +6  \nHemoglobin (g/dL) – Male: ≥13 = 0, ≤12–13 = +1, ≤10–12 = +3, <10 = +6  \nHemoglobin (g/dL) – Female: ≥12 = 0, ≤10–12 = +1, <10 = +6  \nSystolic BP (mm Hg): ≥110 = 0, 100–109 = +1, 90–99 = +2, <90 = +3  \nPulse ≥100 bpm: No = 0, Yes = +1  \nMelena: No = 0, Yes = +1  \nRecent syncope: No = 0, Yes = +2  \nHepatic disease history: No = 0, Yes = +2  \nCardiac failure: No = 0, Yes = +2  \nTotal score = sum of all applicable points  \n\n**INPUTS:**  \n- BUN (mg/dL)  \n- Hemoglobin (g/dL)  \n- Patient gender (Male/Female)  \n- Systolic blood pressure (mm Hg)  \n- Heart rate (beats per minute)  \n- Melena (Yes/No)  \n- Recent syncope (Yes/No)  \n- Hepatic disease history (Yes/No)  \n- Cardiac failure (Yes/No)  \n\n**CONVENTIONS:**  \n- Use exact thresholds: 18.2, 22.3, 22.4, 28, 70, 10, 12, 13, 90, 100, 109, 110, 120  \n- Hemoglobin thresholds: for men, ≤12–13 includes 12; for women, ≤10–12 includes 10  \n- If syncope status missing, assume \"No\"  \n- If hepatic disease or cardiac failure status missing, assume \"No\"  \n- No rounding; use exact values for thresholds  \n- Score is integer; no decimals",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "28": {
+    "calculator_id": "28",
+    "name": "APACHE II Score",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \n1. Age (years): ≤44 = 0, 45–54 = +2, 55–64 = +3, 65–74 = +5, ≥75 = +6  \n2. Organ insufficiency/immunocompromise: Yes (nonoperative/emergency) = +5, Yes (elective) = +2, No = 0  \n3. Temperature (°C): ≥41 = +4, 39–<41 = +3, 38.5–<39 = +1, 36–<38.5 = 0, 34–<36 = +1, 32–<34 = +2, 30–<32 = +3, <30 = +4  \n4. MAP (mmHg): ≥160 = +4, 130–159 = +3, 110–129 = +2, 70–109 = 0, 50–69 = +2, ≤49 = +4  \n5. Heart rate (bpm): ≥180 = +4, 140–<180 = +3, 110–<140 = +2, 70–<110 = 0, 55–<70 = +2, 40–<55 = +3, <40 = +4  \n6. Respiratory rate (bpm): ≥50 = +4, 35–<50 = +3, 25–<35 = +1, 12–<25 = 0, 10–<12 = +1, 6–<10 = +2, <6 = +4  \n7. Oxygenation: If FiO₂ < 50%, use PaO₂; else use A-a gradient.  \n  A-a > 499 = +4, 350–499 = +3, 200–349 = +2, <200 (FiO₂ ≥50%) or >70 (FiO₂ <50%) = 0, 61–70 = +1, 55–60 = +3, <55 = +4  \n8. pH: ≥7.7 = +4, 7.60–<7.70 = +3, 7.50–<7.60 = +1, 7.33–<7.50 = 0, 7.25–<7.33 = +2, 7.15–<7.25 = +3, <7.15 = +4  \n9. Sodium (mmol/L): ≥180 = +4, 160–<180 = +3, 155–<160 = +2, 150–<155 = +1, 130–<150 = 0, 120–<130 = +2, 111–<120 = +3, <111 = +4  \n10. Potassium (mmol/L): ≥7.0 = +4, 6.0–<7.0 = +3, 5.5–<6.0 = +1, 3.5–<5.5 = 0, 3.0–<3.5 = +1, 2.5–<3.0 = +2, <2.5 = +4  \n11. Creatinine (mg/dL):  \n  ≥3.5 & acute = +8, 2.0–<3.5 & acute = +6, ≥3.5 & chronic = +4, 1.5–<2.0 & acute = +4, 2.0–<3.5 & chronic = +3",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "29": {
+    "calculator_id": "29",
+    "name": "PSI Score: Pneumonia Severity Index for CAP",
+    "category": "severity",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nAge (years)  \nSex: Female = –10, Male = 0  \nNursing home resident: Yes = +10, No = 0  \nNeoplastic disease: Yes = +30, No = 0  \nLiver disease history: Yes = +20, No = 0  \nCHF history: Yes = +10, No = 0  \nCerebrovascular disease history: Yes = +10, No = 0  \nRenal disease history: Yes = +10, No = 0  \nAltered mental status: Yes = +20, No = 0  \nRespiratory rate ≥30 breaths/min: Yes = +20, No = 0  \nSystolic blood pressure <90 mmHg: Yes = +20, No = 0  \nTemperature <35°C or >39.9°C: Yes = +15, No = 0  \nPulse ≥125 beats/min: Yes = +10, No = 0  \npH <7.35: Yes = +30, No = 0  \nBUN ≥30 mg/dL or ≥11 mmol/L: Yes = +20, No = 0  \nSodium <130 mmol/L: Yes = +20, No = 0  \nGlucose ≥250 mg/dL or ≥14 mmol/L: Yes = +10, No = 0  \nHematocrit <30%: Yes = +10, No = 0  \nPartial pressure of oxygen <60 mmHg or <8 kPa: Yes = +10, No = 0  \nPleural effusion on x-ray: Yes = +10, No = 0  \n\n**INPUTS:**  \nAge (years)  \nSex (Male, Female)  \nNursing home resident (Yes, No)  \nNeoplastic disease (Yes, No)  \nLiver disease history (Yes, No)  \nCHF history (Yes, No)  \nCerebrovascular disease history (Yes, No)  \nRenal disease history (Yes, No)  \nAltered mental status (Yes, No)  \nRespiratory rate (breaths/min)  \nSystolic blood pressure (mmHg)  \nTemperature (°C)  \nPulse (beats/min)  \npH  \nBUN (mg/dL or mmol/L)  \nSodium (mmol/L)  \nGlucose (mg/dL or mmol/L)  \nHematocrit (%)  \nPartial pressure of oxygen (mmHg or kPa)  \nPleural effusion on x-ray (Yes, No)  \n\n**CONVENTIONS:**  \n- Age score = patient’s age in years.  \n- For missing/unknown values, assume \"No\" unless otherwise specified.  \n- Sodium: 1 mEq/L = 1 mmol/L (no conversion needed).  \n- BUN: ≥30 mg/dL or ≥11 mmol/L triggers +20 points.  \n- Glucose: ≥250 mg/dL or ≥14 mmol/L triggers +10 points.  \n- Oxygen: <60 mmHg or <8 kPa triggers +10 points.  \n- All thresholds are inclusive (e.g., ≥30 mg/dL, <130 mmol/L).  \n- Final score is an integer.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "30": {
+    "calculator_id": "30",
+    "name": "Serum Osmolality",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \n2 × Na + (BUN / 2.8) + (glucose / 18)  \n\n**INPUTS:**  \n- Na: sodium concentration in mmol/L  \n- BUN: blood urea nitrogen in mg/dL  \n- glucose: glucose concentration in mg/dL  \n\n**CONVENTIONS:**  \n- Sodium reported in mEq/L must be converted to mmol/L (1:1 ratio for Na⁺, no conversion needed).  \n- BUN and glucose values must be in mg/dL; if in mmol/L, convert using standard factors (BUN: × 0.357, glucose: × 18).  \n- Results are reported as mmol/L or mOsm/kg (equivalent units).  \n- Round final result to one decimal place.  \n- If BUN or glucose is not reported, use 0.  \n- Do not use serum osmolality formula if ethanol or other osmotically active substances are suspected.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "31": {
+    "calculator_id": "31",
+    "name": "HOMA-IR (Homeostatic Model Assessment for Insulin Resistance)",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nHOMA-IR = (insulin (µIU/mL) × glucose (mg/dL)) / 405  \n\nINPUTS:  \n- Insulin: measured in µIU/mL  \n- Glucose: measured in mg/dL  \n\nCONVENTIONS:  \n- Insulin values must be in µIU/mL; if reported in pmol/L, convert using: µIU/mL = pmol/L ÷ 6.0  \n- Glucose must be in mg/dL; do not use mmol/L without conversion (1 mmol/L = 18 mg/dL)  \n- Results are reported as a decimal with up to 5 significant digits  \n- If insulin or glucose is missing, the calculation cannot be performed  \n- No rounding of inputs before calculation; round final result to 5 significant digits  \n- The constant 405 is exact and not subject to rounding  \n- HOMA-IR > 2.5 is generally considered indicative of insulin resistance, but this is for interpretation only—use clinical context",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "32": {
+    "calculator_id": "32",
+    "name": "Charlson Comorbidity Index (CCI)",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nAge: <50 = 0, 50–59 = 1, 60–69 = 2, 70–79 = 3, ≥80 = 4  \nMyocardial infarction: No = 0, Yes = 1  \nCongestive heart failure: No = 0, Yes = 1  \nPeripheral vascular disease: No = 0, Yes = 1  \nCerebrovascular accident or TIA: No = 0, Yes = 1  \nDementia: No = 0, Yes = 1  \nChronic pulmonary disease (COPD): No = 0, Yes = 1  \nConnective tissue disease: No = 0, Yes = 1  \nPeptic ulcer disease: No = 0, Yes = 1  \nLiver disease: None = 0, Mild = 1, Moderate to severe = 3  \nDiabetes mellitus: None/diet-controlled = 0, Uncomplicated = 1, End-organ damage = 2  \nHemiplegia: No = 0, Yes = 2  \nModerate to severe CKD: No = 0, Yes = 2  \nSolid tumor: None = 0, Localized = 2, Metastatic = 6  \nLeukemia: No = 0, Yes = 2  \nLymphoma: No = 0, Yes = 2  \nAIDS: No = 0, Yes = 6  \nTotal CCI = sum of all points  \n\n**INPUTS:**  \n- Age (years)  \n- History of myocardial infarction (Yes/No)  \n- Congestive heart failure (Yes/No)  \n- Peripheral vascular disease (Yes/No)  \n- Cerebrovascular accident or TIA (Yes/No)  \n- Dementia (Yes/No)  \n- COPD (Yes/No)  \n- Connective tissue disease (Yes/No)  \n- Peptic ulcer disease (Yes/No)  \n- Liver disease severity (None, Mild, Moderate to severe)  \n- Diabetes mellitus status (None/diet-controlled, Uncomplicated, End-organ damage)  \n- Hemiplegia (Yes/No)  \n- Chronic kidney disease (Yes/No)  \n- Solid tumor status (None, Localized, Metastatic)  \n- Leukemia (Yes/No)  \n- Lymphoma (Yes/No)  \n- AIDS (Yes/No)  \n\n**CONVENTIONS:**  \n- Use the most severe category if multiple levels are reported (e.g., \"moderate to severe\" overrides \"mild\" for liver disease).  \n- Assume \"No\" for any condition not explicitly documented.  \n- Age is based on current age at time of assessment.  \n- CVA or TIA: one or both must be present for 1 point.  \n- No rounding; sum all integer points.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "33": {
+    "calculator_id": "33",
+    "name": "FeverPAIN Score for Strep Pharyngitis",
+    "category": "diagnosis",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \n1. Fever in past 24 hours: No = 0 points, Yes = +1 point  \n2. Absence of cough or coryza: No = 0 points, Yes = +1 point  \n3. Symptom onset ≤3 days: No = 0 points, Yes = +1 point  \n4. Purulent tonsils: No = 0 points, Yes = +1 point  \n5. Severe tonsil inflammation: No = 0 points, Yes = +1 point  \nTotal FeverPAIN score = sum of points from all five criteria  \n\n**INPUTS:**  \n- Fever in past 24 hours: Yes/No (binary)  \n- Cough or coryza present: Yes/No (binary)  \n- Symptom onset duration: ≤3 days or >3 days (binary)  \n- Purulent tonsils: Yes/No (binary)  \n- Severe tonsil inflammation: Yes/No (binary)  \n\n**CONVENTIONS:**  \n- If a criterion is not reported, assume the absence of the feature (e.g., no purulent tonsils, no severe inflammation).  \n- \"Coryza\" includes nasal congestion, runny nose, or sneezing.  \n- \"Fever in past 24 hours\" refers to subjective or documented fever within the last 24 hours.  \n- Symptom onset ≤3 days means symptoms began ≤3 days ago.  \n- Score is an integer from 0 to 5.  \n- No rounding required; sum is the final score.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "36": {
+    "calculator_id": "36",
+    "name": "Caprini Score for Venous Thromboembolism (2005)",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nAge: ≤40 = 0, 41–60 = +1, 61–74 = +2, ≥75 = +3  \nSurgery: None = 0, Minor = +1, Major >45 min = +2, Elective major lower extremity arthroplasty = +5  \nRecent event (≤1 month): Major surgery = +1, CHF = +1, Sepsis = +1, Pneumonia = +1, Immobilizing plaster cast = +2, Hip/pelvis/leg fracture = +5, Stroke = +5, Multiple trauma = +5, Acute spinal cord injury causing paralysis = +5  \nVenous disease/clotting disorder: Varicose veins = +1, Current swollen legs = +1, Current central venous access = +2, History of DVT/PE = +3, Family history of thrombosis = +3, Positive Factor V Leiden = +3, Positive prothrombin 20210A = +3, Elevated homocysteine = +3, Positive lupus anticoagulant = +3, Elevated anticardiolipin antibody = +3, Heparin-induced thrombocytopenia = +3, Other thrombophilia = +3  \nMobility: Normal, out of bed = 0, On bed rest = +1, Confined to bed >72 hours = +2  \nOther history: IBD = +1, BMI >25 = +1, Acute MI = +1, COPD = +1, Present or previous malignancy = +2  \n\n**INPUTS:**  \n- Age (years)  \n- Surgery type (None, Minor, Major >45 min, Elective major lower extremity arthroplasty)  \n- Recent event (yes/no for each listed condition)  \n- Venous/clotting history (yes/no for each listed condition)  \n- Mobility status (Normal, on bed rest, confined to bed >72 hours)  \n- Other history (yes/no for each listed condition)  \n\n**CONVENTIONS:**  \n- Use the highest applicable age category.  \n- Assume \"no\" for any condition not reported.  \n- BMI >25 includes 25.0 and above.  \n- \"Recent\" = within 1 month.  \n- Surgery type is based on procedure, not duration.  \n- Sum all points; output is integer.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "38": {
+    "calculator_id": "38",
+    "name": "Free Water Deficit",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nFree Water Deficit (L) = TBW% × Weight (kg) × (Na⁺ / 140 − 1)  \n\n**INPUTS:**  \n- TBW%: Total body water percentage (dimensionless, decimal)  \n- Weight: Patient weight in kilograms (kg)  \n- Na⁺: Serum sodium concentration in mmol/L  \n\n**CONVENTIONS:**  \n- TBW% is determined by age and gender:  \n  - Child (≤17 years): 0.6  \n  - Adult female (18–64 years): 0.5  \n  - Adult male (18–64 years): 0.6  \n  - Elderly female (≥65 years): 0.45  \n  - Elderly male (≥65 years): 0.5  \n- Convert weight from lbs to kg using 0.453592 kg/lb.  \n- Convert Na⁺ from mEq/L to mmol/L: use 1:1 conversion (since Na⁺ has valence 1).  \n- If Na⁺ is reported in mEq/L, treat as mmol/L without adjustment.  \n- Output is in liters (L), reported as a decimal.  \n- Negative values indicate free water excess; positive values indicate free water deficit.  \n- No rounding of intermediate values; final result rounded to 2 decimal places.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "39": {
+    "calculator_id": "39",
+    "name": "Anion Gap",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nAnion Gap (mEq/L) = [Na⁺] (mEq/L) − ([Cl⁻] (mEq/L) + [HCO₃⁻] (mEq/L))  \n\n**INPUTS:**  \n- Sodium (Na⁺): mEq/L  \n- Chloride (Cl⁻): mEq/L  \n- Bicarbonate (HCO₃⁻): mEq/L  \n\n**CONVENTIONS:**  \n- mmol/L values for Na⁺, Cl⁻, and HCO₃⁻ are equivalent to mEq/L, as all are monovalent ions (valence = 1). No unit conversion is needed.  \n- Report results as a decimal number (e.g., 12.0, not 12).  \n- Use measured values directly; do not adjust for hypoalbuminemia unless specified.  \n- If any input is missing, the calculation cannot be performed.  \n- Do not round intermediate values; round final result to one decimal place.  \n- Anion gap is typically reported in mEq/L, and values are interpreted in context of clinical presentation.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "40": {
+    "calculator_id": "40",
+    "name": "Fractional Excretion of Sodium (FENa)",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nFENa = (serum_creatinine × urine_sodium) / (serum_sodium × urine_creatinine) × 100  \n\nINPUTS:  \n- serum_creatinine: mg/dL  \n- urine_sodium: mEq/L  \n- serum_sodium: mEq/L  \n- urine_creatinine: mg/dL  \n\nCONVENTIONS:  \n- All values must be in the specified units; no unit conversions are performed internally.  \n- Use the most recent, simultaneous serum and urine samples (ideally within 1 hour).  \n- If serum sodium is not available, use 140 mEq/L as default.  \n- If urine sodium is not available, FENa cannot be calculated.  \n- Round final FENa to 3 decimal places (e.g., 0.090, 0.759, 3.000).  \n- FENa < 1% suggests prerenal cause; FENa > 2% suggests intrinsic renal disease (e.g., ATN); values 1–2% are indeterminate.  \n- Do not use FENa in patients on diuretics without adjustment; it may be falsely elevated.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "43": {
+    "calculator_id": "43",
+    "name": "Sequential Organ Failure Assessment (SOFA) Score",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nPaO₂/FiO₂ ratio: ≥400 = 0, 300–399 = 1, 200–299 = 2, <200 (not MV) = 2, 100–199 (MV) = 3, ≤199, <100 (RS) = 4  \nPlatelets (×10³/µL): ≥150 = 0, 100–149 = 1, 50–99 = 2, 20–49 = 3, <20 = 4  \nGlasgow Coma Scale: 15 = 0, 13–14 = 1, 10–12 = 2, 6–9 = 3, <6 = 4  \nBilirubin (mg/dL): <1.2 = 0, 1.2–1.9 = 1, 2.0–5.9 = 2, 6.0–11.9 = 3, ≥12.0 = 4  \nMean arterial pressure or vasopressors: MAP ≥70 & no vasopressors = 0, MAP <70 = 1, dopamine ≤5 or dobutamine = 2, dopamine >5 or epi ≤0.1 or norepinephrine ≤0.1 = 3, dopamine >15 or epi >0.1 or norepinephrine >0.1 = 4  \nCreatinine or urine output: <1.2 = 0, 1.2–1.9 = 1, 2.0–3.4 = 2, 3.5–4.9 or urine <500 mL/day = 3, ≥5.0 or urine <200 mL/day = 4  \n\n**INPUTS:**  \nPaO₂ (mm Hg), FiO₂ (%), platelet count (×10³/µL), GCS, bilirubin (mg/dL), systolic/diastolic BP (mm Hg), creatinine (mg/dL), urine output (mL/day), vasopressor type and dose (mcg/kg/min), mechanical ventilation status, other respiratory support (e.g., CPAP)  \n\n**CONVENTIONS:**  \n- MAP = (2 × diastolic + systolic) / 3  \n- Use highest dose if multiple vasopressors; if no dose reported, assume not used  \n- Respiratory support (CPAP, BiPAP) counts as \"respiratory support\" for PaO₂/FiO₂  \n- Urine output: use 24-hour total  \n- Creatinine and urine output: use either criterion for scoring; if both abnormal, use higher point value  \n- All thresholds are inclusive of lower bound, exclusive of upper unless specified  \n- Round all calculated values (e.g., MAP) to nearest 0.1 mm Hg for comparison  \n- SOFA score: sum all component points, result is integer",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "44": {
+    "calculator_id": "44",
+    "name": "LDL Calculated",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nLDL cholesterol = total cholesterol − HDL − (triglycerides ÷ 5)  \n\nINPUTS:  \n- Total cholesterol (mg/dL)  \n- HDL cholesterol (mg/dL)  \n- Triglycerides (mg/dL)  \n\nCONVENTIONS:  \n- All inputs must be in mg/dL; convert if necessary.  \n- Triglycerides must be measured in a fasting state (≥12 hours) for accurate calculation.  \n- If triglycerides are >400 mg/dL, the formula is unreliable; use direct LDL measurement or alternative method.  \n- Results are rounded to one decimal place.  \n- If any input is missing, the calculation cannot be performed.  \n- Do not use this formula if the patient is on lipid-lowering therapy unless specified by clinical context.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "45": {
+    "calculator_id": "45",
+    "name": "CURB-65 Score for Pneumonia Severity",
+    "category": "risk",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nConfusion: No = 0 points, Yes = +1 point  \nBUN >19 mg/dL (>7 mmol/L urea): No = 0 points, Yes = +1 point  \nRespiratory Rate ≥30 breaths/min: No = 0 points, Yes = +1 point  \nSystolic BP <90 mmHg OR Diastolic BP ≤60 mmHg: No = 0 points, Yes = +1 point  \nAge ≥65 years: No = 0 points, Yes = +1 point  \nTotal score = sum of points from all criteria  \n\n**INPUTS:**  \n- Confusion (Yes/No)  \n- BUN concentration (mg/dL or mmol/L)  \n- Respiratory rate (breaths per minute)  \n- Systolic blood pressure (mmHg)  \n- Diastolic blood pressure (mmHg)  \n- Age (years)  \n\n**CONVENTIONS:**  \n- BUN in mmol/L must be converted to mg/dL using: mg/dL = mmol/L × 2.8  \n- Thresholds are strict: BUN >19 mg/dL (not ≥), respiratory rate ≥30 (inclusive), BP <90 mmHg (not ≤), BP ≤60 mmHg (inclusive)  \n- Age ≥65 years includes 65  \n- If BUN is reported in mmol/L, convert to mg/dL before comparison  \n- If any value is missing, assume \"No\" for binary criteria and \"0\" for continuous (e.g., age <65)  \n- Score is an integer; no rounding needed—sum of whole points only",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "46": {
+    "calculator_id": "46",
+    "name": "Framingham Risk Score for Hard Coronary Heart Disease",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nFor males:  \nrisk_score = 52.00961 × ln(age) + 20.014077 × ln(total_cholesterol) – 0.905964 × ln(hdl_cholesterol) + 1.305784 × ln(sys_bp) + 0.241549 × bp_medicine + 12.096316 × smoker – 4.605038 × ln(age) × ln(total_cholesterol) – 2.84367 × ln(age_smoke) × smoker – 2.93323 × ln(age) × ln(age) – 172.300168  \n\nFor females:  \nrisk_score = 31.764001 × ln(age) + 22.465206 × ln(total_cholesterol) – 1.187731 × ln(hdl_cholesterol) + 2.552905 × ln(sys_bp) + 0.420251 × bp_medicine + 13.07543 × smoker – 5.060998 × ln(age) × ln(total_cholesterol) – 2.996945 × ln(age_smoke) × smoker – 146.5933061  \n\n10-year risk (%) = [1 – 0.9402^exp(risk_score)] × 100 (male)  \n10-year risk (%) = [1 – 0.98767^exp(risk_score)] × 100 (female)  \n\n**INPUTS:**  \n- gender (Male/Female)  \n- age (years)  \n- total_cholesterol (mg/dL)  \n- hdl_cholesterol (mg/dL)  \n- sys_bp (mm Hg)  \n- bp_medicine (1 = yes, 0 = no)  \n- smoker (1 = yes, 0 = no)  \n\n**CONVENTIONS:**  \n- Use natural logarithm (ln) for all continuous variables.  \n- For ln(age_smoke) × smoker: cap age at 70 for males, 78 for females if >70 or >78.  \n- All inputs must be positive; log(0) or negative values are invalid.  \n- No unit conversion required—inputs in specified units.  \n- Output is a decimal (risk percentage as decimal, e.g., 0.07879 for 7.879%).",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "48": {
+    "calculator_id": "48",
+    "name": "PERC Rule for Pulmonary Embolism",
+    "category": "diagnosis",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \n1. Age ≥50: Yes = +1 point, No = 0 points  \n2. Heart Rate (HR) ≥100: Yes = +1 point, No = 0 points  \n3. O₂ saturation on room air <95%: Yes = +1 point, No = 0 points  \n4. Unilateral leg swelling: Yes = +1 point, No = 0 points  \n5. Hemoptysis: Yes = +1 point, No = 0 points  \n6. Recent surgery or trauma (within 4 weeks, requiring general anesthesia): Yes = +1 point, No = 0 points  \n7. Prior PE or DVT: Yes = +1 point, No = 0 points  \n8. Hormone use (oral contraceptives, HRT, or estrogenic therapy): Yes = +1 point, No = 0 points  \nTotal PERC score = sum of all points  \n\n**INPUTS:**  \n- Age (years)  \n- Heart rate (beats per minute)  \n- Room air oxygen saturation (%), measured via pulse oximetry  \n- Presence of unilateral leg swelling (Yes/No)  \n- Presence of hemoptysis (Yes/No)  \n- Recent surgery or trauma (within 4 weeks, requiring general anesthesia) (Yes/No)  \n- History of prior PE or DVT (Yes/No)  \n- Current hormone use (Yes/No)  \n\n**CONVENTIONS:**  \n- Age ≥50: use ≥50, not >50  \n- HR ≥100: use ≥100, not >100  \n- O₂ saturation <95%: use <95%, not ≤95%  \n- If a criterion is not documented, assume \"No\"  \n- Hormone use includes oral contraceptives, hormone replacement therapy, or estrogenic agents in any patient  \n- Score is an integer (0 to 8)  \n- No rounding; sum is exact count of criteria met",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "49": {
+    "calculator_id": "49",
+    "name": "Morphine Milligram Equivalents (MME) Calculator",
+    "category": "dosage",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \nTotal MME/day = Σ (Dose per administration × Doses per day × MME conversion factor)  \n\n**INPUTS:**  \n- Dose per administration (mg)  \n- Doses per day (count)  \n- Opioid name (from approved list)  \n\n**CONVENTIONS:**  \n- Use MME conversion factors from CDC 2022 guideline:  \n  Codeine: 0.15, Fentanyl buccal: 0.13, Hydrocodone: 1, Hydromorphone: 5, Methadone: 4.7, Morphine: 1, Oxycodone: 1.5, Oxymorphone: 3, Tapentadol: 0.4, Tramadol: 0.2, Buprenorphine: 10  \n- Multiply dose per administration (mg) by doses per day to get total daily dose (mg/day).  \n- Multiply total daily dose (mg/day) by opioid-specific MME conversion factor (mme/mg).  \n- Sum contributions from all opioids.  \n- Round final MME/day to nearest whole number.  \n- If opioid not listed, do not calculate; use only approved agents.  \n- Default to 0 doses/day if not specified.  \n- Do not include non-opioid analgesics (e.g., acetaminophen, NSAIDs).",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "51": {
+    "calculator_id": "51",
+    "name": "SIRS Criteria",
+    "category": "diagnosis",
+    "output_type": "integer",
+    "card": "**FORMULA OR RULE:**  \n1. Temperature >38°C or <36°C → +1 point  \n2. Heart rate >90 bpm → +1 point  \n3. Respiratory rate >20/min or PaCO₂ <32 mm Hg → +1 point  \n4. WBC >12,000/mm³, <4,000/mm³, or >10% bands → +1 point  \nTotal SIRS score = sum of points from all criteria  \n\n**INPUTS:**  \n- Temperature (°C)  \n- Heart rate (beats per minute)  \n- Respiratory rate (breaths per minute)  \n- PaCO₂ (mm Hg) – optional if respiratory rate is available  \n- White blood cell count (cells/mm³)  \n- Band count (%) – optional if WBC is available  \n\n**CONVENTIONS:**  \n- Temperature thresholds: >38°C or <36°C (inclusive of boundaries)  \n- Heart rate: >90 bpm (exclusive of 90)  \n- Respiratory rate: >20/min (exclusive of 20)  \n- PaCO₂: <32 mm Hg (exclusive of 32)  \n- WBC: >12,000/mm³ or <4,000/mm³ (exclusive of boundaries); >10% bands (exclusive of 10%)  \n- If PaCO₂ is not reported, assume ≥32 mm Hg  \n- If band count is not reported, assume ≤10%  \n- WBC in any unit must be converted to cells/mm³ (1 mm³ = 10⁶ cells/L)  \n- Final score is integer (0 to 4)",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "56": {
+    "calculator_id": "56",
+    "name": "QTc Fridericia Calculator",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nQTc = QT / (RR)^(1/3)  \nwhere QTc is the corrected QT interval, QT is the measured QT interval, and RR is the RR interval in seconds.\n\nINPUTS:  \n- QT interval: in milliseconds (msec)  \n- Heart rate: in beats per minute (bpm)  \n\nCONVENTIONS:  \n- RR interval is calculated as 60 / heart rate (in seconds).  \n- The cube root (1/3 exponent) is applied to the RR interval.  \n- Results are reported as a decimal number in milliseconds (msec).  \n- No rounding of intermediate values; final result rounded to 5 decimal places.  \n- If heart rate is not provided, use a default of 60 bpm.  \n- If QT interval is missing, the calculation cannot be performed.  \n- Heart rate must be > 0; if ≤ 0, the calculation is invalid.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "57": {
+    "calculator_id": "57",
+    "name": "QTc Framingham Calculator",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nQTc = QT + 154 × (1 − RR)  \nwhere QT is in milliseconds (msec), and RR is the RR interval in seconds.\n\nINPUTS:  \n- QT interval: measured in milliseconds (msec)  \n- Heart rate: in beats per minute (bpm)\n\nCONVENTIONS:  \n- RR interval = 60 / heart rate (in seconds)  \n- Heart rate must be ≥ 40 bpm; if not, use 40 bpm to compute RR  \n- All calculations use raw values without rounding until final result  \n- Final QTc is reported as a decimal with up to 3 decimal places  \n- If QT interval is missing, the calculator cannot compute QTc  \n- If heart rate is missing, the calculator cannot compute QTc  \n- The formula assumes sinus rhythm; use with caution in arrhythmias  \n- The coefficient 154 is fixed and not adjusted for sex or age",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "58": {
+    "calculator_id": "58",
+    "name": "QTc Hodges Calculator",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nQTc = QT + 1.75 × [(60 / RR) − 60]  \nwhere QT is in milliseconds (msec), and RR is in seconds.\n\n**INPUTS:**  \n- QT interval: in milliseconds (msec)  \n- Heart rate: in beats per minute (bpm)  \n\n**CONVENTIONS:**  \n- RR interval (in seconds) is calculated as 60 / heart rate (bpm).  \n- Heart rate must be ≥ 30 bpm; values < 30 bpm are invalid.  \n- If heart rate is not available, RR interval must be provided directly.  \n- All calculations use full precision; final result is rounded to two decimal places.  \n- The formula assumes a linear correction for heart rate and is not valid for arrhythmias or irregular rhythms.  \n- Use only if QT interval is measured accurately (e.g., from a stable, regular R-R interval).",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "59": {
+    "calculator_id": "59",
+    "name": "QTc Rautaharju Calculator",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nQTc = QT × (120 + HR) / 180  \n\nINPUTS:  \n- QT interval: milliseconds (msec)  \n- Heart rate (HR): beats per minute (bpm)  \n\nCONVENTIONS:  \n- QT interval must be measured from the start of the Q wave to the end of the T wave in a lead with a clear T wave.  \n- Heart rate must be the average resting heart rate, derived from the same ECG used for QT measurement.  \n- If heart rate is not available, use 75 bpm as default.  \n- Results are rounded to 5 decimal places for precision; report as decimal (msec).  \n- The formula assumes sinus rhythm; use with caution in arrhythmias.  \n- Do not apply to patients with paced rhythms unless validated.  \n- No unit conversion needed—inputs must be in msec and bpm.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "60": {
+    "calculator_id": "60",
+    "name": "Body Surface Area Calculator",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \nBSA = √( (weight × height) / 3600 )  \nwhere weight is in kg and height is in cm.\n\nINPUTS:  \n- Weight: in kilograms (kg)  \n- Height: in centimeters (cm)\n\nCONVENTIONS:  \n- Weight must be entered in kilograms; convert from pounds (lb) using 1 kg = 2.20462 lb.  \n- Height must be entered in centimeters; convert from inches (in) using 1 in = 2.54 cm.  \n- All inputs must be positive numbers; zero or negative values are invalid.  \n- Intermediate multiplication (weight × height) must be computed before division by 3600.  \n- The square root is applied to the result of the division.  \n- Final BSA is rounded to 5 decimal places (e.g., 1.69820 m²).  \n- No default values are used; missing or null inputs result in an error.  \n- The formula assumes the DuBois & DuBois 1916 equation, standard for clinical use.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "61": {
+    "calculator_id": "61",
+    "name": "Target weight",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "FORMULA OR RULE:  \ntarget_weight = bmi × height²  \nwhere bmi is in kg/m² and height is in meters.\n\nINPUTS:  \n- target_bmi: target body mass index in kg/m²  \n- height: patient’s height in inches or centimeters (see conventions)\n\nCONVENTIONS:  \n- Convert height to meters:  \n  - If height is in inches: multiply by 0.0254  \n  - If height is in centimeters: divide by 100  \n- Round final target weight to 2 decimal places  \n- Use the exact value of height in meters (do not round intermediate conversions)  \n- If height is not reported in inches or centimeters, use default of 170 cm (1.70 m)  \n- If target_bmi is not specified, use default of 21.0 kg/m²  \n- The formula assumes metric units for height and bmi; all inputs must be converted before calculation  \n- No negative or zero values allowed for height or bmi; if invalid, return error",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "62": {
+    "calculator_id": "62",
+    "name": "Adjusted Body Weight",
+    "category": "physical",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nABW = IBW + 0.4 × (actual weight − IBW)  \nwhere:  \nIBW = 50 + 2.3 × (height_in_inches − 60) for males  \nIBW = 45.5 + 2.3 × (height_in_inches − 60) for females  \n\n**INPUTS:**  \n- Gender (male or female)  \n- Height in centimeters (cm)  \n- Actual weight in kilograms (kg)  \n\n**CONVENTIONS:**  \n- Convert height from cm to inches using 0.393701 in/cm.  \n- Round height in inches to 5 decimal places before computing IBW.  \n- Compute IBW using the gender-specific formula.  \n- Use actual weight as-is (in kg).  \n- Apply the ABW formula with the exact coefficient 0.4.  \n- Report ABW as a decimal value in kg, rounded to 5 decimal places.  \n- No adjustments for BMI, age, or other factors.  \n- If gender is not specified, default to male.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "63": {
+    "calculator_id": "63",
+    "name": "Delta Gap",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nDelta Gap = (Sodium − [Chloride + Bicarbonate]) − 12.0  \n\n**INPUTS:**  \n- Sodium: mEq/L  \n- Chloride: mEq/L  \n- Bicarbonate: mEq/L  \n\n**CONVENTIONS:**  \n- All inputs must be in mEq/L. If values are reported in mmol/L, convert directly (1 mmol/L = 1 mEq/L for monovalent ions like Na⁺, Cl⁻, HCO₃⁻).  \n- No unit conversion needed for monovalent ions; mmol/L values are numerically equivalent to mEq/L.  \n- Use measured values as reported; do not adjust for albumin or other corrections.  \n- The reference value 12.0 is exact; do not round it.  \n- Result is a decimal number (can be negative, zero, or positive).  \n- Round final result to one decimal place (e.g., 1.0, -3.0).",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "64": {
+    "calculator_id": "64",
+    "name": "Delta Ratio",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nDelta ratio = (Anion gap − 12) / (24 − Bicarbonate)  \n\n**INPUTS:**  \n- Sodium (mEq/L)  \n- Chloride (mEq/L)  \n- Bicarbonate (mEq/L)  \n\n**CONVENTIONS:**  \n- All ion concentrations must be in mEq/L. If reported in mmol/L, convert using valence = 1 (no change in value).  \n- Anion gap = Sodium − (Chloride + Bicarbonate)  \n- Use 12 mEq/L as the reference anion gap (normal upper limit).  \n- Use 24 mEq/L as the reference bicarbonate (normal upper limit).  \n- If bicarbonate ≥ 24 mEq/L, denominator is 0 or negative; result is undefined (report as \"not applicable\" or \"invalid\").  \n- Delta ratio may be negative or zero.  \n- No rounding of intermediate values; final result to 2 decimal places.  \n- If any input is missing, return \"missing data\".",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "65": {
+    "calculator_id": "65",
+    "name": "Albumin Corrected Anion Gap",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nAlbumin-corrected anion gap (mEq/L) = Anion gap (mEq/L) + 2.5 × (4.0 − Albumin (g/dL))  \n\n**INPUTS:**  \n- Anion gap (mEq/L)  \n- Albumin (g/dL)  \n\n**CONVENTIONS:**  \n- Anion gap is calculated as: Na⁺ (mEq/L) − (Cl⁻ (mEq/L) + HCO₃⁻ (mEq/L))  \n- All electrolytes (Na⁺, Cl⁻, HCO₃⁻) must be in mEq/L; no unit conversion needed if already in mEq/L  \n- Albumin must be in g/dL; if reported in g/L, divide by 10 to convert  \n- Use 2.5 as the correction factor (no rounding)  \n- The term (4.0 − Albumin) uses 4.0 as the reference albumin level  \n- Result is reported as a decimal with two decimal places (e.g., 17.50)  \n- If albumin is not reported, use 4.0 g/dL as default  \n- If anion gap is not reported, do not compute; return error or null",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "66": {
+    "calculator_id": "66",
+    "name": "Albumin Corrected Delta Gap",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nAlbumin corrected delta gap = [Anion gap + 2.5 × (4.0 − Albumin)] − 12.0  \n\n**INPUTS:**  \n- Sodium (mEq/L)  \n- Chloride (mEq/L)  \n- Bicarbonate (mEq/L)  \n- Albumin (g/dL)  \n\n**CONVENTIONS:**  \n- Sodium, chloride, and bicarbonate must be in mEq/L; if reported in mmol/L, convert using 1:1 ratio (valence = 1).  \n- Albumin must be in g/dL; if reported in g/L, divide by 10.0 to convert.  \n- Anion gap = Sodium − (Chloride + Bicarbonate).  \n- Albumin correction: add 2.5 × (4.0 − Albumin) to the anion gap.  \n- Final result: subtract 12.0 from the albumin-corrected anion gap.  \n- No rounding until final result; report to two decimal places.  \n- If albumin is not reported, assume 4.0 g/dL.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "67": {
+    "calculator_id": "67",
+    "name": "Albumin Corrected Delta Ratio",
+    "category": "lab test",
+    "output_type": "decimal",
+    "card": "**FORMULA OR RULE:**  \nAlbumin corrected delta ratio = (albumin corrected anion gap − 12) / (24 − bicarbonate)  \nwhere albumin corrected anion gap = anion gap + 2.5 × (4 − albumin)\n\n**INPUTS:**  \n- Sodium (mEq/L)  \n- Chloride (mEq/L)  \n- Bicarbonate (mEq/L)  \n- Albumin (g/dL)\n\n**CONVENTIONS:**  \n- All ion concentrations (Na⁺, Cl⁻, HCO₃⁻) are used directly in mEq/L; no conversion needed (1 mmol/L = 1 mEq/L for monovalent ions).  \n- Albumin must be in g/dL; convert from g/L by dividing by 10.  \n- If albumin is not reported, assume 4.0 g/dL.  \n- The denominator (24 − bicarbonate) must be positive; if ≤ 0, the ratio is undefined.  \n- Results are reported as a decimal, rounded to 4 decimal places if needed.  \n- Negative values in numerator or denominator are allowed; ratio may be negative or >1.  \n- The constant 12 in the delta gap formula is fixed; do not adjust.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "68": {
+    "calculator_id": "68",
+    "name": "Estimated Date of Conception",
+    "category": "date",
+    "output_type": "date",
+    "card": "FORMULA OR RULE:  \nEstimated Date of Conception = Last Menstrual Period Date + 14 days  \n\nINPUTS:  \n- Last Menstrual Period Date: date (format: MM/DD/YYYY)  \n\nCONVENTIONS:  \n- Add exactly 14 days to the first day of the last menstrual period.  \n- If the last menstrual period date is not reported, use the earliest recorded date available.  \n- No rounding is applied; the result is the exact date after adding 14 days.  \n- The calculation assumes a typical 28-day menstrual cycle with ovulation occurring on day 14.  \n- If the patient has a known irregular cycle, this method should not be used without clinical judgment.",
+    "built_from": "train split",
+    "n_examples": 3
+  },
+  "69": {
+    "calculator_id": "69",
+    "name": "Estimated Gestational Age",
+    "category": "date",
+    "output_type": "date",
+    "card": "**FORMULA OR RULE:**  \nEstimated Gestational Age = (Today’s Date − Last Menstrual Period Date)  \nExpressed as weeks and days (whole weeks, remainder in days).\n\n**INPUTS:**  \n- Today’s Date: Date (format: MM/DD/YYYY)  \n- Last Menstrual Period Date: Date (format: MM/DD/YYYY)\n\n**CONVENTIONS:**  \n- Calculate the difference between the two dates in total days, then convert to weeks and days:  \n  - Weeks = floor(total days ÷ 7)  \n  - Days = total days mod 7  \n- Use calendar-based date arithmetic (accounting for varying month lengths and leap years).  \n- If the last menstrual period date is after today’s date, the result is invalid; return an error.  \n- No rounding of days; report exact remainder.  \n- Output format: \"X weeks and Y days\" (e.g., 16 weeks and 1 days).  \n- Do not use ultrasound or other data—this calculator relies solely on LMP and current date.",
+    "built_from": "train split",
+    "n_examples": 3
+  }
+}

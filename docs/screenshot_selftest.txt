@@ -22,6 +22,6 @@ $ python3 scripts/selftest.py
   ok   pot scores 100% against ground-truth mock: got True, want True
 5. replay determinism (needs runs/cache.jsonl)
   ok   pot replays identically at --workers 1/4/8: got 1, want 1
-       -> 58.0%  (29/50)
+       -> 54.0%  (27/50)
 
 SELFTEST PASSED

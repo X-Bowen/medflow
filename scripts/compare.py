@@ -26,29 +26,30 @@ def load(paths):
 
 
 def main() -> int:
-    args = sys.argv[1:] or ["runs/direct_*_n50.json", "runs/cot_*_n50.json", "runs/pot_*_n50.json"]
+    args = sys.argv[1:] or ["runs/direct_*_n50.json", "runs/cot_*_n50.json", "runs/pot_*_n50.json",
+                            "runs/openbook_cot_*_n50.json", "runs/openbook_pot_*_n50.json"]
     runs = load(args)
     if not runs:
         print("no run files matched", file=sys.stderr)
         return 1
-    order = [w for w in ("direct", "cot", "pot") if w in runs] + \
-            [w for w in runs if w not in ("direct", "cot", "pot")]
+    CANON = ("direct", "cot", "pot", "openbook_cot", "openbook_pot")
+    order = [w for w in CANON if w in runs] + [w for w in runs if w not in CANON]
     model = runs[order[0]]["summary"]["model"]
     n = runs[order[0]]["summary"]["n"]
     print(f"model={model}  n={n}\n")
 
-    print(f"{'workflow':<10} {'acc':>7} {'parse-fail':>11} {'calls':>7} {'tokens':>9} {'llm_s':>8}")
-    print("-" * 58)
+    print(f"{'workflow':<14} {'acc':>7} {'parse-fail':>11} {'calls':>7} {'tokens':>9} {'llm_s':>8}")
+    print("-" * 62)
     for w in order:
         s = runs[w]["summary"]
         u = s["usage"]
         tok = u["prompt_tokens"] + u["completion_tokens"]
-        print(f"{w:<10} {s['accuracy']:>6.1%} {s['parse_failure_rate']:>11.1%} "
+        print(f"{w:<14} {s['accuracy']:>6.1%} {s['parse_failure_rate']:>11.1%} "
               f"{u['calls'] + u['cached']:>7} {tok:>9} {u.get('llm_s', 0):>8.1f}")
 
     cats = sorted({r["category"] for r in runs[order[0]]["results"]})
-    print(f"\n{'category':<12} {'n':>3} " + " ".join(f"{w:>8}" for w in order) + f" {'best':>10}")
-    print("-" * (17 + 9 * len(order) + 11))
+    print(f"\n{'category':<12} {'n':>3} " + " ".join(f"{w:>13}" for w in order) + f" {'best':>14}")
+    print("-" * (17 + 14 * len(order) + 15))
     per_cat_correct = 0
     for c in cats:
         accs, ns = {}, 0
@@ -58,7 +59,7 @@ def main() -> int:
             accs[w] = sum(r["correct"] for r in rs) / ns
         best = max(accs, key=lambda w: accs[w])
         per_cat_correct += accs[best] * ns
-        print(f"{c:<12} {ns:>3} " + " ".join(f"{accs[w]:>7.0%}" for w in order) + f" {best:>10}")
+        print(f"{c:<12} {ns:>3} " + " ".join(f"{accs[w]:>12.0%}" for w in order) + f" {best:>14}")
 
     by_id = defaultdict(dict)
     for w in order:

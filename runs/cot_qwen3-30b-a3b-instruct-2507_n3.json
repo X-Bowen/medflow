@@ -1,11 +1,11 @@
 {
   "summary": {
     "n": 3,
-    "accuracy": 1.0,
+    "accuracy": 0.6666666666666666,
     "parse_failure_rate": 0.0,
     "by_category": {
       "date": {
-        "acc": 1.0,
+        "acc": 0.0,
         "n": 1
       },
       "lab test": {
@@ -27,25 +27,25 @@
         "n": 1
       },
       "weeks_days": {
-        "acc": 1.0,
+        "acc": 0.0,
         "n": 1
       }
     },
     "workflow": "cot",
     "model": "qwen3-30b-a3b-instruct-2507",
-    "mode": "auto",
+    "mode": "offline",
     "temperature": 0.0,
     "seed": 0,
     "max_tokens": 1500,
     "disable_thinking": false,
-    "workers": 1,
-    "wall_clock_s": 7.51,
+    "workers": 4,
+    "wall_clock_s": 0.0,
     "usage": {
-      "calls": 1,
-      "cached": 2,
+      "calls": 0,
+      "cached": 3,
       "prompt_tokens": 2906,
-      "completion_tokens": 1594,
-      "llm_s": 16.6,
+      "completion_tokens": 1586,
+      "llm_s": 16.14,
       "errors": 0
     }
   },
@@ -81,11 +81,11 @@
       "output_type": "weeks_days",
       "ground_truth": "('29 weeks', '3 days')",
       "prediction": [
-        29,
-        3
+        28,
+        0
       ],
       "parsed": true,
-      "correct": true,
+      "correct": false,
       "fallback": false,
       "error": null
     }

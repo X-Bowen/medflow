@@ -1,0 +1,16 @@
+$ python3 run_baseline.py --n 50 --workflow openbook_cot --mode offline
+
+MedFlow baseline | workflow=openbook_cot model=qwen3-30b-a3b-instruct-2507 mode=offline cases=50
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+accuracy            : 72.0%  (36/50)
+parse failure rate  : 2.0%
+by category         : date=67%(n=3)  diagnosis=67%(n=3)  dosage=50%(n=2)  lab test=71%(n=17)  physical=100%(n=11)  risk=55%(n=11)  severity=67%(n=3)
+by output type      : date=100%(n=1)  decimal=83%(n=29)  integer=56%(n=18)  weeks_days=50%(n=2)
+llm calls           : 0 live, 50 from cache
+tokens              : 54699 prompt + 22406 completion
+llm time            : 309.49s summed over calls (recorded, workers-independent)
+wall clock          : 0.01s
+
+results -> runs/openbook_cot_qwen3-30b-a3b-instruct-2507_n50.json
+traces  -> runs/openbook_cot_qwen3-30b-a3b-instruct-2507_n50.traces.json

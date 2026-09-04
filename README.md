@@ -5,10 +5,10 @@
 The long-term project asks whether an **AFlow-style automated workflow search**
 can be applied to **medical calculation**, where a wrong number is a dosing or
 risk-stratification error rather than a wrong trivia answer. This repository is
-the *baseline* for that project: three hand-written workflows over
-[MedCalc-Bench](https://github.com/ncbi-nlp/MedCalc-Bench), a scorer that
-matches the benchmark's own convention, and an exact-replay cache so anyone can
-reproduce every number below **with no API key and no GPU**.
+the *baseline*: five workflows built from a small operator vocabulary over
+[MedCalc-Bench Verified](https://github.com/nikhilk7153/MedCalc-Bench-Verified),
+a scorer matching the benchmark's own convention, and an exact-replay cache so
+anyone can reproduce every number below **with no API key and no GPU**.
 
 ---
 
@@ -19,70 +19,91 @@ git clone <this-repo> && cd medflow
 python3 run_baseline.py --n 50 --workflow cot --mode offline
 ```
 
-No install, no key, no network (the dataset ships in `data/`). Expected output
-ends with:
+No install, no key, no network (the test split ships in `data/`). Expected
+output ends with:
 
 ```
-accuracy            : 56.0%  (28/50)
+accuracy            : 50.0%  (25/50)
 parse failure rate  : 0.0%
-by category         : date=100%(n=3)  diagnosis=33%(n=3)  dosage=0%(n=2)  lab test=65%(n=17)  physical=82%(n=11)  risk=27%(n=11)  severity=33%(n=3)
-by output type      : date=100%(n=1)  decimal=72%(n=29)  integer=22%(n=18)  weeks_days=100%(n=2)
+by output type      : date=100%(n=1)  decimal=69%(n=29)  integer=17%(n=18)  weeks_days=50%(n=2)
 llm calls           : 0 live, 50 from cache
 ```
 
-`--mode offline` replays `runs/cache.jsonl`, the recorded responses from the
-live run described below. It is byte-for-byte the same evaluation the live run
-performed — only the network call is skipped. The CLI defaults (`--model
-qwen3-30b-a3b-instruct-2507 --temperature 0 --max-tokens 1500`) are exactly what
-the cache was recorded with, so no extra flags are needed; if you change one,
-the run stops with a cache-miss message naming what the cache does cover.
+The CLI defaults are exactly the configuration the cache was recorded with, so
+no extra flags are needed. Swap `--workflow cot` for `openbook_cot` to see the
+single largest effect in this repository.
 
 ---
 
 ## 1. The task
 
-**MedCalc-Bench** (Khandekar et al., NeurIPS 2024 D&B) pairs a real,
-de-identified patient note with a clinical-calculator question. The model must
-read the needed values out of free text, pick the right formula or rule, and
-compute.
+**MedCalc-Bench** pairs a real, de-identified patient note with a clinical
+calculator question. The model must read the needed values out of free text,
+pick the right formula or rule, and compute.
 
-* 1,100 test cases, 55 calculators, 7 categories (lab test, risk, physical,
-  severity, diagnosis, date, dosage).
-* Answers are **verifiable**: decimals are scored against a ±5 % band shipped
-  with the dataset, integers exactly, dates on `mm/dd/yyyy`, and gestational age
-  as a `(weeks, days)` pair.
-* It is genuinely unsolved — the original paper reports GPT-4 at **≈50 %**.
+* 1,100 test cases, 55 calculators, 7 categories.
+* Answers are **verifiable**: decimals against a ±5 % band shipped with the
+  dataset, integers exactly, dates on `mm/dd/yyyy`, gestational age as a
+  `(weeks, days)` pair.
+* Genuinely unsolved — the original paper reports GPT-4 at **50.91 %** with
+  one-shot CoT; the best published agent system (RiskAgent-GPT-4o) reaches
+  **67.71 %**.
 
-That combination (cheap, deterministic, executable scoring + real headroom +
-tool use that actually matters) is what makes it a workable search signal for
-the next phase.
+### Which release, and why it matters
 
-**Input** → one patient note + one question.
-**Output** → a single value on a final `ANSWER:` line.
-**Success** → the value falls inside the benchmark's accepted range.
+This repo uses **MedCalc-Bench Verified**, the maintained successor, not the
+original NeurIPS 2024 release. A 2026 audit found formula, threshold and
+implementation errors in the original that propagated into ground-truth labels
+across whole calculator categories. Diffing the two releases over the 1,100
+shared test rows:
 
-## 2. What the baseline does
-
-Three workflows, built from a small operator vocabulary so the next phase can
-recombine them automatically:
-
-| operator | what it does |
+| | changed |
 |---|---|
-| `op_answer_only` | one call, value only, no reasoning |
-| `op_cot` | one call: state the formula, list the values read from the note, convert units, compute |
-| `op_extract` | one call that only pulls the needed clinical values out of the note |
-| `op_program` | one call that emits Python, executed in a restricted sandbox |
+| Ground-truth answers | **15** (Caprini 11, HEART 3, Child-Pugh 1) |
+| Tolerance bands | 15 |
+| Questions reworded | 80 |
+| Patient notes reworded | 24 |
+
+All 15 corrected answers are **rule-based scores** — the same category the
+baseline is weakest on, so searching workflows against the original labels would
+have meant fitting bugs. Verified is also ungated on HuggingFace, so nothing
+here needs an approval step.
+
+**Input** → one patient note + one question. **Output** → a single value on a
+final `ANSWER:` line. **Success** → inside the benchmark's accepted range.
+
+## 2. Operators and workflows
+
+| operator | LLM call? | what it does |
+|---|---|---|
+| `op_retrieve_card` | **no** | looks up this calculator's reference card — the open-book operator |
+| `op_answer_only` | 1 | value only, no reasoning |
+| `op_cot` | 1 | state the formula, list the values read from the note, convert units, compute |
+| `op_extract` | 1 | pull only the needed clinical values out of the note |
+| `op_program` | 1 | emit Python; executed in a restricted sandbox |
 
 | workflow | composition |
 |---|---|
 | `direct` | `op_answer_only` |
-| **`cot`** | `op_cot` — **this is the baseline** |
-| `pot` | `op_extract` → `op_program` → execute, falling back to `op_cot` if the code fails |
+| **`cot`** | `op_cot` — **the baseline** |
+| `pot` | `op_extract` → `op_program` → execute, CoT fallback |
+| `openbook_cot` | `op_retrieve_card` → `op_cot` |
+| `openbook_pot` | `op_retrieve_card` → `op_extract` → `op_program` → execute |
 
 Every workflow has the same signature, `run(client, row) -> {"answer_text", "trace"}`,
-and is scored by the same evaluator. That is the seam the automated search
-plugs into: a searcher emits a new `run` body over the same operators and the
-existing harness scores it unchanged.
+and is scored by the same evaluator. That is the seam the automated search plugs
+into: a searcher emits a new `run` body over the same operators and the existing
+harness scores it unchanged.
+
+### The reference cards
+
+`data/calculator_cards.json` holds one card per calculator: the formula or the
+full scoring rule, required inputs with units, and the conventions that are easy
+to get wrong (unit conversions, rounding, defaults for values a note omits).
+Cards are generated by `scripts/build_cards.py` from the **train split only** and
+are keyed by calculator, never by case, so no test-case information reaches them.
+This mirrors what a clinician actually has at the bedside — an MDCalc page — so
+it is a realistic operator rather than a shortcut.
 
 ## 3. Measured results
 
@@ -91,48 +112,71 @@ temperature 0, 50 cases stratified to match the full test set's category mix
 (`--n 50 --seed 0`).
 
 ```
-workflow       acc  parse-fail   calls    tokens    llm_s
-----------------------------------------------------------
-direct      48.0%        0.0%      50     55668    193.8
-cot         56.0%        0.0%      50     66150    286.6
-pot         58.0%        0.0%     106    114575    377.2
+workflow           acc  parse-fail   calls    tokens    llm_s
+--------------------------------------------------------------
+direct          54.0%        2.0%      50     54696    201.3
+cot             50.0%        0.0%      50     64603    290.5
+pot             54.0%        0.0%     105    106129    348.8
+openbook_cot    72.0%        2.0%      50     77105    309.5
+openbook_pot    72.0%        2.0%     107    129074    401.7
 ```
 
 `llm_s` is server-side latency summed over calls, taken from the recording, so
-it is the same number live or replayed and does not depend on `--workers`. Wall
-clock for the live 50-case `cot` run at `--workers 8` was 44 s.
+it is the same number live or replayed and does not depend on `--workers`.
 
-Per category, **no single workflow wins everywhere**:
+Reproduce with `python3 scripts/compare.py`.
+
+### Finding 1 — most of this benchmark is formula recall
+
+Handing the model the calculator's card is worth **+22 points** over the same
+chain-of-thought workflow (50.0 % → 72.0 %) at 1.19× the tokens. It fixed 14
+cases and broke 3. This independently reproduces the 2026 audit's central claim
+— that MedCalc-Bench substantially measures whether the model *remembers* a
+formula, not whether it can reason clinically.
+
+### Finding 2 — recall is not the whole story, and the gap is structured
+
+Accuracy by answer type, closed-book vs open-book:
+
+| answer type | n | `cot` | `openbook_cot` | Δ |
+|---|---|---|---|---|
+| decimal (equations) | 29 | 69 % | **83 %** | +14 |
+| integer (rules/scores) | 18 | 17 % | **56 %** | +39 |
+| date | 1 | 100 % | 100 % | 0 |
+| (weeks, days) | 2 | 50 % | 50 % | 0 |
+
+Rule-based scoring improves the most and is *still* the worst: **56 % versus
+83 %** for equations, with the formula already in hand. Of the 14 cases
+`openbook_cot` still gets wrong, 8 are rule-based scores (Caprini, HEART, CCI,
+CURB-65, Centor, FeverPAIN). What remains after recall is handled is
+**multi-criterion rule application over free text** — deciding which of a dozen
+criteria a note actually satisfies — not arithmetic and not formula memory.
+
+### Finding 3 — the headroom for workflow search got *bigger*, not smaller
 
 ```
-category       n   direct      cot      pot       best
--------------------------------------------------------
-date           3     67%    100%    100%        cot
-diagnosis      3     33%     33%     33%     direct
-dosage         2     50%      0%     50%     direct
-lab test      17     59%     65%     65%        cot
-physical      11     64%     82%     73%        cot
-risk          11     27%     27%     45%        pot
-severity       3      0%     33%      0%        cot
+category       n        direct           cot           pot  openbook_cot  openbook_pot           best
+------------------------------------------------------------------------------------------------------
+date           3         100%          67%          67%          67%          67%         direct
+diagnosis      3          67%          33%          67%          67%         100%   openbook_pot
+dosage         2          50%           0%          50%          50%         100%   openbook_pot
+lab test      17          59%          65%          71%          71%          76%   openbook_pot
+physical      11          64%          73%          73%         100%          91%   openbook_cot
+risk          11          36%          27%          18%          55%          45%   openbook_cot
+severity       3           0%           0%           0%          67%          33%   openbook_cot
 
-best single workflow          : 58.0%
-best workflow per category    : 62.0%   (+4.0% vs best single)
-any-workflow-correct (oracle) : 74.0%   (+16.0% vs best single)
+best single workflow          : 72.0%
+best workflow per category    : 80.0%   (+8.0% vs best single)
+any-workflow-correct (oracle) : 92.0%   (+20.0% vs best single)
 ```
 
-Reproduce this table with:
-
-```bash
-python3 scripts/compare.py
-```
-
-The gap between 58 % and 62–74 % is the headroom the capstone's automated
-search is aiming at, and it is measured rather than assumed. The other clear
-signal is the split by answer type: **decimal 72 % vs integer 22 %**. The
-integer cases are the rule-based severity and risk indices (Caprini, GCS,
-CHA₂DS₂-VASc, SOFA), where the model must apply a checklist of criteria rather
-than evaluate one formula — a different failure mode that plausibly wants a
-different workflow.
+Adding the strongest operator did not collapse the search space. **No single
+workflow wins everywhere**, across five workflows: `direct` still takes dates,
+`openbook_pot` takes diagnosis, dosage and lab tests, `openbook_cot` takes
+physical, risk and severity. The gap between the best single workflow (72 %) and
+the per-category ceiling (80 %) or the oracle (92 %) is what a per-task search is
+aiming at — and it is *wider* than before open-book was added (previously 58 % →
+62 %/74 % on the original release).
 
 ## 4. Concrete test case
 
@@ -155,69 +199,62 @@ parse failure rate  : 0.0%
 llm calls           : 0 live, 1 from cache
 ```
 
-The full model reasoning is in
-`runs/cot_qwen3-30b-a3b-instruct-2507_n1.traces.json`. It is worth reading,
+The full reasoning is in `runs/cot_*_n1.traces.json`, and is worth reading
 because the case **passes for the wrong reason**: the model derives 25.238
 correctly, then adds a "Step 5: Round to the nearest whole number (standard
-practice for CrCl)" and answers `25`. It lands inside the tolerance band only
-because the band is ±5 %. On a tighter-tolerance calculator the same premature
-rounding is a failure — which is exactly the kind of defect a `verify` or
-`recompute` operator in the searched workflow should catch.
+practice for CrCl)" and answers `25`. It lands inside the band only because the
+band is ±5 %. On a tighter-tolerance calculator the same premature rounding is a
+failure — exactly the defect a `verify` or `recompute` operator should catch.
 
-`examples/test3.json` covers one case per answer format (decimal, integer,
-gestational-age tuple).
+`examples/test3.json` covers one case per answer format.
 
-## 4b. A note on determinism, and why the cache exists
+## 5. A note on determinism, and why the cache exists
 
-**Temperature 0 does not make this endpoint bit-exact.** Re-running the same
-50-case `cot` command live a second time scored **54.0 %**, not 56.0 % — three
-cases flipped. The transcript of that second run is kept in
+**Temperature 0 does not make this endpoint bit-exact.** On the previous dataset
+release, re-running the same 50-case command live a second time scored 54.0 %
+rather than 56.0 % — three cases flipped. That transcript is kept in
 `docs/screenshot_live_rerun.txt` rather than hidden, because it is the whole
-argument for shipping a cache: a workflow-search project that compares
-candidate workflows to each other cannot tell a 2-point search improvement from
-a 2-point sampling wobble unless the comparison is pinned.
+argument for shipping a cache: a workflow-search project that compares candidate
+workflows to each other cannot tell a 2-point search improvement from a 2-point
+sampling wobble unless the comparison is pinned.
 
 Two properties keep replay stable:
 
 * **First write wins.** A live re-run appends a fresh response for an
   already-recorded request; `--mode offline` keeps replaying the *first*
-  recording, so the reported numbers do not drift as the cache grows.
-  `python3 scripts/dedupe_cache.py` prunes the superseded lines.
-* **The pipeline itself is deterministic.** `scripts/selftest.py` replays the
-  `pot` workflow at `--workers 1`, `4` and `8` and requires all three to score
-  identically. (An early version failed this: the sandbox read its result queue
-  with `join()`-then-`empty()`, so a child that exited before its write was
-  drained was misread as a crash and spuriously fell back to CoT.)
+  recording. `python3 scripts/dedupe_cache.py` prunes superseded lines.
+* **The pipeline is deterministic.** `scripts/selftest.py` replays the `pot`
+  workflow at `--workers 1`, `4` and `8` and requires identical scores. (An early
+  version failed this: the sandbox read its result queue with
+  `join()`-then-`empty()`, so a child that exited before its write was drained
+  was misread as a crash and spuriously fell back to CoT.)
 
-For the project itself the implication is that a searched workflow must be
-scored on the same pinned cases, and any claimed gain smaller than the sampling
-wobble needs repeated sampling before it counts.
+## 6. Running it live
 
-## 5. Running it live
-
-Any OpenAI-compatible endpoint works — ASU's gateway, OpenAI, or a local vLLM
-server.
+Any OpenAI-compatible endpoint — ASU's gateway, OpenAI, or a local vLLM server.
 
 ```bash
-pip install -r requirements.txt        # only `openai`, and only needed for live calls
+pip install -r requirements.txt        # only `openai`, and only for live calls
 
 export OPENAI_BASE_URL=https://openai.rc.asu.edu/v1     # or https://api.openai.com/v1
 export OPENAI_API_KEY=...                               # ASU: $(cat ~/.asu_llm_key)
 
-python3 run_baseline.py \
-    --n 50 --workflow cot --mode auto \
-    --model qwen3-30b-a3b-instruct-2507 \
-    --max-tokens 1500 --workers 8
+python3 run_baseline.py --n 50 --workflow openbook_cot --mode auto --workers 8
 ```
 
-`--mode auto` serves anything already cached and calls the API only for misses,
-so re-running costs nothing. New responses are appended to `runs/cache.jsonl`.
+`--mode auto` serves anything cached and calls the API only for misses.
+
+To rebuild the reference cards from scratch (55 calls, ~3.5 min):
+
+```bash
+python3 scripts/build_cards.py          # downloads the 49 MB train split on first run
+```
 
 ### Modes
 
 | `--mode` | behaviour | needs a key? |
 |---|---|---|
-| `offline` *(default)* | cache only; a miss is a hard error with a clear message | no |
+| `offline` *(default)* | cache only; a miss is a hard error naming what the cache covers | no |
 | `auto` | cache first, API on miss, append to cache | yes |
 | `live` | always call the API | yes |
 | `mock` | deterministic fake LLM fed the ground truth; plumbing check only | no |
@@ -226,32 +263,27 @@ so re-running costs nothing. New responses are appended to `runs/cache.jsonl`.
 
 | flag | meaning |
 |---|---|
-| `--workflow {direct,cot,pot}` | which workflow (default `cot`) |
+| `--workflow {direct,cot,pot,openbook_cot,openbook_pot}` | default `cot` |
 | `--n N --seed S` | stratified subset, deterministic for a given `(N, S)` |
 | `--input FILE` | run explicit case ids instead (see `examples/`) |
 | `--workers K` | parallel requests, default 4; results stay in case order |
 | `--disable-thinking` | sends vLLM's `chat_template_kwargs.enable_thinking=false` |
-| `--max-tokens N` | completion budget, default 1024 |
+| `--max-tokens N` | completion budget, default 1500 |
 
 ### Choosing a model
 
 Use an **instruct** model, not a thinking one. A hybrid reasoning model such as
-`qwen35-27b` spends the whole completion budget in `reasoning_content` and
+`qwen35-27b` spends its whole completion budget in `reasoning_content` and
 returns `content: None` with `finish_reason="length"` — which reads as a broken
-endpoint. The client detects that case and says so explicitly rather than
-scoring an empty string:
+endpoint. The client detects and names that case rather than scoring an empty
+string:
 
-```
-[  1/1] FAIL  row1     pred=None    gt=25.2381    Creatinine Clearance (Cockcroft-Gault
-```
 ```
 [NO CONTENT: finish_reason=length; the model returned only reasoning_content
  (4795 chars). Raise --max-tokens or pass --disable-thinking.]
 ```
 
-Either raise `--max-tokens` or pass `--disable-thinking`.
-
-## 6. Verifying the install
+## 7. Verifying the install
 
 ```bash
 python3 scripts/selftest.py
@@ -259,83 +291,80 @@ python3 scripts/selftest.py
 
 Checks the scorer on all four answer formats, the sandbox (arithmetic, blocked
 `import`, killed infinite loop), the dataset checksum and subset determinism,
-and then runs all three workflows end-to-end against a mock LLM that is fed the
-ground truth — every case must come back correct. Finally it replays the `pot`
-workflow at three different `--workers` settings and requires an identical
-score. Takes about a minute and needs no key. Ends with `SELFTEST PASSED`.
+all workflows end-to-end against a ground-truth-fed mock LLM, and replay
+determinism across `--workers 1/4/8`. About a minute, no key. Ends with
+`SELFTEST PASSED`.
 
-## 7. Layout
+## 8. Layout
 
 ```
 run_baseline.py             CLI entry point
 medflow/
   data.py                   download + checksum + deterministic stratified subset
-  llm.py                    OpenAI-compatible client, cache/replay, reasoning-model quirks
-  workflows.py              operators and the three workflows
+  llm.py                    OpenAI-compatible client, cache/replay, cost accounting
+  workflows.py              operators and the five workflows
   evaluate.py               answer parsing and MedCalc-Bench scoring
-  sandbox.py                restricted exec for the `pot` workflow
+  sandbox.py                restricted exec for the program operator
   mock.py                   fake LLM for the self-test
 scripts/
-  selftest.py               offline correctness checks + replay determinism
+  build_cards.py            generate calculator reference cards from the train split
+  selftest.py               offline correctness + replay determinism
   compare.py                cross-workflow table + headroom ceilings
   dedupe_cache.py           prune superseded cache recordings
 examples/
   test1.json                single concrete test case (row1)
   test3.json                one case per answer format
-data/test_data.csv          MedCalc-Bench test split, sha256-pinned
+data/
+  test_data.csv             MedCalc-Bench Verified test split, sha256-pinned
+  calculator_cards.json     55 reference cards, built from the train split
+  train_data.csv            NOT committed (49 MB); fetched on demand by build_cards.py
 runs/
   cache.jsonl               recorded LLM responses -> exact offline replay
-  *_n50.json                per-case results + summary for each workflow
+  *_n50.json                per-case results + summary per workflow
   *_n50.traces.json         full prompts, replies and executed code
-docs/
-  screenshot_test1.txt      the single concrete test case
-  screenshot_baseline50.txt the 50-case baseline
-  screenshot_selftest.txt   the self-test
-  screenshot_compare.txt    the cross-workflow table
-  screenshot_live_rerun.txt a second LIVE run, scoring 54.0% (see section 4b)
+docs/                       console transcripts and screenshots
 ```
 
-## 8. Requirements and limitations
+## 9. Requirements and limitations
 
 * **Python 3.9+**, Linux or macOS. Offline and mock modes use only the standard
   library; `openai>=1.40` is needed only for live calls.
-* `data/test_data.csv` is committed (5.1 MB) and sha256-pinned. If absent it is
-  downloaded from the NCBI GitHub mirror. The HuggingFace copy of MedCalc-Bench
-  is gated and is deliberately **not** used, so nothing here needs an approval
-  step.
-* `runs/cache.jsonl` covers exactly the configurations in this README, which
-  are also the CLI defaults: `qwen3-30b-a3b-instruct-2507`, temperature 0,
-  `--max-tokens 1500`, the three workflows at `--n 50 --seed 0`, plus
-  `examples/test1.json` and `examples/test3.json`. Changing the model,
-  temperature, token budget or any prompt changes the cache key, so
-  `--mode offline` will report a clear cache miss rather than silently returning
-  a stale answer. That is intentional.
-* The `pot` sandbox blocks `import`/`exec`/`open` and kills the process after
-  5 s. It is a guard against a confused model, **not** a security boundary
-  against an adversary; the only code it ever runs is what our own prompt
-  produced against a public benchmark.
-* 50 cases is a small sample — 56 % ± roughly 7 pp at one standard error, and a
-  live re-run moved 2 points on its own (section 4b). The
-  per-category cells (n = 2–17) are directional, not conclusive. Scaling to the
-  full 1,100 is one command (`--n 1100`); it is left out of the baseline to keep
-  the reproduction fast.
-* Results are from one open-weight 30B model on one gateway. Absolute numbers
-  will move with the model; the per-category *disagreement* between workflows is
-  the part the project depends on.
+* `data/test_data.csv` is committed (6.3 MB) and sha256-pinned; the train split
+  is not committed and is downloaded only when rebuilding cards.
+* `runs/cache.jsonl` covers exactly the configurations in this README, which are
+  also the CLI defaults: `qwen3-30b-a3b-instruct-2507`, temperature 0,
+  `--max-tokens 1500`, the five workflows at `--n 50 --seed 0`, both example
+  files, and the 55 card-building calls. Changing the model, temperature, token
+  budget or any prompt changes the cache key, so `--mode offline` reports a clear
+  miss rather than silently returning a stale answer.
+* The sandbox blocks `import`/`exec`/`open` and kills the process after 5 s. It
+  is a guard against a confused model, **not** a security boundary against an
+  adversary.
+* **The cards are model-written and unaudited.** They are generated from train
+  explanations, so a card can carry a wrong or over-specific convention (one
+  asserts a rounding rule the benchmark does not use). That is realistic for a
+  retrieved reference, but it means open-book results measure "retrieval of a
+  plausible card", not "retrieval of a certified formula". Auditing them against
+  the calculators' primary sources is future work.
+* 50 cases is a small sample — ±7 pp at one standard error, and a live re-run
+  moved 2 points on its own. The per-category cells (n = 2–17) are directional.
+  Scaling to the full 1,100 is one command (`--n 1100`).
+* One open-weight 30B model on one gateway. Absolute numbers will move; the
+  per-category *disagreement* between workflows is the part the project depends on.
 
-## 9. Next phase
+## 10. Next phase
 
-Replace the three hand-written workflows with an AFlow-style search that
-composes the operator vocabulary automatically, scored by this same evaluator
-with cost and abstention folded into the objective alongside accuracy. The
-harness, the scorer, the stratified split and the cost accounting are already in
-place; only the searcher is missing.
+Replace the hand-written workflows with an AFlow-style search that composes the
+operator vocabulary automatically, scored by this same evaluator with cost and
+abstention folded into the objective, and reported with a per-operator
+attribution table rather than a single score. The harness, scorer, stratified
+split, card retrieval and cost accounting are in place; only the searcher is
+missing.
 
 ## Citation
 
 MedCalc-Bench: Khandekar, N. et al. *MedCalc-Bench: Evaluating Large Language
-Models for Medical Calculations.* NeurIPS 2024 Datasets & Benchmarks.
-<https://github.com/ncbi-nlp/MedCalc-Bench>
-
-AFlow: Zhang, J. et al. *AFlow: Automating Agentic Workflow Generation.*
-ICLR 2025 (Oral). <https://arxiv.org/abs/2410.10762>
+Models for Medical Calculations.* NeurIPS 2024 D&B.
+MedCalc-Bench Verified: <https://github.com/nikhilk7153/MedCalc-Bench-Verified>
+Audit: *MedCalc-Bench Doesn't Measure What You Think.* arXiv:2603.02222
+AFlow: Zhang, J. et al. *AFlow: Automating Agentic Workflow Generation.* ICLR 2025 (Oral). arXiv:2410.10762

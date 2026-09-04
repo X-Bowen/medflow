@@ -1,15 +1,15 @@
 {
   "summary": {
     "n": 50,
-    "accuracy": 0.58,
+    "accuracy": 0.54,
     "parse_failure_rate": 0.0,
     "by_category": {
       "date": {
-        "acc": 1.0,
+        "acc": 0.6666666666666666,
         "n": 3
       },
       "diagnosis": {
-        "acc": 0.3333333333333333,
+        "acc": 0.6666666666666666,
         "n": 3
       },
       "dosage": {
@@ -17,7 +17,7 @@
         "n": 2
       },
       "lab test": {
-        "acc": 0.6470588235294118,
+        "acc": 0.7058823529411765,
         "n": 17
       },
       "physical": {
@@ -25,7 +25,7 @@
         "n": 11
       },
       "risk": {
-        "acc": 0.45454545454545453,
+        "acc": 0.18181818181818182,
         "n": 11
       },
       "severity": {
@@ -43,11 +43,11 @@
         "n": 29
       },
       "integer": {
-        "acc": 0.3333333333333333,
+        "acc": 0.2777777777777778,
         "n": 18
       },
       "weeks_days": {
-        "acc": 1.0,
+        "acc": 0.5,
         "n": 2
       }
     },
@@ -62,10 +62,10 @@
     "wall_clock_s": 0.13,
     "usage": {
       "calls": 0,
-      "cached": 106,
-      "prompt_tokens": 87003,
-      "completion_tokens": 27572,
-      "llm_s": 377.19,
+      "cached": 105,
+      "prompt_tokens": 84966,
+      "completion_tokens": 21163,
+      "llm_s": 348.79,
       "errors": 0
     }
   },
@@ -148,7 +148,7 @@
       "category": "severity",
       "output_type": "integer",
       "ground_truth": "10",
-      "prediction": 8.0,
+      "prediction": 7.0,
       "parsed": true,
       "correct": false,
       "fallback": false,
@@ -160,9 +160,9 @@
       "category": "risk",
       "output_type": "decimal",
       "ground_truth": "0",
-      "prediction": 0.0,
+      "prediction": 2.0,
       "parsed": true,
-      "correct": true,
+      "correct": false,
       "fallback": false,
       "error": null
     },
@@ -184,7 +184,7 @@
       "category": "severity",
       "output_type": "integer",
       "ground_truth": "1",
-      "prediction": 2.0,
+      "prediction": 3.0,
       "parsed": true,
       "correct": false,
       "fallback": false,
@@ -220,7 +220,7 @@
       "category": "lab test",
       "output_type": "decimal",
       "ground_truth": "30.0",
-      "prediction": 19.0,
+      "prediction": 13.0,
       "parsed": true,
       "correct": false,
       "fallback": false,
@@ -232,9 +232,9 @@
       "category": "risk",
       "output_type": "integer",
       "ground_truth": "3",
-      "prediction": 3.0,
+      "prediction": 1.0,
       "parsed": true,
-      "correct": true,
+      "correct": false,
       "fallback": false,
       "error": null
     },
@@ -244,10 +244,10 @@
       "category": "risk",
       "output_type": "integer",
       "ground_truth": "1",
-      "prediction": 1.0,
+      "prediction": 3.0,
       "parsed": true,
-      "correct": true,
-      "fallback": true,
+      "correct": false,
+      "fallback": false,
       "error": null
     },
     {
@@ -268,7 +268,7 @@
       "category": "risk",
       "output_type": "integer",
       "ground_truth": "7",
-      "prediction": 11.0,
+      "prediction": 15.0,
       "parsed": true,
       "correct": false,
       "fallback": false,
@@ -292,7 +292,7 @@
       "category": "lab test",
       "output_type": "decimal",
       "ground_truth": "311.51722",
-      "prediction": 298.0,
+      "prediction": 311.5,
       "parsed": true,
       "correct": true,
       "fallback": false,
@@ -352,7 +352,7 @@
       "category": "lab test",
       "output_type": "decimal",
       "ground_truth": "-0.20143",
-      "prediction": 0.16785714285714284,
+      "prediction": 0.3357142857142857,
       "parsed": true,
       "correct": false,
       "fallback": false,
@@ -424,10 +424,10 @@
       "category": "lab test",
       "output_type": "decimal",
       "ground_truth": "6.625",
-      "prediction": 5.0,
+      "prediction": 10.0,
       "parsed": true,
       "correct": false,
-      "fallback": false,
+      "fallback": true,
       "error": null
     },
     {
@@ -436,10 +436,10 @@
       "category": "diagnosis",
       "output_type": "integer",
       "ground_truth": "1",
-      "prediction": 7.0,
+      "prediction": 1.0,
       "parsed": true,
-      "correct": false,
-      "fallback": true,
+      "correct": true,
+      "fallback": false,
       "error": null
     },
     {
@@ -520,7 +520,7 @@
       "category": "lab test",
       "output_type": "decimal",
       "ground_truth": "7.0",
-      "prediction": 8.0,
+      "prediction": 1.1666666666666667,
       "parsed": true,
       "correct": false,
       "fallback": false,
@@ -544,9 +544,9 @@
       "category": "lab test",
       "output_type": "decimal",
       "ground_truth": "1.5",
-      "prediction": 0.5,
+      "prediction": 1.5,
       "parsed": true,
-      "correct": false,
+      "correct": true,
       "fallback": false,
       "error": null
     },
@@ -579,8 +579,8 @@
       "calculator": "Caprini Score for Venous Thromboembolism (2005)",
       "category": "risk",
       "output_type": "integer",
-      "ground_truth": "14",
-      "prediction": 12.0,
+      "ground_truth": "13",
+      "prediction": 18.0,
       "parsed": true,
       "correct": false,
       "fallback": false,
@@ -591,8 +591,8 @@
       "calculator": "Caprini Score for Venous Thromboembolism (2005)",
       "category": "risk",
       "output_type": "integer",
-      "ground_truth": "5",
-      "prediction": 14.0,
+      "ground_truth": "4",
+      "prediction": 12.0,
       "parsed": true,
       "correct": false,
       "fallback": false,
@@ -628,7 +628,7 @@
       "category": "dosage",
       "output_type": "integer",
       "ground_truth": "31.8",
-      "prediction": 6060.0,
+      "prediction": 6090.0,
       "parsed": true,
       "correct": false,
       "fallback": false,
@@ -636,7 +636,7 @@
     },
     {
       "id": "row1065",
-      "calculator": "Estimated of Conception",
+      "calculator": "Estimated Date of Conception",
       "category": "date",
       "output_type": "date",
       "ground_truth": "09/04/2017",
@@ -668,11 +668,11 @@
       "output_type": "weeks_days",
       "ground_truth": "('29 weeks', '3 days')",
       "prediction": [
-        29,
-        3
+        28,
+        0
       ],
       "parsed": true,
-      "correct": true,
+      "correct": false,
       "fallback": true,
       "error": null
     }

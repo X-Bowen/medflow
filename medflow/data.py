@@ -1,8 +1,20 @@
-"""Dataset loading for MedCalc-Bench (test split).
+"""Dataset loading for MedCalc-Bench Verified.
 
-The CSV is fetched from the official NCBI GitHub mirror, which is ungated
-(the HuggingFace copy requires manual approval). We pin a sha256 so that
-everyone evaluates on byte-identical data.
+We use **MedCalc-Bench Verified**, the maintained successor to the original
+NeurIPS 2024 release, not the original. A 2026 audit found formula, threshold
+and implementation errors in the original that propagated into ground-truth
+labels across whole calculator categories; searching workflows against wrong
+labels would fit bugs. Diffing the two releases over the 1,100 shared test rows:
+15 answers and their tolerance bands changed, concentrated in three rule-based
+scores (Caprini 11, HEART 3, Child-Pugh 1), plus 80 questions and 24 patient
+notes reworded.
+
+Verified is ungated on HuggingFace, so nothing here needs an approval step. Both
+splits are pinned by sha256 so everyone evaluates on byte-identical data.
+
+The train split (10,538 rows, 49 MB) is a build-time dependency only - it is used
+to generate the calculator reference cards for the open-book operator and is not
+committed. The test split is committed.
 """
 from __future__ import annotations
 
@@ -13,17 +25,36 @@ import random
 import sys
 import urllib.request
 from collections import defaultdict
-from typing import Dict, List
+from typing import Dict, List, Optional
 
-DATA_URL = (
-    "https://raw.githubusercontent.com/ncbi-nlp/MedCalc-Bench/"
-    "main/datasets/test_data.csv"
+_HF = "https://huggingface.co/datasets/nsk7153/MedCalc-Bench-Verified/resolve/main"
+
+SPLITS = {
+    "test": {
+        "url": f"{_HF}/test_data.csv",
+        "sha256": "34579020b9c7127f7956f785f91c432f2d0d287e0fb973b27ecd787586dc8798",
+        "rows": 1100,
+        "file": "test_data.csv",
+    },
+    "train": {
+        "url": f"{_HF}/train_data.csv",
+        "sha256": "503db8197c55438640e66bb8a20a114ef2d5e8c6a1b12b79ccd1aa9c3e33b2c1",
+        "rows": 10538,
+        "file": "train_data.csv",
+    },
+}
+
+# Kept for reference: the original, superseded release.
+ORIGINAL_URL = (
+    "https://raw.githubusercontent.com/ncbi-nlp/MedCalc-Bench/main/datasets/test_data.csv"
 )
-DATA_SHA256 = "c9d219a30e43f50646b73fa5fe5fe86d1ef47e7d9b2c7403a0edb7f3e5290e3a"
-EXPECTED_ROWS = 1100
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEFAULT_CSV = os.path.join(REPO_ROOT, "data", "test_data.csv")
+DATA_DIR = os.path.join(REPO_ROOT, "data")
+DEFAULT_CSV = os.path.join(DATA_DIR, SPLITS["test"]["file"])
+DATA_URL = SPLITS["test"]["url"]
+DATA_SHA256 = SPLITS["test"]["sha256"]
+EXPECTED_ROWS = SPLITS["test"]["rows"]
 
 csv.field_size_limit(10 ** 7)
 
@@ -36,28 +67,33 @@ def _sha256(path: str) -> str:
     return h.hexdigest()
 
 
-def ensure_dataset(path: str = DEFAULT_CSV, verify: bool = True) -> str:
-    """Download the MedCalc-Bench test CSV if absent; verify its checksum."""
+def ensure_dataset(path: str = DEFAULT_CSV, verify: bool = True, split: str = "test") -> str:
+    """Download a MedCalc-Bench Verified split if absent; verify its checksum."""
+    spec = SPLITS[split]
     if not os.path.exists(path):
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        print(f"[data] downloading MedCalc-Bench test split -> {path}", file=sys.stderr)
-        urllib.request.urlretrieve(DATA_URL, path)
+        os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+        print(f"[data] downloading MedCalc-Bench Verified {split} split -> {path}",
+              file=sys.stderr)
+        urllib.request.urlretrieve(spec["url"], path)
     if verify:
         got = _sha256(path)
-        if got != DATA_SHA256:
+        if got != spec["sha256"]:
             raise RuntimeError(
-                f"checksum mismatch for {path}\n  expected {DATA_SHA256}\n  got      {got}\n"
+                f"checksum mismatch for {path}\n  expected {spec['sha256']}\n  got      {got}\n"
                 "Delete the file and re-run to re-download."
             )
     return path
 
 
-def load_rows(path: str = DEFAULT_CSV) -> List[Dict[str, str]]:
-    ensure_dataset(path)
+def load_rows(path: Optional[str] = None, split: str = "test") -> List[Dict[str, str]]:
+    """Load one split. `path` overrides the default location for that split."""
+    spec = SPLITS[split]
+    path = path or os.path.join(DATA_DIR, spec["file"])
+    ensure_dataset(path, split=split)
     with open(path, encoding="utf-8") as fh:
         rows = list(csv.DictReader(fh))
-    if len(rows) != EXPECTED_ROWS:
-        raise RuntimeError(f"expected {EXPECTED_ROWS} rows, got {len(rows)}")
+    if len(rows) != spec["rows"]:
+        raise RuntimeError(f"expected {spec['rows']} rows in {split}, got {len(rows)}")
     for r in rows:
         r["id"] = f"row{r['Row Number']}"
     return rows

@@ -2,25 +2,27 @@ $ python3 scripts/compare.py
 
 model=qwen3-30b-a3b-instruct-2507  n=50
 
-workflow       acc  parse-fail   calls    tokens    llm_s
-----------------------------------------------------------
-direct      48.0%        0.0%      50     55668    193.8
-cot         56.0%        0.0%      50     66150    286.6
-pot         58.0%        0.0%     106    114575    377.2
+workflow           acc  parse-fail   calls    tokens    llm_s
+--------------------------------------------------------------
+direct          54.0%        2.0%      50     54696    201.3
+cot             50.0%        0.0%      50     64603    290.5
+pot             54.0%        0.0%     105    106129    348.8
+openbook_cot    72.0%        2.0%      50     77105    309.5
+openbook_pot    72.0%        2.0%     107    129074    401.7
 
-category       n   direct      cot      pot       best
--------------------------------------------------------
-date           3     67%    100%    100%        cot
-diagnosis      3     33%     33%     33%     direct
-dosage         2     50%      0%     50%     direct
-lab test      17     59%     65%     65%        cot
-physical      11     64%     82%     73%        cot
-risk          11     27%     27%     45%        pot
-severity       3      0%     33%      0%        cot
+category       n        direct           cot           pot  openbook_cot  openbook_pot           best
+------------------------------------------------------------------------------------------------------
+date           3         100%          67%          67%          67%          67%         direct
+diagnosis      3          67%          33%          67%          67%         100%   openbook_pot
+dosage         2          50%           0%          50%          50%         100%   openbook_pot
+lab test      17          59%          65%          71%          71%          76%   openbook_pot
+physical      11          64%          73%          73%         100%          91%   openbook_cot
+risk          11          36%          27%          18%          55%          45%   openbook_cot
+severity       3           0%           0%           0%          67%          33%   openbook_cot
 
-best single workflow          : 58.0%
-best workflow per category    : 62.0%   (+4.0% vs best single)
-any-workflow-correct (oracle) : 74.0%   (+16.0% vs best single)
+best single workflow          : 72.0%
+best workflow per category    : 80.0%   (+8.0% vs best single)
+any-workflow-correct (oracle) : 92.0%   (+20.0% vs best single)
 
 The gap between 'best single' and the two ceilings is the headroom an
 automated per-task workflow search is trying to capture.
