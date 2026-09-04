@@ -1,0 +1,27 @@
+$ python3 scripts/selftest.py
+
+1. scorer
+  ok   decimal inside band: got True, want True
+  ok   decimal outside band: got False, want False
+  ok   unparseable is wrong: got False, want False
+  ok   integer exact: got True, want True
+  ok   date normalised: got True, want True
+  ok   weeks/days tuple: got True, want True
+2. sandbox
+  ok   arithmetic: got '25.238', want '25.238'
+  ok   import blocked: got 'blocked construct: import', want 'blocked construct: import'
+  ok   infinite loop killed: got 'timeout after 2s', want 'timeout after 2s'
+3. dataset
+  ok   row count: got 1100, want 1100
+  ok   subset (20, seed 0) reproducible: got '0d823528ac33', want '0d823528ac33'
+  ok   subset (50, seed 0) reproducible: got 'c17911c99151', want 'c17911c99151'
+  ok   a different seed gives a different subset: got True, want True
+4. workflows end-to-end (mock LLM)
+  ok   direct scores 100% against ground-truth mock: got True, want True
+  ok   cot scores 100% against ground-truth mock: got True, want True
+  ok   pot scores 100% against ground-truth mock: got True, want True
+5. replay determinism (needs runs/cache.jsonl)
+  ok   pot replays identically at --workers 1/4/8: got 1, want 1
+       -> 58.0%  (29/50)
+
+SELFTEST PASSED

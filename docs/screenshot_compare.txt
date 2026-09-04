@@ -1,0 +1,26 @@
+$ python3 scripts/compare.py
+
+model=qwen3-30b-a3b-instruct-2507  n=50
+
+workflow       acc  parse-fail   calls    tokens    llm_s
+----------------------------------------------------------
+direct      48.0%        0.0%      50     55668    193.8
+cot         56.0%        0.0%      50     66150    286.6
+pot         58.0%        0.0%     106    114575    377.2
+
+category       n   direct      cot      pot       best
+-------------------------------------------------------
+date           3     67%    100%    100%        cot
+diagnosis      3     33%     33%     33%     direct
+dosage         2     50%      0%     50%     direct
+lab test      17     59%     65%     65%        cot
+physical      11     64%     82%     73%        cot
+risk          11     27%     27%     45%        pot
+severity       3      0%     33%      0%        cot
+
+best single workflow          : 58.0%
+best workflow per category    : 62.0%   (+4.0% vs best single)
+any-workflow-correct (oracle) : 74.0%   (+16.0% vs best single)
+
+The gap between 'best single' and the two ceilings is the headroom an
+automated per-task workflow search is trying to capture.

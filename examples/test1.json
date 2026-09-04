@@ -1,0 +1,5 @@
+{
+  "name": "test1 - Creatinine Clearance (Cockcroft-Gault) with adjusted body weight",
+  "why": "A single decimal case that needs three things at once: reading sex/age/weight/height/creatinine out of a free-text note, deciding whether to use actual or adjusted body weight from the BMI, and doing the arithmetic without rounding early. Ground truth 25.2381 mL/min, accepted band [23.97619, 26.50001].",
+  "case_ids": ["row1"]
+}

@@ -1,0 +1,67 @@
+$ export OPENAI_BASE_URL=https://openai.rc.asu.edu/v1
+$ export OPENAI_API_KEY=$(cat ~/.asu_llm_key)
+$ python3 run_baseline.py --n 50 --workflow cot --mode live --model qwen3-30b-a3b-instruct-2507 --max-tokens 1500 --workers 8
+
+MedFlow baseline | workflow=cot model=qwen3-30b-a3b-instruct-2507 mode=live cases=50
+------------------------------------------------------------------------------
+[  1/50] PASS  row79    pred=92.0         gt=91.66667     Mean Arterial Pressure (MAP)
+[  2/50] PASS  row86    pred=23.0         gt=22.99262     Body Mass Index (BMI)
+[  3/50] PASS  row200   pred=288.0        gt=288.46721    QTc Bazett Calculator
+[  4/50] PASS  row109   pred=8.34         gt=8.34         Calcium Correction for Hypoalbuminemia
+[  5/50] FAIL  row208   pred=7.0          gt=10           Child-Pugh Score for Cirrhosis Mortali
+[  6/50] PASS  row325   pred=85.0         gt=85.0         Maintenance Fluids Calculations
+[  7/50] PASS  row331   pred=86.0         gt=86.0         Maintenance Fluids Calculations
+[  8/50] PASS  row233   pred=0.0          gt=0            Wells' Criteria for DVT
+[  9/50] PASS  row152   pred=11.0         gt=11.0264      MDRD GFR Equation
+[ 10/50] FAIL  row314   pred=2.0          gt=1            Centor Score (Modified/McIsaac) for St
+[ 11/50] FAIL  row261   pred=5.0          gt=4            HEART Score for Major Cardiac Events
+[ 12/50] FAIL  row414   pred=0.0          gt=7            Glasgow-Blatchford Bleeding Score (GBS
+[ 13/50] PASS  row374   pred=1.0          gt=1            HAS-BLED Score for Major Bleeding Risk
+[ 14/50] PASS  row436   pred=278.0        gt=277.63492    Serum Osmolality
+[ 15/50] FAIL  row477   pred=1.0          gt=3            Charlson Comorbidity Index (CCI)
+[ 16/50] PASS  row425   pred=311.5        gt=311.51722    Serum Osmolality
+[ 17/50] FAIL  row352   pred=1.0          gt=30.0         MELD Na (UNOS/OPTN)
+[ 18/50] FAIL  row403   pred=6.0          gt=7            Glasgow-Blatchford Bleeding Score (GBS
+[ 19/50] PASS  row389   pred=132.8        gt=134.688      Sodium Correction for Hyperglycemia
+[ 20/50] FAIL  row156   pred=1.0          gt=21.54697     MDRD GFR Equation
+[ 21/50] PASS  row528   pred=15.2         gt=15.2         Anion Gap
+[ 22/50] PASS  row585   pred=214.0        gt=214.38       LDL Calculated
+[ 23/50] FAIL  row462   pred=1.0          gt=2            Charlson Comorbidity Index (CCI)
+[ 24/50] FAIL  row372   pred=1.0          gt=3            HAS-BLED Score for Major Bleeding Risk
+[ 25/50] FAIL  row483   pred=3.0          gt=5            FeverPAIN Score for Strep Pharyngitis
+[ 26/50] PASS  row589   pred=169.2        gt=169.2        LDL Calculated
+[ 27/50] PASS  row544   pred=5.0          gt=5            CURB-65 Score for Pneumonia Severity
+[ 28/50] FAIL  row504   pred=0.168        gt=-0.20143     Free Water Deficit
+[ 29/50] PASS  row599   pred=91.4         gt=91.4         LDL Calculated
+[ 30/50] FAIL  row681   pred=600.0        gt=560.0007     QTc Framingham Calculator
+[ 31/50] PASS  row704   pred=451.0        gt=444.50014    QTc Hodges Calculator
+[ 32/50] FAIL  row736   pred=483.0        gt=459.33333    QTc Rautaharju Calculator
+[ 33/50] PASS  row657   pred=2.0          gt=2            SIRS Criteria
+[ 34/50] PASS  row747   pred=1.185        gt=1.1547       Body Surface Area Calculator
+[ 35/50] FAIL  row627   pred=7.0          gt=1            PERC Rule for Pulmonary Embolism
+[ 36/50] PASS  row778   pred=59.0         gt=59.34572     Adjusted Body Weight
+[ 37/50] PASS  row817   pred=1.5          gt=1.5          Delta Ratio
+[ 38/50] PASS  row809   pred=1.5          gt=1.5          Delta Ratio
+[ 39/50] FAIL  row613   pred=10.0         gt=6.625        Framingham Risk Score for Hard Coronar
+[ 40/50] PASS  row1031  pred=73.07248     gt=73.07248     Target weight
+[ 41/50] FAIL  row1017  pred=75.0         gt=46.68405     Steroid Conversion Calculator
+[ 42/50] PASS  row1065  pred=09/04/2017   gt=09/04/2017   Estimated of Conception
+[ 43/50] FAIL  row911   pred=7.0          gt=8            Glasgow Coma Score (GCS)
+[ 44/50] FAIL  row1053  pred=6060.0       gt=31.8         Morphine Milligram Equivalents (MME) C
+[ 45/50] FAIL  row962   pred=18.0         gt=14           Caprini Score for Venous Thromboemboli
+[ 46/50] PASS  row1089  pred=[17, 6]      gt=('17 weeks', '6 days') Estimated Gestational Age
+[ 47/50] PASS  row1095  pred=[29, 3]      gt=('29 weeks', '3 days') Estimated Gestational Age
+[ 48/50] FAIL  row799   pred=1.0          gt=7.0          Delta Gap
+[ 49/50] FAIL  row862   pred=1.0          gt=-2.5         Albumin Corrected Delta Ratio
+[ 50/50] FAIL  row974   pred=1.0          gt=5            Caprini Score for Venous Thromboemboli
+------------------------------------------------------------------------------
+accuracy            : 54.0%  (27/50)
+parse failure rate  : 0.0%
+by category         : date=100%(n=3)  diagnosis=33%(n=3)  dosage=0%(n=2)  lab test=65%(n=17)  physical=82%(n=11)  risk=27%(n=11)  severity=0%(n=3)
+by output type      : date=100%(n=1)  decimal=72%(n=29)  integer=17%(n=18)  weeks_days=100%(n=2)
+llm calls           : 50 live, 0 from cache
+tokens              : 37930 prompt + 28751 completion
+wall clock          : 45.5s
+
+results -> runs/cot_qwen3-30b-a3b-instruct-2507_n50.json
+traces  -> runs/cot_qwen3-30b-a3b-instruct-2507_n50.traces.json

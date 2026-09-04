@@ -1,0 +1,4 @@
+# The baseline itself needs only the Python standard library.
+# `openai` is required only for LIVE calls (--mode auto/live); offline replay
+# and mock mode run with no third-party packages at all.
+openai>=1.40

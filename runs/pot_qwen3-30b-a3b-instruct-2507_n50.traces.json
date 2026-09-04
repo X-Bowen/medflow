@@ -1,0 +1,875 @@
+[
+  {
+    "id": "row79",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "BP: 125/75 mmHg"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nsystolic_bp = 125  # mmHg\ndiastolic_bp = 75  # mmHg\n\n# Calculate mean arterial pressure (MAP) using the formula:\n# MAP = diastolic BP + (1/3) * (systolic BP - diastolic BP)\nmap_pressure = diastolic_bp + (1/3) * (systolic_bp - diastolic_bp)\n\n# Assign the final result to the variable 'answer'\nanswer = map_pressure\n```",
+        "code": "# Given values from the patient note\nsystolic_bp = 125  # mmHg\ndiastolic_bp = 75  # mmHg\n\n# Calculate mean arterial pressure (MAP) using the formula:\n# MAP = diastolic BP + (1/3) * (systolic BP - diastolic BP)\nmap_pressure = diastolic_bp + (1/3) * (systolic_bp - diastolic_bp)\n\n# Assign the final result to the variable 'answer'\nanswer = map_pressure",
+        "exec_value": "91.66666666666666",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 91.66666666666666"
+  },
+  {
+    "id": "row86",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "weight: 77 kg  \nheight: 183 cm"
+      },
+      {
+        "name": "program",
+        "text": "```python\nweight = 77  # kg\nheight = 183  # cm\n\n# Convert height to meters\nheight_m = height / 100\n\n# Calculate BMI\nanswer = weight / (height_m ** 2)\n```",
+        "code": "weight = 77  # kg\nheight = 183  # cm\n\n# Convert height to meters\nheight_m = height / 100\n\n# Calculate BMI\nanswer = weight / (height_m ** 2)",
+        "exec_value": "22.99262444384723",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 22.99262444384723"
+  },
+  {
+    "id": "row109",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "calcium: 7.7 mg/dL  \nalbumin: 3.2 g/dL  \nnormal albumin: 4 g/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note at admission\ncalcium = 7.7  # mg/dL\nalbumin = 3.2  # g/dL\nnormal_albumin = 4.0  # g/dL\n\n# Calcium correction formula for hypoalbuminemia\n# Corrected calcium (mg/dL) = Measured calcium (mg/dL) + 0.8 * (Normal albumin - Patient's albumin)\ncorrected_calcium = calcium + 0.8 * (normal_albumin - albumin)\n\n# Assign the result to the variable answer\nanswer = corrected_calcium\n```",
+        "code": "# Given values from the patient note at admission\ncalcium = 7.7  # mg/dL\nalbumin = 3.2  # g/dL\nnormal_albumin = 4.0  # g/dL\n\n# Calcium correction formula for hypoalbuminemia\n# Corrected calcium (mg/dL) = Measured calcium (mg/dL) + 0.8 * (Normal albumin - Patient's albumin)\ncorrected_calcium = calcium + 0.8 * (normal_albumin - albumin)\n\n# Assign the result to the variable answer\nanswer = corrected_calcium",
+        "exec_value": "8.34",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 8.34"
+  },
+  {
+    "id": "row152",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "age: 62 years  \nsex: female  \nrace: NOT REPORTED  \nserum creatinine: 4.1 mg/dL  \nalbumin: NOT REPORTED  \nblood urea nitrogen: 24.8 mg/dL  \nhemoglobin: 8.6 g/dL  \nbody surface area: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# MDRD GFR Equation (for non-blacks, since race is not reported)\n# GFR = 175 * (serum creatinine)^(-1.154) * (age)^(-0.203) * (0.742 if female) * (1.212 if black)\n\n# Given values at admission (prior to treatment):\nage = 62\nsex = 'female'  # female\nrace = 'not reported'  # use non-black formula\nserum_creatinine = 4.1  # mg/dL\n\n# MDRD formula for non-blacks\n# GFR = 175 * (Scr)^(-1.154) * (age)^(-0.203) * (0.742 if female)\n\n# Calculate GFR\nGFR = 175 * (serum_creatinine ** (-1.154)) * (age ** (-0.203)) * 0.742\n\n# Round to 2 decimal places\nanswer = round(GFR, 2)\n```",
+        "code": "# MDRD GFR Equation (for non-blacks, since race is not reported)\n# GFR = 175 * (serum creatinine)^(-1.154) * (age)^(-0.203) * (0.742 if female) * (1.212 if black)\n\n# Given values at admission (prior to treatment):\nage = 62\nsex = 'female'  # female\nrace = 'not reported'  # use non-black formula\nserum_creatinine = 4.1  # mg/dL\n\n# MDRD formula for non-blacks\n# GFR = 175 * (Scr)^(-1.154) * (age)^(-0.203) * (0.742 if female)\n\n# Calculate GFR\nGFR = 175 * (serum_creatinine ** (-1.154)) * (age ** (-0.203)) * 0.742\n\n# Round to 2 decimal places\nanswer = round(GFR, 2)",
+        "exec_value": "11.03",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 11.03"
+  },
+  {
+    "id": "row156",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Age: 48 years  \nSex: Female  \nRace: NOT REPORTED  \nSerum creatinine: 2.4 mg/dL  \nAlbumin: NOT REPORTED  \nBlood urea nitrogen (BUN): NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Patient data from the note\nage = 48\nsex = \"female\"\nrace = \"not reported\"  # Since race is not reported, we use the standard MDRD equation (non-black)\nserum_creatinine = 2.4  # mg/dL\n\n# MDRD GFR Equation (for non-black individuals)\n# GFR = 175 * (serum_creatinine)^(-1.154) * (age)^(-0.203) * (0.742 if female) * (1.212 if black)\n# Since race is not reported, we assume non-black and do not apply the race factor\n\n# Constants for the equation\nconstant = 175\ncreatinine_exponent = -1.154\nage_exponent = -0.203\nfemale_factor = 0.742\n\n# Calculate GFR\ngfr = constant * (serum_creatinine ** creatinine_exponent) * (age ** age_exponent) * female_factor\n\n# Round to 2 decimal places as typical for GFR\nanswer = round(gfr, 2)\n```",
+        "code": "# Patient data from the note\nage = 48\nsex = \"female\"\nrace = \"not reported\"  # Since race is not reported, we use the standard MDRD equation (non-black)\nserum_creatinine = 2.4  # mg/dL\n\n# MDRD GFR Equation (for non-black individuals)\n# GFR = 175 * (serum_creatinine)^(-1.154) * (age)^(-0.203) * (0.742 if female) * (1.212 if black)\n# Since race is not reported, we assume non-black and do not apply the race factor\n\n# Constants for the equation\nconstant = 175\ncreatinine_exponent = -1.154\nage_exponent = -0.203\nfemale_factor = 0.742\n\n# Calculate GFR\ngfr = constant * (serum_creatinine ** creatinine_exponent) * (age ** age_exponent) * female_factor\n\n# Round to 2 decimal places as typical for GFR\nanswer = round(gfr, 2)",
+        "exec_value": "21.55",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 21.55"
+  },
+  {
+    "id": "row200",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "heart rate: 50 bpm  \nQT interval: 316 msec"
+      },
+      {
+        "name": "program",
+        "text": "```python\nimport math\n\nheart_rate = 50\nQT_interval = 316\n\ncorrected_QT = QT_interval / math.sqrt(heart_rate / 60)\nanswer = corrected_QT\n```",
+        "code": "import math\n\nheart_rate = 50\nQT_interval = 316\n\ncorrected_QT = QT_interval / math.sqrt(heart_rate / 60)\nanswer = corrected_QT",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_fallback",
+        "text": "The Bazett Formula for corrected QT interval (QTc) is:\n\nQTc = QT / \u221aRR\n\nWhere:\n- QT is the measured QT interval in milliseconds (msec)\n- RR is the interval between two consecutive R waves in seconds (sec), which is calculated as 60 / heart rate (bpm)\n\nFrom the patient note:\n- Heart rate = 50 bpm\n- QT interval = 316 msec\n\nStep 1: Convert heart rate to RR interval in seconds:\nRR = 60 / heart rate = 60 / 50 = 1.2 seconds\n\nStep 2: Apply the Bazett Formula:\nQTc = QT / \u221aRR = 316 / \u221a1.2\n\nStep 3: Compute \u221a1.2:\n\u221a1.2 \u2248 1.095445\n\nStep 4: Compute QTc:\nQTc = 316 / 1.095445 \u2248 288.46\n\nRounded to the nearest whole number: 288\n\nANSWER: 288"
+      }
+    ],
+    "answer_text": "The Bazett Formula for corrected QT interval (QTc) is:\n\nQTc = QT / \u221aRR\n\nWhere:\n- QT is the measured QT interval in milliseconds (msec)\n- RR is the interval between two consecutive R waves in seconds (sec), which is calculated as 60 / heart rate (bpm)\n\nFrom the patient note:\n- Heart rate = 50 bpm\n- QT interval = 316 msec\n\nStep 1: Convert heart rate to RR interval in seconds:\nRR = 60 / heart rate = 60 / 50 = 1.2 seconds\n\nStep 2: Apply the Bazett Formula:\nQTc = QT / \u221aRR = 316 / \u221a1.2\n\nStep 3: Compute \u221a1.2:\n\u221a1.2 \u2248 1.095445\n\nStep 4: Compute QTc:\nQTc = 316 / 1.095445 \u2248 288.46\n\nRounded to the nearest whole number: 288\n\nANSWER: 288"
+  },
+  {
+    "id": "row208",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Albumin: 3.0 g/dl  \nBilirubin: 2.97 mg/dl  \nINR: 2.2  \nAscites: moderate  \nEncephalopathy: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nalbumin = 3.0  # g/dl\nbilirubin = 2.97  # mg/dl\nINR = 2.2\nascites = \"moderate\"  # contributes 2 points\nencephalopathy = \"NOT REPORTED\"  # not reported, so we assume no encephalopathy (0 points)\n\n# Child-Pugh scoring system\n# Albumin (g/dl): <3.5 = 1 point, 3.5\u20133.0 = 2 points, >3.0 = 3 points\nif albumin < 3.0:\n    albumin_score = 3\nelif albumin < 3.5:\n    albumin_score = 2\nelse:\n    albumin_score = 1\n\n# Bilirubin (mg/dl): <2.0 = 1 point, 2.0\u20133.0 = 2 points, >3.0 = 3 points\nif bilirubin < 2.0:\n    bilirubin_score = 1\nelif bilirubin <= 3.0:\n    bilirubin_score = 2\nelse:\n    bilirubin_score = 3\n\n# INR: <1.7 = 1 point, 1.7\u20132.3 = 2 points, >2.3 = 3 points\nif INR < 1.7:\n    INR_score = 1\nelif INR <= 2.3:\n    INR_score = 2\nelse:\n    INR_score = 3\n\n# Ascites: none = 0, mild = 1, moderate/severe = 2\nascites_score = 2\n\n# Encephalopathy: none = 0, grade 1\u20132 = 1, grade 3\u20134 = 2\n# Since encephalopathy is NOT REPORTED, we assume no encephalopathy\nencephalopathy_score = 0\n\n# Total Child-Pugh score\nchild_pugh_score = albumin_score + bilirubin_score + INR_score + ascites_score + encephalopathy_score\n\nanswer = child_pugh_score\n```",
+        "code": "# Extracted values from the patient note\nalbumin = 3.0  # g/dl\nbilirubin = 2.97  # mg/dl\nINR = 2.2\nascites = \"moderate\"  # contributes 2 points\nencephalopathy = \"NOT REPORTED\"  # not reported, so we assume no encephalopathy (0 points)\n\n# Child-Pugh scoring system\n# Albumin (g/dl): <3.5 = 1 point, 3.5\u20133.0 = 2 points, >3.0 = 3 points\nif albumin < 3.0:\n    albumin_score = 3\nelif albumin < 3.5:\n    albumin_score = 2\nelse:\n    albumin_score = 1\n\n# Bilirubin (mg/dl): <2.0 = 1 point, 2.0\u20133.0 = 2 points, >3.0 = 3 points\nif bilirubin < 2.0:\n    bilirubin_score = 1\nelif bilirubin <= 3.0:\n    bilirubin_score = 2\nelse:\n    bilirubin_score = 3\n\n# INR: <1.7 = 1 point, 1.7\u20132.3 = 2 points, >2.3 = 3 points\nif INR < 1.7:\n    INR_score = 1\nelif INR <= 2.3:\n    INR_score = 2\nelse:\n    INR_score = 3\n\n# Ascites: none = 0, mild = 1, moderate/severe = 2\nascites_score = 2\n\n# Encephalopathy: none = 0, grade 1\u20132 = 1, grade 3\u20134 = 2\n# Since encephalopathy is NOT REPORTED, we assume no encephalopathy\nencephalopathy_score = 0\n\n# Total Child-Pugh score\nchild_pugh_score = albumin_score + bilirubin_score + INR_score + ascites_score + encephalopathy_score\n\nanswer = child_pugh_score",
+        "exec_value": "8",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 8"
+  },
+  {
+    "id": "row233",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "age: 28 years  \nleg swelling: 4.5 cm (left > right)  \ncalf swelling: NOT REPORTED  \npitting edema: NOT REPORTED  \nentire leg swelling: present  \nlocalized tenderness: NOT REPORTED  \ncalf tenderness: NOT REPORTED  \npitting edema: NOT REPORTED  \nparalysis: NOT REPORTED  \nrecent immobilization: NOT REPORTED  \nrecent surgery: NOT REPORTED  \nmalignancy: NOT REPORTED  \nprevious DVT: NOT REPORTED  \nheart failure: NOT REPORTED  \nfever: 37.3 \u00b0C  \nwhite blood cell count: 12.6 \u00d7 10\u2079/L  \nC-reactive protein: 6.4 mg/dL  \nhistory of thromboembolic disease: no  \nrecent hospitalization: no  \nlong-haul travel: no  \nprolonged automobile ride: no  \nbed rest > 7 hours: no  \nstanding or climbing ladders: yes  \nno prior clot: yes  \nno smoking: yes  \nno alcohol use: occasional weekend beers  \nno family history of clotting disorders: yes  \nno chest pain: yes  \nno dyspnea: yes  \nno palpitations: yes  \nno cough: yes  \nno trauma to calf: yes  \nno insect stings: yes  \nno animal bites: yes  \nno operative procedure: yes  \nno prescription medications: yes  \nno recent long-haul travel: yes  \nno prolonged automobile rides: yes  \nno prolonged bed rest: yes  \nno recent hospitalization: yes  \nno history of thromboembolic disease: yes  \nno neurologic deficit: yes  \nno limb casting: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno prior DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery: yes  \nno malignancy: yes  \nno previous DVT: yes  \nno heart failure: yes  \nno recent immobilization: yes  \nno recent surgery"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Wells' criteria for Deep Vein Thrombosis (DVT) - scoring system\n# Each criterion is scored as follows:\n# - Active cancer: 1 point\n# - Paralysis, paresis, or recent plaster cast: 1 point\n# - Recently bedridden > 3 days or major surgery in past 4 weeks: 1 point\n# - Localized tenderness along the deep venous system: 1 point\n# - Entire leg swollen: 1 point\n# - Calf swelling > 3 cm compared to the other leg: 1 point\n# - Pitting edema (not limited to the calf): 1 point\n# - Collateral superficial veins (non-varicose): 1 point\n# - Previously documented DVT: 1 point\n# - Alternative diagnosis as likely or more likely than DVT: -2 points\n\n# From the note:\n# - Age: 28 years \u2192 not \u2265 60 \u2192 0 points\n# - Leg swelling: 4.5 cm (left > right) \u2192 entire leg swollen and calf swelling > 3 cm \u2192 1 point for entire leg swollen, 1 point for calf swelling > 3 cm\n# - Calf tenderness: NOT REPORTED \u2192 0 points\n# - Localized tenderness: NOT REPORTED \u2192 0 points\n# - Pitting edema: NOT REPORTED \u2192 0 points\n# - Collateral superficial veins: NOT REPORTED \u2192 0 points\n# - Recent immobilization: NO \u2192 0 points\n# - Recent surgery: NO \u2192 0 points\n# - Malignancy: NO \u2192 0 points\n# - Previous DVT: NO \u2192 0 points\n# - Fever: 37.3\u00b0C \u2192 not \u2265 38\u00b0C \u2192 0 points\n# - WBC: 12.6 \u00d7 10\u2079/L \u2192 elevated (normal < 11), but not directly scored in Wells\n# - CRP: 6.4 mg/dL \u2192 elevated (normal < 5), but not directly scored in Wells\n# - However, elevated inflammatory markers are not a direct Wells criterion, but the presence of infection/inflammation may lower the score if an alternative diagnosis is likely.\n\n# But note: Wells criteria do not include WBC or CRP directly. However, the presence of an alternative diagnosis (e.g., cellulitis, post-traumatic inflammation) may lead to a -2 point deduction.\n\n# The note says: \"the combination of widespread erythema, elevated inflammatory markers, and a clear history of blunt trauma suggests an infectious or inflammatory process... that could plausibly account for the patient\u2019s presentation\"\n\n# This implies that an alternative diagnosis (e.g., cellulitis or post-contusional inflammation) is as likely or more likely than DVT \u2192 so we apply the -2 point deduction.\n\n# Now, scoring:\n# - Entire leg swelling: 1 point\n# - Calf swelling > 3 cm: 1 point (4.5 cm > 3 cm)\n# - Alternative diagnosis as likely or more likely than DVT: -2 points\n\n# Total score = 1 + 1 - 2 = 0\n\nanswer = 0\n```",
+        "code": "# Wells' criteria for Deep Vein Thrombosis (DVT) - scoring system\n# Each criterion is scored as follows:\n# - Active cancer: 1 point\n# - Paralysis, paresis, or recent plaster cast: 1 point\n# - Recently bedridden > 3 days or major surgery in past 4 weeks: 1 point\n# - Localized tenderness along the deep venous system: 1 point\n# - Entire leg swollen: 1 point\n# - Calf swelling > 3 cm compared to the other leg: 1 point\n# - Pitting edema (not limited to the calf): 1 point\n# - Collateral superficial veins (non-varicose): 1 point\n# - Previously documented DVT: 1 point\n# - Alternative diagnosis as likely or more likely than DVT: -2 points\n\n# From the note:\n# - Age: 28 years \u2192 not \u2265 60 \u2192 0 points\n# - Leg swelling: 4.5 cm (left > right) \u2192 entire leg swollen and calf swelling > 3 cm \u2192 1 point for entire leg swollen, 1 point for calf swelling > 3 cm\n# - Calf tenderness: NOT REPORTED \u2192 0 points\n# - Localized tenderness: NOT REPORTED \u2192 0 points\n# - Pitting edema: NOT REPORTED \u2192 0 points\n# - Collateral superficial veins: NOT REPORTED \u2192 0 points\n# - Recent immobilization: NO \u2192 0 points\n# - Recent surgery: NO \u2192 0 points\n# - Malignancy: NO \u2192 0 points\n# - Previous DVT: NO \u2192 0 points\n# - Fever: 37.3\u00b0C \u2192 not \u2265 38\u00b0C \u2192 0 points\n# - WBC: 12.6 \u00d7 10\u2079/L \u2192 elevated (normal < 11), but not directly scored in Wells\n# - CRP: 6.4 mg/dL \u2192 elevated (normal < 5), but not directly scored in Wells\n# - However, elevated inflammatory markers are not a direct Wells criterion, but the presence of infection/inflammation may lower the score if an alternative diagnosis is likely.\n\n# But note: Wells criteria do not include WBC or CRP directly. However, the presence of an alternative diagnosis (e.g., cellulitis, post-traumatic inflammation) may lead to a -2 point deduction.\n\n# The note says: \"the combination of widespread erythema, elevated inflammatory markers, and a clear history of blunt trauma suggests an infectious or inflammatory process... that could plausibly account for the patient\u2019s presentation\"\n\n# This implies that an alternative diagnosis (e.g., cellulitis or post-contusional inflammation) is as likely or more likely than DVT \u2192 so we apply the -2 point deduction.\n\n# Now, scoring:\n# - Entire leg swelling: 1 point\n# - Calf swelling > 3 cm: 1 point (4.5 cm > 3 cm)\n# - Alternative diagnosis as likely or more likely than DVT: -2 points\n\n# Total score = 1 + 1 - 2 = 0\n\nanswer = 0",
+        "exec_value": "0",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 0"
+  },
+  {
+    "id": "row261",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "History: 2 points  \nElectrocardiogram: 0 points  \nAge: 33 years  \nRisk factors: 3 points  \nTroponin: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nhistory_points = 2  # Recurrent chest pain and fatigue during physical exercise\necg_points = 0      # Electrocardiogram was normal\nage = 33            # Age in years\nrisk_factors = 3    # Hyperlipidemia, family history of early MI, T2DM, hypertension (3 risk factors)\ntroponin_points = 0 # Troponin not reported, but since it's normal (implied by \"laboratory cardiac enzyme test were all normal\"), assign 0\n\n# HEART Score calculation\n# HEART Score = History + ECG + Age + Risk factors + Troponin\n# Age points: 33 years \u2192 1 point (since age < 45, 1 point)\nage_points = 1\n\n# Total HEART Score\nanswer = history_points + ecg_points + age_points + risk_factors + troponin_points\n```",
+        "code": "# Extracted values from the patient note\nhistory_points = 2  # Recurrent chest pain and fatigue during physical exercise\necg_points = 0      # Electrocardiogram was normal\nage = 33            # Age in years\nrisk_factors = 3    # Hyperlipidemia, family history of early MI, T2DM, hypertension (3 risk factors)\ntroponin_points = 0 # Troponin not reported, but since it's normal (implied by \"laboratory cardiac enzyme test were all normal\"), assign 0\n\n# HEART Score calculation\n# HEART Score = History + ECG + Age + Risk factors + Troponin\n# Age points: 33 years \u2192 1 point (since age < 45, 1 point)\nage_points = 1\n\n# Total HEART Score\nanswer = history_points + ecg_points + age_points + risk_factors + troponin_points",
+        "exec_value": "6",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 6"
+  },
+  {
+    "id": "row314",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Fever: 38.2 \u00b0C  \nSore throat: present  \nTonsillar exudate: NOT REPORTED  \nTender anterior cervical lymphadenopathy: NOT REPORTED  \nHistory of recent exposure to streptococcal pharyngitis: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Centor Score is calculated based on the following criteria:\n# 1. Fever (temperature \u2265 38\u00b0C) \u2192 1 point\n# 2. Sore throat \u2192 1 point\n# 3. Tonsillar exudate \u2192 1 point (not reported \u2192 0)\n# 4. Tender anterior cervical lymphadenopathy \u2192 1 point (not reported \u2192 0)\n# 5. Age < 45 years \u2192 1 point (patient is 64 \u2192 0)\n\n# From the note:\nfever = 38.2  # \u00b0C\nsore_throat = True\ntonsillar_exudate = False  # NOT REPORTED \u2192 assumed absent\ntender_cervical_lymphadenopathy = False  # NOT REPORTED \u2192 assumed absent\nage = 64  # years\n\n# Calculate Centor Score\nscore = 0\nif fever >= 38.0:\n    score += 1\nif sore_throat:\n    score += 1\nif tonsillar_exudate:\n    score += 1\nif tender_cervical_lymphadenopathy:\n    score += 1\nif age < 45:\n    score += 1\n\nanswer = score\n```",
+        "code": "# Centor Score is calculated based on the following criteria:\n# 1. Fever (temperature \u2265 38\u00b0C) \u2192 1 point\n# 2. Sore throat \u2192 1 point\n# 3. Tonsillar exudate \u2192 1 point (not reported \u2192 0)\n# 4. Tender anterior cervical lymphadenopathy \u2192 1 point (not reported \u2192 0)\n# 5. Age < 45 years \u2192 1 point (patient is 64 \u2192 0)\n\n# From the note:\nfever = 38.2  # \u00b0C\nsore_throat = True\ntonsillar_exudate = False  # NOT REPORTED \u2192 assumed absent\ntender_cervical_lymphadenopathy = False  # NOT REPORTED \u2192 assumed absent\nage = 64  # years\n\n# Calculate Centor Score\nscore = 0\nif fever >= 38.0:\n    score += 1\nif sore_throat:\n    score += 1\nif tonsillar_exudate:\n    score += 1\nif tender_cervical_lymphadenopathy:\n    score += 1\nif age < 45:\n    score += 1\n\nanswer = score",
+        "exec_value": "2",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 2"
+  },
+  {
+    "id": "row325",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "weight: 45 kg  \nage: 28 years  \nheight: 158 cm  \nno comorbidities reported (e.g., cardiac, renal, hepatic)  \nno fluid losses reported (e.g., vomiting, diarrhea, bleeding)  \nno ongoing fluid requirements beyond maintenance  \nno specific fluid restrictions or abnormalities in renal function reported  \nno indication of abnormal fluid status (e.g., dehydration, edema)  \nno preoperative fasting duration specified  \nno intraoperative fluid administration used for calculation (as per instruction: use values prior to any treatment)"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Patient's weight in kg\nweight_kg = 45\n\n# Calculate maintenance fluid using the 4-2-1 rule for adults and children\n# For the first 10 kg: 4 mL/kg/hr\n# For the next 10 kg: 2 mL/kg/hr\n# For the remaining weight: 1 mL/kg/hr\n\nif weight_kg <= 10:\n    maintenance_fluid = weight_kg * 4\nelif weight_kg <= 20:\n    maintenance_fluid = (10 * 4) + ((weight_kg - 10) * 2)\nelse:\n    maintenance_fluid = (10 * 4) + (10 * 2) + ((weight_kg - 20) * 1)\n\nanswer = maintenance_fluid\n```",
+        "code": "# Patient's weight in kg\nweight_kg = 45\n\n# Calculate maintenance fluid using the 4-2-1 rule for adults and children\n# For the first 10 kg: 4 mL/kg/hr\n# For the next 10 kg: 2 mL/kg/hr\n# For the remaining weight: 1 mL/kg/hr\n\nif weight_kg <= 10:\n    maintenance_fluid = weight_kg * 4\nelif weight_kg <= 20:\n    maintenance_fluid = (10 * 4) + ((weight_kg - 10) * 2)\nelse:\n    maintenance_fluid = (10 * 4) + (10 * 2) + ((weight_kg - 20) * 1)\n\nanswer = maintenance_fluid",
+        "exec_value": "85",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 85"
+  },
+  {
+    "id": "row331",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "weight: 46 kg  \nage: 22 years  \nstatus: hospitalized, acute illness with severe electrolyte disturbances (hypokalemia, hyponatremia, metabolic alkalosis, rhabdomyolysis)  \nno evidence of heart failure, liver disease, or significant fluid overload  \nno specific fluid restriction mentioned  \nno renal replacement therapy required  \nno fever or other signs of increased insensible losses  \nno ongoing gastrointestinal losses at time of calculation (vomiting and diarrhea had been present but not specified as ongoing at time of fluid calculation)  \nno other comorbidities affecting fluid needs (e.g., sepsis, burns, trauma)  \nno known contraindications to standard maintenance fluid calculation  \nno prior fluid overload or edema  \nno known renal failure requiring fluid restriction (mild renal insufficiency, but not severe)"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Patient's weight in kg\nweight_kg = 46\n\n# Using the standard maintenance fluid formula for adults:\n# For patients weighing 10-20 kg: 100 mL/kg/day\n# For patients weighing 20-50 kg: 50 mL/kg/day\n# For patients >50 kg: 20 mL/kg/day\n\n# Since the patient weighs 46 kg (between 20 and 50 kg), use 50 mL/kg/day\nmaintenance_fluid_per_day = 50 * weight_kg  # mL/day\n\n# Convert to mL/hr\nmaintenance_fluid_per_hr = maintenance_fluid_per_day / 24\n\n# Assign final result to answer\nanswer = maintenance_fluid_per_hr\n```",
+        "code": "# Patient's weight in kg\nweight_kg = 46\n\n# Using the standard maintenance fluid formula for adults:\n# For patients weighing 10-20 kg: 100 mL/kg/day\n# For patients weighing 20-50 kg: 50 mL/kg/day\n# For patients >50 kg: 20 mL/kg/day\n\n# Since the patient weighs 46 kg (between 20 and 50 kg), use 50 mL/kg/day\nmaintenance_fluid_per_day = 50 * weight_kg  # mL/day\n\n# Convert to mL/hr\nmaintenance_fluid_per_hr = maintenance_fluid_per_day / 24\n\n# Assign final result to answer\nanswer = maintenance_fluid_per_hr",
+        "exec_value": "95.83333333333333",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 95.83333333333333"
+  },
+  {
+    "id": "row352",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "bilirubin: 1.5 mg/dL  \ncreatinine: 1.2 mg/dL  \nINR: 2.2"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note at admission\nbilirubin = 1.5  # mg/dL\ncreatinine = 1.2  # mg/dL\nINR = 2.2\n\n# MELD Na formula: 3.78 * ln(creatinine) + 11.2 * ln(bilirubin) + 9.57 * ln(INR) + 6.43\n# All natural logs (ln) are used\n\n# Compute each term\nterm1 = 3.78 * math.log(creatinine)\nterm2 = 11.2 * math.log(bilirubin)\nterm3 = 9.57 * math.log(INR)\nterm4 = 6.43\n\n# Compute MELD Na score\nmeld_na = term1 + term2 + term3 + term4\n\n# Round to nearest whole number (as per MELD Na convention)\nanswer = round(meld_na)\n```",
+        "code": "# Extracted values from the patient note at admission\nbilirubin = 1.5  # mg/dL\ncreatinine = 1.2  # mg/dL\nINR = 2.2\n\n# MELD Na formula: 3.78 * ln(creatinine) + 11.2 * ln(bilirubin) + 9.57 * ln(INR) + 6.43\n# All natural logs (ln) are used\n\n# Compute each term\nterm1 = 3.78 * math.log(creatinine)\nterm2 = 11.2 * math.log(bilirubin)\nterm3 = 9.57 * math.log(INR)\nterm4 = 6.43\n\n# Compute MELD Na score\nmeld_na = term1 + term2 + term3 + term4\n\n# Round to nearest whole number (as per MELD Na convention)\nanswer = round(meld_na)",
+        "exec_value": "19",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 19"
+  },
+  {
+    "id": "row372",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "History of bleeding: YES  \nHypertension: NOT REPORTED  \nAge \u226565 years: YES  \nLiver disease: NOT REPORTED  \nKidney disease: NOT REPORTED  \nStroke: YES  \nBleeding risk: NOT REPORTED  \nLabile INR: NOT REPORTED  \nMedications (e.g., antiplatelets, NSAIDs): NOT REPORTED  \nAlcohol abuse: YES"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nhistory_of_bleeding = 1  # YES\nhypertension = 0  # NOT REPORTED (no evidence of hypertension)\nage_65_or_older = 1  # YES (59 years old? Wait: 59 < 65 \u2192 NO)\n# Correction: patient is 59 years old \u2192 age \u226565 is NO\nage_65_or_older = 0\nliver_disease = 0  # NOT REPORTED (normal liver enzymes, no history of liver disease)\nkidney_disease = 0  # NOT REPORTED (eGFR 95 mL/min/1.73 m\u00b2, normal creatinine)\nstroke = 1  # YES (prior ischemic stroke)\nbleeding_risk = 0  # NOT REPORTED (no current bleeding, but history of bleeding duodenal ulcer)\nlabile_inr = 0  # NOT REPORTED (INR stable, 92% within range, no excursions)\nmedications = 0  # NOT REPORTED (no antiplatelets, NSAIDs, SSRIs; only warfarin, which is anticoagulant, but not counted as \"additional\" risk in this context)\nalcohol_abuse = 1  # YES (12 drinks/week, moderate to heavy, but not binge; however, note: \"alcohol abuse\" is defined as >14 drinks/week for women in some guidelines, but here it's 12, so possibly not abuse. But the note says \"moderate\" and \"enjoys\", but the question says \"alcohol abuse: YES\" \u2014 so we follow the extracted value)\n\n# According to HAS-BLED criteria:\n# - History of bleeding: 1 point\n# - Hypertension: 1 point (if BP >160/100 or on antihypertensives) \u2014 not reported, so 0\n# - Age \u226565: 1 point \u2014 patient is 59 \u2192 0\n# - Liver disease: 1 point \u2014 not reported \u2192 0\n# - Kidney disease: 1 point \u2014 not reported \u2192 0\n# - Stroke: 1 point \u2014 yes \u2192 1\n# - Labile INR: 1 point \u2014 not reported \u2192 0\n# - Medications (e.g., antiplatelets, NSAIDs): 1 point \u2014 not reported \u2192 0\n# - Alcohol abuse: 1 point \u2014 yes \u2192 1\n\n# Total score:\nanswer = history_of_bleeding + hypertension + age_65_or_older + liver_disease + kidney_disease + stroke + bleeding_risk + labile_inr + medications + alcohol_abuse\n\n# But wait: the question says \"use the patient's medical values and health status when they were first admitted to the hospital prior to any treatment\"\n# At that time, she had:\n# - History of bleeding: YES (duodenal ulcer with melena, Hb 7.6) \u2192 1\n# - Hypertension: NOT REPORTED \u2192 0\n# - Age \u226565: 59 \u2192 0\n# - Liver disease: NOT REPORTED \u2192 0\n# - Kidney disease: NOT REPORTED \u2192 0\n# - Stroke: YES (prior stroke) \u2192 1\n# - Bleeding risk: YES (she had a major bleed) \u2192 1\n# - Labile INR: NOT REPORTED \u2192 0\n# - Medications: warfarin not yet started \u2192 no antiplatelets/NSAIDs \u2192 0\n# - Alcohol abuse: YES (12 drinks/week) \u2192 1\n\n# But the HAS-BLED score is based on current status, not prior to treatment. However, the question says: \"when they were first admitted to the hospital prior to any treatment\"\n\n# At admission (for stroke), she had:\n# - History of bleeding: YES (duodenal ulcer) \u2192 1\n# - Hypertension: NOT REPORTED \u2192 0\n# - Age \u226565: 59 \u2192 0\n# - Liver disease: NOT REPORTED \u2192 0\n# - Kidney disease: NOT REPORTED \u2192 0\n# - Stroke: YES \u2192 1\n# - Bleeding risk: YES (she had a bleed) \u2192 1\n# - Labile INR: NOT REPORTED \u2192 0\n# - Medications: none (not yet on warfarin) \u2192 0\n# - Alcohol abuse: YES \u2192 1\n\n# So total: 1 (bleeding) + 1 (stroke) + 1 (alcohol abuse) = 3\n\n# But wait: the \"bleeding risk\" category in HAS-BLED is not the same as \"history of bleeding\". The HAS-BLED score has:\n# - History of bleeding: 1 point\n# - Hypertension: 1 point\n# - Age \u226565: 1 point\n# - Liver disease: 1 point\n# - Kidney disease: 1 point\n# - Stroke: 1 point\n# - Labile INR: 1 point\n# - Medications (antiplatelets, NSAIDs): 1 point\n# - Alcohol abuse: 1 point\n\n# So \"history of bleeding\" is one item, and \"bleeding risk\" is not a separate item \u2014 the item is \"history of bleeding\", and \"alcohol abuse\" is separate.\n\n# Correction: the HAS-BLED score items are:\n# 1. History of bleeding (1 point)\n# 2. Hypertension (1 point)\n# 3. Age \u226565 (1 point)\n# 4. Liver disease (1 point)\n# 5. Kidney disease (1 point)\n# 6. Stroke (1 point)\n# 7. Labile INR (1 point)\n# 8. Medications (antiplatelets, NSAIDs) (1 point)\n# 9. Alcohol abuse (1 point)\n\n# So at the time of admission (prior to treatment), she had:\n# - History of bleeding: YES \u2192 1\n# - Hypertension: NOT REPORTED \u2192 0\n# - Age \u226565: 59 \u2192 0\n# - Liver disease: NOT REPORTED \u2192 0\n# - Kidney disease: NOT REPORTED \u2192 0\n# - Stroke: YES \u2192 1\n# - Labile INR: NOT REPORTED \u2192 0\n# - Medications: none (not on warfarin, no NSAIDs, etc.) \u2192 0\n# - Alcohol abuse: YES \u2192 1\n\n# Total: 1 + 1 + 1 = 3\n\n# Therefore, the HAS-BLED score at the time of admission (prior to treatment) is 3.\n\nanswer = 3\n```",
+        "code": "# Extracted values from the patient note\nhistory_of_bleeding = 1  # YES\nhypertension = 0  # NOT REPORTED (no evidence of hypertension)\nage_65_or_older = 1  # YES (59 years old? Wait: 59 < 65 \u2192 NO)\n# Correction: patient is 59 years old \u2192 age \u226565 is NO\nage_65_or_older = 0\nliver_disease = 0  # NOT REPORTED (normal liver enzymes, no history of liver disease)\nkidney_disease = 0  # NOT REPORTED (eGFR 95 mL/min/1.73 m\u00b2, normal creatinine)\nstroke = 1  # YES (prior ischemic stroke)\nbleeding_risk = 0  # NOT REPORTED (no current bleeding, but history of bleeding duodenal ulcer)\nlabile_inr = 0  # NOT REPORTED (INR stable, 92% within range, no excursions)\nmedications = 0  # NOT REPORTED (no antiplatelets, NSAIDs, SSRIs; only warfarin, which is anticoagulant, but not counted as \"additional\" risk in this context)\nalcohol_abuse = 1  # YES (12 drinks/week, moderate to heavy, but not binge; however, note: \"alcohol abuse\" is defined as >14 drinks/week for women in some guidelines, but here it's 12, so possibly not abuse. But the note says \"moderate\" and \"enjoys\", but the question says \"alcohol abuse: YES\" \u2014 so we follow the extracted value)\n\n# According to HAS-BLED criteria:\n# - History of bleeding: 1 point\n# - Hypertension: 1 point (if BP >160/100 or on antihypertensives) \u2014 not reported, so 0\n# - Age \u226565: 1 point \u2014 patient is 59 \u2192 0\n# - Liver disease: 1 point \u2014 not reported \u2192 0\n# - Kidney disease: 1 point \u2014 not reported \u2192 0\n# - Stroke: 1 point \u2014 yes \u2192 1\n# - Labile INR: 1 point \u2014 not reported \u2192 0\n# - Medications (e.g., antiplatelets, NSAIDs): 1 point \u2014 not reported \u2192 0\n# - Alcohol abuse: 1 point \u2014 yes \u2192 1\n\n# Total score:\nanswer = history_of_bleeding + hypertension + age_65_or_older + liver_disease + kidney_disease + stroke + bleeding_risk + labile_inr + medications + alcohol_abuse\n\n# But wait: the question says \"use the patient's medical values and health status when they were first admitted to the hospital prior to any treatment\"\n# At that time, she had:\n# - History of bleeding: YES (duodenal ulcer with melena, Hb 7.6) \u2192 1\n# - Hypertension: NOT REPORTED \u2192 0\n# - Age \u226565: 59 \u2192 0\n# - Liver disease: NOT REPORTED \u2192 0\n# - Kidney disease: NOT REPORTED \u2192 0\n# - Stroke: YES (prior stroke) \u2192 1\n# - Bleeding risk: YES (she had a major bleed) \u2192 1\n# - Labile INR: NOT REPORTED \u2192 0\n# - Medications: warfarin not yet started \u2192 no antiplatelets/NSAIDs \u2192 0\n# - Alcohol abuse: YES (12 drinks/week) \u2192 1\n\n# But the HAS-BLED score is based on current status, not prior to treatment. However, the question says: \"when they were first admitted to the hospital prior to any treatment\"\n\n# At admission (for stroke), she had:\n# - History of bleeding: YES (duodenal ulcer) \u2192 1\n# - Hypertension: NOT REPORTED \u2192 0\n# - Age \u226565: 59 \u2192 0\n# - Liver disease: NOT REPORTED \u2192 0\n# - Kidney disease: NOT REPORTED \u2192 0\n# - Stroke: YES \u2192 1\n# - Bleeding risk: YES (she had a bleed) \u2192 1\n# - Labile INR: NOT REPORTED \u2192 0\n# - Medications: none (not yet on warfarin) \u2192 0\n# - Alcohol abuse: YES \u2192 1\n\n# So total: 1 (bleeding) + 1 (stroke) + 1 (alcohol abuse) = 3\n\n# But wait: the \"bleeding risk\" category in HAS-BLED is not the same as \"history of bleeding\". The HAS-BLED score has:\n# - History of bleeding: 1 point\n# - Hypertension: 1 point\n# - Age \u226565: 1 point\n# - Liver disease: 1 point\n# - Kidney disease: 1 point\n# - Stroke: 1 point\n# - Labile INR: 1 point\n# - Medications (antiplatelets, NSAIDs): 1 point\n# - Alcohol abuse: 1 point\n\n# So \"history of bleeding\" is one item, and \"bleeding risk\" is not a separate item \u2014 the item is \"history of bleeding\", and \"alcohol abuse\" is separate.\n\n# Correction: the HAS-BLED score items are:\n# 1. History of bleeding (1 point)\n# 2. Hypertension (1 point)\n# 3. Age \u226565 (1 point)\n# 4. Liver disease (1 point)\n# 5. Kidney disease (1 point)\n# 6. Stroke (1 point)\n# 7. Labile INR (1 point)\n# 8. Medications (antiplatelets, NSAIDs) (1 point)\n# 9. Alcohol abuse (1 point)\n\n# So at the time of admission (prior to treatment), she had:\n# - History of bleeding: YES \u2192 1\n# - Hypertension: NOT REPORTED \u2192 0\n# - Age \u226565: 59 \u2192 0\n# - Liver disease: NOT REPORTED \u2192 0\n# - Kidney disease: NOT REPORTED \u2192 0\n# - Stroke: YES \u2192 1\n# - Labile INR: NOT REPORTED \u2192 0\n# - Medications: none (not on warfarin, no NSAIDs, etc.) \u2192 0\n# - Alcohol abuse: YES \u2192 1\n\n# Total: 1 + 1 + 1 = 3\n\n# Therefore, the HAS-BLED score at the time of admission (prior to treatment) is 3.\n\nanswer = 3",
+        "exec_value": "3",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 3"
+  },
+  {
+    "id": "row374",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Age: 55 years  \nHistory of hypertension: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of bleeding: NOT REPORTED  \nLabile INR: NOT REPORTED  \nAge > 65: NO  \nDiabetes: YES  \nAnticoagulant use: YES  \nAlcohol consumption: 2 drinks per day  \nNumber of Alcoholic Drinks Per Week: 14 drinks/week"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nage = 55\nhistory_of_hypertension = False\nhistory_of_stroke = False\nhistory_of_bleeding = False\nlabile_inr = False\nage_over_65 = False\ndiabetes = True\nanticoagulant_use = True\nalcohol_consumption_per_day = 2\nnumber_of_alcoholic_drinks_per_week = 14\n\n# Calculate HAS-BLED score\nscore = 0\nif age > 65:\n    score += 1\nif history_of_hypertension:\n    score += 1\nif history_of_stroke:\n    score += 1\nif history_of_bleeding:\n    score += 1\nif labile_inr:\n    score += 1\nif diabetes:\n    score += 1\nif anticoagulant_use:\n    score += 1\nif alcohol_consumption_per_week > 14:\n    score += 1\n\nanswer = score\n```",
+        "code": "# Extracted values from the patient note\nage = 55\nhistory_of_hypertension = False\nhistory_of_stroke = False\nhistory_of_bleeding = False\nlabile_inr = False\nage_over_65 = False\ndiabetes = True\nanticoagulant_use = True\nalcohol_consumption_per_day = 2\nnumber_of_alcoholic_drinks_per_week = 14\n\n# Calculate HAS-BLED score\nscore = 0\nif age > 65:\n    score += 1\nif history_of_hypertension:\n    score += 1\nif history_of_stroke:\n    score += 1\nif history_of_bleeding:\n    score += 1\nif labile_inr:\n    score += 1\nif diabetes:\n    score += 1\nif anticoagulant_use:\n    score += 1\nif alcohol_consumption_per_week > 14:\n    score += 1\n\nanswer = score",
+        "exec_value": null,
+        "error": "NameError: name 'alcohol_consumption_per_week' is not defined"
+      },
+      {
+        "name": "cot_fallback",
+        "text": "Step 1: Recall the HAS-BLED score formula.\n\nThe HAS-BLED score is used to assess bleeding risk in patients on anticoagulation. It includes the following factors:\n\n- Hypertension (BP >160/100 mmHg): 1 point  \n- Abnormal renal function (eGFR <60 mL/min/1.73m\u00b2): 1 point  \n- Abnormal liver function (e.g., cirrhosis, elevated LFTs): 1 point  \n- Stroke: 1 point  \n- Bleeding history (prior major bleeding): 1 point  \n- Labile INR (INR unstable, e.g., time in therapeutic range <60%): 1 point  \n- Elderly (age >65 years): 1 point  \n- Drugs/alcohol causing interaction (e.g., antiplatelets, NSAIDs, alcohol >2 drinks/day): 1 point  \n\nTotal score = sum of points.\n\nStep 2: Extract relevant information from the patient note.\n\n- Hypertension: Not mentioned. No BP reading provided. So, no point.\n- Abnormal renal function: Not mentioned. No eGFR or creatinine provided. So, no point.\n- Abnormal liver function: Not mentioned. No LFTs or history of liver disease. So, no point.\n- Stroke: \"No history of stroke\" \u2192 0 points.\n- Bleeding history: \"No prior major hemorrhagic events\" \u2192 0 points.\n- Labile INR: \"INR within normal limits\" \u2192 implies stable. So, 0 points.\n- Elderly: Age = 55 years \u2192 <65 \u2192 0 points.\n- Drugs/alcohol causing interaction: \"He drinks 2 alcoholic beverages per day\" \u2192 2 drinks/day = 14 drinks/week \u2192 exceeds 2 drinks/day \u2192 1 point.\n\nStep 3: Convert units as needed.\n\n- Alcohol: 2 drinks/day = 14 drinks/week \u2192 this exceeds the threshold of 2 drinks/day \u2192 counts as 1 point.\n\nStep 4: Compute the total HAS-BLED score.\n\nPoints:\n- Hypertension: 0\n- Renal: 0\n- Liver: 0\n- Stroke: 0\n- Bleeding history: 0\n- Labile INR: 0\n- Age >65: 0\n- Alcohol: 1\n\nTotal = 1\n\nANSWER: 1"
+      }
+    ],
+    "answer_text": "Step 1: Recall the HAS-BLED score formula.\n\nThe HAS-BLED score is used to assess bleeding risk in patients on anticoagulation. It includes the following factors:\n\n- Hypertension (BP >160/100 mmHg): 1 point  \n- Abnormal renal function (eGFR <60 mL/min/1.73m\u00b2): 1 point  \n- Abnormal liver function (e.g., cirrhosis, elevated LFTs): 1 point  \n- Stroke: 1 point  \n- Bleeding history (prior major bleeding): 1 point  \n- Labile INR (INR unstable, e.g., time in therapeutic range <60%): 1 point  \n- Elderly (age >65 years): 1 point  \n- Drugs/alcohol causing interaction (e.g., antiplatelets, NSAIDs, alcohol >2 drinks/day): 1 point  \n\nTotal score = sum of points.\n\nStep 2: Extract relevant information from the patient note.\n\n- Hypertension: Not mentioned. No BP reading provided. So, no point.\n- Abnormal renal function: Not mentioned. No eGFR or creatinine provided. So, no point.\n- Abnormal liver function: Not mentioned. No LFTs or history of liver disease. So, no point.\n- Stroke: \"No history of stroke\" \u2192 0 points.\n- Bleeding history: \"No prior major hemorrhagic events\" \u2192 0 points.\n- Labile INR: \"INR within normal limits\" \u2192 implies stable. So, 0 points.\n- Elderly: Age = 55 years \u2192 <65 \u2192 0 points.\n- Drugs/alcohol causing interaction: \"He drinks 2 alcoholic beverages per day\" \u2192 2 drinks/day = 14 drinks/week \u2192 exceeds 2 drinks/day \u2192 1 point.\n\nStep 3: Convert units as needed.\n\n- Alcohol: 2 drinks/day = 14 drinks/week \u2192 this exceeds the threshold of 2 drinks/day \u2192 counts as 1 point.\n\nStep 4: Compute the total HAS-BLED score.\n\nPoints:\n- Hypertension: 0\n- Renal: 0\n- Liver: 0\n- Stroke: 0\n- Bleeding history: 0\n- Labile INR: 0\n- Age >65: 0\n- Alcohol: 1\n\nTotal = 1\n\nANSWER: 1"
+  },
+  {
+    "id": "row389",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "sodium: 129 mmol/L  \nglucose: 337 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note at admission\nsodium = 129  # mmol/L\nglucose = 337  # mg/dL\n\n# Correction equation for sodium based on hyperglycemia (Hillier, 1999)\n# Corrected sodium (mEq/L) = measured sodium + 0.024 * (glucose - 100)\n# The factor 0.024 is derived from the relationship between glucose and sodium\n# This correction accounts for the osmotic shift of water due to hyperglycemia\n\ncorrected_sodium = sodium + 0.024 * (glucose - 100)\n\n# Assign the final result to the variable 'answer'\nanswer = corrected_sodium\n```",
+        "code": "# Given values from the patient note at admission\nsodium = 129  # mmol/L\nglucose = 337  # mg/dL\n\n# Correction equation for sodium based on hyperglycemia (Hillier, 1999)\n# Corrected sodium (mEq/L) = measured sodium + 0.024 * (glucose - 100)\n# The factor 0.024 is derived from the relationship between glucose and sodium\n# This correction accounts for the osmotic shift of water due to hyperglycemia\n\ncorrected_sodium = sodium + 0.024 * (glucose - 100)\n\n# Assign the final result to the variable 'answer'\nanswer = corrected_sodium",
+        "exec_value": "134.688",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 134.688"
+  },
+  {
+    "id": "row403",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Age: 84 years  \nSystolic blood pressure: 140 mmHg  \nPulse: 75 beats/min  \nHemoglobin: 10 g/dl  \nBUN: 36 mg/dl  \nCreatinine: 1.5 mg/dl  \nShock index: NOT REPORTED  \nHistory of peptic ulcer: NOT REPORTED  \nHistory of liver disease: NOT REPORTED  \nHistory of heart failure: NOT REPORTED  \nHistory of renal failure: NOT REPORTED  \nHistory of malignancy: NOT REPORTED  \nHistory of anticoagulant use: NOT REPORTED  \nHistory of NSAID use: NOT REPORTED  \nHistory of alcohol abuse: NOT REPORTED  \nHistory of chronic kidney disease: NOT REPORTED  \nHistory of anemia: YES  \nHistory of benign prostatic hyperplasia: YES  \nHistory of abdominal aortic aneurysm: YES  \nHistory of appendicectomy: YES  \nHistory of duodenal ulcer: YES  \nHistory of tamsulosin use: YES  \nHistory of finasteride use: YES  \nHistory of levocarnitine use: YES  \nHistory of ferrous sulphate use: YES  \nUrine red cells: >200 per optic field  \nUrine white cells: 2-4  \nUrine pH: 5.5  \nUrine specific gravity: 1,030  \nPresence of mixed growth on culture: 10\u2074\u201310\u2075 cfu  \nCytology: negative for malignant cells  \nCystoscopy: decreased bladder expansion, increased vascularization at site of compression, no active bleeding  \nImaging: left-sided hydronephrosis, dilation of upper third of left ureter, no stones, abdominal aortic aneurysm 8.0 cm, left internal iliac artery aneurysm 11.5 cm, peripheral thrombus, calcification, inflammatory changes, right iliopsoas enlargement, soft tissue swelling  \nNo evidence of intra-vesicular masses or inflammatory changes  \nNo trace of blood from ureteric orifices, bladder neck, or prostate  \nNo abnormalities on KUB  \nNo evidence of active bleeding on cystoscopy  \nNo history of recent surgery (other than appendicectomy and duodenal ulcer)  \nNo history of trauma  \nNo history of coagulopathy  \nNo history of recent GI bleed  \nNo history of recent hematuria  \nNo history of recurrent hematuria  \nNo history of hypertension (but BP is 140/85)  \nNo history of diabetes  \nNo history of stroke  \nNo history of pulmonary embolism  \nNo history of deep vein thrombosis  \nNo history of recent infection  \nNo history of immunosuppression  \nNo history of malignancy  \nNo history of anticoagulant or antiplatelet use  \nNo history of NSAID use  \nNo history of alcohol abuse  \nNo history of chronic kidney disease  \nNo history of liver disease  \nNo history of heart failure  \nNo history of renal failure  \nNo history of peptic ulcer disease (but treated surgically 40 years ago)  \nNo history of recent surgery  \nNo history of recent trauma  \nNo history of recent infection  \nNo history of immunosuppression  \nNo history of malignancy  \nNo history of anticoagulant or antiplatelet use  \nNo history of NSAID use  \nNo history of alcohol abuse  \nNo history of chronic kidney disease  \nNo history of liver disease  \nNo history of heart failure  \nNo history of renal failure  \nNo history of peptic ulcer disease (but treated surgically 40 years ago)  \nNo history of recent surgery  \nNo history of recent trauma  \nNo history of recent infection  \nNo history of immunosuppression  \nNo history of malignancy  \nNo history of anticoagulant or antiplatelet use  \nNo history of NSAID use  \nNo history of alcohol abuse  \nNo history of chronic kidney disease  \nNo history of liver disease  \nNo history of heart failure  \nNo history of renal failure  \nNo history of peptic ulcer disease (but treated surgically 40 years ago)  \nNo history of recent surgery  \nNo history of recent trauma  \nNo history of recent infection  \nNo history of immunosuppression  \nNo history of malignancy  \nNo history of anticoagulant or antiplatelet use  \nNo history of NSAID use  \nNo history of alcohol abuse  \nNo history of chronic kidney disease  \nNo history of liver disease  \nNo history of heart failure  \nNo history of renal failure  \nNo history of peptic ulcer disease (but treated surgically 40 years ago)  \nNo history of recent surgery  \nNo history of recent trauma  \nNo history of recent infection  \nNo history of immunosuppression  \nNo history of malignancy  \nNo history of anticoagulant or antiplatelet use  \nNo history of NSAID use  \nNo history of alcohol abuse  \nNo history of chronic kidney disease  \nNo history of liver disease  \nNo history of heart failure  \nNo history of renal failure  \nNo history of peptic ulcer disease (but treated surgically 40 years ago)  \nNo history of recent surgery  \nNo history of recent trauma  \nNo history of recent infection  \nNo history of immunosuppression  \nNo history of malignancy  \nNo history of anticoagulant or antiplatelet use  \nNo history of NSAID use  \nNo history of alcohol abuse  \nNo history of chronic kidney disease  \nNo history of liver disease  \nNo history of heart failure  \nNo history of renal failure  \nNo history of peptic ulcer disease (but treated surgically 40 years ago)  \nNo history of recent surgery  \nNo history of recent trauma  \nNo history of recent infection  \nNo history of immunosuppression  \nNo history of malignancy  \nNo history of anticoagulant or antiplatelet use  \nNo history of NSAID use  \nNo history of alcohol abuse  \nNo history of chronic kidney disease  \nNo history of liver disease  \nNo history of heart failure  \nNo history of renal failure  \nNo history of peptic ulcer disease (but treated surgically 40 years ago)  \nNo history of recent surgery  \nNo history of recent trauma  \nNo history of recent infection  \nNo history of immunosuppression  \nNo history of malignancy  \nNo history of anticoagulant or antiplatelet use  \nNo history of NSAID use  \nNo history of alcohol abuse  \nNo history of chronic kidney disease  \nNo history of liver disease  \nNo history of heart failure  \nNo history of renal failure  \nNo history of peptic ulcer disease (but treated surgically 40 years ago)  \nNo history of recent surgery  \nNo history of recent trauma  \nNo history of recent infection  \nNo history of immunosuppression  \nNo history of malignancy  \nNo history of anticoagulant or antiplatelet use  \nNo history of NSAID use  \nNo history of alcohol abuse  \nNo history of chronic kidney disease  \nNo history of liver disease  \nNo history of heart failure  \nNo history of renal failure  \nNo history of peptic ulcer disease (but treated surgically 40 years ago)  \nNo history of recent surgery  \nNo history of recent trauma  \nNo history of recent infection  \nNo history of immunosuppression  \nNo history of malignancy  \nNo history of anticoagulant or antiplate"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Glasgow-Blatchford Bleeding Score (GBS) calculation\n# Reference: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2750003/\n\n# Extracted values from the patient note\nage = 84\nsystolic_bp = 140  # mmHg\npulse = 75  # beats/min\nhemoglobin = 10  # g/dl\nbun = 36  # mg/dl\ncreatinine = 1.5  # mg/dl\nurine_red_cells = \">200 per optic field\"  # >200\nhistory_of_anemia = True\nhistory_of_benign_prostatic_hyperplasia = True\nhistory_of_abdominal_aortic_aneurysm = True\nhistory_of_duodenal_ulcer = True  # treated surgically 40 years ago\nhistory_of_malignancy = False\nhistory_of_anticoagulant_use = False\nhistory_of_nsaid_use = False\nhistory_of_alcohol_abuse = False\nhistory_of_chronic_kidney_disease = False\nhistory_of_liver_disease = False\nhistory_of_heart_failure = False\nhistory_of_renal_failure = False\nhistory_of_peptic_ulcer_disease = True  # treated surgically 40 years ago\nhistory_of_recent_surgery = False\nhistory_of_recent_trauma = False\nhistory_of_recent_infection = False\nhistory_of_immunosuppression = False\nhistory_of_coagulopathy = False\nhistory_of_recent_gi_bleed = False\nhistory_of_recurrent_hematuria = False\nhistory_of_hypertension = False  # though BP is 140/85, no history reported\nhistory_of_diabetes = False\nhistory_of_stroke = False\nhistory_of_pulmonary_embolism = False\nhistory_of_deep_vein_thrombosis = False\n\n# Glasgow-Blatchford Score components\nscore = 0\n\n# Age\nif age >= 60:\n    score += 1\nif age >= 75:\n    score += 1\nif age >= 80:\n    score += 1\n\n# Systolic blood pressure\nif systolic_bp < 90:\n    score += 12\nelif systolic_bp < 100:\n    score += 8\nelif systolic_bp < 110:\n    score += 4\nelif systolic_bp < 120:\n    score += 2\nelif systolic_bp < 130:\n    score += 1\n# 140 is in the normal range, so no points\n\n# Pulse\nif pulse >= 110:\n    score += 2\nelif pulse >= 100:\n    score += 1\n\n# Hemoglobin\nif hemoglobin < 13:\n    score += 1\nif hemoglobin < 10:\n    score += 1\nif hemoglobin < 8:\n    score += 1\n\n# BUN\nif bun >= 10:\n    score += 1\nif bun >= 20:\n    score += 1\nif bun >= 30:\n    score += 1\n\n# Creatinine\nif creatinine >= 1.5:\n    score += 1\nif creatinine >= 2.5:\n    score += 1\n\n# Urine red cells\n# >200 per optic field = significant hematuria\n# According to GBS: \"Microscopic hematuria\" (\u226510 RBCs/HPF) = 1 point\n# But note: GBS uses \"microscopic hematuria\" as \u226510 RBCs/HPF\n# Here, >200 is clearly significant\n# So: 1 point for microscopic hematuria\nscore += 1\n\n# History of anemia\nif history_of_anemia:\n    score += 1\n\n# History of peptic ulcer disease (even if treated)\nif history_of_peptic_ulcer_disease:\n    score += 1\n\n# History of malignancy\nif history_of_malignancy:\n    score += 1\n\n# History of anticoagulant use\nif history_of_anticoagulant_use:\n    score += 1\n\n# History of NSAID use\nif history_of_nsaid_use:\n    score += 1\n\n# History of alcohol abuse\nif history_of_alcohol_abuse:\n    score += 1\n\n# History of chronic kidney disease\nif history_of_chronic_kidney_disease:\n    score += 1\n\n# History of liver disease\nif history_of_liver_disease:\n    score += 1\n\n# History of heart failure\nif history_of_heart_failure:\n    score += 1\n\n# History of renal failure\nif history_of_renal_failure:\n    score += 1\n\n# History of duodenal ulcer (treated surgically 40 years ago) \u2014 counts as peptic ulcer disease\n# Already counted above\n\n# History of abdominal aortic aneurysm \u2014 not a direct GBS factor, but may be relevant for bleeding risk\n# However, GBS does not include AAA as a point\n# So no point added\n\n# History of benign prostatic hyperplasia \u2014 not a GBS factor\n# No point added\n\n# Final score\nanswer = score\n```",
+        "code": "# Glasgow-Blatchford Bleeding Score (GBS) calculation\n# Reference: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2750003/\n\n# Extracted values from the patient note\nage = 84\nsystolic_bp = 140  # mmHg\npulse = 75  # beats/min\nhemoglobin = 10  # g/dl\nbun = 36  # mg/dl\ncreatinine = 1.5  # mg/dl\nurine_red_cells = \">200 per optic field\"  # >200\nhistory_of_anemia = True\nhistory_of_benign_prostatic_hyperplasia = True\nhistory_of_abdominal_aortic_aneurysm = True\nhistory_of_duodenal_ulcer = True  # treated surgically 40 years ago\nhistory_of_malignancy = False\nhistory_of_anticoagulant_use = False\nhistory_of_nsaid_use = False\nhistory_of_alcohol_abuse = False\nhistory_of_chronic_kidney_disease = False\nhistory_of_liver_disease = False\nhistory_of_heart_failure = False\nhistory_of_renal_failure = False\nhistory_of_peptic_ulcer_disease = True  # treated surgically 40 years ago\nhistory_of_recent_surgery = False\nhistory_of_recent_trauma = False\nhistory_of_recent_infection = False\nhistory_of_immunosuppression = False\nhistory_of_coagulopathy = False\nhistory_of_recent_gi_bleed = False\nhistory_of_recurrent_hematuria = False\nhistory_of_hypertension = False  # though BP is 140/85, no history reported\nhistory_of_diabetes = False\nhistory_of_stroke = False\nhistory_of_pulmonary_embolism = False\nhistory_of_deep_vein_thrombosis = False\n\n# Glasgow-Blatchford Score components\nscore = 0\n\n# Age\nif age >= 60:\n    score += 1\nif age >= 75:\n    score += 1\nif age >= 80:\n    score += 1\n\n# Systolic blood pressure\nif systolic_bp < 90:\n    score += 12\nelif systolic_bp < 100:\n    score += 8\nelif systolic_bp < 110:\n    score += 4\nelif systolic_bp < 120:\n    score += 2\nelif systolic_bp < 130:\n    score += 1\n# 140 is in the normal range, so no points\n\n# Pulse\nif pulse >= 110:\n    score += 2\nelif pulse >= 100:\n    score += 1\n\n# Hemoglobin\nif hemoglobin < 13:\n    score += 1\nif hemoglobin < 10:\n    score += 1\nif hemoglobin < 8:\n    score += 1\n\n# BUN\nif bun >= 10:\n    score += 1\nif bun >= 20:\n    score += 1\nif bun >= 30:\n    score += 1\n\n# Creatinine\nif creatinine >= 1.5:\n    score += 1\nif creatinine >= 2.5:\n    score += 1\n\n# Urine red cells\n# >200 per optic field = significant hematuria\n# According to GBS: \"Microscopic hematuria\" (\u226510 RBCs/HPF) = 1 point\n# But note: GBS uses \"microscopic hematuria\" as \u226510 RBCs/HPF\n# Here, >200 is clearly significant\n# So: 1 point for microscopic hematuria\nscore += 1\n\n# History of anemia\nif history_of_anemia:\n    score += 1\n\n# History of peptic ulcer disease (even if treated)\nif history_of_peptic_ulcer_disease:\n    score += 1\n\n# History of malignancy\nif history_of_malignancy:\n    score += 1\n\n# History of anticoagulant use\nif history_of_anticoagulant_use:\n    score += 1\n\n# History of NSAID use\nif history_of_nsaid_use:\n    score += 1\n\n# History of alcohol abuse\nif history_of_alcohol_abuse:\n    score += 1\n\n# History of chronic kidney disease\nif history_of_chronic_kidney_disease:\n    score += 1\n\n# History of liver disease\nif history_of_liver_disease:\n    score += 1\n\n# History of heart failure\nif history_of_heart_failure:\n    score += 1\n\n# History of renal failure\nif history_of_renal_failure:\n    score += 1\n\n# History of duodenal ulcer (treated surgically 40 years ago) \u2014 counts as peptic ulcer disease\n# Already counted above\n\n# History of abdominal aortic aneurysm \u2014 not a direct GBS factor, but may be relevant for bleeding risk\n# However, GBS does not include AAA as a point\n# So no point added\n\n# History of benign prostatic hyperplasia \u2014 not a GBS factor\n# No point added\n\n# Final score\nanswer = score",
+        "exec_value": "11",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 11"
+  },
+  {
+    "id": "row414",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Hemoglobin: 14.3 g/dl  \nSystolic blood pressure: 144 mmHg  \nAlbumin: NOT REPORTED  \nBUN: 21 mg/dl  \nCreatinine: 1.01 mg/dl  \nMelena: NOT REPORTED  \nHematemesis: NOT REPORTED  \nSyncope: NOT REPORTED  \nShock: NOT REPORTED  \nComorbidity (liver disease): YES  \nComorbidity (renal disease): NOT REPORTED  \nComorbidity (heart failure): YES  \nComorbidity (cancer): NOT REPORTED  \nAge: 33 years"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Glasgow-Blatchford Bleeding Score (GBS) calculation\n# Reference: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2752000/\n\n# Extracted values from the note\nhemoglobin = 14.3  # g/dL\nsystolic_bp = 144  # mmHg\nbun = 21  # mg/dL\ncreatinine = 1.01  # mg/dL\nage = 33  # years\ncomorbidity_liver_disease = True\ncomorbidity_heart_failure = True\ncomorbidity_renal_disease = False\ncomorbidity_cancer = False\nmelena = False\nhematemesis = False\nsyncope = False\nshock = False\n\n# Glasgow-Blatchford Bleeding Score components\nscore = 0\n\n# Hemoglobin (g/dL)\nif hemoglobin >= 13.0:\n    score += 0\nelif hemoglobin >= 10.0:\n    score += 1\nelif hemoglobin >= 8.0:\n    score += 2\nelse:\n    score += 3\n\n# Systolic blood pressure (mmHg)\nif systolic_bp >= 100:\n    score += 0\nelse:\n    score += 1\n\n# BUN (mg/dL)\nif bun >= 10:\n    score += 1\nelse:\n    score += 0\n\n# Creatinine (mg/dL)\nif creatinine >= 1.5:\n    score += 1\nelse:\n    score += 0\n\n# Age (years)\nif age >= 60:\n    score += 1\nelse:\n    score += 0\n\n# Comorbidities\nif comorbidity_liver_disease:\n    score += 1\nif comorbidity_heart_failure:\n    score += 1\nif comorbidity_renal_disease:\n    score += 1\nif comorbidity_cancer:\n    score += 1\n\n# Symptoms\nif melena:\n    score += 1\nif hematemesis:\n    score += 1\nif syncope:\n    score += 1\nif shock:\n    score += 1\n\n# Final score\nanswer = score\n```",
+        "code": "# Glasgow-Blatchford Bleeding Score (GBS) calculation\n# Reference: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2752000/\n\n# Extracted values from the note\nhemoglobin = 14.3  # g/dL\nsystolic_bp = 144  # mmHg\nbun = 21  # mg/dL\ncreatinine = 1.01  # mg/dL\nage = 33  # years\ncomorbidity_liver_disease = True\ncomorbidity_heart_failure = True\ncomorbidity_renal_disease = False\ncomorbidity_cancer = False\nmelena = False\nhematemesis = False\nsyncope = False\nshock = False\n\n# Glasgow-Blatchford Bleeding Score components\nscore = 0\n\n# Hemoglobin (g/dL)\nif hemoglobin >= 13.0:\n    score += 0\nelif hemoglobin >= 10.0:\n    score += 1\nelif hemoglobin >= 8.0:\n    score += 2\nelse:\n    score += 3\n\n# Systolic blood pressure (mmHg)\nif systolic_bp >= 100:\n    score += 0\nelse:\n    score += 1\n\n# BUN (mg/dL)\nif bun >= 10:\n    score += 1\nelse:\n    score += 0\n\n# Creatinine (mg/dL)\nif creatinine >= 1.5:\n    score += 1\nelse:\n    score += 0\n\n# Age (years)\nif age >= 60:\n    score += 1\nelse:\n    score += 0\n\n# Comorbidities\nif comorbidity_liver_disease:\n    score += 1\nif comorbidity_heart_failure:\n    score += 1\nif comorbidity_renal_disease:\n    score += 1\nif comorbidity_cancer:\n    score += 1\n\n# Symptoms\nif melena:\n    score += 1\nif hematemesis:\n    score += 1\nif syncope:\n    score += 1\nif shock:\n    score += 1\n\n# Final score\nanswer = score",
+        "exec_value": "3",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 3"
+  },
+  {
+    "id": "row425",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "glucose: 2.5 mmol/L  \nsodium: 144 mmol/L  \nurea: 21 mmol/L  \nalcohol: 0 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient's initial admission (before treatment)\nglucose = 2.5  # mmol/L\nsodium = 144   # mmol/L\nurea = 21      # mmol/L\nalcohol = 0    # mg/dL (but we ignore it as per instruction)\n\n# Calculate serum osmolality using the standard formula:\n# Serum osmolality (mOsm/kg) = 2 \u00d7 sodium + glucose/18 + urea/2.8\n# Note: glucose is in mmol/L, so we divide by 18 to convert from mg/dL to mmol/L\n# But here glucose is already in mmol/L, so we use it directly\n# Urea is in mmol/L, so divide by 2.8 to convert to osmoles\n\n# Since glucose is already in mmol/L, we don't need to convert\n# Formula: 2 \u00d7 [Na] + [glucose] + [urea]/2.8\n# But note: some formulas use glucose in mg/dL, but here it's mmol/L\n# So we use: 2 \u00d7 sodium + glucose + urea / 2.8\n\nosmolality = 2 * sodium + glucose + urea / 2.8\n\n# Assign final result to answer\nanswer = osmolality\n```",
+        "code": "# Given values from the patient's initial admission (before treatment)\nglucose = 2.5  # mmol/L\nsodium = 144   # mmol/L\nurea = 21      # mmol/L\nalcohol = 0    # mg/dL (but we ignore it as per instruction)\n\n# Calculate serum osmolality using the standard formula:\n# Serum osmolality (mOsm/kg) = 2 \u00d7 sodium + glucose/18 + urea/2.8\n# Note: glucose is in mmol/L, so we divide by 18 to convert from mg/dL to mmol/L\n# But here glucose is already in mmol/L, so we use it directly\n# Urea is in mmol/L, so divide by 2.8 to convert to osmoles\n\n# Since glucose is already in mmol/L, we don't need to convert\n# Formula: 2 \u00d7 [Na] + [glucose] + [urea]/2.8\n# But note: some formulas use glucose in mg/dL, but here it's mmol/L\n# So we use: 2 \u00d7 sodium + glucose + urea / 2.8\n\nosmolality = 2 * sodium + glucose + urea / 2.8\n\n# Assign final result to answer\nanswer = osmolality",
+        "exec_value": "298.0",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 298.0"
+  },
+  {
+    "id": "row436",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "sodium: 135 mmol/L  \nglucose: 41 mg/dL  \nurea nitrogen: 15.0 mg/dL  \nalcohol: 0 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values at admission (before treatment)\nsodium = 135  # mmol/L\nglucose = 41  # mg/dL\nurea_nitrogen = 15.0  # mg/dL\nalcohol = 0  # mg/dL (given as 0)\n\n# Convert glucose from mg/dL to mmol/L\n# 1 mg/dL glucose = 0.0555 mmol/L\nglucose_mmol_L = glucose * 0.0555\n\n# Convert urea nitrogen from mg/dL to mmol/L\n# 1 mg/dL urea nitrogen = 0.357 mmol/L\nurea_nitrogen_mmol_L = urea_nitrogen * 0.357\n\n# Calculate serum osmolality using the formula:\n# Osmolality (mOsm/kg) = 2 \u00d7 [Na+] + [glucose (mmol/L)] + [urea nitrogen (mmol/L)]\n# (alcohol is 0, so not included)\n\nosmolality = 2 * sodium + glucose_mmol_L + urea_nitrogen_mmol_L\n\nanswer = osmolality\n```",
+        "code": "# Given values at admission (before treatment)\nsodium = 135  # mmol/L\nglucose = 41  # mg/dL\nurea_nitrogen = 15.0  # mg/dL\nalcohol = 0  # mg/dL (given as 0)\n\n# Convert glucose from mg/dL to mmol/L\n# 1 mg/dL glucose = 0.0555 mmol/L\nglucose_mmol_L = glucose * 0.0555\n\n# Convert urea nitrogen from mg/dL to mmol/L\n# 1 mg/dL urea nitrogen = 0.357 mmol/L\nurea_nitrogen_mmol_L = urea_nitrogen * 0.357\n\n# Calculate serum osmolality using the formula:\n# Osmolality (mOsm/kg) = 2 \u00d7 [Na+] + [glucose (mmol/L)] + [urea nitrogen (mmol/L)]\n# (alcohol is 0, so not included)\n\nosmolality = 2 * sodium + glucose_mmol_L + urea_nitrogen_mmol_L\n\nanswer = osmolality",
+        "exec_value": "277.63050000000004",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 277.63050000000004"
+  },
+  {
+    "id": "row462",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Age: 64 years  \nHistory of myocardial infarction: NOT REPORTED  \nHistory of heart failure: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of peripheral vascular disease: NOT REPORTED  \nHistory of diabetes mellitus: NOT REPORTED  \nHistory of chronic kidney disease: NOT REPORTED  \nHistory of liver disease: NOT REPORTED  \nHistory of cancer: ECD (Erdheim-Chester Disease)  \nHistory of rheumatologic disease: NOT REPORTED  \nHistory of HIV: NOT REPORTED  \nHistory of metastatic solid tumor: NOT REPORTED  \nHistory of moderate or severe chronic obstructive pulmonary disease: NOT REPORTED  \nHistory of any other condition: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Patient's age at admission\nage = 64\n\n# Charlson Comorbidity Index (CCI) calculation\n# Each condition contributes a specific point value to the CCI\n# Based on the patient's history from the note:\n\n# Age: 64 years\n# Age 60-69: 1 point\nage_points = 1\n\n# Cancer: Erdheim-Chester Disease (ECD) is a rare systemic histiocytosis, classified as a non-Hodgkin lymphoma or histiocytic neoplasm\n# According to the Charlson Comorbidity Index, any cancer (except non-melanoma skin cancer) is assigned 1 point\n# ECD is considered a malignant condition, so it counts as cancer\ncancer_points = 1\n\n# No other comorbidities reported: myocardial infarction, heart failure, stroke, PVD, diabetes, CKD, liver disease, rheumatologic disease, HIV, COPD, metastatic cancer, etc. are all NOT REPORTED\n# So they contribute 0 points\n\n# Total CCI = age points + cancer points\nanswer = age_points + cancer_points\n```",
+        "code": "# Patient's age at admission\nage = 64\n\n# Charlson Comorbidity Index (CCI) calculation\n# Each condition contributes a specific point value to the CCI\n# Based on the patient's history from the note:\n\n# Age: 64 years\n# Age 60-69: 1 point\nage_points = 1\n\n# Cancer: Erdheim-Chester Disease (ECD) is a rare systemic histiocytosis, classified as a non-Hodgkin lymphoma or histiocytic neoplasm\n# According to the Charlson Comorbidity Index, any cancer (except non-melanoma skin cancer) is assigned 1 point\n# ECD is considered a malignant condition, so it counts as cancer\ncancer_points = 1\n\n# No other comorbidities reported: myocardial infarction, heart failure, stroke, PVD, diabetes, CKD, liver disease, rheumatologic disease, HIV, COPD, metastatic cancer, etc. are all NOT REPORTED\n# So they contribute 0 points\n\n# Total CCI = age points + cancer points\nanswer = age_points + cancer_points",
+        "exec_value": "2",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 2"
+  },
+  {
+    "id": "row477",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "age: 60 years  \nhypertension: present  \nchronic obstructive pulmonary disease: present  \nno other comorbidities reported"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Charlson Comorbidity Index (CCI) calculation\n# Based on the patient's comorbidities at the time of admission\n\n# Age: 60 years\n# Age 60-69: 1 point\nage_points = 1\n\n# Hypertension: present\n# Hypertension: 1 point\nhypertension_points = 1\n\n# Chronic obstructive pulmonary disease (COPD): present\n# COPD: 1 point\ncopd_points = 1\n\n# No other comorbidities reported\n\n# Total CCI = sum of points\nanswer = age_points + hypertension_points + copd_points\n```",
+        "code": "# Charlson Comorbidity Index (CCI) calculation\n# Based on the patient's comorbidities at the time of admission\n\n# Age: 60 years\n# Age 60-69: 1 point\nage_points = 1\n\n# Hypertension: present\n# Hypertension: 1 point\nhypertension_points = 1\n\n# Chronic obstructive pulmonary disease (COPD): present\n# COPD: 1 point\ncopd_points = 1\n\n# No other comorbidities reported\n\n# Total CCI = sum of points\nanswer = age_points + hypertension_points + copd_points",
+        "exec_value": "3",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 3"
+  },
+  {
+    "id": "row483",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Temperature: 101 \u00b0F  \nPain: NOT REPORTED  \nAbsence of cough: NOT REPORTED  \nExudate: present  \nNeck adenopathy: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\ntemperature_f = 101  # in Fahrenheit\nexudate = True  # present\npain = None  # not reported\ncough = None  # not reported\nneck_adenopathy = None  # not reported\n\n# Convert temperature to Celsius for fever criteria (if needed)\n# But FeverPAIN score uses temperature in Fahrenheit directly\n# FeverPAIN score components:\n# Fever: \u2265101\u00b0F = 1 point\n# Pain: severe = 1 point, moderate = 0.5, mild = 0, none = 0\n# Absence of cough: present = 1 point\n# Exudate: present = 1 point\n# Neck adenopathy: present = 1 point\n\n# Assign points based on available data\nfever_score = 1 if temperature_f >= 101 else 0\npain_score = 0  # not reported, so assume no pain score (0)\ncough_score = 1  # absence of cough is present (no cough reported), so 1 point\nexudate_score = 1 if exudate else 0\nneck_adenopathy_score = 0  # not reported, so assume absent (0)\n\n# Total FeverPAIN score\nanswer = fever_score + pain_score + cough_score + exudate_score + neck_adenopathy_score\n```",
+        "code": "# Extracted values from the patient note\ntemperature_f = 101  # in Fahrenheit\nexudate = True  # present\npain = None  # not reported\ncough = None  # not reported\nneck_adenopathy = None  # not reported\n\n# Convert temperature to Celsius for fever criteria (if needed)\n# But FeverPAIN score uses temperature in Fahrenheit directly\n# FeverPAIN score components:\n# Fever: \u2265101\u00b0F = 1 point\n# Pain: severe = 1 point, moderate = 0.5, mild = 0, none = 0\n# Absence of cough: present = 1 point\n# Exudate: present = 1 point\n# Neck adenopathy: present = 1 point\n\n# Assign points based on available data\nfever_score = 1 if temperature_f >= 101 else 0\npain_score = 0  # not reported, so assume no pain score (0)\ncough_score = 1  # absence of cough is present (no cough reported), so 1 point\nexudate_score = 1 if exudate else 0\nneck_adenopathy_score = 0  # not reported, so assume absent (0)\n\n# Total FeverPAIN score\nanswer = fever_score + pain_score + cough_score + exudate_score + neck_adenopathy_score",
+        "exec_value": "3",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 3"
+  },
+  {
+    "id": "row504",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "serum sodium: 139 mmol/L  \ndesired serum sodium: 140 mmol/L  \nbody weight: 47 kg  \ntotal body water fraction: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nserum_sodium = 139  # mmol/L\ndesired_sodium = 140  # mmol/L\nbody_weight_kg = 47  # kg\n\n# Total body water fraction (TBW) for a female patient is typically estimated as 0.5\n# This is a standard approximation for adult females\ntotal_body_water_fraction = 0.5\n\n# Calculate total body water (TBW) in liters\ntotal_body_water_L = body_weight_kg * total_body_water_fraction\n\n# Calculate free water deficit (FWD) in liters using the formula:\n# FWD (L) = TBW * ((desired_sodium - serum_sodium) / desired_sodium)\n# Note: This formula is used to estimate the amount of free water needed to correct hyponatremia\n# But here, the patient's sodium is 139, desired is 140, so we are correcting a mild hyponatremia\n\nfree_water_deficit_L = total_body_water_L * ((desired_sodium - serum_sodium) / desired_sodium)\n\n# Convert to kilograms (1 liter of water = 1 kg)\nanswer = free_water_deficit_L\n```",
+        "code": "# Given values from the patient note\nserum_sodium = 139  # mmol/L\ndesired_sodium = 140  # mmol/L\nbody_weight_kg = 47  # kg\n\n# Total body water fraction (TBW) for a female patient is typically estimated as 0.5\n# This is a standard approximation for adult females\ntotal_body_water_fraction = 0.5\n\n# Calculate total body water (TBW) in liters\ntotal_body_water_L = body_weight_kg * total_body_water_fraction\n\n# Calculate free water deficit (FWD) in liters using the formula:\n# FWD (L) = TBW * ((desired_sodium - serum_sodium) / desired_sodium)\n# Note: This formula is used to estimate the amount of free water needed to correct hyponatremia\n# But here, the patient's sodium is 139, desired is 140, so we are correcting a mild hyponatremia\n\nfree_water_deficit_L = total_body_water_L * ((desired_sodium - serum_sodium) / desired_sodium)\n\n# Convert to kilograms (1 liter of water = 1 kg)\nanswer = free_water_deficit_L",
+        "exec_value": "0.16785714285714284",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 0.16785714285714284"
+  },
+  {
+    "id": "row528",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "sodium: 136 mEq/L\nchloride: 113 mEq/L\nbicarbonate: 7.8 mEq/L"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient's admission lab results\nsodium = 136  # mEq/L\nchloride = 113  # mEq/L\nbicarbonate = 7.8  # mEq/L\n\n# Calculate anion gap using the formula: Anion Gap = Sodium - (Chloride + Bicarbonate)\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Assign the result to the variable 'answer'\nanswer = anion_gap\n```",
+        "code": "# Given values from the patient's admission lab results\nsodium = 136  # mEq/L\nchloride = 113  # mEq/L\nbicarbonate = 7.8  # mEq/L\n\n# Calculate anion gap using the formula: Anion Gap = Sodium - (Chloride + Bicarbonate)\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Assign the result to the variable 'answer'\nanswer = anion_gap",
+        "exec_value": "15.200000000000003",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 15.200000000000003"
+  },
+  {
+    "id": "row544",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Confusion: NOT REPORTED  \nUrea: 28 mg/dL  \nRespiratory rate: 40/min  \nBlood pressure: 78/45 mmHg  \nAge: 78 years"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note\nconfusion = False  # NOT REPORTED, so not present\nurea = 28  # mg/dL\nrespiratory_rate = 40  # per minute\nblood_pressure = 78  # systolic mmHg (78/45, so systolic is 78)\nage = 78  # years\n\n# CURB-65 scoring\n# C - Confusion: 0 (not reported, so not present)\n# U - Urea > 19 mg/dL: 1 point (28 > 19)\n# R - Respiratory rate \u2265 30/min: 1 point (40 \u2265 30)\n# B - Blood pressure: systolic < 90 mmHg or diastolic \u2264 60 mmHg: 1 point (systolic 78 < 90)\n# 65 - Age \u2265 65 years: 1 point (78 \u2265 65)\n\nscore = 0\nif confusion:\n    score += 1\nif urea > 19:\n    score += 1\nif respiratory_rate >= 30:\n    score += 1\nif blood_pressure < 90:\n    score += 1\nif age >= 65:\n    score += 1\n\nanswer = score\n```",
+        "code": "# Extracted values from the patient note\nconfusion = False  # NOT REPORTED, so not present\nurea = 28  # mg/dL\nrespiratory_rate = 40  # per minute\nblood_pressure = 78  # systolic mmHg (78/45, so systolic is 78)\nage = 78  # years\n\n# CURB-65 scoring\n# C - Confusion: 0 (not reported, so not present)\n# U - Urea > 19 mg/dL: 1 point (28 > 19)\n# R - Respiratory rate \u2265 30/min: 1 point (40 \u2265 30)\n# B - Blood pressure: systolic < 90 mmHg or diastolic \u2264 60 mmHg: 1 point (systolic 78 < 90)\n# 65 - Age \u2265 65 years: 1 point (78 \u2265 65)\n\nscore = 0\nif confusion:\n    score += 1\nif urea > 19:\n    score += 1\nif respiratory_rate >= 30:\n    score += 1\nif blood_pressure < 90:\n    score += 1\nif age >= 65:\n    score += 1\n\nanswer = score",
+        "exec_value": "4",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 4"
+  },
+  {
+    "id": "row585",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "serum total cholesterol: 349.4 mg/dL\nhigh-density lipoprotein cholesterol: 111 mg/dL\ntriglyceride concentration: 120.1 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient's admission lab results\ntotal_cholesterol = 349.4  # mg/dL\nhdl_cholesterol = 111  # mg/dL\ntriglycerides = 120.1  # mg/dL\n\n# Calculate LDL cholesterol using the Friedewald formula:\n# LDL = Total cholesterol - HDL - (Triglycerides / 5)\n# Note: This formula is valid when triglycerides are < 400 mg/dL, which is true here.\n\nldl_cholesterol = total_cholesterol - hdl_cholesterol - (triglycerides / 5)\n\n# Assign the result to the variable 'answer'\nanswer = ldl_cholesterol\n```",
+        "code": "# Given values from the patient's admission lab results\ntotal_cholesterol = 349.4  # mg/dL\nhdl_cholesterol = 111  # mg/dL\ntriglycerides = 120.1  # mg/dL\n\n# Calculate LDL cholesterol using the Friedewald formula:\n# LDL = Total cholesterol - HDL - (Triglycerides / 5)\n# Note: This formula is valid when triglycerides are < 400 mg/dL, which is true here.\n\nldl_cholesterol = total_cholesterol - hdl_cholesterol - (triglycerides / 5)\n\n# Assign the result to the variable 'answer'\nanswer = ldl_cholesterol",
+        "exec_value": "214.37999999999997",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 214.37999999999997"
+  },
+  {
+    "id": "row589",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "total cholesterol: 252 mg/dL  \ntriglycerides: 84 mg/dL  \nhigh-density lipoprotein: 66 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient's initial lab results\ntotal_cholesterol = 252  # mg/dL\ntriglycerides = 84  # mg/dL\nhdl = 66  # mg/dL\n\n# Calculate LDL cholesterol using the Friedewald formula:\n# LDL = Total cholesterol - HDL - (Triglycerides / 5)\n# Note: This formula is valid when triglycerides are < 400 mg/dL, which is true here.\n\nldl = total_cholesterol - hdl - (triglycerides / 5)\n\n# Assign the result to the variable 'answer'\nanswer = ldl\n```",
+        "code": "# Given values from the patient's initial lab results\ntotal_cholesterol = 252  # mg/dL\ntriglycerides = 84  # mg/dL\nhdl = 66  # mg/dL\n\n# Calculate LDL cholesterol using the Friedewald formula:\n# LDL = Total cholesterol - HDL - (Triglycerides / 5)\n# Note: This formula is valid when triglycerides are < 400 mg/dL, which is true here.\n\nldl = total_cholesterol - hdl - (triglycerides / 5)\n\n# Assign the result to the variable 'answer'\nanswer = ldl",
+        "exec_value": "169.2",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 169.2"
+  },
+  {
+    "id": "row599",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "total cholesterol: 162 mg/dL  \ntriglyceride: 33 mg/dL  \nHDL-cholesterol: 64 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note (prior to treatment)\ntotal_cholesterol = 162  # mg/dL\ntriglyceride = 33  # mg/dL\nHDL_cholesterol = 64  # mg/dL\n\n# Use the Friedewald equation to estimate LDL cholesterol:\n# LDL = Total cholesterol - HDL - (Triglycerides / 5)\n# Note: This formula is valid when triglycerides are < 400 mg/dL, which is true here.\n\nLDL = total_cholesterol - HDL_cholesterol - (triglyceride / 5)\n\n# Assign the result to the variable 'answer'\nanswer = LDL\n```",
+        "code": "# Given values from the patient note (prior to treatment)\ntotal_cholesterol = 162  # mg/dL\ntriglyceride = 33  # mg/dL\nHDL_cholesterol = 64  # mg/dL\n\n# Use the Friedewald equation to estimate LDL cholesterol:\n# LDL = Total cholesterol - HDL - (Triglycerides / 5)\n# Note: This formula is valid when triglycerides are < 400 mg/dL, which is true here.\n\nLDL = total_cholesterol - HDL_cholesterol - (triglyceride / 5)\n\n# Assign the result to the variable 'answer'\nanswer = LDL",
+        "exec_value": "91.4",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 91.4"
+  },
+  {
+    "id": "row613",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "age: 56 years  \nsex: female  \ntotal cholesterol: 148 mg/dL  \nHDL cholesterol: 38 mg/dL  \nsystolic blood pressure: 230 mmHg  \nsmoking status: NOT REPORTED  \ndiabetes status: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Patient data at first admission\nage = 56\nsex = 'female'  # female\ntotal_cholesterol = 148  # mg/dL\nHDL_cholesterol = 38  # mg/dL\nsystolic_bp = 230  # mmHg\nsmoking_status = 'no'  # not reported, assume non-smoker\ndiabetes_status = 'no'  # not reported, assume no diabetes\n\n# Framingham Risk Score for Hard Coronary Heart Disease (10-year risk)\n# Using the standard Framingham formula for women\n\n# Convert systolic BP to category (in mmHg)\n# If systolic BP >= 160, use 160 as the value for the score\nif systolic_bp >= 160:\n    systolic_bp_cat = 160\nelse:\n    systolic_bp_cat = systolic_bp\n\n# Framingham Risk Score for women (hard CHD: MI or death)\n# Points for age (56 years)\nage_points = 5  # 50-54: 4, 55-59: 5\n\n# Points for total cholesterol (148 mg/dL)\nif total_cholesterol < 160:\n    cholesterol_points = 0\nelif total_cholesterol < 200:\n    cholesterol_points = 1\nelif total_cholesterol < 240:\n    cholesterol_points = 2\nelse:\n    cholesterol_points = 3\n\n# Points for HDL cholesterol (38 mg/dL)\nif HDL_cholesterol < 35:\n    HDL_points = 2\nelif HDL_cholesterol < 40:\n    HDL_points = 1\nelse:\n    HDL_points = 0\n\n# Points for systolic BP (230 mmHg)\nif systolic_bp_cat >= 160:\n    BP_points = 3\nelif systolic_bp_cat >= 140:\n    BP_points = 2\nelif systolic_bp_cat >= 120:\n    BP_points = 1\nelse:\n    BP_points = 0\n\n# Points for smoking (no)\nsmoking_points = 0\n\n# Points for diabetes (no)\ndiabetes_points = 0\n\n# Total points\ntotal_points = age_points + cholesterol_points + HDL_points + BP_points + smoking_points + diabetes_points\n\n# Framingham Risk Score table for women (10-year risk of hard CHD)\n# Total points to 10-year risk (in %)\n# From standard Framingham tables for women:\n# 0-4: 1%\n# 5-6: 2%\n# 7-8: 3%\n# 9-10: 5%\n# 11-12: 7%\n# 13-14: 10%\n# 15-16: 13%\n# 17-18: 17%\n# 19-20: 22%\n# 21-22: 27%\n# 23-24: 33%\n# 25-26: 39%\n# 27-28: 46%\n# 29+: 53%\n\n# Calculate total points\ntotal_points = age_points + cholesterol_points + HDL_points + BP_points + smoking_points + diabetes_points\n\n# Map total points to 10-year risk percentage\nif total_points <= 4:\n    risk_percentage = 1\nelif total_points <= 6:\n    risk_percentage = 2\nelif total_points <= 8:\n    risk_percentage = 3\nelif total_points <= 10:\n    risk_percentage = 5\nelif total_points <= 12:\n    risk_percentage = 7\nelif total_points <= 14:\n    risk_percentage = 10\nelif total_points <= 16:\n    risk_percentage = 13\nelif total_points <= 18:\n    risk_percentage = 17\nelif total_points <= 20:\n    risk_percentage = 22\nelif total_points <= 22:\n    risk_percentage = 27\nelif total_points <= 24:\n    risk_percentage = 33\nelif total_points <= 26:\n    risk_percentage = 39\nelif total_points <= 28:\n    risk_percentage = 46\nelse:\n    risk_percentage = 53\n\nanswer = risk_percentage\n```",
+        "code": "# Patient data at first admission\nage = 56\nsex = 'female'  # female\ntotal_cholesterol = 148  # mg/dL\nHDL_cholesterol = 38  # mg/dL\nsystolic_bp = 230  # mmHg\nsmoking_status = 'no'  # not reported, assume non-smoker\ndiabetes_status = 'no'  # not reported, assume no diabetes\n\n# Framingham Risk Score for Hard Coronary Heart Disease (10-year risk)\n# Using the standard Framingham formula for women\n\n# Convert systolic BP to category (in mmHg)\n# If systolic BP >= 160, use 160 as the value for the score\nif systolic_bp >= 160:\n    systolic_bp_cat = 160\nelse:\n    systolic_bp_cat = systolic_bp\n\n# Framingham Risk Score for women (hard CHD: MI or death)\n# Points for age (56 years)\nage_points = 5  # 50-54: 4, 55-59: 5\n\n# Points for total cholesterol (148 mg/dL)\nif total_cholesterol < 160:\n    cholesterol_points = 0\nelif total_cholesterol < 200:\n    cholesterol_points = 1\nelif total_cholesterol < 240:\n    cholesterol_points = 2\nelse:\n    cholesterol_points = 3\n\n# Points for HDL cholesterol (38 mg/dL)\nif HDL_cholesterol < 35:\n    HDL_points = 2\nelif HDL_cholesterol < 40:\n    HDL_points = 1\nelse:\n    HDL_points = 0\n\n# Points for systolic BP (230 mmHg)\nif systolic_bp_cat >= 160:\n    BP_points = 3\nelif systolic_bp_cat >= 140:\n    BP_points = 2\nelif systolic_bp_cat >= 120:\n    BP_points = 1\nelse:\n    BP_points = 0\n\n# Points for smoking (no)\nsmoking_points = 0\n\n# Points for diabetes (no)\ndiabetes_points = 0\n\n# Total points\ntotal_points = age_points + cholesterol_points + HDL_points + BP_points + smoking_points + diabetes_points\n\n# Framingham Risk Score table for women (10-year risk of hard CHD)\n# Total points to 10-year risk (in %)\n# From standard Framingham tables for women:\n# 0-4: 1%\n# 5-6: 2%\n# 7-8: 3%\n# 9-10: 5%\n# 11-12: 7%\n# 13-14: 10%\n# 15-16: 13%\n# 17-18: 17%\n# 19-20: 22%\n# 21-22: 27%\n# 23-24: 33%\n# 25-26: 39%\n# 27-28: 46%\n# 29+: 53%\n\n# Calculate total points\ntotal_points = age_points + cholesterol_points + HDL_points + BP_points + smoking_points + diabetes_points\n\n# Map total points to 10-year risk percentage\nif total_points <= 4:\n    risk_percentage = 1\nelif total_points <= 6:\n    risk_percentage = 2\nelif total_points <= 8:\n    risk_percentage = 3\nelif total_points <= 10:\n    risk_percentage = 5\nelif total_points <= 12:\n    risk_percentage = 7\nelif total_points <= 14:\n    risk_percentage = 10\nelif total_points <= 16:\n    risk_percentage = 13\nelif total_points <= 18:\n    risk_percentage = 17\nelif total_points <= 20:\n    risk_percentage = 22\nelif total_points <= 22:\n    risk_percentage = 27\nelif total_points <= 24:\n    risk_percentage = 33\nelif total_points <= 26:\n    risk_percentage = 39\nelif total_points <= 28:\n    risk_percentage = 46\nelse:\n    risk_percentage = 53\n\nanswer = risk_percentage",
+        "exec_value": "5",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 5"
+  },
+  {
+    "id": "row627",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "age: 52 years  \nheart rate: 97 beats per minute  \noxygen saturation: 99% on room air  \nhistory of surgery: NOT REPORTED  \nhistory of trauma: NOT REPORTED  \nhemoptysis: NOT REPORTED  \nprior venous thromboembolism: NOT REPORTED  \nunilateral leg swelling: NOT REPORTED  \ncalf pain: NOT REPORTED  \nactive cancer: NOT REPORTED  \nrecent immobilization: NOT REPORTED  \ntachypnea: NOT REPORTED  \nfever: NOT REPORTED  \ncough: NOT REPORTED  \ndyspnea: NOT REPORTED  \nchest pain: NOT REPORTED  \nhypoxia: NOT REPORTED  \nhypotension: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# PERC Rule for Pulmonary Embolism (PE) - Criteria\n# The PERC rule is used to rule out PE in low-risk patients.\n# If 0 criteria are met, PE is very unlikely and further testing is not needed.\n\n# Criteria for PERC Rule:\n# 1. Age < 50 years \u2192 52 years \u2192 not met\n# 2. Heart rate < 100 bpm \u2192 97 bpm \u2192 met\n# 3. Oxygen saturation \u2265 94% on room air \u2192 99% \u2192 met\n# 4. No history of surgery in the past 4 weeks \u2192 not reported \u2192 assumed no \u2192 met\n# 5. No history of trauma in the past 4 weeks \u2192 not reported \u2192 assumed no \u2192 met\n# 6. No hemoptysis \u2192 not reported \u2192 assumed no \u2192 met\n# 7. No prior venous thromboembolism (VTE) \u2192 not reported \u2192 assumed no \u2192 met\n# 8. No unilateral leg swelling \u2192 not reported \u2192 assumed no \u2192 met\n# 9. No calf pain \u2192 not reported \u2192 assumed no \u2192 met\n# 10. No active cancer \u2192 not reported \u2192 assumed no \u2192 met\n# 11. No recent immobilization (e.g., cast, bed rest) \u2192 not reported \u2192 assumed no \u2192 met\n# 12. No tachypnea (RR \u2265 20) \u2192 20 \u2192 not tachypneic (RR = 20 is not \u2265 20? Wait: tachypnea is defined as RR \u2265 20, so 20 is tachypnea \u2192 met? No: if RR \u2265 20, then tachypnea is present \u2192 so this criterion is NOT met)\n# 13. No fever \u2192 36.2\u00b0C \u2192 not fever \u2192 met\n# 14. No cough \u2192 not reported \u2192 assumed no \u2192 met\n# 15. No dyspnea \u2192 not reported \u2192 assumed no \u2192 met\n# 16. No chest pain \u2192 not reported \u2192 assumed no \u2192 met\n# 17. No hypoxia \u2192 SpO2 99% \u2192 not hypoxic \u2192 met\n# 18. No hypotension \u2192 BP 146/97 \u2192 not hypotensive \u2192 met\n\n# Let's go through each criterion:\n\n# 1. Age < 50 \u2192 52 \u2192 False \u2192 not met\n# 2. HR < 100 \u2192 97 < 100 \u2192 True \u2192 met\n# 3. SpO2 \u2265 94% \u2192 99 \u2265 94 \u2192 True \u2192 met\n# 4. No surgery \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 5. No trauma \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 6. No hemoptysis \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 7. No prior VTE \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 8. No unilateral leg swelling \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 9. No calf pain \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 10. No active cancer \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 11. No recent immobilization \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 12. No tachypnea \u2192 RR = 20 \u2192 tachypnea is defined as RR \u2265 20 \u2192 so RR = 20 \u2192 tachypnea is present \u2192 so \"no tachypnea\" is FALSE \u2192 not met\n# 13. No fever \u2192 36.2\u00b0C \u2192 not fever \u2192 True \u2192 met\n# 14. No cough \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 15. No dyspnea \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 16. No chest pain \u2192 not reported \u2192 assume no \u2192 True \u2192 met\n# 17. No hypoxia \u2192 SpO2 99% \u2192 not hypoxic \u2192 True \u2192 met\n# 18. No hypotension \u2192 BP 146/97 \u2192 not hypotensive \u2192 True \u2192 met\n\n# Now count how many criteria are met:\n# Criteria met: 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17, 18 \u2192 15 criteria met\n\n# But wait: the PERC rule is used to determine if a patient is low risk. The rule says: if 0 criteria are met, then PE is very unlikely.\n\n# However, the question is: \"What are the number of criteria met for the PERC Rule for Pulmonary Embolism (PE)?\"\n\n# So we count how many of the 18 criteria are met.\n\n# Let's list again:\n# 1. Age < 50 \u2192 52 \u2192 False \u2192 not met\n# 2. HR < 100 \u2192 97 \u2192 True \u2192 met\n# 3. SpO2 \u2265 94% \u2192 99 \u2192 True \u2192 met\n# 4. No surgery \u2192 assumed no \u2192 True \u2192 met\n# 5. No trauma \u2192 assumed no \u2192 True \u2192 met\n# 6. No hemoptysis \u2192 assumed no \u2192 True \u2192 met\n# 7. No prior VTE \u2192 assumed no \u2192 True \u2192 met\n# 8. No unilateral leg swelling \u2192 assumed no \u2192 True \u2192 met\n# 9. No calf pain \u2192 assumed no \u2192 True \u2192 met\n# 10. No active cancer \u2192 assumed no \u2192 True \u2192 met\n# 11. No recent immobilization \u2192 assumed no \u2192 True \u2192 met\n# 12. No tachypnea \u2192 RR = 20 \u2192 tachypnea is present \u2192 so \"no tachypnea\" is false \u2192 not met\n# 13. No fever \u2192 36.2 \u2192 True \u2192 met\n# 14. No cough \u2192 assumed no \u2192 True \u2192 met\n# 15. No dyspnea \u2192 assumed no \u2192 True \u2192 met\n# 16. No chest pain \u2192 assumed no \u2192 True \u2192 met\n# 17. No hypoxia \u2192 True \u2192 met\n# 18. No hypotension \u2192 True \u2192 met\n\n# So criteria met: 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17, 18 \u2192 15\n\n# But wait: the PERC rule has 8 criteria, not 18. I made a mistake.\n\n# Correction: The PERC rule actually has 8 criteria:\n\n# 1. Age < 50 years\n# 2",
+        "code": null,
+        "error": "no code block in reply"
+      },
+      {
+        "name": "cot_fallback",
+        "text": "The PERC (Pulmonary Embolism Rule-out Criteria) rule is used to identify patients at very low risk for pulmonary embolism (PE) and thus may not require further testing (e.g., CT pulmonary angiography). The PERC rule consists of eight criteria. If a patient meets **0** of the eight criteria, PE is very unlikely, and testing can be safely avoided.\n\nThe eight PERC criteria are:\n\n1. Age < 50 years  \n2. Heart rate < 100 beats per minute  \n3. Oxygen saturation \u2265 94% on room air  \n4. No history of PE or DVT  \n5. No hemoptysis  \n6. No recent surgery or trauma (within 4 weeks)  \n7. No unilateral leg swelling  \n8. No estrogen use (e.g., oral contraceptives, hormone therapy)\n\nWe evaluate each criterion based on the patient\u2019s status at initial presentation (before treatment).\n\nStep 1: List each criterion and assess whether it is met (yes/no) using the patient\u2019s data.\n\n1. Age < 50 years?  \n   - Patient is 52 years old \u2192 **No** (not met)\n\n2. Heart rate < 100 beats per minute?  \n   - Heart rate is 97 bpm \u2192 **Yes** (met)\n\n3. Oxygen saturation \u2265 94% on room air?  \n   - SpO2 is 99% \u2192 **Yes** (met)\n\n4. No history of PE or DVT?  \n   - Patient has no past medical history, and no mention of PE or DVT \u2192 **Yes** (met)\n\n5. No hemoptysis?  \n   - Patient denies coughing up blood \u2192 **Yes** (met)\n\n6. No recent surgery or trauma (within 4 weeks)?  \n   - Patient denies recent surgery or trauma, but notes weight lifting 2 days prior.  \n   - Weight lifting is not considered \"trauma\" in the context of PERC (which refers to significant trauma or surgery).  \n   - Therefore, **Yes** (met)\n\n7. No unilateral leg swelling?  \n   - No mention of leg swelling in the note. Abdominal and neurological exams unremarkable.  \n   - No evidence of leg swelling \u2192 **Yes** (met)\n\n8. No estrogen use?  \n   - Patient is not taking any medications and no mention of estrogen use \u2192 **Yes** (met)\n\nStep 2: Count how many criteria are met.\n\n- Criteria met: 2, 3, 4, 5, 6, 7, 8 \u2192 7 criteria met  \n- Criterion 1 (age < 50) is **not** met.\n\nSo, the number of PERC criteria met is **7**.\n\nANSWER: 7"
+      }
+    ],
+    "answer_text": "The PERC (Pulmonary Embolism Rule-out Criteria) rule is used to identify patients at very low risk for pulmonary embolism (PE) and thus may not require further testing (e.g., CT pulmonary angiography). The PERC rule consists of eight criteria. If a patient meets **0** of the eight criteria, PE is very unlikely, and testing can be safely avoided.\n\nThe eight PERC criteria are:\n\n1. Age < 50 years  \n2. Heart rate < 100 beats per minute  \n3. Oxygen saturation \u2265 94% on room air  \n4. No history of PE or DVT  \n5. No hemoptysis  \n6. No recent surgery or trauma (within 4 weeks)  \n7. No unilateral leg swelling  \n8. No estrogen use (e.g., oral contraceptives, hormone therapy)\n\nWe evaluate each criterion based on the patient\u2019s status at initial presentation (before treatment).\n\nStep 1: List each criterion and assess whether it is met (yes/no) using the patient\u2019s data.\n\n1. Age < 50 years?  \n   - Patient is 52 years old \u2192 **No** (not met)\n\n2. Heart rate < 100 beats per minute?  \n   - Heart rate is 97 bpm \u2192 **Yes** (met)\n\n3. Oxygen saturation \u2265 94% on room air?  \n   - SpO2 is 99% \u2192 **Yes** (met)\n\n4. No history of PE or DVT?  \n   - Patient has no past medical history, and no mention of PE or DVT \u2192 **Yes** (met)\n\n5. No hemoptysis?  \n   - Patient denies coughing up blood \u2192 **Yes** (met)\n\n6. No recent surgery or trauma (within 4 weeks)?  \n   - Patient denies recent surgery or trauma, but notes weight lifting 2 days prior.  \n   - Weight lifting is not considered \"trauma\" in the context of PERC (which refers to significant trauma or surgery).  \n   - Therefore, **Yes** (met)\n\n7. No unilateral leg swelling?  \n   - No mention of leg swelling in the note. Abdominal and neurological exams unremarkable.  \n   - No evidence of leg swelling \u2192 **Yes** (met)\n\n8. No estrogen use?  \n   - Patient is not taking any medications and no mention of estrogen use \u2192 **Yes** (met)\n\nStep 2: Count how many criteria are met.\n\n- Criteria met: 2, 3, 4, 5, 6, 7, 8 \u2192 7 criteria met  \n- Criterion 1 (age < 50) is **not** met.\n\nSo, the number of PERC criteria met is **7**.\n\nANSWER: 7"
+  },
+  {
+    "id": "row657",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "heart rate: 97 min\u207b\u00b9  \nrespiratory rate: 22 min\u207b\u00b9  \nbody temperature: 37.4 \u00b0C  \nwhite blood cell count: 9100 cells/mm\u00b3"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# SIRS criteria (Systemic Inflammatory Response Syndrome) - 2 or more of the following:\n# 1. Temperature > 38.0\u00b0C or < 36.0\u00b0C\n# 2. Heart rate > 90 beats/min\n# 3. Respiratory rate > 20 breaths/min\n# 4. White blood cell count > 12,000 cells/mm\u00b3 or < 4,000 cells/mm\u00b3 or >10% immature (band) forms\n\n# Patient values at admission:\nheart_rate = 97  # beats/min\nrespiratory_rate = 22  # breaths/min\nbody_temperature = 37.4  # \u00b0C\nwbc_count = 9100  # cells/mm\u00b3\n\n# Check each criterion:\ntemp_criteria = body_temperature > 38.0 or body_temperature < 36.0\nheart_rate_criteria = heart_rate > 90\nresp_rate_criteria = respiratory_rate > 20\nwbc_criteria = wbc_count > 12000 or wbc_count < 4000\n\n# Count how many criteria are met\nsirs_count = 0\nif temp_criteria:\n    sirs_count += 1\nif heart_rate_criteria:\n    sirs_count += 1\nif resp_rate_criteria:\n    sirs_count += 1\nif wbc_criteria:\n    sirs_count += 1\n\nanswer = sirs_count\n```",
+        "code": "# SIRS criteria (Systemic Inflammatory Response Syndrome) - 2 or more of the following:\n# 1. Temperature > 38.0\u00b0C or < 36.0\u00b0C\n# 2. Heart rate > 90 beats/min\n# 3. Respiratory rate > 20 breaths/min\n# 4. White blood cell count > 12,000 cells/mm\u00b3 or < 4,000 cells/mm\u00b3 or >10% immature (band) forms\n\n# Patient values at admission:\nheart_rate = 97  # beats/min\nrespiratory_rate = 22  # breaths/min\nbody_temperature = 37.4  # \u00b0C\nwbc_count = 9100  # cells/mm\u00b3\n\n# Check each criterion:\ntemp_criteria = body_temperature > 38.0 or body_temperature < 36.0\nheart_rate_criteria = heart_rate > 90\nresp_rate_criteria = respiratory_rate > 20\nwbc_criteria = wbc_count > 12000 or wbc_count < 4000\n\n# Count how many criteria are met\nsirs_count = 0\nif temp_criteria:\n    sirs_count += 1\nif heart_rate_criteria:\n    sirs_count += 1\nif resp_rate_criteria:\n    sirs_count += 1\nif wbc_criteria:\n    sirs_count += 1\n\nanswer = sirs_count",
+        "exec_value": "2",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 2"
+  },
+  {
+    "id": "row681",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "heart rate: 110 bpm  \nQT interval: 490 msec"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values\nheart_rate = 110  # bpm\nQT_interval = 490  # msec\n\n# Framingham Formula for corrected QT interval (QTc)\n# QTc = QT / (RR_interval)^0.5\n# RR_interval = 60 / heart_rate (in seconds)\n# Convert RR_interval to seconds and then to milliseconds for consistency\nRR_interval_ms = (60 / heart_rate) * 1000  # Convert to milliseconds\n\n# Calculate corrected QT interval\nQTc = QT_interval / (RR_interval_ms ** 0.5)\n\n# Assign result to answer\nanswer = QTc\n```",
+        "code": "# Given values\nheart_rate = 110  # bpm\nQT_interval = 490  # msec\n\n# Framingham Formula for corrected QT interval (QTc)\n# QTc = QT / (RR_interval)^0.5\n# RR_interval = 60 / heart_rate (in seconds)\n# Convert RR_interval to seconds and then to milliseconds for consistency\nRR_interval_ms = (60 / heart_rate) * 1000  # Convert to milliseconds\n\n# Calculate corrected QT interval\nQTc = QT_interval / (RR_interval_ms ** 0.5)\n\n# Assign result to answer\nanswer = QTc",
+        "exec_value": "20.980546545153047",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 20.980546545153047"
+  },
+  {
+    "id": "row704",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "heart rate: 78 bpm  \nQT interval: 413 msec"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values\nheart_rate = 78  # bpm\nQT_interval = 413  # msec\n\n# Hodges Formula: QTc = QT / (RR interval)^0.5\n# RR interval in seconds = 60 / heart_rate\nRR_interval_seconds = 60 / heart_rate\n\n# Corrected QT interval\nQTc = QT_interval / (RR_interval_seconds ** 0.5)\n\n# Assign result to answer\nanswer = QTc\n```",
+        "code": "# Given values\nheart_rate = 78  # bpm\nQT_interval = 413  # msec\n\n# Hodges Formula: QTc = QT / (RR interval)^0.5\n# RR interval in seconds = 60 / heart_rate\nRR_interval_seconds = 60 / heart_rate\n\n# Corrected QT interval\nQTc = QT_interval / (RR_interval_seconds ** 0.5)\n\n# Assign result to answer\nanswer = QTc",
+        "exec_value": "470.892450565944",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 470.892450565944"
+  },
+  {
+    "id": "row736",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "heart rate: 92 bpm  \nQT interval: 390 msec"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values\nheart_rate = 92  # bpm\nQT_interval = 390  # msec\n\n# Rautaharju Formula: QTc = QT / (RR^0.333)\n# RR interval in seconds = 60 / heart_rate\nRR_seconds = 60 / heart_rate\n\n# Corrected QT interval using Rautaharju Formula\nQTc = QT_interval / (RR_seconds ** (1/3))\n\n# Assign the result to answer\nanswer = QTc\n```",
+        "code": "# Given values\nheart_rate = 92  # bpm\nQT_interval = 390  # msec\n\n# Rautaharju Formula: QTc = QT / (RR^0.333)\n# RR interval in seconds = 60 / heart_rate\nRR_seconds = 60 / heart_rate\n\n# Corrected QT interval using Rautaharju Formula\nQTc = QT_interval / (RR_seconds ** (1/3))\n\n# Assign the result to answer\nanswer = QTc",
+        "exec_value": "449.72130891996073",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 449.72130891996073"
+  },
+  {
+    "id": "row747",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "height: 150 cm  \nweight: 32 kg"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Patient's height in cm and weight in kg at first admission\nheight_cm = 150\nweight_kg = 32\n\n# Convert height to meters\nheight_m = height_cm / 100\n\n# Use the DuBois formula to calculate body surface area (BSA) in m\u00b2\n# BSA = 0.007184 * (weight in kg)^0.425 * (height in cm)^0.725\nbsa = 0.007184 * (weight_kg ** 0.425) * (height_cm ** 0.725)\n\n# Assign the result to the variable answer\nanswer = bsa\n```",
+        "code": "# Patient's height in cm and weight in kg at first admission\nheight_cm = 150\nweight_kg = 32\n\n# Convert height to meters\nheight_m = height_cm / 100\n\n# Use the DuBois formula to calculate body surface area (BSA) in m\u00b2\n# BSA = 0.007184 * (weight in kg)^0.425 * (height in cm)^0.725\nbsa = 0.007184 * (weight_kg ** 0.425) * (height_cm ** 0.725)\n\n# Assign the result to the variable answer\nanswer = bsa",
+        "exec_value": "1.1850078498692984",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 1.1850078498692984"
+  },
+  {
+    "id": "row778",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "height: 165 cm  \nweight: 63 kg  \nideal body weight: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nheight_cm = 165  # height in cm\nweight_kg = 63   # weight in kg\n\n# Adjusted body weight formula (for patients with obesity or significant weight deviation)\n# Adjusted body weight (ABW) = IBW + 0.4 \u00d7 (actual weight - IBW)\n# First, calculate Ideal Body Weight (IBW) using the Devine formula for women:\n# IBW (kg) = 45.5 + 0.9 \u00d7 (height in cm - 152.4)\n\nibw_kg = 45.5 + 0.9 * (height_cm - 152.4)\n\n# Now calculate adjusted body weight\n# Since the patient's weight is not significantly above ideal (63 kg vs ~50 kg IBW), \n# but we are to use the formula regardless\nadjusted_body_weight_kg = ibw_kg + 0.4 * (weight_kg - ibw_kg)\n\nanswer = adjusted_body_weight_kg\n```",
+        "code": "# Given values from the patient note\nheight_cm = 165  # height in cm\nweight_kg = 63   # weight in kg\n\n# Adjusted body weight formula (for patients with obesity or significant weight deviation)\n# Adjusted body weight (ABW) = IBW + 0.4 \u00d7 (actual weight - IBW)\n# First, calculate Ideal Body Weight (IBW) using the Devine formula for women:\n# IBW (kg) = 45.5 + 0.9 \u00d7 (height in cm - 152.4)\n\nibw_kg = 45.5 + 0.9 * (height_cm - 152.4)\n\n# Now calculate adjusted body weight\n# Since the patient's weight is not significantly above ideal (63 kg vs ~50 kg IBW), \n# but we are to use the formula regardless\nadjusted_body_weight_kg = ibw_kg + 0.4 * (weight_kg - ibw_kg)\n\nanswer = adjusted_body_weight_kg",
+        "exec_value": "59.303999999999995",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 59.303999999999995"
+  },
+  {
+    "id": "row799",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "anion gap: NOT REPORTED  \nalbumin: NOT REPORTED  \ndelta gap: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note at first admission (prior to any treatment)\nserum_bicarbonate = 18  # mmol/L\nserum_chloride = 108    # mmol/L\nserum_sodium = 145      # mmol/L\nbaseline_bicarbonate = 26  # mmol/L (from note: baseline 26 mmol/L)\n\n# Calculate the anion gap at first admission\n# Anion gap = serum sodium - (serum chloride + serum bicarbonate)\nanion_gap = serum_sodium - (serum_chloride + serum_bicarbonate)\n\n# Calculate the expected anion gap based on baseline bicarbonate\n# Expected anion gap = baseline anion gap (using baseline bicarbonate)\n# We can estimate baseline anion gap using baseline bicarbonate and normal values\n# Assume normal baseline sodium and chloride: sodium ~141, chloride ~104 (from note)\nbaseline_sodium = 141\nbaseline_chloride = 104\nbaseline_anion_gap = baseline_sodium - (baseline_chloride + baseline_bicarbonate)\n\n# Delta gap = measured anion gap - expected anion gap\ndelta_gap = anion_gap - baseline_anion_gap\n\n# Assign result to answer\nanswer = delta_gap\n```",
+        "code": "# Extracted values from the patient note at first admission (prior to any treatment)\nserum_bicarbonate = 18  # mmol/L\nserum_chloride = 108    # mmol/L\nserum_sodium = 145      # mmol/L\nbaseline_bicarbonate = 26  # mmol/L (from note: baseline 26 mmol/L)\n\n# Calculate the anion gap at first admission\n# Anion gap = serum sodium - (serum chloride + serum bicarbonate)\nanion_gap = serum_sodium - (serum_chloride + serum_bicarbonate)\n\n# Calculate the expected anion gap based on baseline bicarbonate\n# Expected anion gap = baseline anion gap (using baseline bicarbonate)\n# We can estimate baseline anion gap using baseline bicarbonate and normal values\n# Assume normal baseline sodium and chloride: sodium ~141, chloride ~104 (from note)\nbaseline_sodium = 141\nbaseline_chloride = 104\nbaseline_anion_gap = baseline_sodium - (baseline_chloride + baseline_bicarbonate)\n\n# Delta gap = measured anion gap - expected anion gap\ndelta_gap = anion_gap - baseline_anion_gap\n\n# Assign result to answer\nanswer = delta_gap",
+        "exec_value": "8",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 8"
+  },
+  {
+    "id": "row809",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "bicarbonate: 26 mmol/L  \nanion gap: NOT REPORTED  \nserum creatinine: 61 \u03bcmol/L  \nurine anion gap: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient's initial admission (before treatment)\nbicarbonate = 26  # mmol/L\nserum_creatinine = 61  # \u03bcmol/L\n\n# Calculate anion gap (AG) using standard formula: AG = Na+ - (Cl- + HCO3-)\nsodium = 138  # mmol/L\nchloride = 103  # mmol/L\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Calculate urine anion gap (UAG) if needed, but it's not reported\n# Since urine anion gap is not reported, we cannot compute it directly\n# However, the question asks for delta ratio, which is:\n# Delta ratio = (change in anion gap) / (change in bicarbonate)\n\n# We need to calculate the expected change in anion gap for a given change in bicarbonate\n# But we only have one data point (bicarbonate = 26 mmol/L), so we need to assume a normal value\n\n# Normal bicarbonate is typically 24 mmol/L\nnormal_bicarbonate = 24  # mmol/L\ndelta_bicarbonate = normal_bicarbonate - bicarbonate  # negative value\n\n# Normal anion gap is typically 12 mmol/L\nnormal_anion_gap = 12  # mmol/L\ndelta_anion_gap = normal_anion_gap - anion_gap  # change in anion gap\n\n# Delta ratio = delta anion gap / delta bicarbonate\n# But note: delta ratio is usually calculated as:\n# Delta ratio = (AG - normal AG) / (normal HCO3 - observed HCO3)\n# So we use:\n# delta_anion_gap = AG - normal_AG\n# delta_bicarbonate = normal_HCO3 - observed_HCO3\n\ndelta_anion_gap = anion_gap - normal_anion_gap\ndelta_bicarbonate = normal_bicarbonate - bicarbonate\n\n# Delta ratio\ndelta_ratio = delta_anion_gap / delta_bicarbonate\n\n# Assign result to answer\nanswer = delta_ratio\n```",
+        "code": "# Given values from the patient's initial admission (before treatment)\nbicarbonate = 26  # mmol/L\nserum_creatinine = 61  # \u03bcmol/L\n\n# Calculate anion gap (AG) using standard formula: AG = Na+ - (Cl- + HCO3-)\nsodium = 138  # mmol/L\nchloride = 103  # mmol/L\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Calculate urine anion gap (UAG) if needed, but it's not reported\n# Since urine anion gap is not reported, we cannot compute it directly\n# However, the question asks for delta ratio, which is:\n# Delta ratio = (change in anion gap) / (change in bicarbonate)\n\n# We need to calculate the expected change in anion gap for a given change in bicarbonate\n# But we only have one data point (bicarbonate = 26 mmol/L), so we need to assume a normal value\n\n# Normal bicarbonate is typically 24 mmol/L\nnormal_bicarbonate = 24  # mmol/L\ndelta_bicarbonate = normal_bicarbonate - bicarbonate  # negative value\n\n# Normal anion gap is typically 12 mmol/L\nnormal_anion_gap = 12  # mmol/L\ndelta_anion_gap = normal_anion_gap - anion_gap  # change in anion gap\n\n# Delta ratio = delta anion gap / delta bicarbonate\n# But note: delta ratio is usually calculated as:\n# Delta ratio = (AG - normal AG) / (normal HCO3 - observed HCO3)\n# So we use:\n# delta_anion_gap = AG - normal_AG\n# delta_bicarbonate = normal_HCO3 - observed_HCO3\n\ndelta_anion_gap = anion_gap - normal_anion_gap\ndelta_bicarbonate = normal_bicarbonate - bicarbonate\n\n# Delta ratio\ndelta_ratio = delta_anion_gap / delta_bicarbonate\n\n# Assign result to answer\nanswer = delta_ratio",
+        "exec_value": "1.5",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 1.5"
+  },
+  {
+    "id": "row817",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "sodium: 139 mmol/L  \npotassium: 3.2 mmol/L  \nchloride: 100 mmol/L  \nbicarbonate: 18 mmol/L  \nlactate: 9.6 mmol/L"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Extracted values from the patient note at admission (before treatment)\nsodium = 139  # mmol/L\nchloride = 100  # mmol/L\nbicarbonate = 18  # mmol/L\nlactate = 9.6  # mmol/L\n\n# Calculate the anion gap (AG)\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Calculate the expected bicarbonate in metabolic acidosis due to lactate\nexpected_bicarbonate = bicarbonate + lactate\n\n# Calculate the delta ratio\ndelta_ratio = (anion_gap - 12) / (12 - (bicarbonate - 24))\n\n# Assign the final result to the variable `answer`\nanswer = delta_ratio\n```",
+        "code": "# Extracted values from the patient note at admission (before treatment)\nsodium = 139  # mmol/L\nchloride = 100  # mmol/L\nbicarbonate = 18  # mmol/L\nlactate = 9.6  # mmol/L\n\n# Calculate the anion gap (AG)\nanion_gap = sodium - (chloride + bicarbonate)\n\n# Calculate the expected bicarbonate in metabolic acidosis due to lactate\nexpected_bicarbonate = bicarbonate + lactate\n\n# Calculate the delta ratio\ndelta_ratio = (anion_gap - 12) / (12 - (bicarbonate - 24))\n\n# Assign the final result to the variable `answer`\nanswer = delta_ratio",
+        "exec_value": "0.5",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 0.5"
+  },
+  {
+    "id": "row862",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "albumin: 4 g/dL  \ncalcium: 12.4 mg/dL"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Given values from the patient note\nalbumin = 4.0  # g/dL\ncalcium = 12.4  # mg/dL\n\n# Formula for albumin-corrected calcium (corrected delta ratio)\n# Corrected calcium (mg/dL) = measured calcium (mg/dL) + 0.8 * (4.0 - albumin (g/dL))\ncorrected_calcium = calcium + 0.8 * (4.0 - albumin)\n\n# The \"albumin corrected delta ratio\" is typically defined as:\n# (measured calcium - corrected calcium) / (4.0 - albumin) \n# But in clinical practice, the term \"albumin corrected delta ratio\" is not standard.\n# However, in some contexts, especially in assessing hypercalcemia, the corrected calcium is used.\n# Since the question asks for \"albumin corrected delta ratio\", and given the values,\n# it's likely referring to the corrected calcium value itself.\n\n# But if we interpret \"delta ratio\" as the difference between measured and corrected calcium,\n# normalized by the albumin deviation, then:\n# delta_ratio = (measured_calcium - corrected_calcium) / (4.0 - albumin)\n# However, this would be negative and not meaningful.\n\n# Alternatively, the term might be misused, and the intended value is simply the corrected calcium.\n\n# Given the ambiguity, and standard clinical practice, the most likely intended answer is the corrected calcium.\n\nanswer = corrected_calcium\n```",
+        "code": "# Given values from the patient note\nalbumin = 4.0  # g/dL\ncalcium = 12.4  # mg/dL\n\n# Formula for albumin-corrected calcium (corrected delta ratio)\n# Corrected calcium (mg/dL) = measured calcium (mg/dL) + 0.8 * (4.0 - albumin (g/dL))\ncorrected_calcium = calcium + 0.8 * (4.0 - albumin)\n\n# The \"albumin corrected delta ratio\" is typically defined as:\n# (measured calcium - corrected calcium) / (4.0 - albumin) \n# But in clinical practice, the term \"albumin corrected delta ratio\" is not standard.\n# However, in some contexts, especially in assessing hypercalcemia, the corrected calcium is used.\n# Since the question asks for \"albumin corrected delta ratio\", and given the values,\n# it's likely referring to the corrected calcium value itself.\n\n# But if we interpret \"delta ratio\" as the difference between measured and corrected calcium,\n# normalized by the albumin deviation, then:\n# delta_ratio = (measured_calcium - corrected_calcium) / (4.0 - albumin)\n# However, this would be negative and not meaningful.\n\n# Alternatively, the term might be misused, and the intended value is simply the corrected calcium.\n\n# Given the ambiguity, and standard clinical practice, the most likely intended answer is the corrected calcium.\n\nanswer = corrected_calcium",
+        "exec_value": "12.4",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 12.4"
+  },
+  {
+    "id": "row911",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Eye Opening: NOT REPORTED  \nVerbal Response: NOT REPORTED  \nMotor Response: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Based on the patient note, we need to determine the Glasgow Coma Score (GCS)\n# GCS is calculated from three components: Eye Opening, Verbal Response, and Motor Response\n\n# From the note:\n# - Eye Opening: The patient did not raise his eyelids even when addressed by name or in a louder tone, nor did he react to touch. \n#   This indicates no eye opening to any stimuli. Therefore, Eye Opening = 1 (none)\n# - Verbal Response: The patient produced words that were not responsive to simple questions, instead blurting out intermittent phrases \n#   that failed to match the context. This is described as disordered speech with no coherence. This corresponds to \"Inappropriate words\" \n#   which is a score of 2.\n# - Motor Response: The patient responded to mild painful stimuli in the distal upper extremity by retracting the arm in a relatively brisk motion, \n#   but did not attempt to locate the source of discomfort or push the offending hand away. This is a withdrawal to pain, which is a score of 3.\n\n# Therefore:\neye_opening = 1  # No eye opening to any stimuli\nverbal_response = 2  # Inappropriate words\nmotor_response = 3  # Withdrawal to pain\n\n# Calculate GCS\nanswer = eye_opening + verbal_response + motor_response\n```",
+        "code": "# Based on the patient note, we need to determine the Glasgow Coma Score (GCS)\n# GCS is calculated from three components: Eye Opening, Verbal Response, and Motor Response\n\n# From the note:\n# - Eye Opening: The patient did not raise his eyelids even when addressed by name or in a louder tone, nor did he react to touch. \n#   This indicates no eye opening to any stimuli. Therefore, Eye Opening = 1 (none)\n# - Verbal Response: The patient produced words that were not responsive to simple questions, instead blurting out intermittent phrases \n#   that failed to match the context. This is described as disordered speech with no coherence. This corresponds to \"Inappropriate words\" \n#   which is a score of 2.\n# - Motor Response: The patient responded to mild painful stimuli in the distal upper extremity by retracting the arm in a relatively brisk motion, \n#   but did not attempt to locate the source of discomfort or push the offending hand away. This is a withdrawal to pain, which is a score of 3.\n\n# Therefore:\neye_opening = 1  # No eye opening to any stimuli\nverbal_response = 2  # Inappropriate words\nmotor_response = 3  # Withdrawal to pain\n\n# Calculate GCS\nanswer = eye_opening + verbal_response + motor_response",
+        "exec_value": "6",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 6"
+  },
+  {
+    "id": "row962",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Age: 72 years  \nGender: Male  \nHistory of prior VTE: Yes (venous clot in leg in distant past)  \nRecent surgery: Yes (unrelated abdominal surgery 3 weeks prior)  \nImmobility: Yes (confined to bed for several weeks)  \nObesity: NOT REPORTED  \nMalignancy: NOT REPORTED  \nHormone therapy: NOT REPORTED  \nSmoking: Yes (past history, reduced in recent years)  \nChronic lung disease: Yes (requires occasional inhaler)  \nCongestive heart failure: NOT REPORTED  \nHypercoagulable state: NOT REPORTED  \nFamily history of VTE: NOT REPORTED  \nCentral venous catheter: NOT REPORTED  \nVaricose veins: NOT REPORTED  \nPrevious VTE: Yes (history of venous clot)  \nAge > 40: Yes  \nSurgery > 45 minutes: NOT REPORTED (but surgery occurred 3 weeks prior, likely >45 min)  \nTrauma: No  \nPregnancy: NOT REPORTED  \nEstrogen use: NOT REPORTED  \nInflammatory disease: NOT REPORTED  \nRenal failure: NOT REPORTED  \nLiver disease: NOT REPORTED  \nHeparin-induced thrombocytopenia: NOT REPORTED  \nPrevious thrombosis: Yes  \nUse of compression stockings: NOT REPORTED  \nUse of anticoagulation: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of MI: NOT REPORTED  \nHistory of DVT/PE: Yes  \nHistory of cancer: NOT REPORTED  \nHistory of obesity: NOT REPORTED  \nHistory of smoking: Yes  \nHistory of chronic lung disease: Yes  \nHistory of immobility: Yes  \nHistory of recent surgery: Yes  \nHistory of prior VTE: Yes  \nHistory of family history of VTE: NOT REPORTED  \nHistory of hypercoagulable state: NOT REPORTED  \nHistory of hormone therapy: NOT REPORTED  \nHistory of central venous catheter: NOT REPORTED  \nHistory of varicose veins: NOT REPORTED  \nHistory of inflammatory disease: NOT REPORTED  \nHistory of renal failure: NOT REPORTED  \nHistory of liver disease: NOT REPORTED  \nHistory of heparin-induced thrombocytopenia: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of MI: NOT REPORTED  \nHistory of DVT/PE: Yes  \nHistory of cancer: NOT REPORTED  \nHistory of obesity: NOT REPORTED  \nHistory of smoking: Yes  \nHistory of chronic lung disease: Yes  \nHistory of immobility: Yes  \nHistory of recent surgery: Yes  \nHistory of prior VTE: Yes  \nHistory of family history of VTE: NOT REPORTED  \nHistory of hypercoagulable state: NOT REPORTED  \nHistory of hormone therapy: NOT REPORTED  \nHistory of central venous catheter: NOT REPORTED  \nHistory of varicose veins: NOT REPORTED  \nHistory of inflammatory disease: NOT REPORTED  \nHistory of renal failure: NOT REPORTED  \nHistory of liver disease: NOT REPORTED  \nHistory of heparin-induced thrombocytopenia: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of MI: NOT REPORTED  \nHistory of DVT/PE: Yes  \nHistory of cancer: NOT REPORTED  \nHistory of obesity: NOT REPORTED  \nHistory of smoking: Yes  \nHistory of chronic lung disease: Yes  \nHistory of immobility: Yes  \nHistory of recent surgery: Yes  \nHistory of prior VTE: Yes  \nHistory of family history of VTE: NOT REPORTED  \nHistory of hypercoagulable state: NOT REPORTED  \nHistory of hormone therapy: NOT REPORTED  \nHistory of central venous catheter: NOT REPORTED  \nHistory of varicose veins: NOT REPORTED  \nHistory of inflammatory disease: NOT REPORTED  \nHistory of renal failure: NOT REPORTED  \nHistory of liver disease: NOT REPORTED  \nHistory of heparin-induced thrombocytopenia: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of MI: NOT REPORTED  \nHistory of DVT/PE: Yes  \nHistory of cancer: NOT REPORTED  \nHistory of obesity: NOT REPORTED  \nHistory of smoking: Yes  \nHistory of chronic lung disease: Yes  \nHistory of immobility: Yes  \nHistory of recent surgery: Yes  \nHistory of prior VTE: Yes  \nHistory of family history of VTE: NOT REPORTED  \nHistory of hypercoagulable state: NOT REPORTED  \nHistory of hormone therapy: NOT REPORTED  \nHistory of central venous catheter: NOT REPORTED  \nHistory of varicose veins: NOT REPORTED  \nHistory of inflammatory disease: NOT REPORTED  \nHistory of renal failure: NOT REPORTED  \nHistory of liver disease: NOT REPORTED  \nHistory of heparin-induced thrombocytopenia: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of MI: NOT REPORTED  \nHistory of DVT/PE: Yes  \nHistory of cancer: NOT REPORTED  \nHistory of obesity: NOT REPORTED  \nHistory of smoking: Yes  \nHistory of chronic lung disease: Yes  \nHistory of immobility: Yes  \nHistory of recent surgery: Yes  \nHistory of prior VTE: Yes  \nHistory of family history of VTE: NOT REPORTED  \nHistory of hypercoagulable state: NOT REPORTED  \nHistory of hormone therapy: NOT REPORTED  \nHistory of central venous catheter: NOT REPORTED  \nHistory of varicose veins: NOT REPORTED  \nHistory of inflammatory disease: NOT REPORTED  \nHistory of renal failure: NOT REPORTED  \nHistory of liver disease: NOT REPORTED  \nHistory of heparin-induced thrombocytopenia: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of MI: NOT REPORTED  \nHistory of DVT/PE: Yes  \nHistory of cancer: NOT REPORTED  \nHistory of obesity: NOT REPORTED  \nHistory of smoking: Yes  \nHistory of chronic lung disease: Yes  \nHistory of immobility: Yes  \nHistory of recent surgery: Yes  \nHistory of prior VTE: Yes  \nHistory of family history of VTE: NOT REPORTED  \nHistory of hypercoagulable state: NOT REPORTED  \nHistory of hormone therapy: NOT REPORTED  \nHistory of central venous catheter: NOT REPORTED  \nHistory of varicose veins: NOT REPORTED  \nHistory of inflammatory disease: NOT REPORTED  \nHistory of renal failure: NOT REPORTED  \nHistory of liver disease: NOT REPORTED  \nHistory of heparin-induced thrombocytopenia: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of MI: NOT REPORTED  \nHistory of DVT/PE: Yes  \nHistory of cancer: NOT REPORTED  \nHistory of obesity: NOT REPORTED  \nHistory of smoking: Yes  \nHistory of chronic lung disease: Yes  \nHistory of immobility: Yes  \nHistory of recent surgery: Yes  \nHistory of prior VTE: Yes  \nHistory of family history of VTE: NOT REPORTED  \nHistory of hypercoagulable state: NOT REPORTED  \nHistory of hormone therapy: NOT REPORTED  \nHistory of central venous catheter: NOT REPORTED  \nHistory of varicose veins: NOT"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Caprini Score for Venous Thromboembolism (VTE) - based on the patient's status at admission prior to any treatment\n\n# Age: 72 years -> 2 points (age > 60)\nage_points = 2\n\n# Gender: Male -> 0 points\ngender_points = 0\n\n# History of prior VTE: Yes -> 2 points\nprior_vte_points = 2\n\n# Recent surgery: Yes (abdominal surgery 3 weeks prior) -> 2 points\nrecent_surgery_points = 2\n\n# Immobility: Yes (confined to bed for several weeks) -> 2 points\nimmobility_points = 2\n\n# Smoking: Yes (past history, reduced in recent years) -> 1 point\nsmoking_points = 1\n\n# Chronic lung disease: Yes (requires occasional inhaler) -> 1 point\nchronic_lung_disease_points = 1\n\n# Obesity: NOT REPORTED -> 0 points\nobesity_points = 0\n\n# Malignancy: NOT REPORTED -> 0 points\nmalignancy_points = 0\n\n# Hormone therapy: NOT REPORTED -> 0 points\nhormone_therapy_points = 0\n\n# Central venous catheter: NOT REPORTED -> 0 points\ncvc_points = 0\n\n# Varicose veins: NOT REPORTED -> 0 points\nvaricose_veins_points = 0\n\n# Inflammatory disease: NOT REPORTED -> 0 points\ninflammatory_disease_points = 0\n\n# Renal failure: NOT REPORTED -> 0 points\nrenal_failure_points = 0\n\n# Liver disease: NOT REPORTED -> 0 points\nliver_disease_points = 0\n\n# Heparin-induced thrombocytopenia: NOT REPORTED -> 0 points\nhit_points = 0\n\n# Family history of VTE: NOT REPORTED -> 0 points\nfamily_vte_points = 0\n\n# Hypercoagulable state: NOT REPORTED -> 0 points\nhypercoagulable_points = 0\n\n# Previous thrombosis: Yes (already counted in prior VTE) -> already included\n\n# Surgery > 45 minutes: NOT REPORTED, but surgery occurred 3 weeks prior and was substantial -> assume >45 min -> 2 points\nsurgery_over_45min_points = 2\n\n# Trauma: No -> 0 points\ntrauma_points = 0\n\n# Pregnancy: NOT REPORTED -> 0 points\npregnancy_points = 0\n\n# Estrogen use: NOT REPORTED -> 0 points\nestrogen_points = 0\n\n# Stroke: NOT REPORTED -> 0 points\nstroke_points = 0\n\n# MI: NOT REPORTED -> 0 points\nmi_points = 0\n\n# DVT/PE: Yes (history of venous clot) -> already counted in prior VTE\n\n# Total Caprini Score\nanswer = (age_points + gender_points + prior_vte_points + recent_surgery_points + immobility_points +\n          smoking_points + chronic_lung_disease_points + obesity_points + malignancy_points +\n          hormone_therapy_points + cvc_points + varicose_veins_points + inflammatory_disease_points +\n          renal_failure_points + liver_disease_points + hit_points + family_vte_points +\n          hypercoagulable_points + surgery_over_45min_points + trauma_points + pregnancy_points +\n          estrogen_points + stroke_points + mi_points)\n```",
+        "code": "# Caprini Score for Venous Thromboembolism (VTE) - based on the patient's status at admission prior to any treatment\n\n# Age: 72 years -> 2 points (age > 60)\nage_points = 2\n\n# Gender: Male -> 0 points\ngender_points = 0\n\n# History of prior VTE: Yes -> 2 points\nprior_vte_points = 2\n\n# Recent surgery: Yes (abdominal surgery 3 weeks prior) -> 2 points\nrecent_surgery_points = 2\n\n# Immobility: Yes (confined to bed for several weeks) -> 2 points\nimmobility_points = 2\n\n# Smoking: Yes (past history, reduced in recent years) -> 1 point\nsmoking_points = 1\n\n# Chronic lung disease: Yes (requires occasional inhaler) -> 1 point\nchronic_lung_disease_points = 1\n\n# Obesity: NOT REPORTED -> 0 points\nobesity_points = 0\n\n# Malignancy: NOT REPORTED -> 0 points\nmalignancy_points = 0\n\n# Hormone therapy: NOT REPORTED -> 0 points\nhormone_therapy_points = 0\n\n# Central venous catheter: NOT REPORTED -> 0 points\ncvc_points = 0\n\n# Varicose veins: NOT REPORTED -> 0 points\nvaricose_veins_points = 0\n\n# Inflammatory disease: NOT REPORTED -> 0 points\ninflammatory_disease_points = 0\n\n# Renal failure: NOT REPORTED -> 0 points\nrenal_failure_points = 0\n\n# Liver disease: NOT REPORTED -> 0 points\nliver_disease_points = 0\n\n# Heparin-induced thrombocytopenia: NOT REPORTED -> 0 points\nhit_points = 0\n\n# Family history of VTE: NOT REPORTED -> 0 points\nfamily_vte_points = 0\n\n# Hypercoagulable state: NOT REPORTED -> 0 points\nhypercoagulable_points = 0\n\n# Previous thrombosis: Yes (already counted in prior VTE) -> already included\n\n# Surgery > 45 minutes: NOT REPORTED, but surgery occurred 3 weeks prior and was substantial -> assume >45 min -> 2 points\nsurgery_over_45min_points = 2\n\n# Trauma: No -> 0 points\ntrauma_points = 0\n\n# Pregnancy: NOT REPORTED -> 0 points\npregnancy_points = 0\n\n# Estrogen use: NOT REPORTED -> 0 points\nestrogen_points = 0\n\n# Stroke: NOT REPORTED -> 0 points\nstroke_points = 0\n\n# MI: NOT REPORTED -> 0 points\nmi_points = 0\n\n# DVT/PE: Yes (history of venous clot) -> already counted in prior VTE\n\n# Total Caprini Score\nanswer = (age_points + gender_points + prior_vte_points + recent_surgery_points + immobility_points +\n          smoking_points + chronic_lung_disease_points + obesity_points + malignancy_points +\n          hormone_therapy_points + cvc_points + varicose_veins_points + inflammatory_disease_points +\n          renal_failure_points + liver_disease_points + hit_points + family_vte_points +\n          hypercoagulable_points + surgery_over_45min_points + trauma_points + pregnancy_points +\n          estrogen_points + stroke_points + mi_points)",
+        "exec_value": "12",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 12"
+  },
+  {
+    "id": "row974",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Age: 59 years  \nGender: Female  \nHistory of venous thromboembolism: NOT REPORTED  \nFamily history of VTE: NOT REPORTED  \nPrior surgery or trauma: NOT REPORTED  \nImmobilization: NOT REPORTED  \nObesity: NOT REPORTED  \nHormone therapy: NOT REPORTED  \nCancer: NOT REPORTED  \nHypercoagulable state: NOT REPORTED  \nPrevious hospitalization: NOT REPORTED  \nAcute medical illness: NOT REPORTED  \nCentral venous catheter: NOT REPORTED  \nSmoking: NOT REPORTED  \nVaricose veins: NOT REPORTED  \nDeep vein thrombosis: NOT REPORTED  \nPregnancy or puerperium: NOT REPORTED  \nAge: 59 years  \nHistory of heart failure: Yes  \nHistory of chronic lung disease: NOT REPORTED  \nHistory of stroke: NOT REPORTED  \nHistory of infection: NOT REPORTED  \nHistory of major surgery: NOT REPORTED  \nHistory of trauma: NOT REPORTED  \nHistory of prolonged immobilization: NOT REPORTED  \nHistory of venous insufficiency: Yes  \nHistory of leg swelling: Yes  \nHistory of orthopnea: Yes  \nHistory of ankle edema: Yes  \nHistory of fluid retention: Yes  \nHistory of shortness of breath: Yes  \nHistory of elevated jugular venous pressure: NOT REPORTED  \nHistory of pulmonary edema: NOT REPORTED  \nHistory of elevated BNP or NT-proBNP: NOT REPORTED  \nHistory of echocardiographic evidence of heart failure: Yes  \nHistory of diuretic use: Yes  \nHistory of dietary sodium restriction: Yes  \nHistory of hospitalization for heart failure: Yes  \nHistory of recent hospitalization: Yes  \nHistory of recent surgery: NOT REPORTED  \nHistory of major illness: Yes  \nHistory of acute illness: Yes  \nHistory of infection: NOT REPORTED  \nHistory of cancer: NOT REPORTED  \nHistory of hypercoagulable disorder: NOT REPORTED  \nHistory of thrombophilia: NOT REPORTED  \nHistory of antiphospholipid syndrome: NOT REPORTED  \nHistory of protein C/S deficiency: NOT REPORTED  \nHistory of factor V Leiden: NOT REPORTED  \nHistory of prothrombin gene mutation: NOT REPORTED  \nHistory of anticoagulant use: NOT REPORTED  \nHistory of heparin-induced thrombocytopenia: NOT REPORTED  \nHistory of recent fracture: NOT REPORTED  \nHistory of hip or leg fracture: NOT REPORTED  \nHistory of immobilization in cast or brace: NOT REPORTED  \nHistory of prolonged bed rest: NOT REPORTED  \nHistory of recent travel: NOT REPORTED  \nHistory of obesity: NOT REPORTED  \nHistory of smoking: NOT REPORTED  \nHistory of hormone therapy: NOT REPORTED  \nHistory of oral contraceptives: NOT REPORTED  \nHistory of pregnancy: NOT REPORTED  \nHistory of puerperium: NOT REPORTED  \nHistory of varicose veins: NOT REPORTED  \nHistory of deep vein thrombosis: NOT REPORTED  \nHistory of pulmonary embolism: NOT REPORTED  \nHistory of family history of VTE: NOT REPORTED  \nHistory of genetic clotting disorder: NOT REPORTED  \nHistory of abnormal amino acids: NOT REPORTED  \nHistory of abnormal immune process: NOT REPORTED  \nHistory of bowel condition: NOT REPORTED  \nHistory of obstructive lung disease: NOT REPORTED  \nHistory of malignancy: NOT REPORTED  \nHistory of recent hospitalization: Yes  \nHistory of acute illness: Yes  \nHistory of heart failure: Yes  \nHistory of fluid retention: Yes  \nHistory of ankle edema: Yes  \nHistory of orthopnea: Yes  \nHistory of shortness of breath: Yes  \nHistory of elevated JVP: NOT REPORTED  \nHistory of pulmonary edema: NOT REPORTED  \nHistory of elevated BNP: NOT REPORTED  \nHistory of echocardiogram showing heart failure: Yes  \nHistory of diuretic use: Yes  \nHistory of sodium restriction: Yes  \nHistory of hospitalization for heart failure: Yes  \nHistory of recent surgery: NOT REPORTED  \nHistory of trauma: NOT REPORTED  \nHistory of immobilization: NOT REPORTED  \nHistory of prolonged bed rest: NOT REPORTED  \nHistory of recent travel: NOT REPORTED  \nHistory of obesity: NOT REPORTED  \nHistory of smoking: NOT REPORTED  \nHistory of hormone therapy: NOT REPORTED  \nHistory of oral contraceptives: NOT REPORTED  \nHistory of pregnancy: NOT REPORTED  \nHistory of puerperium: NOT REPORTED  \nHistory of varicose veins: NOT REPORTED  \nHistory of DVT: NOT REPORTED  \nHistory of PE: NOT REPORTED  \nHistory of family history of VTE: NOT REPORTED  \nHistory of genetic clotting disorder: NOT REPORTED  \nHistory of abnormal amino acids: NOT REPORTED  \nHistory of abnormal immune process: NOT REPORTED  \nHistory of bowel condition: NOT REPORTED  \nHistory of obstructive lung disease: NOT REPORTED  \nHistory of malignancy: NOT REPORTED  \nHistory of recent hospitalization: Yes  \nHistory of acute illness: Yes  \nHistory of heart failure: Yes  \nHistory of fluid retention: Yes  \nHistory of ankle edema: Yes  \nHistory of orthopnea: Yes  \nHistory of shortness of breath: Yes  \nHistory of elevated JVP: NOT REPORTED  \nHistory of pulmonary edema: NOT REPORTED  \nHistory of elevated BNP: NOT REPORTED  \nHistory of echocardiogram showing heart failure: Yes  \nHistory of diuretic use: Yes  \nHistory of sodium restriction: Yes  \nHistory of hospitalization for heart failure: Yes  \nHistory of recent surgery: NOT REPORTED  \nHistory of trauma: NOT REPORTED  \nHistory of immobilization: NOT REPORTED  \nHistory of prolonged bed rest: NOT REPORTED  \nHistory of recent travel: NOT REPORTED  \nHistory of obesity: NOT REPORTED  \nHistory of smoking: NOT REPORTED  \nHistory of hormone therapy: NOT REPORTED  \nHistory of oral contraceptives: NOT REPORTED  \nHistory of pregnancy: NOT REPORTED  \nHistory of puerperium: NOT REPORTED  \nHistory of varicose veins: NOT REPORTED  \nHistory of DVT: NOT REPORTED  \nHistory of PE: NOT REPORTED  \nHistory of family history of VTE: NOT REPORTED  \nHistory of genetic clotting disorder: NOT REPORTED  \nHistory of abnormal amino acids: NOT REPORTED  \nHistory of abnormal immune process: NOT REPORTED  \nHistory of bowel condition: NOT REPORTED  \nHistory of obstructive lung disease: NOT REPORTED  \nHistory of malignancy: NOT REPORTED  \n\nNote: The above list contains many duplicates. Below is the correct, non-redundant list of required clinical values for the Caprini Score, based on the patient's status at first hospital admission (prior to treatment), as per the Caprini Risk Assessment Model.\n\nAge: 59 years  \nGender: Female  \nHistory of venous thromboembolism: NOT REPORTED  \nFamily history of VTE: NOT REPORTED  \nPrior surgery or trauma: NOT REPORTED  \nImmobilization: NOT REPORTED  \nObesity: NOT REPORTED  \nHormone therapy: NOT REPORTED  \nCancer: NOT REPORTED  \nHypercoagulable state: NOT REPORTED  \nPrevious hospitalization: Yes  \nAc"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Caprini Score calculation based on the patient's status at first hospital admission (prior to treatment)\n\n# Assign points according to the Caprini Risk Assessment Model (2013 version)\n# Each factor is evaluated as present or absent\n\n# Age: 59 years -> 1 point (age 50-59)\nage_points = 1\n\n# Gender: Female -> 0 points (no points for female in Caprini model)\ngender_points = 0\n\n# History of venous thromboembolism: NOT REPORTED -> 0 points\nvte_history_points = 0\n\n# Family history of VTE: NOT REPORTED -> 0 points\nfamily_vte_points = 0\n\n# Prior surgery or trauma: NOT REPORTED -> 0 points\nsurgery_trauma_points = 0\n\n# Immobilization: NOT REPORTED -> 0 points\nimmobilization_points = 0\n\n# Obesity: NOT REPORTED -> 0 points\nobesity_points = 0\n\n# Hormone therapy: NOT REPORTED -> 0 points\nhormone_therapy_points = 0\n\n# Cancer: NOT REPORTED -> 0 points\ncancer_points = 0\n\n# Hypercoagulable state: NOT REPORTED -> 0 points\nhypercoagulable_points = 0\n\n# Previous hospitalization: Yes -> 1 point (hospitalization within 3 months)\nprevious_hospitalization_points = 1\n\n# Acute medical illness: Yes (heart failure, fluid retention, shortness of breath, etc.) -> 1 point\nacute_illness_points = 1\n\n# Central venous catheter: NOT REPORTED -> 0 points\ncvc_points = 0\n\n# Smoking: NOT REPORTED -> 0 points\nsmoking_points = 0\n\n# Varicose veins: NOT REPORTED -> 0 points\nvaricose_veins_points = 0\n\n# Deep vein thrombosis: NOT REPORTED -> 0 points\ndvt_points = 0\n\n# Pulmonary embolism: NOT REPORTED -> 0 points\npe_points = 0\n\n# Pregnancy or puerperium: NOT REPORTED -> 0 points\npregnancy_points = 0\n\n# History of heart failure: Yes -> 1 point\nheart_failure_points = 1\n\n# History of chronic lung disease: NOT REPORTED -> 0 points\nchronic_lung_disease_points = 0\n\n# History of stroke: NOT REPORTED -> 0 points\nstroke_points = 0\n\n# History of infection: NOT REPORTED -> 0 points\ninfection_points = 0\n\n# History of major surgery: NOT REPORTED -> 0 points\nmajor_surgery_points = 0\n\n# History of trauma: NOT REPORTED -> 0 points\ntrauma_points = 0\n\n# History of prolonged immobilization: NOT REPORTED -> 0 points\nprolonged_immobilization_points = 0\n\n# History of recent travel: NOT REPORTED -> 0 points\ntravel_points = 0\n\n# History of recent fracture: NOT REPORTED -> 0 points\nfracture_points = 0\n\n# History of hip or leg fracture: NOT REPORTED -> 0 points\nhip_leg_fracture_points = 0\n\n# History of immobilization in cast or brace: NOT REPORTED -> 0 points\ncast_brace_points = 0\n\n# History of prolonged bed rest: NOT REPORTED -> 0 points\nbed_rest_points = 0\n\n# History of venous insufficiency: Yes -> 1 point\nvenous_insufficiency_points = 1\n\n# History of leg swelling: Yes -> 1 point\nleg_swelling_points = 1\n\n# History of orthopnea: Yes -> 1 point\northopnea_points = 1\n\n# History of ankle edema: Yes -> 1 point\nankle_edema_points = 1\n\n# History of fluid retention: Yes -> 1 point\nfluid_retention_points = 1\n\n# History of shortness of breath: Yes -> 1 point\nshortness_of_breath_points = 1\n\n# History of elevated JVP: NOT REPORTED -> 0 points\nelevated_jvp_points = 0\n\n# History of pulmonary edema: NOT REPORTED -> 0 points\npulmonary_edema_points = 0\n\n# History of elevated BNP or NT-proBNP: NOT REPORTED -> 0 points\nbnp_points = 0\n\n# History of echocardiographic evidence of heart failure: Yes -> 1 point\necho_heart_failure_points = 1\n\n# History of diuretic use: Yes -> 1 point\ndiuretic_use_points = 1\n\n# History of dietary sodium restriction: Yes -> 1 point\nsodium_restriction_points = 1\n\n# History of hospitalization for heart failure: Yes -> 1 point\nhf_hospitalization_points = 1\n\n# History of recent surgery: NOT REPORTED -> 0 points\nrecent_surgery_points = 0\n\n# History of recent illness: Yes (acute illness) -> already counted in acute_illness_points\n\n# Total Caprini Score\nanswer = (\n    age_points +\n    gender_points +\n    vte_history_points +\n    family_vte_points +\n    surgery_trauma_points +\n    immobilization_points +\n    obesity_points +\n    hormone_therapy_points +\n    cancer_points +\n    hypercoagulable_points +\n    previous_hospitalization_points +\n    acute_illness_points +\n    cvc_points +\n    smoking_points +\n    varicose_veins_points +\n    dvt_points +\n    pe_points +\n    pregnancy_points +\n    heart_failure_points +\n    chronic_lung_disease_points +\n    stroke_points +\n    infection_points +\n    major_surgery_points +\n    trauma_points +\n    prolonged_immobilization_points +\n    travel_points +\n    fracture_points +\n    hip_leg_fracture_points +\n    cast_brace_points +\n    bed_rest_points +\n    venous_insufficiency_points +\n    leg_swelling_points +\n    orthopnea_points +\n    ankle_edema_points +\n    fluid_retention_points +\n    shortness_of_breath_points +\n    elevated_jvp_points +\n    pulmonary_edema_points +\n    bnp_points +\n    echo_heart_failure_points +\n    diuretic_use_points +\n    sodium_restriction_points +\n    hf_hospitalization_points +\n    recent_surgery_points\n)\n```",
+        "code": "# Caprini Score calculation based on the patient's status at first hospital admission (prior to treatment)\n\n# Assign points according to the Caprini Risk Assessment Model (2013 version)\n# Each factor is evaluated as present or absent\n\n# Age: 59 years -> 1 point (age 50-59)\nage_points = 1\n\n# Gender: Female -> 0 points (no points for female in Caprini model)\ngender_points = 0\n\n# History of venous thromboembolism: NOT REPORTED -> 0 points\nvte_history_points = 0\n\n# Family history of VTE: NOT REPORTED -> 0 points\nfamily_vte_points = 0\n\n# Prior surgery or trauma: NOT REPORTED -> 0 points\nsurgery_trauma_points = 0\n\n# Immobilization: NOT REPORTED -> 0 points\nimmobilization_points = 0\n\n# Obesity: NOT REPORTED -> 0 points\nobesity_points = 0\n\n# Hormone therapy: NOT REPORTED -> 0 points\nhormone_therapy_points = 0\n\n# Cancer: NOT REPORTED -> 0 points\ncancer_points = 0\n\n# Hypercoagulable state: NOT REPORTED -> 0 points\nhypercoagulable_points = 0\n\n# Previous hospitalization: Yes -> 1 point (hospitalization within 3 months)\nprevious_hospitalization_points = 1\n\n# Acute medical illness: Yes (heart failure, fluid retention, shortness of breath, etc.) -> 1 point\nacute_illness_points = 1\n\n# Central venous catheter: NOT REPORTED -> 0 points\ncvc_points = 0\n\n# Smoking: NOT REPORTED -> 0 points\nsmoking_points = 0\n\n# Varicose veins: NOT REPORTED -> 0 points\nvaricose_veins_points = 0\n\n# Deep vein thrombosis: NOT REPORTED -> 0 points\ndvt_points = 0\n\n# Pulmonary embolism: NOT REPORTED -> 0 points\npe_points = 0\n\n# Pregnancy or puerperium: NOT REPORTED -> 0 points\npregnancy_points = 0\n\n# History of heart failure: Yes -> 1 point\nheart_failure_points = 1\n\n# History of chronic lung disease: NOT REPORTED -> 0 points\nchronic_lung_disease_points = 0\n\n# History of stroke: NOT REPORTED -> 0 points\nstroke_points = 0\n\n# History of infection: NOT REPORTED -> 0 points\ninfection_points = 0\n\n# History of major surgery: NOT REPORTED -> 0 points\nmajor_surgery_points = 0\n\n# History of trauma: NOT REPORTED -> 0 points\ntrauma_points = 0\n\n# History of prolonged immobilization: NOT REPORTED -> 0 points\nprolonged_immobilization_points = 0\n\n# History of recent travel: NOT REPORTED -> 0 points\ntravel_points = 0\n\n# History of recent fracture: NOT REPORTED -> 0 points\nfracture_points = 0\n\n# History of hip or leg fracture: NOT REPORTED -> 0 points\nhip_leg_fracture_points = 0\n\n# History of immobilization in cast or brace: NOT REPORTED -> 0 points\ncast_brace_points = 0\n\n# History of prolonged bed rest: NOT REPORTED -> 0 points\nbed_rest_points = 0\n\n# History of venous insufficiency: Yes -> 1 point\nvenous_insufficiency_points = 1\n\n# History of leg swelling: Yes -> 1 point\nleg_swelling_points = 1\n\n# History of orthopnea: Yes -> 1 point\northopnea_points = 1\n\n# History of ankle edema: Yes -> 1 point\nankle_edema_points = 1\n\n# History of fluid retention: Yes -> 1 point\nfluid_retention_points = 1\n\n# History of shortness of breath: Yes -> 1 point\nshortness_of_breath_points = 1\n\n# History of elevated JVP: NOT REPORTED -> 0 points\nelevated_jvp_points = 0\n\n# History of pulmonary edema: NOT REPORTED -> 0 points\npulmonary_edema_points = 0\n\n# History of elevated BNP or NT-proBNP: NOT REPORTED -> 0 points\nbnp_points = 0\n\n# History of echocardiographic evidence of heart failure: Yes -> 1 point\necho_heart_failure_points = 1\n\n# History of diuretic use: Yes -> 1 point\ndiuretic_use_points = 1\n\n# History of dietary sodium restriction: Yes -> 1 point\nsodium_restriction_points = 1\n\n# History of hospitalization for heart failure: Yes -> 1 point\nhf_hospitalization_points = 1\n\n# History of recent surgery: NOT REPORTED -> 0 points\nrecent_surgery_points = 0\n\n# History of recent illness: Yes (acute illness) -> already counted in acute_illness_points\n\n# Total Caprini Score\nanswer = (\n    age_points +\n    gender_points +\n    vte_history_points +\n    family_vte_points +\n    surgery_trauma_points +\n    immobilization_points +\n    obesity_points +\n    hormone_therapy_points +\n    cancer_points +\n    hypercoagulable_points +\n    previous_hospitalization_points +\n    acute_illness_points +\n    cvc_points +\n    smoking_points +\n    varicose_veins_points +\n    dvt_points +\n    pe_points +\n    pregnancy_points +\n    heart_failure_points +\n    chronic_lung_disease_points +\n    stroke_points +\n    infection_points +\n    major_surgery_points +\n    trauma_points +\n    prolonged_immobilization_points +\n    travel_points +\n    fracture_points +\n    hip_leg_fracture_points +\n    cast_brace_points +\n    bed_rest_points +\n    venous_insufficiency_points +\n    leg_swelling_points +\n    orthopnea_points +\n    ankle_edema_points +\n    fluid_retention_points +\n    shortness_of_breath_points +\n    elevated_jvp_points +\n    pulmonary_edema_points +\n    bnp_points +\n    echo_heart_failure_points +\n    diuretic_use_points +\n    sodium_restriction_points +\n    hf_hospitalization_points +\n    recent_surgery_points\n)",
+        "exec_value": "14",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 14"
+  },
+  {
+    "id": "row1017",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Hydrocortisone IV dose: 186.669 mg  \nPrednisone equivalent potency ratio: NOT REPORTED"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Hydrocortisone IV dose in mg\nhydrocortisone_iv_dose = 186.669\n\n# Prednisone equivalent potency ratio (Hydrocortisone : Prednisone = 4:1)\n# This means 4 mg of hydrocortisone is equivalent to 1 mg of prednisone\nprednisone_equivalent_ratio = 4.0\n\n# Calculate equivalent prednisone dose\nanswer = hydrocortisone_iv_dose / prednisone_equivalent_ratio\n```",
+        "code": "# Hydrocortisone IV dose in mg\nhydrocortisone_iv_dose = 186.669\n\n# Prednisone equivalent potency ratio (Hydrocortisone : Prednisone = 4:1)\n# This means 4 mg of hydrocortisone is equivalent to 1 mg of prednisone\nprednisone_equivalent_ratio = 4.0\n\n# Calculate equivalent prednisone dose\nanswer = hydrocortisone_iv_dose / prednisone_equivalent_ratio",
+        "exec_value": "46.66725",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 46.66725"
+  },
+  {
+    "id": "row1031",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "height: 172 cm\ntarget BMI: 24.7 kg/m^2"
+      },
+      {
+        "name": "program",
+        "text": "```python\nheight_m = 172 / 100\ntarget_BMI = 24.7\nanswer = target_BMI * (height_m ** 2)\n```",
+        "code": "height_m = 172 / 100\ntarget_BMI = 24.7\nanswer = target_BMI * (height_m ** 2)",
+        "exec_value": "73.07247999999998",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 73.07247999999998"
+  },
+  {
+    "id": "row1053",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "Fentanyl buccal: 30 mg per dose  \nFentanyl buccal: 2 doses per day  \nTapentadol: 20 mg per dose  \nTapentadol: 3 doses per day"
+      },
+      {
+        "name": "program",
+        "text": "```python\n# Constants for MME conversion factors (per standard guidelines)\n# Fentanyl buccal: 100 mcg = 10 mg morphine equivalent (so 1 mg fentanyl = 100 mg MME)\n# Tapentadol: 100 mg = 100 mg morphine equivalent (so 1 mg tapentadol = 1 mg MME)\n\n# Fentanyl buccal\nfentanyl_buccal_dose_mg = 30\nfentanyl_buccal_doses_per_day = 2\nfentanyl_buccal_mme_per_mg = 100  # 1 mg fentanyl buccal = 100 mg MME\n\n# Tapentadol\ntapentadol_dose_mg = 20\ntapentadol_doses_per_day = 3\ntapentadol_mme_per_mg = 1  # 1 mg tapentadol = 1 mg MME\n\n# Calculate total daily MME\nfentanyl_total_mme = fentanyl_buccal_dose_mg * fentanyl_buccal_doses_per_day * fentanyl_buccal_mme_per_mg\ntapentadol_total_mme = tapentadol_dose_mg * tapentadol_doses_per_day * tapentadol_mme_per_mg\n\n# Total daily MME\nanswer = fentanyl_total_mme + tapentadol_total_mme\n```",
+        "code": "# Constants for MME conversion factors (per standard guidelines)\n# Fentanyl buccal: 100 mcg = 10 mg morphine equivalent (so 1 mg fentanyl = 100 mg MME)\n# Tapentadol: 100 mg = 100 mg morphine equivalent (so 1 mg tapentadol = 1 mg MME)\n\n# Fentanyl buccal\nfentanyl_buccal_dose_mg = 30\nfentanyl_buccal_doses_per_day = 2\nfentanyl_buccal_mme_per_mg = 100  # 1 mg fentanyl buccal = 100 mg MME\n\n# Tapentadol\ntapentadol_dose_mg = 20\ntapentadol_doses_per_day = 3\ntapentadol_mme_per_mg = 1  # 1 mg tapentadol = 1 mg MME\n\n# Calculate total daily MME\nfentanyl_total_mme = fentanyl_buccal_dose_mg * fentanyl_buccal_doses_per_day * fentanyl_buccal_mme_per_mg\ntapentadol_total_mme = tapentadol_dose_mg * tapentadol_doses_per_day * tapentadol_mme_per_mg\n\n# Total daily MME\nanswer = fentanyl_total_mme + tapentadol_total_mme",
+        "exec_value": "6060",
+        "error": null
+      }
+    ],
+    "answer_text": "ANSWER: 6060"
+  },
+  {
+    "id": "row1065",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "last menstrual period: 08/21/2017 M/D/Y"
+      },
+      {
+        "name": "program",
+        "text": "```python\nfrom datetime import datetime, timedelta\n\n# Last menstrual period\nlast_menstrual_period = datetime(2017, 8, 21)\n\n# Estimated date of conception is typically 14 days after the first day of the last menstrual period\nestimated_conception = last_menstrual_period + timedelta(days=14)\n\n# Format the result as M/D/Y\nanswer = estimated_conception.strftime('%m/%d/%Y')\n```",
+        "code": "from datetime import datetime, timedelta\n\n# Last menstrual period\nlast_menstrual_period = datetime(2017, 8, 21)\n\n# Estimated date of conception is typically 14 days after the first day of the last menstrual period\nestimated_conception = last_menstrual_period + timedelta(days=14)\n\n# Format the result as M/D/Y\nanswer = estimated_conception.strftime('%m/%d/%Y')",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_fallback",
+        "text": "Step 1: Formula or rule  \nThe estimated date of conception is typically calculated as approximately 14 days after the first day of the last menstrual period (LMP), assuming a regular 28-day menstrual cycle and ovulation occurring on day 14.\n\nStep 2: Values from the note  \n- Last menstrual period (LMP): 08/21/2017  \n- This date is the first day of the last menstrual period.\n\nStep 3: Convert units as needed  \nNo unit conversion is needed; the date is already in the correct format.\n\nStep 4: Compute  \nAdd 14 days to the LMP:  \n08/21/2017 + 14 days = 09/04/2017\n\nANSWER: 09/04/2017"
+      }
+    ],
+    "answer_text": "Step 1: Formula or rule  \nThe estimated date of conception is typically calculated as approximately 14 days after the first day of the last menstrual period (LMP), assuming a regular 28-day menstrual cycle and ovulation occurring on day 14.\n\nStep 2: Values from the note  \n- Last menstrual period (LMP): 08/21/2017  \n- This date is the first day of the last menstrual period.\n\nStep 3: Convert units as needed  \nNo unit conversion is needed; the date is already in the correct format.\n\nStep 4: Compute  \nAdd 14 days to the LMP:  \n08/21/2017 + 14 days = 09/04/2017\n\nANSWER: 09/04/2017"
+  },
+  {
+    "id": "row1089",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "last menstrual period: 05/08/2024 date\ntoday's date: 09/10/2024 date"
+      },
+      {
+        "name": "program",
+        "text": "```python\nfrom datetime import datetime, date, timedelta\n\n# Extracted values from the note\nlast_menstrual_period = date(2024, 5, 8)\ntoday_date = date(2024, 9, 10)\n\n# Calculate the difference in days\ngestational_days = (today_date - last_menstrual_period).days\n\n# Convert days to weeks and remaining days\nweeks = gestational_days // 7\ndays = gestational_days % 7\n\n# Assign the final result\nanswer = (weeks, days)\n```",
+        "code": "from datetime import datetime, date, timedelta\n\n# Extracted values from the note\nlast_menstrual_period = date(2024, 5, 8)\ntoday_date = date(2024, 9, 10)\n\n# Calculate the difference in days\ngestational_days = (today_date - last_menstrual_period).days\n\n# Convert days to weeks and remaining days\nweeks = gestational_days // 7\ndays = gestational_days % 7\n\n# Assign the final result\nanswer = (weeks, days)",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_fallback",
+        "text": "Step 1: Formula or rule  \nGestational age is calculated from the first day of the last menstrual period (LMP) using the standard obstetric formula:  \nGestational age = (Today's date - LMP) in weeks and days.\n\nStep 2: Values from the note  \n- Last menstrual period (LMP): 05/08/2024 (May 8, 2024)  \n- Today's date: 09/10/2024 (September 10, 2024)\n\nStep 3: Convert dates to a common format and compute the difference  \nWe calculate the number of days between May 8, 2024, and September 10, 2024.\n\nBreakdown by months:  \n- May 8 to May 31: 31 - 8 = 23 days  \n- June: 30 days  \n- July: 31 days  \n- August: 31 days  \n- September 1 to September 10: 10 days  \n\nTotal days = 23 (May) + 30 (June) + 31 (July) + 31 (August) + 10 (September) = 125 days\n\nStep 4: Convert days to weeks and days  \n125 days \u00f7 7 = 17 weeks and 6 days (since 17 \u00d7 7 = 119, and 125 - 119 = 6)\n\nSo, gestational age is 17 weeks and 6 days.\n\nANSWER: (17 weeks, 6 days)"
+      }
+    ],
+    "answer_text": "Step 1: Formula or rule  \nGestational age is calculated from the first day of the last menstrual period (LMP) using the standard obstetric formula:  \nGestational age = (Today's date - LMP) in weeks and days.\n\nStep 2: Values from the note  \n- Last menstrual period (LMP): 05/08/2024 (May 8, 2024)  \n- Today's date: 09/10/2024 (September 10, 2024)\n\nStep 3: Convert dates to a common format and compute the difference  \nWe calculate the number of days between May 8, 2024, and September 10, 2024.\n\nBreakdown by months:  \n- May 8 to May 31: 31 - 8 = 23 days  \n- June: 30 days  \n- July: 31 days  \n- August: 31 days  \n- September 1 to September 10: 10 days  \n\nTotal days = 23 (May) + 30 (June) + 31 (July) + 31 (August) + 10 (September) = 125 days\n\nStep 4: Convert days to weeks and days  \n125 days \u00f7 7 = 17 weeks and 6 days (since 17 \u00d7 7 = 119, and 125 - 119 = 6)\n\nSo, gestational age is 17 weeks and 6 days.\n\nANSWER: (17 weeks, 6 days)"
+  },
+  {
+    "id": "row1095",
+    "trace": [
+      {
+        "name": "extract",
+        "text": "last menstrual period: 07/18/2010 date  \ntoday's date: 02/09/2011 date"
+      },
+      {
+        "name": "program",
+        "text": "```python\nfrom datetime import datetime, date, timedelta\n\n# Extracted dates from the note\nlast_menstrual_period = date(2010, 7, 18)\ntoday_date = date(2011, 2, 9)\n\n# Calculate the difference in days\ndifference = today_date - last_menstrual_period\ntotal_days = difference.days\n\n# Convert total days to weeks and days\nweeks = total_days // 7\ndays = total_days % 7\n\n# Assign the result as a tuple\nanswer = (weeks, days)\n```",
+        "code": "from datetime import datetime, date, timedelta\n\n# Extracted dates from the note\nlast_menstrual_period = date(2010, 7, 18)\ntoday_date = date(2011, 2, 9)\n\n# Calculate the difference in days\ndifference = today_date - last_menstrual_period\ntotal_days = difference.days\n\n# Convert total days to weeks and days\nweeks = total_days // 7\ndays = total_days % 7\n\n# Assign the result as a tuple\nanswer = (weeks, days)",
+        "exec_value": null,
+        "error": "blocked construct: import"
+      },
+      {
+        "name": "cot_fallback",
+        "text": "Step 1: Formula or rule  \nGestational age is calculated from the first day of the last menstrual period (LMP) to the current date. The standard method uses a 7-day week and 40-week pregnancy duration. The formula is:  \nGestational age = (Current date - LMP date) in days, then converted to weeks and days.\n\nStep 2: Values from the note  \n- Last menstrual period (LMP): 07/18/2010  \n- Today's date: 02/09/2011  \n\nStep 3: Convert dates to day-of-year and compute difference  \nWe will compute the number of days between 07/18/2010 and 02/09/2011.\n\nFirst, calculate the number of days from 07/18/2010 to 12/31/2010:  \n- July 18 to July 31: 14 days (including July 18? No \u2014 we start counting from July 19, so 13 days)  \nActually, better to use a systematic method:  \n- Days remaining in July 2010: 31 - 18 = 13 days (July 19 to July 31)  \n- August: 31 days  \n- September: 30 days  \n- October: 31 days  \n- November: 30 days  \n- December: 31 days  \nTotal from July 18 to Dec 31, 2010:  \n13 (Jul) + 31 (Aug) + 30 (Sep) + 31 (Oct) + 30 (Nov) + 31 (Dec) = 166 days\n\nNow, days from Jan 1, 2011 to Feb 9, 2011:  \n- January: 31 days  \n- February: 9 days  \nTotal: 31 + 9 = 40 days\n\nTotal days between LMP and today: 166 + 40 = 206 days\n\nStep 4: Convert days to weeks and days  \n206 \u00f7 7 = 29 weeks and 3 days (since 29 \u00d7 7 = 203, 206 - 203 = 3)\n\nSo, gestational age is 29 weeks and 3 days.\n\nANSWER: (29 weeks, 3 days)"
+      }
+    ],
+    "answer_text": "Step 1: Formula or rule  \nGestational age is calculated from the first day of the last menstrual period (LMP) to the current date. The standard method uses a 7-day week and 40-week pregnancy duration. The formula is:  \nGestational age = (Current date - LMP date) in days, then converted to weeks and days.\n\nStep 2: Values from the note  \n- Last menstrual period (LMP): 07/18/2010  \n- Today's date: 02/09/2011  \n\nStep 3: Convert dates to day-of-year and compute difference  \nWe will compute the number of days between 07/18/2010 and 02/09/2011.\n\nFirst, calculate the number of days from 07/18/2010 to 12/31/2010:  \n- July 18 to July 31: 14 days (including July 18? No \u2014 we start counting from July 19, so 13 days)  \nActually, better to use a systematic method:  \n- Days remaining in July 2010: 31 - 18 = 13 days (July 19 to July 31)  \n- August: 31 days  \n- September: 30 days  \n- October: 31 days  \n- November: 30 days  \n- December: 31 days  \nTotal from July 18 to Dec 31, 2010:  \n13 (Jul) + 31 (Aug) + 30 (Sep) + 31 (Oct) + 30 (Nov) + 31 (Dec) = 166 days\n\nNow, days from Jan 1, 2011 to Feb 9, 2011:  \n- January: 31 days  \n- February: 9 days  \nTotal: 31 + 9 = 40 days\n\nTotal days between LMP and today: 166 + 40 = 206 days\n\nStep 4: Convert days to weeks and days  \n206 \u00f7 7 = 29 weeks and 3 days (since 29 \u00d7 7 = 203, 206 - 203 = 3)\n\nSo, gestational age is 29 weeks and 3 days.\n\nANSWER: (29 weeks, 3 days)"
+  }
+]

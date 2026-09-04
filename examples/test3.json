@@ -1,0 +1,5 @@
+{
+  "name": "test3 - one case per answer format",
+  "why": "Covers all three scoring paths: a decimal scored against a tolerance band, an integer scored exactly, and a (weeks, days) gestational-age tuple.",
+  "case_ids": ["row1", "row258", "row1095"]
+}

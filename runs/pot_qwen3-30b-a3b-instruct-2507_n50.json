@@ -1,0 +1,680 @@
+{
+  "summary": {
+    "n": 50,
+    "accuracy": 0.58,
+    "parse_failure_rate": 0.0,
+    "by_category": {
+      "date": {
+        "acc": 1.0,
+        "n": 3
+      },
+      "diagnosis": {
+        "acc": 0.3333333333333333,
+        "n": 3
+      },
+      "dosage": {
+        "acc": 0.5,
+        "n": 2
+      },
+      "lab test": {
+        "acc": 0.6470588235294118,
+        "n": 17
+      },
+      "physical": {
+        "acc": 0.7272727272727273,
+        "n": 11
+      },
+      "risk": {
+        "acc": 0.45454545454545453,
+        "n": 11
+      },
+      "severity": {
+        "acc": 0.0,
+        "n": 3
+      }
+    },
+    "by_output_type": {
+      "date": {
+        "acc": 1.0,
+        "n": 1
+      },
+      "decimal": {
+        "acc": 0.6896551724137931,
+        "n": 29
+      },
+      "integer": {
+        "acc": 0.3333333333333333,
+        "n": 18
+      },
+      "weeks_days": {
+        "acc": 1.0,
+        "n": 2
+      }
+    },
+    "workflow": "pot",
+    "model": "qwen3-30b-a3b-instruct-2507",
+    "mode": "offline",
+    "temperature": 0.0,
+    "seed": 0,
+    "max_tokens": 1500,
+    "disable_thinking": false,
+    "workers": 8,
+    "wall_clock_s": 0.13,
+    "usage": {
+      "calls": 0,
+      "cached": 106,
+      "prompt_tokens": 87003,
+      "completion_tokens": 27572,
+      "llm_s": 377.19,
+      "errors": 0
+    }
+  },
+  "results": [
+    {
+      "id": "row79",
+      "calculator": "Mean Arterial Pressure (MAP)",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "91.66667",
+      "prediction": 91.66666666666666,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row86",
+      "calculator": "Body Mass Index (BMI)",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "22.99262",
+      "prediction": 22.99262444384723,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row109",
+      "calculator": "Calcium Correction for Hypoalbuminemia",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "8.34",
+      "prediction": 8.34,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row152",
+      "calculator": "MDRD GFR Equation",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "11.0264",
+      "prediction": 11.03,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row156",
+      "calculator": "MDRD GFR Equation",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "21.54697",
+      "prediction": 21.55,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row200",
+      "calculator": "QTc Bazett Calculator",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "288.46721",
+      "prediction": 288.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": true,
+      "error": null
+    },
+    {
+      "id": "row208",
+      "calculator": "Child-Pugh Score for Cirrhosis Mortality",
+      "category": "severity",
+      "output_type": "integer",
+      "ground_truth": "10",
+      "prediction": 8.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row233",
+      "calculator": "Wells' Criteria for DVT",
+      "category": "risk",
+      "output_type": "decimal",
+      "ground_truth": "0",
+      "prediction": 0.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row261",
+      "calculator": "HEART Score for Major Cardiac Events",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "4",
+      "prediction": 6.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row314",
+      "calculator": "Centor Score (Modified/McIsaac) for Strep Pharyngitis",
+      "category": "severity",
+      "output_type": "integer",
+      "ground_truth": "1",
+      "prediction": 2.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row325",
+      "calculator": "Maintenance Fluids Calculations",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "85.0",
+      "prediction": 85.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row331",
+      "calculator": "Maintenance Fluids Calculations",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "86.0",
+      "prediction": 95.83333333333333,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row352",
+      "calculator": "MELD Na (UNOS/OPTN)",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "30.0",
+      "prediction": 19.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row372",
+      "calculator": "HAS-BLED Score for Major Bleeding Risk",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "3",
+      "prediction": 3.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row374",
+      "calculator": "HAS-BLED Score for Major Bleeding Risk",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "1",
+      "prediction": 1.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": true,
+      "error": null
+    },
+    {
+      "id": "row389",
+      "calculator": "Sodium Correction for Hyperglycemia",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "134.688",
+      "prediction": 134.688,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row403",
+      "calculator": "Glasgow-Blatchford Bleeding Score (GBS)",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "7",
+      "prediction": 11.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row414",
+      "calculator": "Glasgow-Blatchford Bleeding Score (GBS)",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "7",
+      "prediction": 3.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row425",
+      "calculator": "Serum Osmolality",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "311.51722",
+      "prediction": 298.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row436",
+      "calculator": "Serum Osmolality",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "277.63492",
+      "prediction": 277.63050000000004,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row462",
+      "calculator": "Charlson Comorbidity Index (CCI)",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "2",
+      "prediction": 2.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row477",
+      "calculator": "Charlson Comorbidity Index (CCI)",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "3",
+      "prediction": 3.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row483",
+      "calculator": "FeverPAIN Score for Strep Pharyngitis",
+      "category": "diagnosis",
+      "output_type": "integer",
+      "ground_truth": "5",
+      "prediction": 3.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row504",
+      "calculator": "Free Water Deficit",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "-0.20143",
+      "prediction": 0.16785714285714284,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row528",
+      "calculator": "Anion Gap",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "15.2",
+      "prediction": 15.200000000000003,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row544",
+      "calculator": "CURB-65 Score for Pneumonia Severity",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "5",
+      "prediction": 4.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row585",
+      "calculator": "LDL Calculated",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "214.38",
+      "prediction": 214.37999999999997,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row589",
+      "calculator": "LDL Calculated",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "169.2",
+      "prediction": 169.2,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row599",
+      "calculator": "LDL Calculated",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "91.4",
+      "prediction": 91.4,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row613",
+      "calculator": "Framingham Risk Score for Hard Coronary Heart Disease",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "6.625",
+      "prediction": 5.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row627",
+      "calculator": "PERC Rule for Pulmonary Embolism",
+      "category": "diagnosis",
+      "output_type": "integer",
+      "ground_truth": "1",
+      "prediction": 7.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": true,
+      "error": null
+    },
+    {
+      "id": "row657",
+      "calculator": "SIRS Criteria",
+      "category": "diagnosis",
+      "output_type": "integer",
+      "ground_truth": "2",
+      "prediction": 2.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row681",
+      "calculator": "QTc Framingham Calculator",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "560.0007",
+      "prediction": 20.980546545153047,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row704",
+      "calculator": "QTc Hodges Calculator",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "444.50014",
+      "prediction": 470.892450565944,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row736",
+      "calculator": "QTc Rautaharju Calculator",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "459.33333",
+      "prediction": 449.72130891996073,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row747",
+      "calculator": "Body Surface Area Calculator",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "1.1547",
+      "prediction": 1.1850078498692984,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row778",
+      "calculator": "Adjusted Body Weight",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "59.34572",
+      "prediction": 59.303999999999995,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row799",
+      "calculator": "Delta Gap",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "7.0",
+      "prediction": 8.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row809",
+      "calculator": "Delta Ratio",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "1.5",
+      "prediction": 1.5,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row817",
+      "calculator": "Delta Ratio",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "1.5",
+      "prediction": 0.5,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row862",
+      "calculator": "Albumin Corrected Delta Ratio",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "-2.5",
+      "prediction": 12.4,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row911",
+      "calculator": "Glasgow Coma Score (GCS)",
+      "category": "severity",
+      "output_type": "integer",
+      "ground_truth": "8",
+      "prediction": 6.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row962",
+      "calculator": "Caprini Score for Venous Thromboembolism (2005)",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "14",
+      "prediction": 12.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row974",
+      "calculator": "Caprini Score for Venous Thromboembolism (2005)",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "5",
+      "prediction": 14.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row1017",
+      "calculator": "Steroid Conversion Calculator",
+      "category": "dosage",
+      "output_type": "integer",
+      "ground_truth": "46.68405",
+      "prediction": 46.66725,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row1031",
+      "calculator": "Target weight",
+      "category": "physical",
+      "output_type": "decimal",
+      "ground_truth": "73.07248",
+      "prediction": 73.07247999999998,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row1053",
+      "calculator": "Morphine Milligram Equivalents (MME) Calculator",
+      "category": "dosage",
+      "output_type": "integer",
+      "ground_truth": "31.8",
+      "prediction": 6060.0,
+      "parsed": true,
+      "correct": false,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row1065",
+      "calculator": "Estimated of Conception",
+      "category": "date",
+      "output_type": "date",
+      "ground_truth": "09/04/2017",
+      "prediction": "09/04/2017",
+      "parsed": true,
+      "correct": true,
+      "fallback": true,
+      "error": null
+    },
+    {
+      "id": "row1089",
+      "calculator": "Estimated Gestational Age",
+      "category": "date",
+      "output_type": "weeks_days",
+      "ground_truth": "('17 weeks', '6 days')",
+      "prediction": [
+        17,
+        6
+      ],
+      "parsed": true,
+      "correct": true,
+      "fallback": true,
+      "error": null
+    },
+    {
+      "id": "row1095",
+      "calculator": "Estimated Gestational Age",
+      "category": "date",
+      "output_type": "weeks_days",
+      "ground_truth": "('29 weeks', '3 days')",
+      "prediction": [
+        29,
+        3
+      ],
+      "parsed": true,
+      "correct": true,
+      "fallback": true,
+      "error": null
+    }
+  ]
+}

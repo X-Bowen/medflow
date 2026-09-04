@@ -1,0 +1,12 @@
+[
+  {
+    "id": "row1",
+    "trace": [
+      {
+        "name": "cot",
+        "text": "Step 1: Recall the Cockroft-Gault equation for creatinine clearance (CrCl):\n\nCrCl (mL/min) = [(140 - age) \u00d7 body weight (kg)] / [72 \u00d7 serum creatinine (mg/dL)]  \nFor females, multiply the result by 0.85. This patient is male, so no adjustment is needed.\n\nStep 2: Extract the relevant values from the patient note at admission:\n\n- Age: 87 years  \n- Serum creatinine: 1.4 mg/dL  \n- Actual body weight: 48 kg  \n- Height: 163 cm  \n\nStep 3: Calculate BMI to determine if the patient is overweight, obese, or underweight.\n\nBMI = weight (kg) / [height (m)]\u00b2  \nHeight in meters: 163 cm = 1.63 m  \nBMI = 48 / (1.63)\u00b2 = 48 / 2.6569 \u2248 18.07 kg/m\u00b2\n\nInterpretation:  \n- BMI < 18.5 \u2192 underweight  \nSince 18.07 < 18.5, the patient is underweight.\n\nRule: If underweight, use actual body weight for the Cockroft-Gault equation.\n\nTherefore, adjusted body weight = actual body weight = 48 kg\n\nStep 4: Plug values into the Cockroft-Gault equation:\n\nCrCl = [(140 - 87) \u00d7 48] / [72 \u00d7 1.4]  \n= [53 \u00d7 48] / [100.8]  \n= 2544 / 100.8  \n\u2248 25.238\n\nStep 5: Round to the nearest whole number (standard practice for CrCl):\n\n25.238 \u2248 25\n\nANSWER: 25"
+      }
+    ],
+    "answer_text": "Step 1: Recall the Cockroft-Gault equation for creatinine clearance (CrCl):\n\nCrCl (mL/min) = [(140 - age) \u00d7 body weight (kg)] / [72 \u00d7 serum creatinine (mg/dL)]  \nFor females, multiply the result by 0.85. This patient is male, so no adjustment is needed.\n\nStep 2: Extract the relevant values from the patient note at admission:\n\n- Age: 87 years  \n- Serum creatinine: 1.4 mg/dL  \n- Actual body weight: 48 kg  \n- Height: 163 cm  \n\nStep 3: Calculate BMI to determine if the patient is overweight, obese, or underweight.\n\nBMI = weight (kg) / [height (m)]\u00b2  \nHeight in meters: 163 cm = 1.63 m  \nBMI = 48 / (1.63)\u00b2 = 48 / 2.6569 \u2248 18.07 kg/m\u00b2\n\nInterpretation:  \n- BMI < 18.5 \u2192 underweight  \nSince 18.07 < 18.5, the patient is underweight.\n\nRule: If underweight, use actual body weight for the Cockroft-Gault equation.\n\nTherefore, adjusted body weight = actual body weight = 48 kg\n\nStep 4: Plug values into the Cockroft-Gault equation:\n\nCrCl = [(140 - 87) \u00d7 48] / [72 \u00d7 1.4]  \n= [53 \u00d7 48] / [100.8]  \n= 2544 / 100.8  \n\u2248 25.238\n\nStep 5: Round to the nearest whole number (standard practice for CrCl):\n\n25.238 \u2248 25\n\nANSWER: 25"
+  }
+]

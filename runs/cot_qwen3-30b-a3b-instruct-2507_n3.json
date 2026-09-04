@@ -1,0 +1,93 @@
+{
+  "summary": {
+    "n": 3,
+    "accuracy": 1.0,
+    "parse_failure_rate": 0.0,
+    "by_category": {
+      "date": {
+        "acc": 1.0,
+        "n": 1
+      },
+      "lab test": {
+        "acc": 1.0,
+        "n": 1
+      },
+      "risk": {
+        "acc": 1.0,
+        "n": 1
+      }
+    },
+    "by_output_type": {
+      "decimal": {
+        "acc": 1.0,
+        "n": 1
+      },
+      "integer": {
+        "acc": 1.0,
+        "n": 1
+      },
+      "weeks_days": {
+        "acc": 1.0,
+        "n": 1
+      }
+    },
+    "workflow": "cot",
+    "model": "qwen3-30b-a3b-instruct-2507",
+    "mode": "auto",
+    "temperature": 0.0,
+    "seed": 0,
+    "max_tokens": 1500,
+    "disable_thinking": false,
+    "workers": 1,
+    "wall_clock_s": 7.51,
+    "usage": {
+      "calls": 1,
+      "cached": 2,
+      "prompt_tokens": 2906,
+      "completion_tokens": 1594,
+      "llm_s": 16.6,
+      "errors": 0
+    }
+  },
+  "results": [
+    {
+      "id": "row1",
+      "calculator": "Creatinine Clearance (Cockcroft-Gault Equation)",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "25.2381",
+      "prediction": 25.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row258",
+      "calculator": "Revised Cardiac Risk Index for Pre-Operative Risk",
+      "category": "risk",
+      "output_type": "integer",
+      "ground_truth": "2",
+      "prediction": 2.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    },
+    {
+      "id": "row1095",
+      "calculator": "Estimated Gestational Age",
+      "category": "date",
+      "output_type": "weeks_days",
+      "ground_truth": "('29 weeks', '3 days')",
+      "prediction": [
+        29,
+        3
+      ],
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    }
+  ]
+}

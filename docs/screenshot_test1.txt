@@ -1,0 +1,17 @@
+$ python3 run_baseline.py --input examples/test1.json --mode offline
+
+MedFlow baseline | workflow=cot model=qwen3-30b-a3b-instruct-2507 mode=offline cases=1
+------------------------------------------------------------------------------
+[  1/1] PASS  row1     pred=25.0         gt=25.2381      Creatinine Clearance (Cockcroft-Gault 
+------------------------------------------------------------------------------
+accuracy            : 100.0%  (1/1)
+parse failure rate  : 0.0%
+by category         : lab test=100%(n=1)
+by output type      : decimal=100%(n=1)
+llm calls           : 0 live, 1 from cache
+tokens              : 1249 prompt + 413 completion
+llm time            : 4.49s summed over calls (recorded, workers-independent)
+wall clock          : 0.0s
+
+results -> runs/cot_qwen3-30b-a3b-instruct-2507_n1.json
+traces  -> runs/cot_qwen3-30b-a3b-instruct-2507_n1.traces.json

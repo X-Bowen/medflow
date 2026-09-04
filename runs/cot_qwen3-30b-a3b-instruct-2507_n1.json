@@ -1,0 +1,50 @@
+{
+  "summary": {
+    "n": 1,
+    "accuracy": 1.0,
+    "parse_failure_rate": 0.0,
+    "by_category": {
+      "lab test": {
+        "acc": 1.0,
+        "n": 1
+      }
+    },
+    "by_output_type": {
+      "decimal": {
+        "acc": 1.0,
+        "n": 1
+      }
+    },
+    "workflow": "cot",
+    "model": "qwen3-30b-a3b-instruct-2507",
+    "mode": "offline",
+    "temperature": 0.0,
+    "seed": 0,
+    "max_tokens": 1500,
+    "disable_thinking": false,
+    "workers": 4,
+    "wall_clock_s": 0.0,
+    "usage": {
+      "calls": 0,
+      "cached": 1,
+      "prompt_tokens": 1249,
+      "completion_tokens": 413,
+      "llm_s": 4.49,
+      "errors": 0
+    }
+  },
+  "results": [
+    {
+      "id": "row1",
+      "calculator": "Creatinine Clearance (Cockcroft-Gault Equation)",
+      "category": "lab test",
+      "output_type": "decimal",
+      "ground_truth": "25.2381",
+      "prediction": 25.0,
+      "parsed": true,
+      "correct": true,
+      "fallback": false,
+      "error": null
+    }
+  ]
+}
